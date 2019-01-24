@@ -11,7 +11,6 @@
   in rails console...
   `2.5.3 :001 > Hirb.enable`
 
-  
 
 
 # Integrate React
