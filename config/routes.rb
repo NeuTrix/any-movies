@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
 
-  concern :commentable do
-    resoureces :comments
+  namespace :api do
+    # show users comments and movies
+    resources :users do
+      resources :comments, module: :users
+    end
+    # movies routes
+    resources :movies do
+      # only show movie comments
+      resources :comments, module: :movies, only: [:index, :show]
+    end
+    # only show comment comments route
+    resources :comments, only: [] do
+      resources :comments, module: :comments, only: [:index, :show]
+    end
   end
-  resources :comments, conerns: :commentable
-  resources :movies, conerns: :commentable
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
