@@ -1,7 +1,17 @@
-@user = User.create(username: "mickey")
+@user = User.new
+@user.username = 'theMouse'
+@user.email = 'mickey@dl.com'
+@user.password = 'bananaKing'
+@user.password_confirmation = 'bananaKing'
+@user.admin = true
 @user.save
 
-@critic = User.create(username: "goofy")
+@critic = User.new
+@critic.username = 'theDog'
+@critic.email = 'goofy@dl.com'
+@critic.password = 'bananaBro'
+@critic.password_confirmation = 'bananaBro'
+@critic.save
 
 @movie = Movie.create(title: 'alien')
 @movie.save
@@ -23,14 +33,3 @@
 )
 @response.save
 
-admin = User.new
-admin.email = 'admin@bananas.com'
-admin.password = 'bananaKing'
-admin.password_confirmation = 'bananaKing'
-admin.admin = true
-admin.save
-user = User.new
-user.email = 'user@bananas.com'
-user.password = 'bananaBro'
-user.password_confirmation = 'bananaBro'
-user.save

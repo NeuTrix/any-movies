@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     post 'user_token' => 'user_token#create'
     # show users comments and movies
-    resources :users, only: [:index, :show, :destroy] do
+    resources :users do
       resources :comments, module: :users
     end
     # movies routes
