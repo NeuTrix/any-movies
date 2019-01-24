@@ -17,7 +17,14 @@
     - users-> many comments, movies via comments.  Dependent destroy
     - movies -> many comments as commentable, user through comments
     - comments b_t commentable and user, hasMay comments as commentable, polymorphic: true, depen-destroy
-    - 
+
+## exceptions
+- [ ] dependent: :destroy for users, movies, comments
+
+### update routes
+- [ ] add api namespace
+- [ ] create commentable for comments/movies
+- [ ] modularize controllers and controller directory to match
 
 # Integrate React
 
