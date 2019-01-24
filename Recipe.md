@@ -21,6 +21,10 @@
 ## exceptions
 - [ ] dependent: :destroy for users, movies, comments
 
+- [ ] add guard gem to Gemfile: automated testing
+  - `bundle`, 
+  - `be guard init`
+
 ### update routes
 - [ ] add api namespace
 - [ ] create commentable for comments/movies
@@ -33,4 +37,6 @@
 
 
 ## Gems
-- hirb:  console prettifier
+- [x] hirb:  console prettifier
+- [x] guard:  auto test runner
+- [ ] rubocop: ruby linter
