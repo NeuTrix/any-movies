@@ -12,7 +12,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference('User.count') do
-      post api_users_url, params: { auth: { 
+      post api_users_url, params: { user: { 
         username: @user.username, 
         email: @user.email,
         password: "wonderful", 
