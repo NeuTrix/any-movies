@@ -14,9 +14,10 @@
 - [ ] build models
   build model schema chart
     - Movie and Comments are 'commentable'
-    - users-> many comments, movies via comments
+    - users-> many comments, movies via comments.  Dependent destroy
     - movies -> many comments as commentable, user through comments
-    - comments b_t commentable and user, hasMay comments as commentable
+    - comments b_t commentable and user, hasMay comments as commentable, polymorphic: true, depen-destroy
+    - 
 
 # Integrate React
 
