@@ -3,11 +3,15 @@
 one:
   title: MyString
   body: MyText
-  commentable: 
   user: one
+  commentable: one
+  commentable_type: Commentable
+  rating: 1
 
 two:
   title: MyString
   body: MyText
-  commentable: 
   user: two
+  commentable: two
+  commentable_type: Commentable
+  rating: 1

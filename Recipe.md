@@ -11,7 +11,12 @@
   in rails console...
   `2.5.3 :001 > Hirb.enable`
 
-
+- [ ] build models
+  build model schema chart
+    - Movie and Comments are 'commentable'
+    - users-> many comments, movies via comments
+    - movies -> many comments as commentable, user through comments
+    - comments b_t commentable and user, hasMay comments as commentable
 
 # Integrate React
 
@@ -20,4 +25,4 @@
 
 
 ## Gems
-- [ ] hirb:  console prettifier
+- hirb:  console prettifier
