@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  # resources :movies
   namespace :api do
     post 'user_token' => 'user_token#create'
     # show users comments and movies
