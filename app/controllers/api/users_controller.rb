@@ -20,9 +20,8 @@ module Api
       
       if @user.save
         render json: @user, status: :created
-        # location: @user
+        # , location: @user
       else
-        raise params.inspect
         render json: @user.errors, status: :unprocessable_entity
       end
     end
@@ -50,6 +49,7 @@ module Api
       # Only allow a trusted parameter "white list" through.
       def user_params
         params.require(:user).permit(:username, :email, :password, :password_confirm)
+        raise params.inspect
       end
   end
 end
