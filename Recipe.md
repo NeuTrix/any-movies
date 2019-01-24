@@ -26,6 +26,7 @@
   - `be guard init`
 
 ### update routes
+- [ ] add commentable conern (fixes controller test errors. Turn off comments cont test: should be created through users/comments)
 - [ ] add api namespace
 - [ ] create commentable for comments/movies
 - [ ] modularize controllers and controller directory to match
