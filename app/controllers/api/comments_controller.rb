@@ -6,7 +6,6 @@ module Api
     # GET /comments
     def index
       @comments = Comment.all
-
       render json: @comments
     end
 
@@ -17,10 +16,12 @@ module Api
 
     # POST /comments
     def create
-      @comment = Comment.new(comment_params)
+      @comment = @commentable.comments.build(comment_params)
+      @comment.user = current_user
 
       if @comment.save
-        render json: @comment, status: :created
+        # render json: @current_user, status: :created
+        render "passed the saved comment"
         # , location: @comment
       else
         render json: @comment.errors, status: :unprocessable_entity
@@ -49,7 +50,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def comment_params
-        params.require(:comment).permit(:title, :body, :user_id, :commentable_id, :commentable_type, :rating)
+        params. permit(:title, :body, :user_id, :commentable_id, :commentable_type, :rating)
       end
   end
 end
