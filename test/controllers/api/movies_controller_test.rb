@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MoviesControllerTest < ActionDispatch::IntegrationTest
+class Api::MoviesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @movie = movies(:one)
   end

@@ -17,11 +17,11 @@ module Api
     # POST /comments
     def create
       @comment = @commentable.comments.build(comment_params)
-      @comment.user = current_user
+      # @comment.user_id = current_user.id
 
       if @comment.save
-        # render json: @current_user, status: :created
-        render "passed the saved comment"
+        render json: @current_user, status: :created
+        # render "passed the saved comment"
         # , location: @comment
       else
         render json: @comment.errors, status: :unprocessable_entity
@@ -50,7 +50,15 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def comment_params
-        params.require(:comment).permit(:title, :body, :user_id, :commentable_id, :commentable_type, :rating)
+        params.require(:comment).permit(
+          :body, 
+          :commentable_id, 
+          :commentable_type, 
+          # :movie_id,
+          :rating,
+          :title, 
+          :user_id, 
+          )
       end
   end
 end

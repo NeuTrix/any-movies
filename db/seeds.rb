@@ -33,3 +33,11 @@
 )
 @response.save
 
+@testComment = @movie.comments.build(
+  commentable_id: @movie.id,
+  commentable_type: @movie.class.name,
+  body: "I'm hopint to comment on this film directly",
+  rating: 5
+)
+
+@testComment.save

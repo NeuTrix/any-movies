@@ -4,37 +4,49 @@ class Api::Movies::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @movie = movies(:one)
+    @user = users(:one)
+
+    # @comment = @commentable
   end
 
-  test "should get index" do
-    # skip
-    get api_movies_url, as: :json
+  test "should get index of comments" do
+    skip
+    get api_movie_comments(@movie), as: :json
     assert_response :success
   end
 
-  test "should create movie" do
+  test "should create comment" do
     # skip
-    assert_difference('Movie.count') do
-      post api_movies_url, params: { movie: { critic_rating: @movie.critic_rating, description: @movie.description, rated: @movie.rated, release_date: @movie.release_date, title: @movie.title } }, as: :json
+    assert_difference('Comment.count') do
+      post "http://localhost:3001/api/movies/#{@movie.id}/comments", params: { comment: { 
+      # post api_movie_comments_url, params: { movie: { 
+        user_id: @user.id,
+        # movie_id: @movie.id,
+        critic_rating: @movie.critic_rating, 
+        description: @movie.description, 
+        rated: @movie.rated, 
+        release_date: @movie.release_date, 
+        title: @movie.title 
+      } }, as: :json
     end
 
     assert_response 201
   end
 
   test "should show movie" do
-    # skip
+    skip
     get api_movie_url(@movie), as: :json
     assert_response :success
   end
 
   test "should update movie" do
-    # skip
+    skip
     patch api_movie_url(@movie), params: { movie: { critic_rating: @movie.critic_rating, description: @movie.description, rated: @movie.rated, release_date: @movie.release_date, title: @movie.title } }, as: :json
     assert_response 200
   end
 
   test "should destroy movie" do
-    # skip
+    skip
     assert_difference('Movie.count', -1) do
       delete api_movie_url(@movie), as: :json
     end
