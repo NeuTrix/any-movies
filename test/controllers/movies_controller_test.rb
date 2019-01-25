@@ -14,7 +14,13 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
   test "should create movie" do
     # skip
     assert_difference('Movie.count') do
-      post api_movies_url, params: { critic_rating: @movie.critic_rating, description: @movie.description, rated: @movie.rated, release_date: @movie.release_date, title: @movie.title } , as: :json
+      post api_movies_url, params: { movie: { 
+        critic_rating: @movie.critic_rating, 
+        description: @movie.description, 
+        rated: @movie.rated, 
+        release_date: @movie.release_date, 
+        title: @movie.title 
+      } }, as: :json
     end
 
     assert_response 201
