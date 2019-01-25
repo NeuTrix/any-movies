@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 
-const Comment = (props) => {
-  const (comment)
+function Comment(props) {
+  const {classes, comment } = props;
   return (
-    <div>
-      {comment.author}
-      {comment.title}
-      {comment.body}
+    <div className={classes.main}>
+      <h3> {comment.title} </h3>
+      <h4> Author: {comment.author} </h4>
+      <p> {comment.body} </p>
     </div>
     );
 }
  
-export default Comment;
+const styles = {
+  main: {
+    background: 'lightgreen',
+  }
+}
+
+export default withStyles(styles)(Comment);

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'; 
-// import axios from 'axios'
+import Comment from './Comment';
 
 // include props declartaions (classes)
 
@@ -10,13 +10,16 @@ function CommentsList(props) {
     const { classes, comments } = props
 
     const commentsList = comments.map(com => {
-     return <li key={com.id}> {com.body} </li>
+     return (
+      <li key={com.id}> 
+        <Comment comment={com}/>
+      </li>)
     })
     
     return (
       <div className={classes.main}>
         <h1> Comments List </h1>
-        <ul> {commentsList} </ul>
+        <div> {commentsList} </div>
       </div>
     )
 }
