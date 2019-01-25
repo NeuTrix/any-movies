@@ -6,11 +6,18 @@ import { withStyles } from '@material-ui/core/styles'; // import axios from 'axi
 // include props declartaions (classes)
 
 function CommentsList(props) {
-  return (
-    <div>
-      <h2> Commments list </h2>
-    </div>
-  )
+    const { classes, comments } = props
+
+    const commentsList = comments.map(com => {
+     return <li key={com.id}> {com.body} </li>
+    })
+    
+    return (
+      <div className={classes.main}>
+        <h1> Comments Container </h1>
+        <ul> {commentsList} </ul>
+      </div>
+    )
 }
 
 const styles = {
