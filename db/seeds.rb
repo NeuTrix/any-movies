@@ -17,6 +17,7 @@
 @movie.save
 
 @comment = @user.comments.build(
+  author: @user.username,
   commentable_id: @movie.id,
   commentable_type: @movie.class.name,
   body: "One of my all time favorites, Go Ripley!!",
@@ -25,6 +26,7 @@
 @comment.save
  
 @response = @critic.comments.build(
+  author: @critic.username,
   commentable_id: @comment.id,
   commentable_type: @comment.class.name,
   body: "Well, I actually preferred the action in Camerons Aliens
