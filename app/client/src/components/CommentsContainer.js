@@ -12,22 +12,11 @@ class CommmentsContainer extends Component {
       comments: [],
     }
   }
-
-  // comp will mount to capture the incoming data
-  // implement redux to hold onto state
-  // componentDidMount(){
-  //   axios.get('api/comments')
-  //   .then( resp => {
-  //     console.log(resp)
-  //     this.setState({comments: resp.data})
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-
+    // make proxy call to retrieve comments from the api
    componentDidMount() {
-     axios.get('api/comments')
+     axios.get('/api/comments')
        .then(resp => {
-         console.log("it worked?");
+         console.log("==> here's the object", resp);
          this.setState({
            comments: resp.data
          });
