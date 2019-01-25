@@ -18,9 +18,16 @@ class MainDisplay extends Component {
     const { classes } = this.props
     return (
       <div className={classes.grid}>
-        <h1> Main Display Area </h1>
-        {/* <MoviesContainer/>
-        <CommentsContainer/> */}
+        <h1 className={classes.title}>
+          Main Display Area 
+        </h1>
+
+        <div className={classes.comments}>
+          <CommentsContainer/>
+        </div>
+        <div className={classes.movies}>
+          <MoviesContainer/>
+        </div>
       </div>
     )
   }
@@ -28,19 +35,22 @@ class MainDisplay extends Component {
 
 const styles = {
   grid: {
-    display: 'grid',
+    display: 'inline-grid',
     gridTemplateAreas: `
-      "movies"
+      "title"
       "comments" 
+      "movies"
     `,
   },
 
   comments: {
+    background: 'orangered',
     gridArea: 'comments',
   },
 
   movies: {
-    gridArea: 'movie',
+    background: 'lime',
+    gridArea: 'movies',
   }
 }
 

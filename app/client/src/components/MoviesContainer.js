@@ -24,8 +24,7 @@ class MoviesContainer extends Component {
 
 const styles = {
   grid: {
-    display: 'grid',
-    gridAreas: `"list"`
+    // display: 'grid',
   }
 }
 
