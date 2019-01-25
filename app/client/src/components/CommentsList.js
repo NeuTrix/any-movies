@@ -1,7 +1,8 @@
 // to provide a list of comments for main display area
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles'; // import axios from 'axios'
+import { withStyles } from '@material-ui/core/styles'; 
+// import axios from 'axios'
 
 // include props declartaions (classes)
 
