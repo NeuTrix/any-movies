@@ -29,6 +29,7 @@ class CommmentsContainer extends Component {
 const styles = {
   grid: {
     // display: 'grid',
+    padding: 5,
   }
 }
 

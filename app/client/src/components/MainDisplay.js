@@ -41,6 +41,9 @@ const styles = {
       "comments" 
       "movies"
     `,
+    padding: 5,
+    margin: 10,
+    width: 350,
   },
 
   comments: {
