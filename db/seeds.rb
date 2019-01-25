@@ -17,6 +17,7 @@
 @movie.save
 
 @comment = @user.comments.build(
+  title: "Ripley Rocks iT!",
   author: @user.username,
   commentable_id: @movie.id,
   commentable_type: @movie.class.name,
@@ -26,7 +27,7 @@
 @comment.save
  
 @response = @critic.comments.build(
-  title: "Ripley Rocks iT!",
+  title: "Cameron rocks it better",
   author: @critic.username,
   commentable_id: @comment.id,
   commentable_type: @comment.class.name,
@@ -37,7 +38,7 @@
 @response.save
 
 @testComment = @movie.comments.build(
-  title: "Cameron rocks it better",
+  title: "can you comment on a movie dircetly?",
   commentable_id: @movie.id,
   commentable_type: @movie.class.name,
   body: "I'm hopint to comment on this film directly",
