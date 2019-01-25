@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommentsControllerTest < ActionDispatch::IntegrationTest
+class Api::CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @comment = comments(:one)
     @commentable = movies(:one)
@@ -9,15 +9,21 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    skip
+    # skip
     get api_comments_url, as: :json
     assert_response :success
   end
 
   test "should create comment" do
-    skip
+    # skip
     assert_difference('Comment.count') do
-      post api_comments_url, params: { comment: { body: @comment.body, commentable_id: @commentable_id, commentable_type: @commentable_type, rating: @comment.rating, title: @comment.title, user_id: @user_id } }, as: :json
+      post api_comments_url, params: {  
+        body: @comment.body, 
+        commentable_id: @commentable_id, 
+        commentable_type: @commentable_type, 
+        rating: @comment.rating, 
+        title: @comment.title, 
+        user_id: @user_id }, as: :json
     end
 
     assert_response 201
