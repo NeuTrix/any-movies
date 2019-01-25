@@ -1,7 +1,10 @@
+// provide the data grabbing logic for the list
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios'
+import axios from 'axios';
+import CommentsList from './CommentsList';
+
 
 // include props declartaions (classes)
 
@@ -37,17 +40,17 @@ class CommmentsContainer extends Component {
     )
     
     return (
-      <div className={classes.grid}>
+      <div className={classes.main}>
         <h1> Comments Container </h1>
         <ul> {commentsList} </ul>
+        <CommentsList/>
       </div>
     )
   }
 }
 
 const styles = {
-  grid: {
-    // display: 'grid',
+  main: {
     padding: 5,
   }
 }
