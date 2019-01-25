@@ -41,3 +41,11 @@
 - [x] hirb:  console prettifier
 - [x] guard:  auto test runner
 - [ ] rubocop: ruby linter
+
+## npm
+- [x] http-proxy-middleware: works with CRA-2 for proxys
+- [ ] eslint
+- [x] axios: for api calls
+- [ ] Redux
+- [ ] React Router
+- [ ] 
