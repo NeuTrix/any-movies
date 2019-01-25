@@ -49,7 +49,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def movie_params
-        params.require(:movie).permit(:title, :description, :release_date, :rated, :critic_rating)
+        params.permit(:title, :description, :release_date, :rated, :critic_rating)
       end
   end
 end

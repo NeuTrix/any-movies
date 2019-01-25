@@ -4,16 +4,16 @@ Rails.application.routes.draw do
     post 'user_token' => 'user_token#create'
     # show users comments and movies
     resources :users do
-      resources :comments, module: :users
+      resources :comments, module: :users, only: [:index, :show]
     end
     # movies routes
     resources :movies do
       # only show movie comments
-      resources :comments, module: :movies, only: [:index, :show]
+      resources :comments, module: :movies
     end
     # only show comment comments route
     resources :comments, only: [] do
-      resources :comments, module: :comments, only: [:index, :show]
+      resources :comments, module: :comments
     end
   end
 
