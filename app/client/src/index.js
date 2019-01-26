@@ -19,6 +19,8 @@ function reducer(state=initialState, action) {
 
 const store = createStore(reducer);
 
+store.dispatch({//some actions})
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
