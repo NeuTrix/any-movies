@@ -29,8 +29,8 @@ class CommmentableContainer extends Component {
         ? path = 'movies'
         : path = 'comments'
 
-    //  axios.get(`/api/movies/2/comments`)
-     axios.get(`/api/${path}/${commentableId}/comments`)
+    //  axios.get(`/api/movies/1/comments`)
+    //  axios.get(`/api/${path}/${commentableId}/comments`)
       .then(resp => {
         console.log("==> here's the object", resp);
         this.setState({ comments: resp.data });

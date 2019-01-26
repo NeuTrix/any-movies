@@ -11,9 +11,9 @@ function CommentsList(props) {
 
     const commentsList = comments.map(com => {
      return (
-      <span key={com.id}> 
+      <li key={com.id}> 
         <Comment comment={com}/>
-      </span>)
+      </li>)
     })
     
     return (

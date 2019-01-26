@@ -18,7 +18,7 @@ class MovieReveiwPage extends Component {
     super(props)
     this.state = {
       imdbId: '',
-      movieId: 2,
+      movieId: 1,
       // inDatabase: false,
     }
     this.searchMovie = this.searchMovie.bind(this)
@@ -75,8 +75,8 @@ const styles = {
     `,
     gridTemplateColumns: '5fr 5fr',
     gridTemplateRows: '2fr 1fr 7fr',
-    // padding: 5,
-    // margin: 10,
+    padding: 5,
+    margin: 10,
   },
 
   comments: {
@@ -93,7 +93,7 @@ const styles = {
   search:{
     background: 'violet',
     gridArea: 'search',
-    minHeight: 50,
+    // minHeight: 50,
   }
 }
 
