@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
 import MoviesContainer from './MoviesContainer';
+import axios from 'axios';
 
 // include props declartaions (classes)
 
@@ -12,13 +13,21 @@ const propTypes = {
   movie: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MainDisplay extends Component {
+class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       imdbId: '',
+      movieId: 2,
+      // inDatabase: false,
     }
     this.searchMovie = this.searchMovie.bind(this)
+  }
+
+  // check to see if a movie is in our database
+  isMovieSaved(id) {
+    // axios.get(`/api/movies/${id}`)
+    this.setState({ inDatabase: true });
   }
 
   // find a movie to review
@@ -26,11 +35,12 @@ class MainDisplay extends Component {
     //  search the api
     // set the imdb id for state from the search item
     this.setState({imdbId: 'tt0078748'})
+    // this.setState({movieId: 'tt0078748'})
   }
 
   render() {
     const { classes } = this.props
-    const { imdbId } = this.state
+    const { movieId } = this.state
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
@@ -42,7 +52,10 @@ class MainDisplay extends Component {
           </button>
         </div>
         <div className={classes.comments}>
-          <CommentableContainer imdbId={imdbId}/>
+          <CommentableContainer 
+            commentableId={movieId}
+            commentableType='Movie'
+          />
         </div>
         <div className={classes.movies}>
           <MoviesContainer/>
@@ -83,4 +96,4 @@ const styles = {
 }
 
 
-export default withStyles(styles)(MainDisplay)
+export default withStyles(styles)(MovieReveiwPage)

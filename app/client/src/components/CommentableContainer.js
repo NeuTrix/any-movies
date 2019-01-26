@@ -8,8 +8,8 @@ import CommentsList from './CommentsList';
 // include props declartaions (classes)
 
 const propTypes = {
-  commentable_id: PropTypes.number.isRequired,
-  commentable_type: PropTypes.string.isRequired,
+  commentableId: PropTypes.number.isRequired,
+  commentableType: PropTypes.string.isRequired,
   classes: PropTypes.instanceOf(Object).isRequired,
 }
 
@@ -18,11 +18,19 @@ class CommmentableContainer extends Component {
     super(props)
     this.state = {
       comments: [],
+
     }
   }
     // make proxy call to retrieve comments from the api
    componentDidMount() {
-     axios.get('/api/comments')
+     const { commentableId, commentableType } = this.props;
+      let path
+      commentableType === 'Movie' ?
+        path = 'movies' :
+        path = 'comments' 
+      ;
+
+     axios.get(`/api/${path}/${commentableId}/comments`)
       .then(resp => {
         console.log("==> here's the object", resp);
         this.setState({ comments: resp.data });
@@ -31,13 +39,14 @@ class CommmentableContainer extends Component {
    }
 
   render() {
-    const { classes, imdbId } = this.props
+    const { classes, commentableId, commentableType } = this.props
     const { comments } = this.state
 
     return (
       <div className={classes.main}>
         <h1> Comments Container </h1>
-        the id is: {imdbId}
+        <p> the id is: {commentableId} </p>
+        <p> the type is: {commentableType} </p>
         <CommentsList comments={comments}/>
       </div>
     )
