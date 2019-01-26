@@ -9,6 +9,7 @@ function Comment(props) {
       <h3> {comment.title} </h3>
       <h4> Author: {comment.author} </h4>
       <p> {comment.body} </p>
+      {/* <p> {comment.comments} </p> */}
     </div>
     );
 }
