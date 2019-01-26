@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+// pass in state to the MovieReveiwPage via Redux
 import './App.css';
 import MovieReviewPage from './components/MovieReviewPage';
 class App extends Component {
