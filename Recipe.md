@@ -53,5 +53,6 @@
 ## Redux
 https://www.youtube.com/watch?v=sX3KeP7v7Kg
 - [ ] add Redux gems
+    - [ ] redux
     - [ ] react-redux
 - [ ] 

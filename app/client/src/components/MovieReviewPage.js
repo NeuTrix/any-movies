@@ -15,7 +15,7 @@ const propTypes = {
   movie: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieReveiwPage extends Component {
+class MovieReviewPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -99,5 +99,8 @@ const styles = {
   }
 }
 
+const mapStateToProps = (state) => ({
+  movie: state.movie,
+})
 
-export default withStyles(styles)connect()(MovieReveiwPage)
+export default connect(mapStateToProps)(withStyles(styles)(MovieReviewPage))
