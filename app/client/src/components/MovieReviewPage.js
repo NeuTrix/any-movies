@@ -69,11 +69,12 @@ const styles = {
   grid: {
     display: 'inline-grid',
     gridTemplateAreas: `
-      "title"
-      "search"
-      "comments" 
-      "movies"
+      "title title"
+      "search comments"
+      "movies comments "
     `,
+    gridTemplateColumns: '5fr 5fr',
+    gridTemplateRows: '2fr 1fr 7fr',
     padding: 5,
     margin: 10,
 
@@ -92,6 +93,7 @@ const styles = {
   search:{
     background: 'violet',
     gridArea: 'search',
+    minHeight: 50,
   }
 }
 
