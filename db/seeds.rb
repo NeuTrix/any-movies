@@ -13,7 +13,10 @@
 @critic.password_confirmation = 'bananaBro'
 @critic.save
 
-@movie = Movie.create(title: 'alien')
+@movie = Movie.create(
+  title: 'Alien', 
+  imdb_id: 'tt0078748'
+  )
 @movie.save
 
 @comment = @user.comments.build(
