@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
@@ -17,8 +19,8 @@ class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imdbId: '',
-      movieId: 1,
+      // imdbId: '',
+      // movieId: 1,
       // inDatabase: false,
     }
     this.searchMovie = this.searchMovie.bind(this)
@@ -98,4 +100,4 @@ const styles = {
 }
 
 
-export default withStyles(styles)(MovieReveiwPage)
+export default withStyles(styles)connect()(MovieReveiwPage)
