@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CommentsContainer from './CommentsContainer';
+import CommentableContainer from './CommentableContainer';
 import MoviesContainer from './MoviesContainer';
 
 // include props declartaions (classes)
@@ -23,7 +23,7 @@ class MainDisplay extends Component {
         </h1>
 
         <div className={classes.comments}>
-          <CommentsContainer/>
+          <CommentableContainer/>
         </div>
         <div className={classes.movies}>
           <MoviesContainer/>
