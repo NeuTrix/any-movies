@@ -43,15 +43,11 @@ class CommmentableContainer extends Component {
     let display
     if (comments.length > 0) {
       display =  <CommentsList comments={comments}/>
-    } else {
-      display = (<div>
-        "Empty"
-      </div>)
-    }
+    } 
     
     return (
       <div className={classes.main}>
-        <h1> Comments Container </h1>
+        <h3> Comments Container </h3>
         <p> the id is: {commentableId} </p>
         <p> the type is: {commentableType} </p>
         { display }
@@ -63,6 +59,7 @@ class CommmentableContainer extends Component {
 const styles = {
   main: {
     padding: 5,
+    outline: '3px solid purple',
   }
 }
 

@@ -13,8 +13,8 @@ function Comment(props) {
   return (
     <div className={classes.main}>
     <p> ===================== </p>
-      <h3> {comment.title} </h3>
-      <h4> Author: {comment.author} </h4>
+      <h4> {comment.title} </h4>
+      <p> Author: {comment.author} </p>
       <p> {comment.body} </p>
       THis is: {comment.id}
        <CommentableContainer 

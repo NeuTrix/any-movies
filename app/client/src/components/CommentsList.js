@@ -18,7 +18,7 @@ function CommentsList(props) {
     
     return (
       <div className={classes.main}>
-        <h1> Comments List </h1>
+        <h3> Comments List </h3>
         <ul> {commentsList} </ul>
       </div>
     )
