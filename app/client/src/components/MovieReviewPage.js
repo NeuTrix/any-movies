@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  // acquire through movie Api and pass down
+  // via Redux
   movie: PropTypes.instanceOf(Object).isRequired,
 }
 

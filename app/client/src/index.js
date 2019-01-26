@@ -7,11 +7,14 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+// set initial state
+const initialState = {
+  movie: { id: 1 }
+};
+
 // simple reducer to support te store
-function reducer() {
- return {
-  movie: {id: 1} 
-  }
+function reducer(state=initialState, action) {
+ return state;
 }
 
 const store = createStore(reducer);
