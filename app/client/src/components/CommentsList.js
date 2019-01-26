@@ -22,7 +22,6 @@ function CommentsList(props) {
         <div> {commentsList} </div>
       </div>
     )
-}
 
 const styles = {
   main: {
