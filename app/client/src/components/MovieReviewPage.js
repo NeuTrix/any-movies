@@ -6,22 +6,31 @@ import MoviesContainer from './MoviesContainer';
 
 // include props declartaions (classes)
 
+const propTypes = {
+  classes: PropTypes.instanceOf(Object).isRequired,
+  // acquire through movie Api and pass down
+  movie: PropTypes.instanceOf(Object).isRequired,
+}
+
 class MainDisplay extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      movie_imbd: '',
+      
     }
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, movie } = this.props
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
-          Main Display Area 
+         Movie Review Page
         </h1>
-
+        <div className={classes.search}>
+          Search
+        </div>
         <div className={classes.comments}>
           <CommentableContainer/>
         </div>
@@ -38,12 +47,13 @@ const styles = {
     display: 'inline-grid',
     gridTemplateAreas: `
       "title"
+      "search"
       "comments" 
       "movies"
     `,
     padding: 5,
     margin: 10,
-    width: 350,
+
   },
 
   comments: {
@@ -54,6 +64,11 @@ const styles = {
   movies: {
     background: 'lime',
     gridArea: 'movies',
+  },
+
+  search:{
+    background: 'violet',
+    gridArea: 'search',
   }
 }
 
