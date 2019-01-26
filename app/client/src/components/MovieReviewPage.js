@@ -18,9 +18,8 @@ class MovieReveiwPage extends Component {
     super(props)
     this.state = {
       imdbId: '',
-      movieId: 1,
+      movieId: 2,
       // inDatabase: false,
-
     }
     this.searchMovie = this.searchMovie.bind(this)
   }

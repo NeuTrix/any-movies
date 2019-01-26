@@ -24,11 +24,10 @@ class CommmentableContainer extends Component {
    componentDidMount() {
      const { commentableId, commentableType } = this.props;
       let path
-      if (commentableType === 'Movie') {
-        path = 'movies'; 
-      } else {
-        path = 'comments';
-      };
+
+      commentableType === 'Movie' 
+        ? path = 'movies'
+        : path = 'comments'
 
     //  axios.get(`/api/movies/2/comments`)
      axios.get(`/api/${path}/${commentableId}/comments`)
