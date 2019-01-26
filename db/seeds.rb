@@ -13,6 +13,7 @@
 @critic.password_confirmation = 'bananaBro'
 @critic.save
 
+# create some movies
 @movie = Movie.create(
   title: 'Alien', 
   imdb_id: 'tt0078748'
@@ -25,8 +26,9 @@
   )
 @movie2.save
 
+# comments of first user on both movies
 @comment = @user.comments.build(
-  title: "Ripley Rocks iT!",
+  title: "ALIEN: Ripley Rocks iT!",
   author: @user.username,
   commentable_id: @movie.id,
   commentable_type: @movie.class.name,
@@ -36,16 +38,17 @@
 @comment.save
 
 @comment2 = @user.comments.build(
-  title: "Star Wars was romantic",
+  title: "STAR WARS: As romantic as the universe",
   author: @user.username,
-  commentable_id: @movie.id,
-  commentable_type: @movie.class.name,
+  commentable_id: @movie2.id,
+  commentable_type: @movie2.class.name,
   body: "I had my first kiss at this movie.  
         Yes, it was the 70's, but who's counting?",
   rating: 5
 )
 @comment2.save
  
+# comments of second user, on those Comments
 @response = @critic.comments.build(
   title: "Cameron rocks it better",
   author: @critic.username,
@@ -60,13 +63,15 @@
 @response2 = @critic.comments.build(
   title: "Yuck",
   author: @critic.username,
-  commentable_id: @comment.id,
-  commentable_type: @comment.class.name,
+  commentable_id: @comment2.id,
+  commentable_type: @comment2.class.name,
   body: "I had NO idea it was that old.  Old people kiss :(|)",
   rating: 3
 )
 @response2.save
 
+
+# test to see if a comment can be built from a movie
 @testComment = @movie.comments.build(
   title: "can you comment on a movie dircetly?",
   commentable_id: @movie.id,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CommentableContainer from './CommentableContainer';
+// import CommentableContainer from './CommentableContainer';
 
 function Comment(props) {
   const {classes, comment } = props;

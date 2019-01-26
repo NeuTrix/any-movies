@@ -5,7 +5,7 @@ module Api
 
     # GET /comments
     def index
-      @comments = Comment.all
+      @comments = @commentable.comments
       render json: @comments
     end
 

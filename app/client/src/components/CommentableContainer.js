@@ -18,18 +18,19 @@ class CommmentableContainer extends Component {
     super(props)
     this.state = {
       comments: [],
-
     }
   }
     // make proxy call to retrieve comments from the api
    componentDidMount() {
      const { commentableId, commentableType } = this.props;
       let path
-      commentableType === 'Movie' ?
-        path = 'movies' :
-        path = 'comments' 
-      ;
+      if (commentableType === 'Movie') {
+        path = 'movies'; 
+      } else {
+        path = 'comments';
+      };
 
+    //  axios.get(`/api/movies/2/comments`)
      axios.get(`/api/${path}/${commentableId}/comments`)
       .then(resp => {
         console.log("==> here's the object", resp);
