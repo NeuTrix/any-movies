@@ -19,7 +19,7 @@ function CommentsList(props) {
     return (
       <div className={classes.main}>
         <h3> Comments List </h3>
-        <ul> {commentsList} </ul>
+        <span> {commentsList} </span>
       </div>
     )
 }
@@ -28,7 +28,8 @@ const styles = {
   main: {
     background: 'aliceblue',
     display: 'grid',
-    gridTemplateAreas: `"list"`
+    gridTemplateAreas: `"list"`,
+    margin: 5,
   }
 }
 

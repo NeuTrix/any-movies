@@ -49,3 +49,9 @@
 - [ ] Redux
 - [ ] React Router
 - [ ] @material/ui/core
+
+## Redux
+https://www.youtube.com/watch?v=sX3KeP7v7Kg
+- [ ] add Redux gems
+    - [ ] react-redux
+- [ ] 

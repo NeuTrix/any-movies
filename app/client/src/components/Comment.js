@@ -12,11 +12,11 @@ function Comment(props) {
   const {classes, comment } = props;
   return (
     <div className={classes.main}>
-    <p> ===================== </p>
+      <p> ===================== </p>
       <h4> {comment.title} </h4>
       <p> Author: {comment.author} </p>
       <p> {comment.body} </p>
-      THis is: {comment.id}
+      <p> THis is: {comment.id} </p>
        <CommentableContainer 
           commentableId={comment.id}
           commentableType='Comment'
@@ -28,6 +28,8 @@ function Comment(props) {
 const styles = {
   main: {
     background: 'lightgreen',
+    margin: 15,
+    outline: '2px solid blue',
   }
 }
 
