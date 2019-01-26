@@ -20,7 +20,7 @@ class MovieReviewPage extends Component {
     super(props)
     this.state = {
       // imdbId: '',
-      // movieId: 1,
+      // movieId: movie.id,
       // inDatabase: false,
     }
     this.searchMovie = this.searchMovie.bind(this)
@@ -41,8 +41,7 @@ class MovieReviewPage extends Component {
   }
 
   render() {
-    const { classes } = this.props
-    const { movieId } = this.state
+    const { classes, movie } = this.props
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
@@ -55,7 +54,7 @@ class MovieReviewPage extends Component {
         </div>
         <div className={classes.comments}>
           <CommentableContainer 
-            commentableId={movieId}
+            commentableId={movie.id}
             commentableType='Movie'
           />
         </div>

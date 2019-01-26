@@ -9,7 +9,9 @@ import { Provider } from 'react-redux';
 
 // simple reducer to support te store
 function reducer() {
-
+ return {
+  movie: {id: 1} 
+  }
 }
 
 const store = createStore(reducer);
