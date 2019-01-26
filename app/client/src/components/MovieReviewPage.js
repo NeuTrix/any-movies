@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
-import MoviesContainer from './MoviesContainer';
+import MovieContainer from './MovieContainer';
 import axios from 'axios';
 
 // include props declartaions (classes)
@@ -58,7 +58,7 @@ class MovieReveiwPage extends Component {
           />
         </div>
         <div className={classes.movies}>
-          <MoviesContainer/>
+          <MovieContainer/>
         </div>
       </div>
     )
@@ -75,9 +75,8 @@ const styles = {
     `,
     gridTemplateColumns: '5fr 5fr',
     gridTemplateRows: '2fr 1fr 7fr',
-    padding: 5,
-    margin: 10,
-
+    // padding: 5,
+    // margin: 10,
   },
 
   comments: {
@@ -86,6 +85,7 @@ const styles = {
   },
 
   movies: {
+    display: 'grid',
     background: 'lime',
     gridArea: 'movies',
   },
