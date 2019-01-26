@@ -16,23 +16,33 @@ class MainDisplay extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      movie_imbd: '',
-      
+      imdbId: '',
     }
+    this.searchMovie = this.searchMovie.bind(this)
+  }
+
+  // find a movie to review
+  searchMovie() {
+    //  search the api
+    // set the imdb id for state from the search item
+    this.setState({imdbId: 'tt0078748'})
   }
 
   render() {
-    const { classes, movie } = this.props
+    const { classes } = this.props
+    const { imdbId } = this.state
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
          Movie Review Page
         </h1>
-        <div className={classes.search}>
-          Search
+        <div className={classes.search} >
+          <button onClick={this.searchMovie}>
+            Search
+          </button>
         </div>
         <div className={classes.comments}>
-          <CommentableContainer/>
+          <CommentableContainer imdbId={imdbId}/>
         </div>
         <div className={classes.movies}>
           <MoviesContainer/>

@@ -31,12 +31,13 @@ class CommmentableContainer extends Component {
    }
 
   render() {
-    const { classes } = this.props
+    const { classes, imdbId } = this.props
     const { comments } = this.state
 
     return (
       <div className={classes.main}>
         <h1> Comments Container </h1>
+        the id is: {imdbId}
         <CommentsList comments={comments}/>
       </div>
     )
