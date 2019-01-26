@@ -1,4 +1,4 @@
-// provide the data grabbing logic for the list
+// provide the container to grab comments for a movie or a comment type
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,7 +7,13 @@ import CommentsList from './CommentsList';
 
 // include props declartaions (classes)
 
-class CommmentsContainer extends Component {
+const propTypes = {
+  commentable_id: PropTypes.number.isRequired,
+  commentable_type: PropTypes.string.isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired,
+}
+
+class CommmentableContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -43,4 +49,6 @@ const styles = {
   }
 }
 
-export default withStyles(styles)(CommmentsContainer)
+CommmentableContainer.propTypes = propTypes;
+
+export default withStyles(styles)(CommmentableContainer)
