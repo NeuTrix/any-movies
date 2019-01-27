@@ -3,15 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// add @material UI theme provider
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
-const theme = createMuiTheme();
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
     <App />
-  </MuiThemeProvider>
   , document.getElementById('root')
 );
 
