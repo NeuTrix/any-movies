@@ -8,4 +8,3 @@ const apiKey = process.env.REACT_APP_OMBD_MOVIE_API_KEY
 
 const url_Omdb_data = `http://www.omdbapi.com/?apikey=${apiKey}&`
 const url_Omdb_poster = `http://img.omdbapi.com/?apikey=${apiKey}&`
-
