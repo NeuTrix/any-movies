@@ -42,7 +42,7 @@
   title: "STAR WARS: As romantic as the universe",
   author: @user.username,
   user_id: @user.id,
-  commentable_id: @starwars.id,
+  commentable_id: @starwars.imdb_id,
   commentable_type: @starwars.class.name,
   body: "I had my first kiss at this alien.  
         Yes, it was the 70's, but who's counting?",
@@ -78,7 +78,7 @@
 # test to see if a comment can be built from a alien
 @testComment = @alien.comments.build(
   title: "can you comment on a alien dircetly?",
-  commentable_id: @alien.id,
+  commentable_id: @alien.imdb_id,
   commentable_type: @alien.class.name,
   body: "I'm hoping to comment on this film directly",
   rating: 5
