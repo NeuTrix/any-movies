@@ -31,6 +31,7 @@ class MovieReveiwPage extends Component {
   getBlogMovieId() {
     // const imdbId = this.state.
   }
+  
   // get the movie data
   getMovieData(searchTerm) {
     axios.get(`${url_data}&t=${searchTerm}`)
