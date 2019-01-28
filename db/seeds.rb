@@ -31,7 +31,7 @@
   title: "ALIEN: Ripley Rocks iT!",
   author: @user.username,
   user_id: @user.id,
-  commentable_id: @alien.id,
+  commentable_id: @alien.imdb_id,
   commentable_type: @alien.class.name,
   body: "One of my all time favorites, Go Ripley!!",
   rating: 4
