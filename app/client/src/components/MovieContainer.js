@@ -22,6 +22,7 @@ class MovieReveiwPage extends Component {
         Title: "Placeholder",
         imdbID: 'tt0078748',
       },
+      poster: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
     this.searchMovie = this.searchMovie.bind(this)
@@ -47,23 +48,36 @@ class MovieReveiwPage extends Component {
       movie
     } = this.state;
 
-
+    // get the movie data
     axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
       .then(resp => {
         console.log(resp);
         this.setState({
-          movie: resp.data
+          movie: resp.data,
+          poster: `http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`
         });
       })
       .catch(err => {
         console.log(err)
       })
 
+    // get the movie poster
+    // axios.get(`http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
+    //   .then(resp => {
+    //     console.log(resp);
+    //     this.setState({
+    //       poster: resp.data
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+
   }
 
   render() {
     const { classes } = this.props
-    const { movie } = this.state
+    const { movie, poster } = this.state
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
@@ -83,7 +97,7 @@ class MovieReveiwPage extends Component {
           />
         </div>
         <div className={classes.movies}>
-          <MovieDisplay movie={movie}/>
+          <MovieDisplay movie={movie} poster={poster}/>
         </div>
       </div>
     )

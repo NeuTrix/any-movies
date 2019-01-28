@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   movie: PropTypes.instanceOf(Object).isRequired,
+  poster: PropTypes.instanceOf(Object).isRequired,
 }
 
 class MovieDisplay extends Component {
@@ -19,8 +20,10 @@ class MovieDisplay extends Component {
   }
 
   render() {
-    const { classes, movie } = this.props
-
+    const { classes, movie, poster } = this.props
+    // const image = poster.map(img => {
+    //   return (<img key={img.id} > {img.data} </img>)
+    // })
     return(
       <div className={classes.main} >
         <div style={{gridArea: 'mTitle'}} >
@@ -28,7 +31,8 @@ class MovieDisplay extends Component {
         </div> 
         <div style={{gridArea: 'mYear'}} >
         </div> 
-        <div style={{gridArea: 'mPoster'}} >p</div> 
+        <img src={poster}  style={{gridArea: 'mPoster'}} >
+        </img> 
         <div style={{gridArea: 'mDescr'}} >
         
         </div> 
