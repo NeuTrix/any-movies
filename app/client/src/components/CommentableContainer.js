@@ -8,7 +8,7 @@ import CommentsList from './CommentsList';
 // include props declartaions (classes)
 
 const propTypes = {
-  commentableId: PropTypes.number.isRequired,
+  commentableId: PropTypes.string.isRequired,
   commentableType: PropTypes.string.isRequired,
   classes: PropTypes.instanceOf(Object).isRequired,
 }

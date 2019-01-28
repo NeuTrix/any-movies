@@ -54,19 +54,16 @@ class MovieReveiwPage extends Component {
         if (data.Error) {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
         } else {
-          // set the movie state with the data
+          // buld the movie object
           this.setState({ movie: data });
-          // pass down the movie id
           return data
         }
       })
+      // build the comments object
       .then(data => {
         this.getComments(data.imdbID);
         console.log('====>', this.state)
         return data;
-      })
-      .then(data => {
-        alert(data)
       })
       // catch errors outside of returned JSON object
       .catch(err => {  console.log('===>',err) })
@@ -90,7 +87,8 @@ class MovieReveiwPage extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            commentableId={movie.imdbId}
+            // commentableId={'tt0078748'}
+            commentableId={movie.imdbID}
             commentableType='Movie'
           />
         </div>
