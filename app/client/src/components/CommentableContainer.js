@@ -8,52 +8,28 @@ import CommentsList from './CommentsList';
 // include props declartaions (classes)
 
 const propTypes = {
+  classes: PropTypes.instanceOf(Object).isRequired,
+  comments: PropTypes.instanceOf(Object).isRequired,
   commentableId: PropTypes.string.isRequired,
   commentableType: PropTypes.string.isRequired,
-  classes: PropTypes.instanceOf(Object).isRequired,
 }
 
-class CommmentableContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      comments: [],
-    }
-  }
-    // make proxy call to retrieve comments from the api
-   componentDidMount() {
-     const { commentableId, commentableType } = this.props;
-     // set the path to either movies or comments
-      let path
-      commentableType === 'Movie' 
-        ? path = 'movies'
-        : path = 'comments'
+function CommmentableContainer(props) {
 
-     axios.get(`/api/${path}/${commentableId}/comments`)
-      .then(resp => {
-        console.log("==> here's the object", resp);
-        this.setState({ comments: resp.data });
-      })
-      .catch(err => console.log(err))
-   }
-
-  render() {
-    const { classes, commentableId, commentableType } = this.props
-    const { comments } = this.state
-    let display
-    if (comments.length > 0) {
-      display =  <CommentsList comments={comments}/>
-    } 
-    
-    return (
-      <div className={classes.main}>
-        <h3> Comments Container </h3>
-        <p> the id is: {commentableId} </p>
-        <p> the type is: {commentableType} </p>
-        { display }
-      </div>
-    )
-  }
+  const { classes, comments, commentableId, commentableType } = props
+  let display
+  if (comments && comments.length > 0) {
+    display =  <CommentsList comments={comments}/>
+  } 
+  
+  return (
+    <div className={classes.main}>
+      <h3> Comments Container </h3>
+      <p> the id is: {commentableId} </p>
+      <p> the type is: {commentableType} </p>
+      { display }
+    </div>
+  )
 }
 
 const styles = {

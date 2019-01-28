@@ -71,7 +71,7 @@ class MovieReveiwPage extends Component {
 
   render() {
     const { classes } = this.props // for material UI
-    const { movie } = this.state
+    const { comments, movie } = this.state
     return (
       <div className={classes.grid}>
 
@@ -87,8 +87,8 @@ class MovieReveiwPage extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            // commentableId={'tt0078748'}
-            commentableId={movie.imdbID}
+            comments={comments}
+            commentableId={movie.imdbId}
             commentableType='Movie'
           />
         </div>
