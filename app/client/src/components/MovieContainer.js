@@ -1,48 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
-
+import CommentableContainer from './CommentableContainer';
+import MovieDisplay from './MovieDisplay';
+import axios from 'axios';
 
 // include props declartaions (classes)
+
 const propTypes = {
-  classe: PropTypes.instanceOf(Object).isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired,
+  // acquire through movie Api and pass down
+  movie: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieContainer extends Component {
+class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       apiKey: process.env.REACT_APP_OMBD_MOVIE_API_KEY,
-      movie: { 
+      movie: {
         Title: "Placeholder",
         imdbID: 'tt0078748',
       },
     }
     this.getMovieData = this.getMovieData.bind(this);
+    this.searchMovie = this.searchMovie.bind(this)
   }
 
-  componentDidMount() {
-    const { movie } = this.state;
-    // should work from OMDB api vs my api
-    // axios.get(`api/movies/${movie.id}`)
-    //   .then(resp => {
-    //     console.log(resp);
-    //     this.setState({
-    //       movie: resp.data
-    //     });
-    //   })
-    //   .catch(err => console.log(err))
+  // check to see if a movie is in our database
+  isMovieSaved(id) {
+    // axios.get(`/api/movies/${id}`)
+    this.setState({ inDatabase: true });
+  }
+
+  // find a movie to review
+  searchMovie() {
+    //  search the api
+    // set the imdb id for state from the search item
+    this.setState({imdbId: 'tt0078748'})
+    // this.setState({movie.id: 'tt0078748'})
   }
 
   getMovieData() {
-    const { apiKey, movie } = this.state;
+    const {
+      apiKey,
+      movie
+    } = this.state;
 
 
     axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
       .then(resp => {
         console.log(resp);
-        this.setState({ movie: resp.data});
+        this.setState({
+          movie: resp.data
+        });
       })
       .catch(err => {
         console.log(err)
@@ -50,42 +61,66 @@ class MovieContainer extends Component {
 
   }
 
-
-
   render() {
     const { classes } = this.props
     const { movie } = this.state
-
-    return(
-      <div className={classes.main} >
-        <div style={{gridArea: 'mTitle'}} >
-          { movie.Title }
-        </div> 
-        <div style={{gridArea: 'mYear'}} >
-          <button onClick={this.getMovieData} > test </button>
-        </div> 
-        <div style={{gridArea: 'mPoster'}} >p</div> 
-        <div style={{gridArea: 'mDescr'}} >
-        
-        </div> 
-        <div style={{gridArea: 'mLetter'}} >l</div> 
-        <div style={{gridArea: 'cRating'}} >r</div> 
+    return (
+      <div className={classes.grid}>
+        <h1 className={classes.title}>
+         Movie Review Page
+        </h1>
+        <div className={classes.search} >
+          <button onClick={this.searchMovie}>
+            Search
+          </button>
+          <button onClick={this.getMovieData} > Get Movie </button>
+          
+        </div>
+        <div className={classes.comments}>
+          <CommentableContainer 
+            commentableId={movie.id}
+            commentableType='Movie'
+          />
+        </div>
+        <div className={classes.movies}>
+          <MovieDisplay movie={movie}/>
+        </div>
       </div>
     )
   }
 }
 
 const styles = {
-  main: {
+  grid: {
     display: 'inline-grid',
     gridTemplateAreas: `
-      "mTitle mYear"
-      "mPoster mDescr"
-      "mLetter cRating"
+      "title title"
+      "search comments"
+      "movies comments "
     `,
-    gridTemplateColumns: ' 2fr 3fr',
+    gridTemplateColumns: '5fr 5fr',
+    gridTemplateRows: '2fr 1fr 7fr',
+    padding: 5,
+    margin: 10,
   },
 
+  comments: {
+    background: 'orangered',
+    gridArea: 'comments',
+  },
+
+  movies: {
+    display: 'grid',
+    background: 'lime',
+    gridArea: 'movies',
+  },
+
+  search:{
+    background: 'violet',
+    gridArea: 'search',
+    // minHeight: 50,
+  }
 }
 
-export default withStyles(styles)(MovieContainer)
+
+export default withStyles(styles)(MovieReveiwPage)
