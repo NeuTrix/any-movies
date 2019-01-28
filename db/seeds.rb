@@ -27,20 +27,22 @@
 @movie2.save
 
 # comments of first user on both movies
-@comment = @user.comments.build(
+@comment = @movie.comments.build(
   title: "ALIEN: Ripley Rocks iT!",
   author: @user.username,
-  commentable_id: @movie.id,
+  user_id: @user.id,
+  commentable_id: @movie.imdb_id,
   commentable_type: @movie.class.name,
   body: "One of my all time favorites, Go Ripley!!",
   rating: 4
 )
 @comment.save
 
-@comment2 = @user.comments.build(
+@comment2 = @movie.comments.build(
   title: "STAR WARS: As romantic as the universe",
   author: @user.username,
-  commentable_id: @movie2.id,
+  user_id: @user.id,
+  commentable_id: @movie2.imdb_id,
   commentable_type: @movie2.class.name,
   body: "I had my first kiss at this movie.  
         Yes, it was the 70's, but who's counting?",
@@ -49,22 +51,24 @@
 @comment2.save
  
 # comments of second user, on those Comments
-@response = @critic.comments.build(
+@response = @comment2.comments.build(
   title: "Cameron rocks it better",
   author: @critic.username,
-  commentable_id: @comment.id,
-  commentable_type: @comment.class.name,
+  user_id: @critic.id,  
+  commentable_id: @comment2.id,
+  commentable_type: @comment2.class.name,
   body: "Well, I actually preferred the action in Camerons Aliens
   Much more credible and interesteing",
   rating: 4
 )
 @response.save
 
-@response2 = @critic.comments.build(
+@response2 = @response.comments.build(
   title: "Yuck",
   author: @critic.username,
-  commentable_id: @comment2.id,
-  commentable_type: @comment2.class.name,
+  user_id: @critic.id,
+  commentable_id: @response.id,
+  commentable_type: @response.class.name,
   body: "I had NO idea it was that old.  Old people kiss :(|)",
   rating: 3
 )
@@ -74,7 +78,7 @@
 # test to see if a comment can be built from a movie
 @testComment = @movie.comments.build(
   title: "can you comment on a movie dircetly?",
-  commentable_id: @movie.id,
+  commentable_id: @movie.imdb_id,
   commentable_type: @movie.class.name,
   body: "I'm hopint to comment on this film directly",
   rating: 5

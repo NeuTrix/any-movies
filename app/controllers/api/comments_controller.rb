@@ -53,6 +53,7 @@ module Api
       def comment_params
         params.require(:comment).permit(
           :author,
+          :imdb_id,
           :body, 
           :commentable_id, 
           :commentable_type, 
