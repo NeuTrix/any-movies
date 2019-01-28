@@ -16,10 +16,10 @@ class Api::Movies::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create comment" do
-    skip
+    # skip
     assert_difference('Comment.count') do
-      post "http://localhost:3001/api/movies/#{@movie.id}/comments", params: { comment: { 
-      # post api_movie_comments_url, params: { movie: { 
+      # post api_movie_comments_url(@movie), params: { comment: { 
+      post api_movie_comments_url(@movie), params: { movie: { 
         user_id: @user.id,
         # movie_id: @movie.id,
         critic_rating: @movie.critic_rating, 
