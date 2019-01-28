@@ -35,8 +35,11 @@ class MovieReveiwPage extends Component {
     axios.get(`/api/movies/${movieId}/comments`)
     .then(resp => {
       console.log(resp);
+      const data = resp.data;
+      this.setState({ comments: data });
+
     })
-    .cath(err => {
+    .catch(err => {
       console.log(err);
     })
   }
@@ -54,14 +57,19 @@ class MovieReveiwPage extends Component {
           // set the movie state with the data
           this.setState({ movie: data });
           // pass down the movie id
-          return data.imdbID
+          return data
         }
       })
-      .then(movieId => {
-        this.getComments(movieId)
+      .then(data => {
+        this.getComments(data.imdbID);
+        console.log('====>', this.state)
+        return data;
+      })
+      .then(data => {
+        alert(data)
       })
       // catch errors outside of returned JSON object
-      .catch(err => { console.log(err) })
+      .catch(err => {  console.log('===>',err) })
   }
 
   render() {
@@ -82,7 +90,7 @@ class MovieReveiwPage extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            commentableId={movie.id}
+            commentableId={movie.imdbId}
             commentableType='Movie'
           />
         </div>
