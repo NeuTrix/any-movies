@@ -93,7 +93,7 @@ const styles = theme => ({
     // gridTemplateRows: '2fr 1fr 7fr',
 
     
-    // padding: 5,
+    padding: theme.spacing.unit,
     // margin: 10,
   },
 
@@ -101,22 +101,25 @@ const styles = theme => ({
     background: theme.palette.primary.main,
     // background: 'orangered',
     gridArea: 'comments',
+    marginTop: theme.spacing.unit,
   },
 
   movies: {
     display: 'grid',
-    background: 'lime',
+    background: theme.palette.secondary.main,
     gridArea: 'movies',
+    marginTop: theme.spacing.unit,
   },
 
   search:{
-    background: 'violet',
     gridArea: 'search',
   },
 
   title: { 
     background: 'aliceblue',
-    gridArea: 'title'
+    gridArea: 'title',
+    marginTop: theme.spacing.unit,
+    
   }
 })
 

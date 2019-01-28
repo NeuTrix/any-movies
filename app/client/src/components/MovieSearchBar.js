@@ -52,7 +52,7 @@ onSubmit(e) {
 			>
 			
 				<TextField
-					label = "enter title or imdbID ..."
+					label = "Search for movie by title"
 					fullWidth
 					margin="dense"
 					name="searchTerm"
