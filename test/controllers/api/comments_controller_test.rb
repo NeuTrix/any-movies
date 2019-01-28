@@ -14,20 +14,20 @@ class Api::CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   # no route for Post api/comments alone
-  test "should create comment" do
-    skip
-    assert_difference('Comment.count') do
-      post api_comments_url, params: {  
-        body: @comment.body, 
-        commentable_id: @commentable_id, 
-        commentable_type: @commentable_type, 
-        rating: @comment.rating, 
-        title: @comment.title, 
-        user_id: @user_id }, as: :json
-    end
+  # test "should create comment" do
+  #   skip
+  #   assert_difference('Comment.count') do
+  #     post api_comments_url, params: {  
+  #       body: @comment.body, 
+  #       commentable_id: @commentable_id, 
+  #       commentable_type: @commentable_type, 
+  #       rating: @comment.rating, 
+  #       title: @comment.title, 
+  #       user_id: @user_id }, as: :json
+  #   end
 
-    assert_response 201
-  end
+  #   assert_response 201
+  # end
 
   test "should show comment" do
     skip
