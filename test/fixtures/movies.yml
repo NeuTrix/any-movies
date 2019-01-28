@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+alien:
+  imdb_id: tt0078748
   title: MyString
   description: MyText
   release_date: 2019-01-23
   rated: MyString
   critic_rating: 1
 
-two:
+starwars:
+  imdb_id: tt0076759
   title: MyString
   description: MyText
   release_date: 2019-01-23
