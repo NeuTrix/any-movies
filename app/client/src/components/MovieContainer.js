@@ -25,13 +25,18 @@ class MovieReveiwPage extends Component {
     this.getMovieData('alien')
   }
 
+  //  set a controller in API to find the id for this movie
+  // search by imdbId
+  getBlogMovieId() {
+    // const imdbId = this.state.
+  }
+  // get the movie data
   getMovieData(searchTerm) {
-    // get the movie data
     axios.get(`${url_data}&t=${searchTerm}`)
-    // check for an error in the search
-      .then(resp => {
-        console.log(resp);
-        const data = resp.data
+    .then(resp => {
+      console.log(resp);
+      const data = resp.data
+      // check for an error in the search
         if (data.Error) {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
         } else {

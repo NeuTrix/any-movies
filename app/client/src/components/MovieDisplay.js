@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 
-
 // include props declartaions (classes)
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
