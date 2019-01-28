@@ -29,8 +29,8 @@ function MovieDisplay(props) {
     <div className={classes.main} >
 
       <div className={classes.title}>
-        <Typography variant="h4"> { movie.Title } </Typography> 
-        <div>{movie.Year} --- Rated: {movie.Rated} </div> <br/>
+        <Typography variant="h5"> { movie.Title } </Typography> 
+        <div>Released: {movie.Year} | Rated: {movie.Rated} </div> <br/>
       </div>
 
       <div className={classes.poster} >
