@@ -5,7 +5,7 @@ import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
 import { url_data, url_poster} from '../helpers/apiHelper';
-import SearchBar from './SearchBar';
+import MovieSearchBar from './MovieSearchBar';
 // include props declartaions (classes)
 
 const propTypes = {
@@ -48,14 +48,22 @@ class MovieReveiwPage extends Component {
       apiKey,
       movie
     } = this.state;
-
+    const test = 'star trek bb II'
     // get the movie data
-    axios.get(`${url_data}&i=${movie.imdbID}`)
+    axios.get(`${url_data}&t=${test}`)
+    // axios.get(`${url_data}&i=${movie.imdbID}`)
       .then(resp => {
         console.log(resp);
+        const data = resp.data
+        if (data.Error) {
+          alert(`Error: ${data.Error} \n for ${test}! \n Please try again`)
+        }
+
         this.setState({
           movie: resp.data,
-          posterUrl: `${url_poster}&i=${movie.imdbID}`
+          // posterUrl: `${url_data}&t=${test}`
+          // posterUrl: `${url_poster}&i=tt5814352`
+          posterUrl: `${url_poster}&i=${resp.data.imdbID}`
         });
       })
       .catch(err => {
@@ -72,12 +80,12 @@ class MovieReveiwPage extends Component {
          Movie Review Page
         </h1>
         
-        <SearchBar className={classes.search} >
-        </SearchBar>
-          {/* <button onClick={this.searchMovie}>
-            Search
+        <MovieSearchBar className={classes.search} >
+        </MovieSearchBar>
+          <button onClick={this.searchMovie}>
+            <h3> {posterUrl} </h3>
           </button>
-          <button onClick={this.getMovieData} > Get Movie </button> */}
+          <button onClick={this.getMovieData} > Get Movie </button>
           
         <div className={classes.comments}>
           <CommentableContainer 
