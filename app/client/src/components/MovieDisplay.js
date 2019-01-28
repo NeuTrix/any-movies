@@ -15,16 +15,17 @@ const propTypes = {
 function MovieDisplay(props) {
 
   const { classes, movie, posterUrl } = props
-  // if (movie.Ratings
-
-    const ratings = movie.Ratings && movie.Ratings.map((mrate, index) => {
-      return (
-        <li key={index}>
-      {mrate.Source}: {mrate.Value}
-    </li>
-    )
+  
+  // if (movie.Ratings) listed, show them
+  const ratings = movie.Ratings && movie.Ratings.map((rating, index) => {
+    return ( <li key={index}> {rating.Source}: {rating.Value} </li> )
   })
-// }
+
+  // if actors listed, make a list
+  const actors = movie.Actors && movie.Actors.split(',').map((actor, index) => {
+    return ( <li key={index}> {actor} </li> )
+  })
+
   return (
     <div className={classes.main} >
 
@@ -38,16 +39,22 @@ function MovieDisplay(props) {
       </div>
 
       <div className={classes.info}>
-        {/* <div> Released:  </div> <br/> */}
-        <div> Directed by: 
+
+        <div>
+          <h4> Genre: </h4>
+          <p> {movie.Genre} </p>
+        </div> 
+
+        <div> 
+          <h4> Director: </h4>
           <p> {movie.Director} </p> 
-        </div> <br/>
-        <div> Genre:
-            <p> {movie.Genre} </p>
-        </div> <br/>
-        <div> Starring: 
-          <p> {movie.Actors} </p>
-        </div> <br/>
+        </div> 
+       
+        <div> 
+          < h4 > Starring: </h4>
+          <ul> { actors } </ul>
+        </div> 
+
       </div>
 
       <div className={classes.plot} > 
@@ -56,7 +63,7 @@ function MovieDisplay(props) {
 
       <div className={classes.ratings} > 
           <div> Critics Ratings: <ul> { ratings } </ul> </div>
-      </div> <br/>
+      </div>
 
     </div>
   )
