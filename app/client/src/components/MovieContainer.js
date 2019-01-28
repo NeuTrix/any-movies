@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
-import { url_data} from '../helpers/apiHelper';
+import { url_movie_data, url_local_api} from '../helpers/api.helper';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
@@ -17,6 +17,7 @@ class MovieReveiwPage extends Component {
     super(props)
     this.state = {
       movie: {},
+      comments: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
   }
@@ -28,13 +29,14 @@ class MovieReveiwPage extends Component {
 
   //  set a controller in API to find the id for this movie
   // search by imdbId
-  getBlogMovieId() {
+  getComments(imdbId) {
+    axios.get()
     // const imdbId = this.state.
   }
   
   // get the movie data
   getMovieData(searchTerm) {
-    axios.get(`${url_data}&t=${searchTerm}`)
+    axios.get(`${url_movie_data}&t=${searchTerm}`)
     .then(resp => {
       console.log(resp);
       const data = resp.data
