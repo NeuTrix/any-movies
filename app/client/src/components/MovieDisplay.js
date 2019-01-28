@@ -23,19 +23,23 @@ function MovieDisplay(props) {
 
   // if actors listed, make a list
   const actors = movie.Actors && movie.Actors.split(',').map((actor, index) => {
-    return ( <li key={index}> {actor} </li> )
+    return ( <p key={index}> {actor} </p> )
   })
 
   return (
     <div className={classes.main} >
 
       <div className={classes.title}>
-        <Typography variant="h5"> { movie.Title } </Typography> 
-        <div>Released: {movie.Year} | Rated: {movie.Rated} </div> <br/>
+        <Typography variant="h3"> { movie.Title } </Typography> 
       </div>
 
       <div className={classes.image} >
         <img className={classes.poster} src={posterUrl} alt="movie poster"/>
+        <div> Released: {movie.Year} </div>
+        <div> Rated 
+          <h3>{movie.Rated} </h3> 
+        </div> 
+        <div> <h6> imdbID: { movie.imdbID }</h6> </div>
       </div>
 
       <div className={classes.info}>
@@ -51,15 +55,10 @@ function MovieDisplay(props) {
         </div> 
        
         <div> 
-          < h4 > Starring: </h4>
-          <ul> { actors } </ul>
+          <h4> Starring: </h4>
+          <p> { actors } </p>
         </div> 
        
-        <div> 
-          < h6 > imdbID: </h6>
-          <p> { movie.imdbID } </p>
-        </div> 
-
       </div>
 
       <div className={classes.ratings} > 
@@ -90,15 +89,13 @@ const styles = theme => ({
     //   "poster mrate"
     //   "poster desr"
     // `,
-    // gridTemplateColumns: '2fr 3fr',
-    // gridTemplateRows: 'auto',
-    // gridTemplateRows: '1fr 3fr 1fr 1fr',
-    // maxWidth: 500,
+    gridTemplateColumns: '2fr 2fr',
   },
 
   title: {
     gridArea: 'title',
     padding: theme.spacing.unit,
+    borderBottom: '1px solid lightgrey',
   },
 
   info: {
@@ -108,23 +105,21 @@ const styles = theme => ({
   },
 
   image: {
-    // width: '50px',
     gridArea: 'image',
     padding: theme.spacing.unit,
+    borderRight: '1px solid lightgrey',
   },
 
   poster: {
-    // width: '95%',
     maxWidth: 150,
-    // gridArea: 'poster',
     padding: theme.spacing.unit,
   },
 
   plot: {
     gridArea: 'plot',
-    textAlign: 'left',
+    border: '1px solid lightgrey',
     padding: theme.spacing.unit * 2,
-    // paddingRight: theme.spacing.unit * 2,
+    textAlign: 'left',
   },
 
   ratings: {
