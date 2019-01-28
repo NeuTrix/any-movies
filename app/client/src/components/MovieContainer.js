@@ -20,6 +20,7 @@ class MovieReveiwPage extends Component {
       comments: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
   
   // set a default movie to display
@@ -29,9 +30,15 @@ class MovieReveiwPage extends Component {
 
   //  set a controller in API to find the id for this movie
   // search by imdbId
-  getComments(imdbId) {
-    axios.get(`${url_local_api}\api`)
-    // const imdbId = this.state.
+  getComments(movieId) {
+    // const { movie } = this.state
+    axios.get(`/api/movies/${movieId}/comments`)
+    .then(resp => {
+      console.log(resp);
+    })
+    .cath(err => {
+      console.log(err);
+    })
   }
   
   // get the movie data
@@ -45,8 +52,13 @@ class MovieReveiwPage extends Component {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
         } else {
           // set the movie state with the data
-          this.setState({ movie: resp.data });
+          this.setState({ movie: data });
+          // pass down the movie id
+          return data.imdbID
         }
+      })
+      .then(movieId => {
+        this.getComments(movieId)
       })
       // catch errors outside of returned JSON object
       .catch(err => { console.log(err) })
