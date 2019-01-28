@@ -8,32 +8,37 @@ import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import TextField from '@material-ui/core/TextField';
 
 const propTypes = {
-  classes: PropTypes.instanceOf(Object).isRequired,
+	classes: PropTypes.instanceOf(Object).isRequired,
+	handleSubmit: PropTypes.instanceOf(Function).isRequired,
 };
 
-const SearchByTitle = props => (
-	<TextField
-		{...props}
-		fullWidth
-		margin="dense"
-		name="movieTitle"
-		type="text"
-		variant="outlined"
-	/>
-)
+// const SearchByTitle = props => (
+	
+// )
 
 class MovieSearchBar extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			movieTitle: '',
-			movieId: ''
+			// movieTitle: '',
+			// movieId: ''
+			searchTerm:''
 		}
 		this.onSubmit = this.onSubmit.bind(this)
+		this.onChange = this.onChange.bind(this)
 	}
 
-	onSubmit(e) {
+onChange(e) {
+	this.setState({[e.target.name]: e.target.value})
+}
+onSubmit(e) {
+	const { searchTerm } = this.state;
 		e.preventDefault();
+		// alert(e.target.value)
+		console.log(e)
+		// alert(searchTerm)
+		// this.props.getMovieData('star wars')
+		this.props.getMovieData(searchTerm)
 	}
 
 	render() {
@@ -43,20 +48,29 @@ class MovieSearchBar extends Component {
 			<FormControl
 				className={classes.grid}
 				component="form"
-				onSubmit={this.handleSubmit}
+				onSubmit={this.onSubmit}
 			>
-				<SearchByTitle
-					label="enter movie title"
-					style={{ gridArea: 'movieTitle' }}
-					reauired
-					// value={movieTitle}
-					onChange={this.handleChange}
+			
+				<TextField
+					label = "enter title or imdbID ..."
+					fullWidth
+					margin="dense"
+					name="searchTerm"
+					onChange={this.onChange}
+					type="text"
+					value={this.state.searchTerm}
+					variant="outlined"
+					required
+
 				/>
+
 				<Button
+					label="Find"
 					className={classes.button}
 					component="button"
 					type="submit"
-				>
+					variant="outlined"
+				> 
 				</Button>
 			</FormControl>
 		)
@@ -65,7 +79,13 @@ class MovieSearchBar extends Component {
 }
 
 const styles = theme => ({
+	grid: {
+		display: 'inline-block',
+		gridTemplateAreas: `
 
+		`,
+	}
+	// button
 })
 
 export default withStyles(styles)(MovieSearchBar)

@@ -26,43 +26,36 @@ class MovieReveiwPage extends Component {
       poster: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
-    this.searchMovie = this.searchMovie.bind(this)
+    // this.searchMovie = this.searchMovie.bind(this)
   }
 
   // check to see if a movie is in our database
-  isMovieSaved(id) {
-    // axios.get(`/api/movies/${id}`)
-    this.setState({ inDatabase: true });
-  }
+  // isMovieSaved(id) {
+  //   // axios.get(`/api/movies/${id}`)
+  //   this.setState({ inDatabase: true });
+  // }
 
   // find a movie to review
-  searchMovie() {
-    //  search the api
-    // set the imdb id for state from the search item
-    this.setState({imdbId: 'tt0078748'})
-    // this.setState({movie.id: 'tt0078748'})
-  }
+  // searchMovie() {
+  //   //  search the api
+  //   // set the imdb id for state from the search item
+  //   this.setState({imdbId: 'tt0078748'})
+  //   // this.setState({movie.id: 'tt0078748'})
+  // }
 
-  getMovieData() {
-    const {
-      apiKey,
-      movie
-    } = this.state;
-    const test = 'star trek bb II'
+  getMovieData(searchTerm) {
+    // const { apiKey, movie } = this.state;
     // get the movie data
-    axios.get(`${url_data}&t=${test}`)
+    axios.get(`${url_data}&t=${searchTerm}`)
     // axios.get(`${url_data}&i=${movie.imdbID}`)
       .then(resp => {
         console.log(resp);
         const data = resp.data
         if (data.Error) {
-          alert(`Error: ${data.Error} \n for ${test}! \n Please try again`)
+          alert(`Error: ${data.Error} for: \n ${searchTerm}! \n Please try again`)
         }
-
         this.setState({
           movie: resp.data,
-          // posterUrl: `${url_data}&t=${test}`
-          // posterUrl: `${url_poster}&i=tt5814352`
           posterUrl: `${url_poster}&i=${resp.data.imdbID}`
         });
       })
@@ -80,12 +73,15 @@ class MovieReveiwPage extends Component {
          Movie Review Page
         </h1>
         
-        <MovieSearchBar className={classes.search} >
+        <MovieSearchBar 
+          className={classes.search}
+          getMovieData={this.getMovieData} 
+        >
         </MovieSearchBar>
-          <button onClick={this.searchMovie}>
+          {/* <button onClick={this.searchMovie}>
             <h3> {posterUrl} </h3>
-          </button>
-          <button onClick={this.getMovieData} > Get Movie </button>
+          </button> */}
+          {/* <button onClick={this.getMovieData('Aliens')} > Get Movie </button> */}
           
         <div className={classes.comments}>
           <CommentableContainer 
