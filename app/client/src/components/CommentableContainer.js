@@ -14,22 +14,31 @@ const propTypes = {
   commentableType: PropTypes.string.isRequired,
 }
 
-function CommmentableContainer(props) {
+class CommmentableContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      comments: {},
+    }
+  }
 
-  const { classes, comments, commentableId, commentableType } = props
-  let display
-  if (comments && comments.length > 0) {
-    display =  <CommentsList comments={comments}/>
-  } 
-  
-  return (
-    <div className={classes.main}>
-      <h3> Comments Container </h3>
-      <p> the commentable id is: {commentableId} </p>
-      <p> the type is: {commentableType} </p>
-      { display }
-    </div>
-  )
+  render() {
+    const { classes, comments, commentableId, commentableType } = this.props
+
+    let display
+    if (comments && comments.length > 0) {
+      display =  <CommentsList comments={comments}/>
+    } 
+    
+    return (
+      <div className={classes.main}>
+        <h3> Comments Container </h3>
+        <p> the commentable id is: {commentableId} </p>
+        <p> the type is: {commentableType} </p>
+        { display }
+      </div>
+    )
+  }
 }
 
 const styles = {
