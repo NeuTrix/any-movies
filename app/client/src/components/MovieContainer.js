@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
+import { url_data, url_poster} from '../helpers/apiHelper';
 
 // include props declartaions (classes)
 
@@ -49,19 +50,19 @@ class MovieReveiwPage extends Component {
     } = this.state;
 
     // get the movie data
-    axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
+    axios.get(`${url_data}&i=${movie.imdbID}`)
       .then(resp => {
         console.log(resp);
         this.setState({
           movie: resp.data,
-          posterUrl: `http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`
+          posterUrl: `${url_poster}&i=${movie.imdbID}`
         });
       })
       .catch(err => {
         console.log(err)
       })
 
-    // get the movie poster
+    // get the movie poste
     // axios.get(`http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
     //   .then(resp => {
     //     console.log(resp);
