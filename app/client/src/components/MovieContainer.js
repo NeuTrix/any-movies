@@ -42,7 +42,8 @@ class MovieReveiwPage extends Component {
         } else {
           this.setState({
             movie: resp.data,
-            posterUrl: `${url_poster}&i=${resp.data.imdbID}`
+            // posterUrl: `${url_poster}&i=${resp.data.imdbID}`
+            posterUrl: resp.data.Poster
           });
         }
       })

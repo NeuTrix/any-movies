@@ -54,16 +54,23 @@ function MovieDisplay(props) {
           < h4 > Starring: </h4>
           <ul> { actors } </ul>
         </div> 
+       
+        <div> 
+          < h6 > imdbID: </h6>
+          <p> { movie.imdbID } </p>
+        </div> 
 
       </div>
-
-      <div className={classes.plot} > 
-        <div> Released: {movie.Plot} </div> 
-      </div> 
 
       <div className={classes.ratings} > 
           <div> Critics Ratings: <ul> { ratings } </ul> </div>
       </div>
+      
+      <div className={classes.ruledLine}/>
+
+      <div className={classes.plot} > 
+        <div> Released: {movie.Plot} </div> 
+      </div> 
 
     </div>
   )
@@ -76,6 +83,7 @@ const styles = theme => ({
       "title title"
       "poster info"
       "plot plot"
+      "ruled ruled"
       "ratings ratings"
     `,
     // gridTemplateAreas: `
@@ -111,15 +119,23 @@ const styles = theme => ({
   plot: {
     gridArea: 'plot',
     textAlign: 'left',
-    padding: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
   },
 
   ratings: {
     gridArea: 'ratings',
-    textAlign: 'left',
-    padding: theme.spacing.unit,
-  }
+    textAlign: 'left', 
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+  },
 
+  ruledLine: {
+    gridArea: 'ruled',
+    border: '1px solid black',
+    height: 0,
+    margin: '0px 10px 0px 10px',
+  }
 })
 
 export default withStyles(styles)(MovieDisplay)
