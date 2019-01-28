@@ -34,8 +34,8 @@ function MovieDisplay(props) {
         <div>Released: {movie.Year} | Rated: {movie.Rated} </div> <br/>
       </div>
 
-      <div className={classes.poster} >
-        <img src={posterUrl} alt="movie poster"/>
+      <div className={classes.image} >
+        <img className={classes.poster} src={posterUrl} alt="movie poster"/>
       </div>
 
       <div className={classes.info}>
@@ -66,10 +66,8 @@ function MovieDisplay(props) {
           <div> Critics Ratings: <ul> { ratings } </ul> </div>
       </div>
       
-      <div className={classes.ruledLine}/>
-
       <div className={classes.plot} > 
-        <div> Released: {movie.Plot} </div> 
+        <div> {movie.Plot} </div> 
       </div> 
 
     </div>
@@ -81,9 +79,8 @@ const styles = theme => ({
     display: 'inline-grid',
     gridTemplateAreas: `
       "title title"
-      "poster info"
+      "image info"
       "plot plot"
-      "ruled ruled"
       "ratings ratings"
     `,
     // gridTemplateAreas: `
@@ -93,9 +90,10 @@ const styles = theme => ({
     //   "poster mrate"
     //   "poster desr"
     // `,
-    gridTemplateColumns: '2fr 3fr',
-    gridTemplateRows: '1fr 3fr 1fr 1fr',
-    maxWidth: 500,
+    // gridTemplateColumns: '2fr 3fr',
+    // gridTemplateRows: 'auto',
+    // gridTemplateRows: '1fr 3fr 1fr 1fr',
+    // maxWidth: 500,
   },
 
   title: {
@@ -104,38 +102,38 @@ const styles = theme => ({
   },
 
   info: {
-    // justifyContent:'right,'
     textAlign: 'left',
     gridArea: 'info',
     padding: theme.spacing.unit ,
   },
 
+  image: {
+    // width: '50px',
+    gridArea: 'image',
+    padding: theme.spacing.unit,
+  },
+
   poster: {
-    width: '75%',
-    gridArea: 'poster',
+    // width: '95%',
+    maxWidth: 150,
+    // gridArea: 'poster',
     padding: theme.spacing.unit,
   },
 
   plot: {
     gridArea: 'plot',
     textAlign: 'left',
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2,
+    // paddingRight: theme.spacing.unit * 2,
   },
 
   ratings: {
     gridArea: 'ratings',
     textAlign: 'left', 
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2,
+    // paddingRight: theme.spacing.unit * 2,
   },
 
-  ruledLine: {
-    gridArea: 'ruled',
-    border: '1px solid black',
-    height: 0,
-    margin: '0px 10px 0px 10px',
-  }
 })
 
 export default withStyles(styles)(MovieDisplay)
