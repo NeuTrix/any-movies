@@ -7,4 +7,3 @@ export const url_local = `http://localhost:3001`;
 export const apiKey = process.env.REACT_APP_OMBD_MOVIE_API_KEY
 
 export const url_data = `http://www.omdbapi.com/?apikey=${apiKey}`;
-export const url_poster = `http://img.omdbapi.com/?apikey=${apiKey}`;
