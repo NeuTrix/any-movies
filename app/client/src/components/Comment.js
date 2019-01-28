@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import CommentableContainer from './CommentableContainer';
+import CommentableContainer from './CommentableContainer';
+
+const propTypes = {
+  classes: PropTypes.instanceOf(Object).isRequired,
+  comment: PropTypes.instanceOf(Object).isRequired,
+}
 
 function Comment(props) {
   const {classes, comment } = props;
   return (
     <div className={classes.main}>
-      <h3> {comment.title} </h3>
-      <h4> Author: {comment.author} </h4>
+      <p> ===================== </p>
+      <h4> {comment.title} </h4>
+      <p> Author: {comment.author} </p>
       <p> {comment.body} </p>
-      {/* <p> {comment.comments} </p> */}
-      {/* <CommentableContainer/> */}
+      <p> THis is: {comment.id} </p>
+       <CommentableContainer 
+          commentableId={comment.id}
+          commentableType='Comment'
+        />
     </div>
     );
 }
@@ -19,6 +28,8 @@ function Comment(props) {
 const styles = {
   main: {
     background: 'lightgreen',
+    margin: 15,
+    outline: '2px solid blue',
   }
 }
 

@@ -11,15 +11,15 @@ function CommentsList(props) {
 
     const commentsList = comments.map(com => {
      return (
-      <span key={com.id}> 
+      <li key={com.id}> 
         <Comment comment={com}/>
-      </span>)
+      </li>)
     })
     
     return (
       <div className={classes.main}>
-        <h1> Comments List </h1>
-        <div> {commentsList} </div>
+        <h3> Comments List </h3>
+        <span> {commentsList} </span>
       </div>
     )
 
@@ -27,7 +27,8 @@ const styles = {
   main: {
     background: 'aliceblue',
     display: 'grid',
-    gridAreas: `"list"`
+    gridTemplateAreas: `"list"`,
+    margin: 5,
   }
 }
 

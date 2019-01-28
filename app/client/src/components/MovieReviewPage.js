@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
-import MoviesContainer from './MoviesContainer';
+import MovieContainer from './MovieContainer';
 import axios from 'axios';
 
 // include props declartaions (classes)
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  // acquire through movie Api and pass down
+  // via Redux
   movie: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieReveiwPage extends Component {
+class MovieReviewPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imdbId: '',
-      movieId: 2,
+      // imdbId: '',
+      // movieId: movie.id,
       // inDatabase: false,
     }
     this.searchMovie = this.searchMovie.bind(this)
@@ -39,8 +41,7 @@ class MovieReveiwPage extends Component {
   }
 
   render() {
-    const { classes } = this.props
-    const { movieId } = this.state
+    const { classes, movie } = this.props
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
@@ -53,12 +54,12 @@ class MovieReveiwPage extends Component {
         </div>
         <div className={classes.comments}>
           <CommentableContainer 
-            commentableId={movieId}
+            commentableId={movie.id}
             commentableType='Movie'
           />
         </div>
         <div className={classes.movies}>
-          <MoviesContainer/>
+          <MovieContainer/>
         </div>
       </div>
     )
@@ -69,14 +70,14 @@ const styles = {
   grid: {
     display: 'inline-grid',
     gridTemplateAreas: `
-      "title"
-      "search"
-      "comments" 
-      "movies"
+      "title title"
+      "search comments"
+      "movies comments "
     `,
+    gridTemplateColumns: '5fr 5fr',
+    gridTemplateRows: '2fr 1fr 7fr',
     padding: 5,
     margin: 10,
-
   },
 
   comments: {
@@ -85,6 +86,7 @@ const styles = {
   },
 
   movies: {
+    display: 'grid',
     background: 'lime',
     gridArea: 'movies',
   },
@@ -92,8 +94,12 @@ const styles = {
   search:{
     background: 'violet',
     gridArea: 'search',
+    // minHeight: 50,
   }
 }
 
+const mapStateToProps = (state) => ({
+  movie: state.movie,
+})
 
-export default withStyles(styles)(MovieReveiwPage)
+export default connect(mapStateToProps)(withStyles(styles)(MovieReviewPage))

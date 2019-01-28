@@ -23,13 +23,12 @@ class CommmentableContainer extends Component {
     // make proxy call to retrieve comments from the api
    componentDidMount() {
      const { commentableId, commentableType } = this.props;
+     // set the path to either movies or comments
       let path
-
       commentableType === 'Movie' 
         ? path = 'movies'
         : path = 'comments'
 
-    //  axios.get(`/api/movies/2/comments`)
      axios.get(`/api/${path}/${commentableId}/comments`)
       .then(resp => {
         console.log("==> here's the object", resp);
@@ -41,13 +40,17 @@ class CommmentableContainer extends Component {
   render() {
     const { classes, commentableId, commentableType } = this.props
     const { comments } = this.state
-
+    let display
+    if (comments.length > 0) {
+      display =  <CommentsList comments={comments}/>
+    } 
+    
     return (
       <div className={classes.main}>
-        <h1> Comments Container </h1>
+        <h3> Comments Container </h3>
         <p> the id is: {commentableId} </p>
         <p> the type is: {commentableType} </p>
-        <CommentsList comments={comments}/>
+        { display }
       </div>
     )
   }
@@ -56,6 +59,7 @@ class CommmentableContainer extends Component {
 const styles = {
   main: {
     padding: 5,
+    outline: '3px solid purple',
   }
 }
 
