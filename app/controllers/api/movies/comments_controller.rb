@@ -1,4 +1,4 @@
-module Api
+`module Api
   module Movies
     class CommentsController < Api::CommentsController
       before_action :set_commentable
