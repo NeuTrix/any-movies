@@ -31,7 +31,7 @@
   title: "ALIEN: Ripley Rocks iT!",
   author: @user.username,
   user_id: @user.id,
-  commentable_id: @alien.imdb_id,
+  commentable_id: @alien.id,
   commentable_type: @alien.class.name,
   body: "One of my all time favorites, Go Ripley!!",
   rating: 4
@@ -42,7 +42,7 @@
   title: "STAR WARS: As romantic as the universe",
   author: @user.username,
   user_id: @user.id,
-  commentable_id: @starwars.imdb_id,
+  commentable_id: @starwars.id,
   commentable_type: @starwars.class.name,
   body: "I had my first kiss at this alien.  
         Yes, it was the 70's, but who's counting?",
@@ -54,7 +54,7 @@
 @response_alien = @comment_alien.comments.build(
   title: "Cameron rocks it better",
   author: @critic.username,
-  user_id: @critic.id,  
+  user_id: @critic.id,
   commentable_id: @comment_alien.id,
   commentable_type: @comment_alien.class.name,
   body: "Well, I actually preferred the action in Camerons Aliens
@@ -78,7 +78,7 @@
 # test to see if a comment can be built from a alien
 @testComment = @alien.comments.build(
   title: "can you comment on a alien dircetly?",
-  commentable_id: @alien.imdb_id,
+  commentable_id: @alien.id,
   commentable_type: @alien.class.name,
   body: "I'm hoping to comment on this film directly",
   rating: 5
