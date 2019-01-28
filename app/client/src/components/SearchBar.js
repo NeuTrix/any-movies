@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// from @material-ui
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import TextField from '@material-ui/core/TextField';
 
-const TaskEntry = props => (
+const MovieText = props => (
 	<TextField
 		{...props}
 		fullWidth
@@ -14,7 +20,7 @@ const TaskEntry = props => (
 
 function SearchBar() {
   return (
-    <TaskEntry/>
+    <MovieText/>
   )
 }
 
