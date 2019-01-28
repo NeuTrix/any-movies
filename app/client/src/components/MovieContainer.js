@@ -1,10 +1,11 @@
+// container to gather movie logic
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
-import { url_data, url_poster} from '../helpers/apiHelper';
+import { url_data} from '../helpers/apiHelper';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
@@ -16,40 +17,47 @@ class MovieReveiwPage extends Component {
     super(props)
     this.state = {
       movie: {},
-      poster: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
   }
+  
+  // set a default movie to display
+  componentDidMount(){
+    this.getMovieData('alien')
+  }
 
+  //  set a controller in API to find the id for this movie
+  // search by imdbId
+  getBlogMovieId() {
+    // const imdbId = this.state.
+  }
+  
+  // get the movie data
   getMovieData(searchTerm) {
-    // get the movie data
     axios.get(`${url_data}&t=${searchTerm}`)
-    // check for an error in the search
-      .then(resp => {
-        console.log(resp);
-        const data = resp.data
+    .then(resp => {
+      console.log(resp);
+      const data = resp.data
+      // check for an error in the search
         if (data.Error) {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
         } else {
-          this.setState({
-            movie: resp.data,
-            posterUrl: `${url_poster}&i=${resp.data.imdbID}`
-          });
+          // set the movie state with the data
+          this.setState({ movie: resp.data });
         }
       })
-      .catch(err => {
-        console.log(err)
-      })
+      // catch errors outside of returned JSON object
+      .catch(err => { console.log(err) })
   }
 
   render() {
-    const { classes } = this.props
-    const { movie, posterUrl } = this.state
+    const { classes } = this.props // for material UI
+    const { movie } = this.state
     return (
       <div className={classes.grid}>
 
         <h1 className={classes.title}>
-         Movie Blog Home Page
+         Movie Blog!
         </h1>
         
         <MovieSearchBar 
@@ -66,7 +74,7 @@ class MovieReveiwPage extends Component {
         </div>
 
         <div className={classes.movies}>
-          <MovieDisplay movie={movie} posterUrl={posterUrl}/>
+          <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
         </div>
 
       </div>
@@ -74,6 +82,7 @@ class MovieReveiwPage extends Component {
   }
 }
 
+// move the display logic outside of the containder component
 const styles = theme => ({
   grid: {
     display: 'inline-grid',
@@ -83,23 +92,11 @@ const styles = theme => ({
       "movies"
       "comments"
     `,
-    // ==> for larger screen
-    // gridTemplateAreas: `
-    //   "title title"
-    //   "search comments"
-    //   "movies comments "
-    // `,
-    // gridTemplateColumns: '5fr 5fr',
-    // gridTemplateRows: '2fr 1fr 7fr',
-
-    
     padding: theme.spacing.unit,
-    // margin: 10,
   },
 
   comments: {
     background: theme.palette.primary.main,
-    // background: 'orangered',
     gridArea: 'comments',
     marginTop: theme.spacing.unit,
   },
@@ -119,9 +116,7 @@ const styles = theme => ({
     background: 'aliceblue',
     gridArea: 'title',
     marginTop: theme.spacing.unit,
-    
   }
 })
-
 
 export default withStyles(styles)(MovieReveiwPage)
