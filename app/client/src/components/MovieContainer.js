@@ -30,7 +30,7 @@ class MovieReveiwPage extends Component {
   //  set a controller in API to find the id for this movie
   // search by imdbId
   getComments(imdbId) {
-    axios.get()
+    axios.get(`${url_local_api}\api`)
     // const imdbId = this.state.
   }
   
