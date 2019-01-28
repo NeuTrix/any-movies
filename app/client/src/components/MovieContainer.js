@@ -1,62 +1,127 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
+import CommentableContainer from './CommentableContainer';
+import MovieDisplay from './MovieDisplay';
+import axios from 'axios';
+import { url_data, url_poster} from '../helpers/apiHelper';
+import MovieSearchBar from './MovieSearchBar';
 
-// include props declartaions (classes)
 const propTypes = {
-  classe: PropTypes.instanceOf(Object).isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieContainer extends Component {
+class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       movie: {},
+      poster: {},
     }
+    this.getMovieData = this.getMovieData.bind(this);
   }
 
-  // componentDidMount() {
-  //   const { movie } = this.state;
-  //   // should work from OMDB api vs my api
-  //   axios.get(`api/movies/${movie.id}`)
-  //     .then(resp => {
-  //       console.log(resp);
-  //       this.setState({
-  //         movie: resp.data
-  //       });
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+  getMovieData(searchTerm) {
+    // get the movie data
+    axios.get(`${url_data}&t=${searchTerm}`)
+    // check for an error in the search
+      .then(resp => {
+        console.log(resp);
+        const data = resp.data
+        if (data.Error) {
+          alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
+        } else {
+          this.setState({
+            movie: resp.data,
+            posterUrl: `${url_poster}&i=${resp.data.imdbID}`
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   render() {
     const { classes } = this.props
-    // const { movie } = this.state
+    const { movie, posterUrl } = this.state
+    return (
+      <div className={classes.grid}>
 
-    return(
-      <div className={classes.main} >
-        <div style={{gridArea: 'mTitle'}} >t</div> 
-        <div style={{gridArea: 'mYear'}} >y</div> 
-        <div style={{gridArea: 'mPoster'}} >p</div> 
-        <div style={{gridArea: 'mDescr'}} >d</div> 
-        <div style={{gridArea: 'mLetter'}} >l</div> 
-        <div style={{gridArea: 'cRating'}} >r</div> 
+        <h1 className={classes.title}>
+         Movie Blog Home Page
+        </h1>
+        
+        <MovieSearchBar 
+          className={classes.search}
+          getMovieData={this.getMovieData} 
+        >
+        </MovieSearchBar>
+
+        <div className={classes.comments}>
+          <CommentableContainer 
+            commentableId={movie.id}
+            commentableType='Movie'
+          />
+        </div>
+
+        <div className={classes.movies}>
+          <MovieDisplay movie={movie} posterUrl={posterUrl}/>
+        </div>
+
       </div>
     )
   }
 }
 
-const styles = {
-  main: {
+const styles = theme => ({
+  grid: {
     display: 'inline-grid',
     gridTemplateAreas: `
-      "mTitle mYear"
-      "mPoster mDescr"
-      "mLetter cRating"
+      "title"
+      "search"
+      "movies"
+      "comments"
     `,
-    gridTemplateColumns: ' 2fr 3fr',
+    // ==> for larger screen
+    // gridTemplateAreas: `
+    //   "title title"
+    //   "search comments"
+    //   "movies comments "
+    // `,
+    // gridTemplateColumns: '5fr 5fr',
+    // gridTemplateRows: '2fr 1fr 7fr',
+
+    
+    padding: theme.spacing.unit,
+    // margin: 10,
   },
 
-}
+  comments: {
+    background: theme.palette.primary.main,
+    // background: 'orangered',
+    gridArea: 'comments',
+    marginTop: theme.spacing.unit,
+  },
 
-export default withStyles(styles)(MovieContainer)
+  movies: {
+    display: 'grid',
+    background: theme.palette.secondary.main,
+    gridArea: 'movies',
+    marginTop: theme.spacing.unit,
+  },
+
+  search:{
+    gridArea: 'search',
+  },
+
+  title: { 
+    background: 'aliceblue',
+    gridArea: 'title',
+    marginTop: theme.spacing.unit,
+    
+  }
+})
+
+
+export default withStyles(styles)(MovieReveiwPage)

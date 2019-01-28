@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+<<<<<<< HEAD
 // set initial state
 const initialState = {
   movie: { id: 1 }
@@ -27,6 +28,11 @@ ReactDOM.render(
   </Provider>,
 
   document.getElementById('root')
+=======
+ReactDOM.render(
+    <App />
+  , document.getElementById('root')
+>>>>>>> integrateOMDB
 );
 
 // If you want your app to work offline and load faster, you can change
