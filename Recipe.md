@@ -32,9 +32,10 @@
 - [ ] modularize controllers and controller directory to match
 
 # Integrate React
-
+- [ ] display a movie poster.  Use the url in the img tag
 
 # Deploy to Heroku
+
 
 
 ## Gems
@@ -54,4 +55,10 @@
 https://www.youtube.com/watch?v=sX3KeP7v7Kg
 - [ ] add Redux gems
     - [ ] react-redux
-- [ ] 
+
+
+# set th view port
+in /public/index.html:
+ ```html
+ <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ ```

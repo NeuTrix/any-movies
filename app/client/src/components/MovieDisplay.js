@@ -99,7 +99,7 @@ const styles = theme => ({
     //   "poster mrate"
     //   "poster desr"
     // `,
-    gridTemplateColumns: '2fr 2fr',
+    gridTemplateColumns: '2fr 3fr',
   },
 
   title: {
@@ -121,7 +121,7 @@ const styles = theme => ({
   },
 
   poster: {
-    maxWidth: 175,
+    maxWidth: 125,
     padding: theme.spacing.unit,
   },
 

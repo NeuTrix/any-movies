@@ -59,7 +59,7 @@ class MovieReveiwPage extends Component {
       <div className={classes.grid}>
 
         <h1 className={classes.title}>
-         Movie Blog Home Page
+         Movie Blog!
         </h1>
         
         <MovieSearchBar 
