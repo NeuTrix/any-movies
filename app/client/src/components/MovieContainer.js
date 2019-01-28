@@ -15,10 +15,14 @@ class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      movie: {},
+      movie: {Title: "Alien"},
       poster: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
+  }
+
+  componentDidMount(){
+    this.getMovieData('alien')
   }
 
   getMovieData(searchTerm) {

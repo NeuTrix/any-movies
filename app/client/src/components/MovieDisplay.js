@@ -11,36 +11,26 @@ const propTypes = {
   posterUrl: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieDisplay extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-    }
-      
-  }
+function MovieDisplay(props) {
 
-  render() {
-    const { classes, movie, posterUrl } = this.props
-    // const image = poster.map(img => {
-    //   return (<img key={img.id} > {img.data} </img>)
-    // })
-    return(
-      <div className={classes.main} >
-        <div style={{gridArea: 'mTitle'}} >
-          { movie.Title }
-        </div> 
-        <div style={{gridArea: 'mYear'}} >
-        </div> 
-        <img src={posterUrl} style={{gridArea: 'mPoster'}} >
-        </img> 
-        <div style={{gridArea: 'mDescr'}} >
-        
-        </div> 
-        <div style={{gridArea: 'mLetter'}} >l</div> 
-        <div style={{gridArea: 'cRating'}} >r</div> 
-      </div>
-    )
-  }
+  const { classes, movie, posterUrl } = props
+
+  return (
+    <div className={classes.main} >
+      <div style={{gridArea: 'mTitle'}} >
+        { movie.Title }
+      </div> 
+      <div style={{gridArea: 'mYear'}} >
+      </div> 
+      <img src={posterUrl} style={{gridArea: 'mPoster'}} >
+      </img> 
+      <div style={{gridArea: 'mDescr'}} >
+      
+      </div> 
+      <div style={{gridArea: 'mLetter'}} >l</div> 
+      <div style={{gridArea: 'cRating'}} >r</div> 
+    </div>
+  )
 }
 
 const styles = {
