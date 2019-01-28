@@ -5,7 +5,7 @@ import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
 import { url_data, url_poster} from '../helpers/apiHelper';
-
+import SearchBar from './SearchBar';
 // include props declartaions (classes)
 
 const propTypes = {
@@ -61,19 +61,6 @@ class MovieReveiwPage extends Component {
       .catch(err => {
         console.log(err)
       })
-
-    // get the movie poste
-    // axios.get(`http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`)
-    //   .then(resp => {
-    //     console.log(resp);
-    //     this.setState({
-    //       poster: resp.data
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
-
   }
 
   render() {
@@ -84,13 +71,14 @@ class MovieReveiwPage extends Component {
         <h1 className={classes.title}>
          Movie Review Page
         </h1>
-        <div className={classes.search} >
-          <button onClick={this.searchMovie}>
+        
+        <SearchBar className={classes.search} >
+        </SearchBar>
+          {/* <button onClick={this.searchMovie}>
             Search
           </button>
-          <button onClick={this.getMovieData} > Get Movie </button>
+          <button onClick={this.getMovieData} > Get Movie </button> */}
           
-        </div>
         <div className={classes.comments}>
           <CommentableContainer 
             commentableId={movie.id}
