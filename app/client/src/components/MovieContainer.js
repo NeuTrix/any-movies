@@ -6,19 +6,15 @@ import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
 import { url_data, url_poster} from '../helpers/apiHelper';
 import MovieSearchBar from './MovieSearchBar';
-// include props declartaions (classes)
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  // acquire through movie Api and pass down
-  movie: PropTypes.instanceOf(Object).isRequired,
 }
 
 class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      apiKey: process.env.REACT_APP_OMBD_MOVIE_API_KEY,
       movie: {
         Title: "Placeholder",
         imdbID: 'tt0078748',
@@ -26,38 +22,23 @@ class MovieReveiwPage extends Component {
       poster: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
-    // this.searchMovie = this.searchMovie.bind(this)
   }
 
-  // check to see if a movie is in our database
-  // isMovieSaved(id) {
-  //   // axios.get(`/api/movies/${id}`)
-  //   this.setState({ inDatabase: true });
-  // }
-
-  // find a movie to review
-  // searchMovie() {
-  //   //  search the api
-  //   // set the imdb id for state from the search item
-  //   this.setState({imdbId: 'tt0078748'})
-  //   // this.setState({movie.id: 'tt0078748'})
-  // }
-
   getMovieData(searchTerm) {
-    // const { apiKey, movie } = this.state;
     // get the movie data
     axios.get(`${url_data}&t=${searchTerm}`)
-    // axios.get(`${url_data}&i=${movie.imdbID}`)
+    // check for an error in the search
       .then(resp => {
         console.log(resp);
         const data = resp.data
         if (data.Error) {
-          alert(`Error: ${data.Error} for: \n ${searchTerm}! \n Please try again`)
+          alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
+        } else {
+          this.setState({
+            movie: resp.data,
+            posterUrl: `${url_poster}&i=${resp.data.imdbID}`
+          });
         }
-        this.setState({
-          movie: resp.data,
-          posterUrl: `${url_poster}&i=${resp.data.imdbID}`
-        });
       })
       .catch(err => {
         console.log(err)
@@ -69,6 +50,7 @@ class MovieReveiwPage extends Component {
     const { movie, posterUrl } = this.state
     return (
       <div className={classes.grid}>
+
         <h1 className={classes.title}>
          Movie Review Page
         </h1>
@@ -78,20 +60,18 @@ class MovieReveiwPage extends Component {
           getMovieData={this.getMovieData} 
         >
         </MovieSearchBar>
-          {/* <button onClick={this.searchMovie}>
-            <h3> {posterUrl} </h3>
-          </button> */}
-          {/* <button onClick={this.getMovieData('Aliens')} > Get Movie </button> */}
-          
+
         <div className={classes.comments}>
           <CommentableContainer 
             commentableId={movie.id}
             commentableType='Movie'
           />
         </div>
+
         <div className={classes.movies}>
           <MovieDisplay movie={movie} posterUrl={posterUrl}/>
         </div>
+
       </div>
     )
   }
@@ -101,12 +81,21 @@ const styles = {
   grid: {
     display: 'inline-grid',
     gridTemplateAreas: `
-      "title title"
-      "search comments"
-      "movies comments "
+      "title"
+      "search"
+      "movies"
+      "comments"
     `,
-    gridTemplateColumns: '5fr 5fr',
-    gridTemplateRows: '2fr 1fr 7fr',
+    // ==> for larger screen
+    // gridTemplateAreas: `
+    //   "title title"
+    //   "search comments"
+    //   "movies comments "
+    // `,
+    // gridTemplateColumns: '5fr 5fr',
+    // gridTemplateRows: '2fr 1fr 7fr',
+
+    
     padding: 5,
     margin: 10,
   },
@@ -126,6 +115,10 @@ const styles = {
     background: 'violet',
     gridArea: 'search',
     // minHeight: 50,
+  },
+
+  title: { 
+    gridArea: 'title'
   }
 }
 
