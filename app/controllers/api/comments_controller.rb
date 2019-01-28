@@ -20,7 +20,7 @@ module Api
       # @comment.user_id = current_user.id
 
       if @comment.save
-        render json: @current_user, status: :created
+        render json: @comment, status: :created
         # render "passed the saved comment"
         # , location: @comment
       else
@@ -59,7 +59,7 @@ module Api
           :rating,
           :title, 
           :user_id, 
-          )
+        )
       end
   end
 end
