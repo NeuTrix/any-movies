@@ -28,14 +28,14 @@ function MovieDisplay(props) {
 
   // if actors listed, make a list
   const actors = movie.Actors && movie.Actors.split(',').map((actor, index) => {
-    return ( <p key={index}> {actor} </p> )
+    return ( <p key={index}> - {actor} </p> )
   })
 
   return (
     <div className={classes.main} >
 
       <div className={classes.title}>
-        <Typography variant="h3"> { movie.Title } </Typography> 
+        <Typography variant="h4"> { movie.Title } </Typography> 
       </div>
 
       <div className={classes.image} >
@@ -51,12 +51,12 @@ function MovieDisplay(props) {
 
         <div>
           <h4> Genre: </h4>
-          <p> {movie.Genre} </p>
+          <p> - {movie.Genre} </p>
         </div> 
 
         <div> 
           <h4> Director: </h4>
-          <p> {movie.Director} </p> 
+          <p> - {movie.Director} </p> 
         </div> 
        
         <div> 
@@ -67,10 +67,14 @@ function MovieDisplay(props) {
       </div>
 
       <div className={classes.ratings} > 
-          <div> Critics Ratings: <p> { ratings } </p> </div>
+          <div> 
+            <h4> Critics Ratings: </h4>
+            <p> { ratings } </p> 
+          </div>
       </div>
       
       <div className={classes.plot} > 
+        <h4> Movie Plot: </h4>
         <div> {movie.Plot} </div> 
       </div> 
 
@@ -124,15 +128,14 @@ const styles = theme => ({
   plot: {
     gridArea: 'plot',
     border: '1px solid lightgrey',
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit,
     textAlign: 'left',
   },
 
   ratings: {
     gridArea: 'ratings',
     textAlign: 'left', 
-    padding: theme.spacing.unit * 2,
-    // paddingRight: theme.spacing.unit * 2,
+    padding: theme.spacing.unit,
   },
 
   ratingUnit: {
