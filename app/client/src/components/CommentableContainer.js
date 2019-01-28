@@ -9,7 +9,7 @@ import CommentsList from './CommentsList';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  comments: PropTypes.instanceOf(Object).isRequired,
+  // comments: PropTypes.instanceOf(Object).isRequired,
   commentableId: PropTypes.string.isRequired,
   commentableType: PropTypes.string.isRequired,
 }
@@ -21,6 +21,28 @@ class CommmentableContainer extends Component {
       comments: {},
     }
   }
+
+  // componentDidMount() {
+  //   const { commentableId } = this.props
+  //   getComments(commentableId)
+  // }
+  // //  set a controller in API to find the id for this movie
+  // // search by imdbID
+  // getComments(id) {
+  //   const { commentableType } = this.state
+  //   axios.get(`/api/${commentableType}/${id}/comments`)
+  //     .then(resp => {
+  //       console.log(resp);
+  //       const data = resp.data;
+  //       this.setState({
+  //         comments: data
+  //       });
+
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
 
   render() {
     const { classes, comments, commentableId, commentableType } = this.props

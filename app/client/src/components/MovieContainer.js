@@ -17,10 +17,10 @@ class MovieReveiwPage extends Component {
     super(props)
     this.state = {
       movie: {},
-      comments: {},
+      // comments: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
-    this.getComments = this.getComments.bind(this);
+    // this.getComments = this.getComments.bind(this);
   }
   
   // set a default movie to display
@@ -30,19 +30,19 @@ class MovieReveiwPage extends Component {
 
   //  set a controller in API to find the id for this movie
   // search by imdbID
-  getComments(movieId) {
-    // const { movie } = this.state
-    axios.get(`/api/movies/${movieId}/comments`)
-    .then(resp => {
-      console.log(resp);
-      const data = resp.data;
-      this.setState({ comments: data });
+  // getComments(movieId) {
+  //   // const { movie } = this.state
+  //   axios.get(`/api/movies/${movieId}/comments`)
+  //   .then(resp => {
+  //     console.log(resp);
+  //     const data = resp.data;
+  //     this.setState({ comments: data });
 
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+  // }
   
   // get the movie data
   getMovieData(searchTerm) {
@@ -71,7 +71,8 @@ class MovieReveiwPage extends Component {
 
   render() {
     const { classes } = this.props // for material UI
-    const { comments, movie } = this.state
+    const { movie } = this.state
+    // const { comments, movie } = this.state
     return (
       <div className={classes.grid}>
 
@@ -87,7 +88,7 @@ class MovieReveiwPage extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            comments={comments}
+            // comments={comments}
             commentableId={movie.imdbID}
             commentableType='Movie'
           />
