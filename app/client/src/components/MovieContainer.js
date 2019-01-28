@@ -15,10 +15,7 @@ class MovieReveiwPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      movie: {
-        Title: "Placeholder",
-        imdbID: 'tt0078748',
-      },
+      movie: {},
       poster: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
@@ -52,7 +49,7 @@ class MovieReveiwPage extends Component {
       <div className={classes.grid}>
 
         <h1 className={classes.title}>
-         Movie Review Page
+         Movie Blog Home Page
         </h1>
         
         <MovieSearchBar 
@@ -77,7 +74,7 @@ class MovieReveiwPage extends Component {
   }
 }
 
-const styles = {
+const styles = theme => ({
   grid: {
     display: 'inline-grid',
     gridTemplateAreas: `
@@ -96,12 +93,13 @@ const styles = {
     // gridTemplateRows: '2fr 1fr 7fr',
 
     
-    padding: 5,
-    margin: 10,
+    // padding: 5,
+    // margin: 10,
   },
 
   comments: {
-    background: 'orangered',
+    background: theme.palette.primary.main,
+    // background: 'orangered',
     gridArea: 'comments',
   },
 
@@ -114,13 +112,13 @@ const styles = {
   search:{
     background: 'violet',
     gridArea: 'search',
-    // minHeight: 50,
   },
 
   title: { 
+    background: 'aliceblue',
     gridArea: 'title'
   }
-}
+})
 
 
 export default withStyles(styles)(MovieReveiwPage)

@@ -46,7 +46,7 @@ onSubmit(e) {
 
     return (
 			<FormControl
-				className={classes.grid}
+				className={classes.main}
 				component="form"
 				onSubmit={this.onSubmit}
 			>
@@ -61,31 +61,16 @@ onSubmit(e) {
 					value={this.state.searchTerm}
 					variant="outlined"
 					required
-
 				/>
 
-				<Button
-					label="Find"
-					className={classes.button}
-					component="button"
-					type="submit"
-					variant="outlined"
-				> 
-				</Button>
 			</FormControl>
 		)
-		
   }
 }
 
 const styles = theme => ({
-	grid: {
-		display: 'inline-block',
-		gridTemplateAreas: `
-
-		`,
+	main: {
 	}
-	// button
 })
 
 export default withStyles(styles)(MovieSearchBar)
