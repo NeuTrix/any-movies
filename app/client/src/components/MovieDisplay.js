@@ -18,7 +18,12 @@ function MovieDisplay(props) {
   
   // if (movie.Ratings) listed, show them
   const ratings = movie.Ratings && movie.Ratings.map((rating, index) => {
-    return ( <li key={index}> {rating.Source}: {rating.Value} </li> )
+    return ( 
+      <div key={index} className={classes.ratingUnit}> 
+        <div style={{gridArea: 'critic'}} > {rating.Source}: </div>
+        <div style={{gridArea: 'grade', textAlign: 'right'}} > {rating.Value} </div>
+      </div> 
+    )
   })
 
   // if actors listed, make a list
@@ -35,7 +40,7 @@ function MovieDisplay(props) {
 
       <div className={classes.image} >
         <img className={classes.poster} src={posterUrl} alt="movie poster"/>
-        <div> Released: {movie.Year} </div>
+        <div> Released: {movie.Year} </div> <br/>
         <div> Rated 
           <h3>{movie.Rated} </h3> 
         </div> 
@@ -62,7 +67,7 @@ function MovieDisplay(props) {
       </div>
 
       <div className={classes.ratings} > 
-          <div> Critics Ratings: <ul> { ratings } </ul> </div>
+          <div> Critics Ratings: <p> { ratings } </p> </div>
       </div>
       
       <div className={classes.plot} > 
@@ -75,6 +80,7 @@ function MovieDisplay(props) {
 
 const styles = theme => ({
   main: {
+    border: '1px solid lightgrey',
     display: 'inline-grid',
     gridTemplateAreas: `
       "title title"
@@ -101,7 +107,7 @@ const styles = theme => ({
   info: {
     textAlign: 'left',
     gridArea: 'info',
-    padding: theme.spacing.unit ,
+    padding: theme.spacing.unit * 2 ,
   },
 
   image: {
@@ -111,7 +117,7 @@ const styles = theme => ({
   },
 
   poster: {
-    maxWidth: 150,
+    maxWidth: 175,
     padding: theme.spacing.unit,
   },
 
@@ -128,6 +134,15 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     // paddingRight: theme.spacing.unit * 2,
   },
+
+  ratingUnit: {
+    display: 'grid',
+    gridTemplateAreas:`
+      "critic grade"
+    `,
+    gridTemplateColumns: '3rf 1fr',
+    // textAlign:'left',
+  }
 
 })
 
