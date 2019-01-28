@@ -54,7 +54,7 @@ class MovieReveiwPage extends Component {
         console.log(resp);
         this.setState({
           movie: resp.data,
-          poster: `http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`
+          posterUrl: `http://img.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}`
         });
       })
       .catch(err => {
@@ -77,7 +77,7 @@ class MovieReveiwPage extends Component {
 
   render() {
     const { classes } = this.props
-    const { movie, poster } = this.state
+    const { movie, posterUrl } = this.state
     return (
       <div className={classes.grid}>
         <h1 className={classes.title}>
@@ -97,7 +97,7 @@ class MovieReveiwPage extends Component {
           />
         </div>
         <div className={classes.movies}>
-          <MovieDisplay movie={movie} poster={poster}/>
+          <MovieDisplay movie={movie} posterUrl={posterUrl}/>
         </div>
       </div>
     )
