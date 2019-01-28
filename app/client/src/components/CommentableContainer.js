@@ -25,7 +25,7 @@ function CommmentableContainer(props) {
   return (
     <div className={classes.main}>
       <h3> Comments Container </h3>
-      <p> the id is: {commentableId} </p>
+      <p> the commentable id is: {commentableId} </p>
       <p> the type is: {commentableType} </p>
       { display }
     </div>

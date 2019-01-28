@@ -29,7 +29,7 @@ class MovieReveiwPage extends Component {
   }
 
   //  set a controller in API to find the id for this movie
-  // search by imdbId
+  // search by imdbID
   getComments(movieId) {
     // const { movie } = this.state
     axios.get(`/api/movies/${movieId}/comments`)
@@ -88,7 +88,7 @@ class MovieReveiwPage extends Component {
         <div className={classes.comments}>
           <CommentableContainer 
             comments={comments}
-            commentableId={movie.imdbId}
+            commentableId={movie.imdbID}
             commentableType='Movie'
           />
         </div>
