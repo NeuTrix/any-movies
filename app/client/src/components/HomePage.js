@@ -12,13 +12,22 @@ const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   commentableID: PropTypes.string.isRequired, // for comment search
   commentableType: PropTypes.string.isRequired, // for comment search
-  getMovieData: PropTypes.func.isRequired, // search for movie
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
+  // ===> functions
+  addReview: PropTypes.func.isRequired, // adds a new review instance to api
+  getMovieData: PropTypes.func.isRequired, // search for movie
 }
 
 function HomePage(props) {
   
-  const {classes, commentableID, commentableType, getMovieData, movie } = props
+  const {
+    classes,
+    commentableID,
+    commentableType,
+    movie,
+    addReview,
+    getMovieData,
+  } = props
   
   return (
     <div className={classes.grid}>
@@ -28,7 +37,11 @@ function HomePage(props) {
       </h1>
     
       <div className={classes.actions} style={{ gridArea: 'addReview' }}>
-        <Button variant="contained" color="primary" >Add Review</Button>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={addReview}
+        >Add Review</Button>
       </div>
 
       <div style={{ gridArea: 'search' }}>

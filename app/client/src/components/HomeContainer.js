@@ -17,6 +17,7 @@ class HomeContainer extends Component {
       movie: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
+    this.addReview = this.addReview.bind(this);
   }
   
   // set initial state of the page
@@ -24,6 +25,9 @@ class HomeContainer extends Component {
     this.getMovieData('Alien')
   }
 
+  addReview(){
+    alert("review Added")
+  }
   // get the movie data
   getMovieData(searchTerm) {
 
@@ -50,6 +54,7 @@ class HomeContainer extends Component {
         commentableID={commentableID}
         commentableType={commentableType}
         getMovieData={this.getMovieData}
+        addReview={this.addReview}
       />
     )
   }
