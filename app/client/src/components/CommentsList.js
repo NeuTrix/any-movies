@@ -32,9 +32,9 @@ function SimpleExpansionPanel(props) {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <ul>
+          <div className={classes.list} >
            { commentsList }
-          </ul>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -46,12 +46,21 @@ SimpleExpansionPanel.propTypes = propTypes;
 const styles = theme => ({
   
   root: {
+    textAlign:'left',
+    padding: 5,
+
     // width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
+
+  list: {
+    // debugging
+    background: 'yellow',
+    outline: '1px solid orangered',
+  }
 });
 
 export default withStyles(styles)(SimpleExpansionPanel);

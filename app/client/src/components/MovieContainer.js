@@ -62,10 +62,11 @@ class MovieContainer extends Component {
           className={classes.search}
           getMovieData={this.getMovieData} 
         />
-
-        <div className={classes.movies}>
+        
+        {/* hide for debugging */}
+        {/* <div className={classes.movies}>
           <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
-        </div>
+        </div> */}
         
         <div className={classes.comments}>
           <CommentableContainer 
