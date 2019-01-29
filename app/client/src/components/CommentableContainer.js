@@ -10,7 +10,7 @@ import CommentsList from './CommentsList';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   // comments: PropTypes.instanceOf(Object).isRequired,
-  commentableId: PropTypes.string.isRequired,
+  commId: PropTypes.string.isRequired,
   commentableType: PropTypes.string.isRequired,
 }
 
@@ -24,8 +24,9 @@ class CommmentableContainer extends Component {
   }
 
   componentDidMount() {
-    const { commentableId, commentableType } = this.props
-      this.getComments(commentableId, commentableType)
+    // const { commentableId, commentableType } = this.props
+    console.log('CommentableContainer props==>',this.props )
+      // this.getComments(commentableId, commentableType)
   }
 
   //  set a controller in API to find the id for this movie

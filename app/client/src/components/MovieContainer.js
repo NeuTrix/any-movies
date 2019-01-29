@@ -17,6 +17,7 @@ class MovieReveiwPage extends Component {
     super(props)
     this.state = {
       movie: {},
+      movieId: '',
       // comments: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
@@ -25,7 +26,7 @@ class MovieReveiwPage extends Component {
   
   // set a default movie to display
   componentDidMount(){
-    this.getMovieData('alien')
+    // this.getMovieData('Alien')
   }
 
   //  set a controller in API to find the id for this movie
@@ -53,13 +54,17 @@ class MovieReveiwPage extends Component {
       // check for an error in the search
         if (data.Error) {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
-        } else {
+        } 
           // buld the movie object
-          this.setState({ movie: data });
           console.log('===> Got the movide data!', data.imdbID)
-          console.log('STATE-->',this.state)
-          return data
-        }
+        this.setState({
+          movie: data,
+          movieId: data.imdbID,
+        });
+        console.log('===> Got the movide data!', data.imdbID)
+        console.log('STATE-->',this.state)
+        return data
+      
       })
       // build the comments object
       // .then(data => {
@@ -73,7 +78,7 @@ class MovieReveiwPage extends Component {
 
   render() {
     const { classes } = this.props // for material UI
-    const { movie } = this.state
+    const { movie, movieId } = this.state
     // const { comments, movie } = this.state
     return (
       <div className={classes.grid}>
@@ -91,8 +96,9 @@ class MovieReveiwPage extends Component {
         <div className={classes.comments}>
           <CommentableContainer 
             // comments={comments}
-            commentableId={movie.imdbID}
-            commentableType='Movie'
+            commId={movieId}
+            // commId={movie.imdbID}
+            commentableType='Test'
           />
         </div>
 

@@ -28,7 +28,7 @@ function MovieDisplay(props) {
 
   // if actors listed, make a list
   const actors = movie.Actors && movie.Actors.split(',').map((actor, index) => {
-    return ( <p key={index}> - {actor} </p> )
+    return ( <div key={index}> - {actor} </div> )
   })
 
   return (
