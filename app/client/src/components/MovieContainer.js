@@ -56,15 +56,12 @@ class MovieContainer extends Component {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
         } 
           // buld the movie object
-          console.log('===> Got the movide data!', data.imdbID)
+          console.log('===> MovieCont got movie data!', data.imdbID)
         this.setState({
           movie: data,
           movieId: data.imdbID,
         });
-        console.log('===> Got the movide data!', data.imdbID)
-        console.log('STATE-->',this.state)
         return data
-      
       })
       // build the comments object
       // .then(data => {

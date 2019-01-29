@@ -30,20 +30,20 @@ class CommentableContainer extends Component {
   getComments(id, type) {
     console.log('XXX---CCont props==>', this.props)
 
-    // let pathType = type === 'Movie' ? 'movies' : 'comments'
+    let pathType = type === 'Movie' ? 'movies' : 'comments'
 
-    // axios.get(`/api/${pathType}/${id}/comments`)
-    //   .then(resp => {
-    //     console.log('xxxxxx++>>',resp);
-    //     const data = resp.data;
-    //     this.setState({
-    //       comments: data
-    //     });
-
-    //   })
-    //   .catch(err => {
-    //     console.log('ERROR=>',err);
-    //   })
+    axios.get(`/api/${pathType}/${id}/comments`)
+      .then(resp => {
+        console.log('xxxxxx++>>',resp);
+        const data = resp.data;
+        console.log('xxxxxx++>>',data);
+        // this.setState({
+        //   comments: data
+        // });
+      })
+      .catch(err => {
+        console.log('ERROR=>',err);
+      })
   }
 
   render() {
