@@ -14,36 +14,54 @@ const propTypes = {
   comment: PropTypes.instanceOf(Object).isRequired,
 }
 
+function getSubComments() {
+  alert("reaching it!")
+}
+
 function CommentCard(props) {
   const { classes, comment } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
+
       <CardContent>
+
         <Typography variant="subtitle" component="h2">
           { comment.title}
         </Typography>
+
         <Typography className={classes.title} color="textSecondary" gutterBottom>
         </Typography>
+
         <Typography className={classes.pos} color="textSecondary">
           by: { comment.author }
         </Typography>
+
         <Typography variant="body1" component="p">
           { comment.body }
         </Typography>
+
       </CardContent>
+
       <div className={classes.actions} >
+
         <div>
-           <CardActions>
-          <Button size="small">see comments</Button>
-        </CardActions>
+          <CardActions>
+            <Button 
+              onClick={getSubComments}
+              size="small"
+            >
+              more comments
+            </Button>
+          </CardActions>
         </div>
+
         <div>
-           <CardActions className={classes.btnRight} >
-          <Button size="small">reply</Button>
-        </CardActions>
+          <CardActions className={classes.btnRight} >
+            <Button size="small">reply</Button>
+          </CardActions>
         </div>
+
       </div>
       
     </Card>

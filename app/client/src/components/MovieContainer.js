@@ -64,9 +64,9 @@ class MovieContainer extends Component {
         />
         
         {/* hide for debugging */}
-        <div className={classes.movies}>
+        {/* <div className={classes.movies}>
           <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
-        </div>
+        </div> */}
         
         <div className={classes.comments}>
           <CommentableContainer 
