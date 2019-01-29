@@ -7,7 +7,7 @@ import Comment from './Comment';
 // include props declartaions (classes)
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  comments: PropTypes.instanceOf(Object).isRequired,
+  comments: PropTypes.instanceOf(Array).isRequired,
 }
 
 function CommentsList(props) {
@@ -21,7 +21,8 @@ function CommentsList(props) {
     return (
       <div className={classes.main}>
         <h3> Comments List </h3>
-        <span> {commentsList} </span>
+        <p>{`Hi  List is ${comments.length} long`}</p>
+        {/* <span> {commentsList} </span> */}
       </div>
     )
 }

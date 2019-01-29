@@ -20,9 +20,11 @@ class CommentableContainer extends Component {
     this.getComments = this.getComments.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidReceiveProps() {
     const { comId, comType } = this.props
+    // if ( this.state.comments.length > 0) {
       this.getComments(comId, comType)
+    // }
   }
 
   //  set a controller in API to find the id for this movie
@@ -36,12 +38,12 @@ class CommentableContainer extends Component {
       .then(resp => {
         const data = resp.data;
         // terminate a recurssive search if no or empty data object returned
-        if (data) {
+        if (data && data.length > 1) {
           console.log('==> Returned data: ',data);
 
-          // this.setState({
-            //   comments: data
-            // });
+          this.setState({
+              comments: data
+            });
           }
       })
       .catch(err => {
@@ -60,10 +62,11 @@ class CommentableContainer extends Component {
     
     return (
       <div className={classes.main}>
-        <h3> Comments Container </h3>
+        {/* <h3> Comments Container </h3>
         <p> @the commentable id is: {comId} </p>
-        <p> @the type is: {comType} </p>
+        <p> @the type is: {comType} </p> */}
         {/* { display } */}
+        <CommentsList comments={comments}/>
       </div>
     )
   }
