@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { url_movie_data, url_local_api} from '../helpers/api.helper';
-// import CommentableContainer from './CommentableContainer';
-import CommentsList from './CommentsList'
+import CommentableContainer from './CommentableContainer';
+// import CommentsList from './CommentsList'
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
@@ -93,16 +93,18 @@ class MovieContainer extends Component {
         >
         </MovieSearchBar>
 
-        <div className={classes.comments}>
-          {/* <CommentableContainer  */}
-          <CommentsList
-            comments={comments}
-          />
-        </div>
-
         <div className={classes.movies}>
           <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
         </div>
+        
+        <div className={classes.comments}>
+          <CommentableContainer 
+          // <CommentsList
+            // comments={comments}
+          />
+        </div>
+
+       
 
       </div>
     )

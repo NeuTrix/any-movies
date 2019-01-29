@@ -38,16 +38,16 @@ function MovieDisplay(props) {
         <Typography variant="h4"> { movie.Title } </Typography> 
       </div>
 
-      <div className={classes.image} >
+      {/* <div className={classes.image} >
         <img className={classes.poster} src={posterUrl} alt="movie poster"/>
         <div> Released: {movie.Year} </div> <br/>
         <div> Rated 
           <h3>{movie.Rated} </h3> 
         </div> 
         <div> <h6> imdbID: { movie.imdbID }</h6> </div>
-      </div>
+      </div> */}
 
-      <div className={classes.info}>
+      {/* <div className={classes.info}>
 
         <div>
           <h4> Genre: </h4>
@@ -71,7 +71,7 @@ function MovieDisplay(props) {
             <h4> Critics Ratings: </h4>
             <div> { ratings } </div> 
           </div>
-      </div>
+      </div> */}
       
       <div className={classes.plot} > 
         <h4> Movie Plot: </h4>

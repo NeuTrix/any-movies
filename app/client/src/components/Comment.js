@@ -5,7 +5,7 @@ import CommentableContainer from './CommentableContainer';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  getComments: PropTypes.function.isRequired,
+  // getComments: PropTypes.function.isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
   subComments: PropTypes.instanceOf(Array).isRequired,
 }
