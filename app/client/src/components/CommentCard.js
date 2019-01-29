@@ -14,15 +14,13 @@ const propTypes = {
   comment: PropTypes.instanceOf(Object).isRequired,
 }
 
-function getSubComments(id, type) {
-  // alert(`reaching it!, ${id}, ${type}`)
-}
-
-
 function CommentCard(props) {
   const { classes, comment } = props;
 
-  
+  function getSubComments(id, type) {
+    alert(`reaching it!, ${id}, ${type}`)
+  }
+
   return (
     <Card className={classes.card}>
 
