@@ -20,32 +20,37 @@ class CommmentableContainer extends Component {
     this.state = {
       comments: {},
     }
+    this.getComments = this.getComments.bind(this);
   }
 
-  // componentDidMount() {
-  //   const { commentableId } = this.props
-  //   getComments(commentableId)
-  // }
-  // //  set a controller in API to find the id for this movie
-  // // search by imdbID
-  // getComments(id) {
-  //   const { commentableType } = this.state
-  //   axios.get(`/api/${commentableType}/${id}/comments`)
-  //     .then(resp => {
-  //       console.log(resp);
-  //       const data = resp.data;
-  //       this.setState({
-  //         comments: data
-  //       });
+  componentDidMount() {
+    const { commentableId, commentableType } = this.props
+      this.getComments(commentableId, commentableType)
+  }
 
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }
+  //  set a controller in API to find the id for this movie
+  // search by imdbID
+  getComments(id, type) {
+
+    let pathType = type === 'Movie' ? 'movies' : 'comments'
+
+    axios.get(`/api/${pathType}/${id}/comments`)
+      .then(resp => {
+        console.log('xxxxxx++>>',resp);
+        const data = resp.data;
+        this.setState({
+          comments: data
+        });
+
+      })
+      .catch(err => {
+        console.log('ERROR=>',err);
+      })
+  }
 
   render() {
-    const { classes, comments, commentableId, commentableType } = this.props
+    const { classes } = this.props
+    const { comments } = this.state
 
     let display
     if (comments && comments.length > 0) {
@@ -55,8 +60,8 @@ class CommmentableContainer extends Component {
     return (
       <div className={classes.main}>
         <h3> Comments Container </h3>
-        <p> the commentable id is: {commentableId} </p>
-        <p> the type is: {commentableType} </p>
+        {/* <p> the commentable id is: {commentableId} </p> */}
+        {/* <p> the type is: {commentableType} </p> */}
         { display }
       </div>
     )

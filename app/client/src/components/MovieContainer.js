@@ -60,11 +60,11 @@ class MovieReveiwPage extends Component {
         }
       })
       // build the comments object
-      .then(data => {
-        this.getComments(data.imdbID);
-        console.log('====>', this.state)
-        return data;
-      })
+      // .then(data => {
+      //   this.getComments(data.imdbID);
+      //   console.log('====>', this.state)
+      //   return data;
+      // })
       // catch errors outside of returned JSON object
       .catch(err => {  console.log('===>',err) })
   }
