@@ -17,7 +17,7 @@ class MovieContainer extends Component {
     super(props)
     this.state = {
       movie: {},
-      movieId: '',
+      movieId: 'Find_a_Movie',
       // comments: {},
     }
     this.getMovieData = this.getMovieData.bind(this);
