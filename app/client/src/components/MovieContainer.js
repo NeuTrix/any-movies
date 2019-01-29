@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import { url_movie_data, url_local_api} from '../helpers/api.helper';
+import { url_movie_data} from '../helpers/api.helper';
 import CommentableContainer from './CommentableContainer';
-// import CommentsList from './CommentsList'
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
@@ -20,80 +19,49 @@ class MovieContainer extends Component {
     this.state = {
       commentableID: 'Movie default',
       commentableType: 'Movie',
-      comments: [],
       movie: {},
       movieId: 'Find_a_Movie',
     }
-
     this.getMovieData = this.getMovieData.bind(this);
-    // this.getComments = this.getComments.bind(this);
   }
   
-  // set a default movie to display
   componentDidMount(){
     let data = this.getMovieData('Alien')
   }
 
-  //  set a controller in API to find the id for this movie
-  // search by imdbID
-  // getComments(commentableID, commentableType) {
-  //   // determine the controller path based on commentable type
-  //   let comPath = commentableType === 'Movie' ? "movies" : "comments";
-    
-  //   axios.get(`/api/${comPath}/${commentableID}/comments`)
-  //   .then(resp => {
-  //     const data = resp.data;
-  //     this.setState({ comments: data });
-  //     console.log('==> got comments data',data);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // }
-  
   // get the movie data
   getMovieData(searchTerm) {
-    let answer
+
     axios.get(`${url_movie_data}&t=${searchTerm}`)
-    .then(resp => {
-      console.log(resp);
-      const data = resp.data
-      // check for an error in the search
+      .then(resp => {
+        const data = resp.data
+
         if (data.Error) {
-          alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
+          alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
-        // buld the movie object
-        console.log('===> MovieCont got movie data!', data.imdbID)
-       this.setState({ 
-         movie: data,
-         commentableID: data.imdbID,
+
+        this.setState({ 
+          movie: data,
+          commentableID: data.imdbID,
         })
-         
       })
-      // build the comments object
-      // .then(data => {
-      //   this.getComments(data.imdbID, 'Movie');
-      //   return data;
-      // })
-      .catch(err => {  console.log('===>',err) })
-      return answer
+      .catch(err => { 
+        console.log('===>Error',err) 
+      })
   }
 
   render() {
     const { classes } = this.props // for material UI
-    const { comments, movie, commentableID, commentableType } = this.state
+    const { movie, commentableID, commentableType } = this.state
     return (
       <div className={classes.grid}>
 
-        <h1 className={classes.title}>
-         Movie Blog!
-        </h1>
+        <h1 className={classes.title}> Movie Blog! </h1>
         
         <MovieSearchBar 
           className={classes.search}
           getMovieData={this.getMovieData} 
-        >
-        </MovieSearchBar>
+        />
 
         <div className={classes.movies}>
           <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
@@ -103,13 +71,8 @@ class MovieContainer extends Component {
           <CommentableContainer 
             commentableID={commentableID}
             commentableType={commentableType} 
-          // <CommentsList
-            // comments={comments}
           />
         </div>
-
-       
-
       </div>
     )
   }
@@ -151,5 +114,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   }
 })
+
+MovieContainer.propTypes = propTypes;
 
 export default withStyles(styles)(MovieContainer)

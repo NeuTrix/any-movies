@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// from @material-ui
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import TextField from '@material-ui/core/TextField';
 
 const propTypes = {
@@ -12,16 +9,11 @@ const propTypes = {
 	handleSubmit: PropTypes.instanceOf(Function).isRequired,
 };
 
-// const SearchByTitle = props => (
-	
-// )
-
 class MovieSearchBar extends Component {
+
 	constructor(props) {
 		super(props)
 		this.state = {
-			// movieTitle: '',
-			// movieId: ''
 			searchTerm:''
 		}
 		this.onSubmit = this.onSubmit.bind(this)
@@ -31,13 +23,11 @@ class MovieSearchBar extends Component {
 onChange(e) {
 	this.setState({[e.target.name]: e.target.value})
 }
+
 onSubmit(e) {
 	const { searchTerm } = this.state;
 		e.preventDefault();
-		// alert(e.target.value)
 		console.log(e)
-		// alert(searchTerm)
-		// this.props.getMovieData('star wars')
 		this.props.getMovieData(searchTerm)
 	}
 
@@ -68,9 +58,10 @@ onSubmit(e) {
   }
 }
 
-const styles = theme => ({
-	main: {
-	}
-})
+const styles= theme => ({
+	main: { }
+ });
+
+MovieSearchBar.propTypes = propTypes;
 
 export default withStyles(styles)(MovieSearchBar)

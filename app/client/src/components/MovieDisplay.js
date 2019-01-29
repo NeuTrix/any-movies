@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 
-
-// include props declartaions (classes)
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   movie: PropTypes.instanceOf(Object).isRequired,
@@ -16,7 +13,7 @@ function MovieDisplay(props) {
 
   const { classes, movie, posterUrl } = props
   
-  // if (movie.Ratings) listed, show them
+  // generate list of movie ratings
   const ratings = movie.Ratings && movie.Ratings.map((rating, index) => {
     return ( 
       <div key={index} className={classes.ratingUnit}> 
@@ -38,16 +35,16 @@ function MovieDisplay(props) {
         <Typography variant="h4"> { movie.Title } </Typography> 
       </div>
 
-      {/* <div className={classes.image} >
+      <div className={classes.image} >
         <img className={classes.poster} src={posterUrl} alt="movie poster"/>
         <div> Released: {movie.Year} </div> <br/>
         <div> Rated 
           <h3>{movie.Rated} </h3> 
         </div> 
         <div> <h6> imdbID: { movie.imdbID }</h6> </div>
-      </div> */}
+      </div>
 
-      {/* <div className={classes.info}>
+      <div className={classes.info}>
 
         <div>
           <h4> Genre: </h4>
@@ -71,7 +68,7 @@ function MovieDisplay(props) {
             <h4> Critics Ratings: </h4>
             <div> { ratings } </div> 
           </div>
-      </div> */}
+      </div>
       
       <div className={classes.plot} > 
         <h4> Movie Plot: </h4>
@@ -92,13 +89,6 @@ const styles = theme => ({
       "plot plot"
       "ratings ratings"
     `,
-    // gridTemplateAreas: `
-    //   "title title"
-    //   "poster rated"
-    //   "poster year"
-    //   "poster mrate"
-    //   "poster desr"
-    // `,
     gridTemplateColumns: '2fr 3fr',
   },
 
@@ -144,9 +134,9 @@ const styles = theme => ({
       "critic grade"
     `,
     gridTemplateColumns: '3rf 1fr',
-    // textAlign:'left',
   }
-
 })
+
+MovieDisplay.propTypes = propTypes;
 
 export default withStyles(styles)(MovieDisplay)
