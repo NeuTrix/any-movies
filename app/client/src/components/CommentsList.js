@@ -16,7 +16,9 @@ function CommentsList(props) {
 
     if (comments) {
        commentsList = comments.map(com => {
-        return ( <li key={com.id}> <Comment comment={com}/> </li>) })
+        return ( <li key={com.id}> 
+          <Comment comment={com}/> 
+        </li>) })
     }
     
     return (
