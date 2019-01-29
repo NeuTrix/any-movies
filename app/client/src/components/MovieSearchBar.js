@@ -40,9 +40,8 @@ onSubmit(e) {
 				component="form"
 				onSubmit={this.onSubmit}
 			>
-			
 				<TextField
-					label = "Search for movie by title"
+					label = "enter movie title"
 					fullWidth
 					margin="dense"
 					name="searchTerm"
@@ -50,7 +49,6 @@ onSubmit(e) {
 					type="text"
 					value={this.state.searchTerm}
 					variant="outlined"
-					required
 				/>
 
 			</FormControl>
