@@ -16,11 +16,11 @@ function Comment(props) {
       <h4> {comment.title} </h4>
       <div> Author: {comment.author} </div>
       <div> {comment.body} </div>
-      <div> THis is: {comment.id} </div>
-       <CommentableContainer 
+      <div> This is: {comment.id} </div>
+       {comment.id && <CommentableContainer 
           commentableId={comment.id}
           commentableType='Comment'
-        />
+        />}
     </div>
   );
 }

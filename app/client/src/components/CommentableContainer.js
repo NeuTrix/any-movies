@@ -5,7 +5,8 @@ import axios from 'axios';
 import CommentsList from './CommentsList';
 
 const propTypes = {
-  commentableID: PropTypes.string.isRequired,
+  // when marked as 'required' generating a console warning
+  commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
 }
 
