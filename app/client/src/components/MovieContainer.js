@@ -57,18 +57,18 @@ class MovieContainer extends Component {
       <div className={classes.grid}>
 
         <h1 className={classes.title}> Movie Blog! </h1>
-        
+
         <MovieSearchBar 
-          className={classes.search}
+          style={{ gridArea: 'search' }}
           getMovieData={this.getMovieData} 
         />
         
         {/* hide for debugging */}
-        <div className={classes.movies}>
+        < div style={{ gridArea: 'movies' }} >
           <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
         </div>
         
-        <div className={classes.comments}>
+        < div style={{ gridArea: 'comments' }} >
           <CommentableContainer 
             commentableID={commentableID}
             commentableType={commentableType} 
@@ -85,29 +85,12 @@ const styles = theme => ({
     display: 'inline-grid',
     gridTemplateAreas: `
       "title"
+      "comments"
       "search"
       "movies"
-      "comments"
     `,
     padding: theme.spacing.unit,
     // maxWidth: theme.spacing.unit * 40,
-  },
-
-  comments: {
-    background: theme.palette.primary.main,
-    gridArea: 'comments',
-    marginTop: theme.spacing.unit,
-  },
-
-  movies: {
-    display: 'grid',
-    // background: theme.palette.secondary.main,
-    gridArea: 'movies',
-    marginTop: theme.spacing.unit,
-  },
-
-  search:{
-    gridArea: 'search',
   },
 
   title: { 
