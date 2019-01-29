@@ -10,75 +10,40 @@ import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
+  commentableID: PropTypes.string.isRequired,
+  commentableType: PropTypes.string.isRequired,
+  getMovieData: PropTypes.func.isRequired,
+  movie: PropTypes.instanceOf(Object).isRequired,
 }
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      commentableID: 'Movie default',
-      commentableType: 'Movie',
-      movie: {},
-      movieId: 'Find_a_Movie',
-    }
-    this.getMovieData = this.getMovieData.bind(this);
-  }
+function HomePage(props) {
   
-  componentDidMount(){
-    this.getMovieData('Alien')
-  }
+  const {classes, commentableID, commentableType, getMovieData, movie } = props
+  
+  return (
+    <div className={classes.grid}>
 
-  // get the movie data
-  getMovieData(searchTerm) {
+      <h1 style = {{ background: 'aliceblue', gridArea: 'title'}} > 
+        Movie Blog! 
+      </h1>
 
-    axios.get(`${url_movie_data}&t=${searchTerm}`)
-      .then(resp => {
-        const data = resp.data
-
-        if (data.Error) {
-          alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
-        } 
-
-        this.setState({ 
-          movie: data,
-          commentableID: data.imdbID,
-        })
-      })
-      .catch(err => { 
-        console.log('===>Error',err) 
-      })
-  }
-
-  render() {
-    const { classes } = this.props // for material UI
-    const { movie, commentableID, commentableType } = this.state
-    return (
-      <div className={classes.grid}>
-
-        <h1 style = {{ background: 'aliceblue', gridArea: 'title'}} > 
-          Movie Blog! 
-        </h1>
-
-        <MovieSearchBar 
-          style={{ gridArea: 'search' }}
-          getMovieData={this.getMovieData} 
-        />
-        
-        {/* hide for debugging */}
-        < div style={{ gridArea: 'movies' }} >
-          <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
-        </div>
-        
-        < div style={{ gridArea: 'comments' }} >
-          <CommentableContainer 
-            commentableID={commentableID}
-            commentableType={commentableType} 
-          />
-        </div>
+      <MovieSearchBar 
+        style={{ gridArea: 'search' }}
+        getMovieData={getMovieData} 
+      />
+      
+      < div style={{ gridArea: 'movies' }} >
+        <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
       </div>
-    )
-  }
+      
+      < div style={{ gridArea: 'comments' }} >
+        <CommentableContainer 
+          commentableID={commentableID}
+          commentableType={commentableType} 
+        />
+      </div>
+    </div>
+  )
 }
 
 // move the display logic outside of the containder component
@@ -92,9 +57,7 @@ const styles = theme => ({
       "movies"
     `,
     padding: theme.spacing.unit,
-
   },
-
 })
 
 HomePage.propTypes = propTypes;

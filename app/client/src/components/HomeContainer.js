@@ -49,6 +49,7 @@ class HomeContainer extends Component {
         movie={movie}
         commentableID={commentableID}
         commentableType={commentableType}
+        getMovieData={this.getMovieData}
       />
     )
   }
