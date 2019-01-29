@@ -38,6 +38,30 @@
 )
 @comment_alien.save
 
+@comment_alien2 = @alien.comments.build(
+  title: "ALIEN: meh!",
+  author: @user.username,
+  user_id: @user.id,
+  commentable_id: @alien.imdb_id,
+  commentable_type: @alien.class.name,
+  body: "Gave me chest pains!!",
+  rating: 2
+)
+@comment_alien2.save
+
+@comment_alien3 = @alien.comments.build(
+  title: "Corny",
+  author: @user.username,
+  user_id: @user.id,
+  commentable_id: @alien.imdb_id,
+  commentable_type: @alien.class.name,
+  body: "In Space, no one can hear you scream...  
+  Wow. this was quite the film. alskdj ;laj dflakd f;aljdf
+  a;slkjd;lj ;lakdf;jadfuoa  ;alLJl JJ;lkj;kdfjl",
+  rating: 3
+)
+@comment_alien3.save
+
 @comment_starwars = @starwars.comments.build(
   title: "STAR WARS: As romantic as the universe",
   author: @user.username,
