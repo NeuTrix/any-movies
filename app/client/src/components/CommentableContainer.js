@@ -15,41 +15,42 @@ class CommentableContainer extends Component {
     this.state = {
       comments: [],
     }
-    // this.getComments = this.getComments.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
-  // call this the first time the component mounts to set state
+  
   componentDidMount() {
     const { commentableID, commentableType } = this.props
+
     this.getComments(commentableID, commentableType)
   }
 
   componentDidUpdate(prevProps) {
     const { commentableID, commentableType } = this.props
 
-    if (prevProps.commentableID !== this.props.commentableID ) {
-      this.getComments(commentableID, commentableType)
+    if (prevProps.commentableID !== commentableID ) {
+     this.getComments(commentableID, commentableType)
     }
   }
-  // fetch comments from the api
+
   getComments(id, type) {
+    // determine rails path for commentable
     let pathType = type === 'Movie' ? 'movies' : 'comments'
 
-    axios.get(`/api/${pathType}/${id}/comments`)
+    return axios.get(`/api/${pathType}/${id}/comments`)
       .then(resp => {
-        const data = resp.data;
-        this.setState({ comments: data }); 
+        this.setState({ comments: resp.data }); 
+        return resp.data
       })
-      .catch(err => { console.log('ERROR=>',err); })
+      .catch(err => { 
+        console.log('ERROR=>',err); 
+      })
   }
 
   render() {
-    return (
-      <CommentsList comments={this.state.comments}/>
-    )
+    return <CommentsList comments={this.state.comments}/>
   }
 }
 
 CommentableContainer.propTypes = propTypes;
 
 export default CommentableContainer
-// export default withStyles(styles)(CommentableContainer)
