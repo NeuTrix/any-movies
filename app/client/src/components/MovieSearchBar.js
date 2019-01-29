@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	handleSubmit: PropTypes.instanceOf(Function).isRequired,
+	getMovieData: PropTypes.instanceOf(Function).isRequired,
 };
 
 class MovieSearchBar extends Component {

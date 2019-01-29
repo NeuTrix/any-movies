@@ -6,12 +6,11 @@ import Typography from '@material-ui/core/Typography'
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   movie: PropTypes.instanceOf(Object).isRequired,
-  posterUrl: PropTypes.instanceOf(Object).isRequired,
 }
 
 function MovieDisplay(props) {
 
-  const { classes, movie, posterUrl } = props
+  const { classes, movie } = props
   
   // generate list of movie ratings
   const ratings = movie.Ratings && movie.Ratings.map((rating, index) => {
@@ -36,7 +35,7 @@ function MovieDisplay(props) {
       </div>
 
       <div className={classes.image} >
-        <img className={classes.poster} src={posterUrl} alt="movie poster"/>
+        <img className={classes.poster} src={movie.Poster} alt="movie poster"/>
         <div> Released: {movie.Year} </div> <br/>
         <div> Rated 
           <h3>{movie.Rated} </h3> 
