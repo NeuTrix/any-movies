@@ -89,6 +89,7 @@ const styles = theme => ({
       "comments"
     `,
     padding: theme.spacing.unit,
+    maxWidth: theme.spacing.unit * 90,
   },
 
   comments: {
