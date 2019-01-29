@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CommentsList from './CommentsList';
+import Expansion from './Expansion';
 
 const propTypes = {
   // when marked as 'required' generating a console warning
@@ -50,7 +51,7 @@ class CommentableContainer extends Component {
   }
 
   render() {
-    return <CommentsList comments={this.state.comments}/>
+    return <Expansion comments={this.state.comments}/>
   }
 }
 
