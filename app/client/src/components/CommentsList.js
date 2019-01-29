@@ -5,6 +5,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Comment from './Comment';
 
 // include props declartaions (classes)
+const propTypes = {
+  classes: PropTypes.instanceOf(Object).isRequired,
+  comments: PropTypes.instanceOf(Object).isRequired,
+}
 
 function CommentsList(props) {
     const { classes, comments } = props

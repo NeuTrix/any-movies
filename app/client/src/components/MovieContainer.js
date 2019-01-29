@@ -56,6 +56,8 @@ class MovieReveiwPage extends Component {
         } else {
           // buld the movie object
           this.setState({ movie: data });
+          console.log('===> Got the movide data!', data.imdbID)
+          console.log('STATE-->',this.state)
           return data
         }
       })
