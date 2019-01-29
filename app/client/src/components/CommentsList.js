@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'; 
-import Comment from './Comment';
+import CommentCard from './CommentCard';
 
 // include props declartaions (classes)
 const propTypes = {
@@ -17,7 +17,7 @@ function CommentsList(props) {
     // if (comments.length) {
       const commentsList = comments.map(com => {
         return ( <li key={com.id}> 
-          <Comment 
+          <CommentCard 
             comment={com}
             // commentableID={com.id}
             // commentableType='Comment'
@@ -27,7 +27,7 @@ function CommentsList(props) {
     
     return (
       <div className={classes.main}>
-        <h3> Comments List </h3>
+        <h3> Comments </h3>
         <span> { commentsList } </span>
       </div>
     )
