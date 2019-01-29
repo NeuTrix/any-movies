@@ -21,14 +21,14 @@ class CommentableContainer extends Component {
   }
 
   componentDidUpdate() {
-    // const { commentableId, commentableType } = this.props
-    console.log('CommentableContainer props==>',this.props)
-      // this.getComments(commentableId, commentableType)
+    const { comId, comType } = this.props
+      this.getComments(comId, comType)
   }
 
   //  set a controller in API to find the id for this movie
   // search by imdbID
   getComments(id, type) {
+    console.log('XXX---CCont props==>', this.props)
 
     // let pathType = type === 'Movie' ? 'movies' : 'comments'
 
