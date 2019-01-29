@@ -15,10 +15,12 @@ class HomeContainer extends Component {
       commentableID: 'Movie default',
       commentableType: 'Movie',
       movie: {},
+      showForm: true,
       user_id:'default',
     }
-    this.getMovieData = this.getMovieData.bind(this);
     this.addReview = this.addReview.bind(this);
+    this.getMovieData = this.getMovieData.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
   
   // set initial state of the page
@@ -26,9 +28,11 @@ class HomeContainer extends Component {
     this.getMovieData('Alien')
   }
 
-  addReview(){
-    alert("review Added")
+  addReview(data){
+    console.log("===> Review Added", data)
+    // toggle
   }
+
   // get the movie data
   getMovieData(searchTerm) {
 
@@ -39,23 +43,31 @@ class HomeContainer extends Component {
         if (data.Error) {
           alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
-
         this.setState({ movie: data, commentableID: data.imdbID })
+        
       })
       .catch(err => { 
         console.log('===>Error',err) 
       })
   }
 
+  toggleForm() {
+    this.setState({ showForm: !this.state.showForm });
+  }
+
   render() {
-    const { movie, commentableID, commentableType } = this.state
+    
     return (
       <HomePage 
-        movie={movie}
-        commentableID={commentableID}
-        commentableType={commentableType}
-        getMovieData={this.getMovieData}
-        addReview={this.addReview}
+      commentableID={this.state.commentableID}
+      commentableType={this.state.commentableType}
+      movie={this.state.movie}
+      showForm={this.state.showForm}
+      userID={this.state.userID}
+      // functions
+      addReview={this.addReview}
+      getMovieData={this.getMovieData}
+      toggleForm={this.toggleForm}
       />
     )
   }

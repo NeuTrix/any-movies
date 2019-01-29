@@ -10,7 +10,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	commentableID: PropTypes.instanceOf(Object).isRequired,
 	commentableType: PropTypes.instanceOf(Object).isRequired,
-  userID: PropTypes.instanceOf.string.isRequired, // placeholder until auth/ath
+  userID: PropTypes.string.isRequired, // placeholder until auth/ath
   // == functions
   addReview: PropTypes.instanceOf(Function).isRequired,
 };
@@ -47,8 +47,7 @@ class AddReview extends Component {
       user_id: this.props.userID,
     })
     // pass state to executable fn
-    // this.props.addReview(this.state)
-    console.log('==> Ready to send!',this.state)
+    this.props.addReview(this.state)
   }
 
 	render() {
