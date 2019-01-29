@@ -37,7 +37,7 @@ class CommentableContainer extends Component {
 
   getComments(id, type) {
     // determine rails path for commentable
-    let pathType = type === 'Movie' ? 'movies' : 'comment'
+    let pathType = type === 'Movie' ? 'movies' : 'comments'
 
     return axios.get(`/api/${pathType}/${id}/comments`)
       .then(resp => {
