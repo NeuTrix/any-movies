@@ -64,8 +64,11 @@ function HomePage(props) {
       <div style={{ gridArea: 'search' }}>
         <MovieSearchBar getMovieData={getMovieData} /> 
       </div>
+      <div style={{ gridArea: 'form' }}>
 
+      {/* { theForm } */}
       { showForm && theForm }
+      </div>
       
       <div style={{ gridArea: 'movies' }} >
         <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
@@ -89,6 +92,7 @@ const styles = theme => ({
       "title title "
       "comments comments"
       "search addReview"
+      "form form"
       "movies movies"
     `,
     gridTemplateColumns: '1fr 1fr',

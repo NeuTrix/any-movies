@@ -15,9 +15,10 @@ class HomeContainer extends Component {
       commentableID: 'Movie default',
       commentableType: 'Movie',
       movie: {},
-      showForm: true,
+      showForm: false,
       user_id:'default',
     }
+    
     this.addReview = this.addReview.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
