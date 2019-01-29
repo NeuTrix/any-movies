@@ -21,16 +21,24 @@ class CommentCard extends Component {
     this.state ={
       display: false
     }
+    this.getSubComments = this.getSubComments.bind(this);
+  }
+
+  getSubComments(prevState) {
+    // toggle display
+    this.setState({ display: !this.state.display  });
   }
 
   render() {  
     const { classes, comment } = this.props;
+    const { display } = this.state;
 
-    let Test = ( <h3> Hey There </h3> )
-
-    function getSubComments() {
-      return Test = ( < h3 > Changed! < /h3> )
-    }
+    let SubComments = ( 
+      <CommentContainer
+        commentableID={comment.id}
+        commentableType="Comment"
+      />
+    )
 
     return (
       <Card className={classes.card}>
@@ -52,7 +60,6 @@ class CommentCard extends Component {
             { comment.body }
           </Typography>
 
-          { Test }
         </CardContent>
 
         <div className={classes.actions} >
@@ -60,7 +67,7 @@ class CommentCard extends Component {
           <div>
             <CardActions>
               <Button 
-                onClick={ () => getSubComments()} 
+                onClick={this.getSubComments} 
                 size="small" 
               >
                 more comments
@@ -75,7 +82,11 @@ class CommentCard extends Component {
           </div>
 
         </div>
-        
+         {/* place holder for subComments */}
+        < CardContent>
+          { display && SubComments }
+        </CardContent>
+          
       </Card>
     );
   }
