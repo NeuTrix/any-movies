@@ -51,17 +51,17 @@ function MovieDisplay(props) {
 
         <div>
           <h4> Genre: </h4>
-          <p> - {movie.Genre} </p>
+          <div> - {movie.Genre} </div>
         </div> 
 
         <div> 
           <h4> Director: </h4>
-          <p> - {movie.Director} </p> 
+          <div> - {movie.Director} </div> 
         </div> 
        
         <div> 
           <h4> Starring: </h4>
-          <p> { actors } </p>
+          <div> { actors } </div>
         </div> 
        
       </div>
@@ -69,7 +69,7 @@ function MovieDisplay(props) {
       <div className={classes.ratings} > 
           <div> 
             <h4> Critics Ratings: </h4>
-            <p> { ratings } </p> 
+            <div> { ratings } </div> 
           </div>
       </div>
       

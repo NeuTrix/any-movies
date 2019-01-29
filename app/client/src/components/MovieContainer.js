@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
-import MovieDisplay from './MovieDisplay';
 import axios from 'axios';
 import { url_movie_data, url_local_api} from '../helpers/api.helper';
+import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieReveiwPage extends Component {
+class MovieContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -79,7 +79,6 @@ class MovieReveiwPage extends Component {
   render() {
     const { classes } = this.props // for material UI
     const { movie, movieId } = this.state
-    // const { comments, movie } = this.state
     return (
       <div className={classes.grid}>
 
@@ -95,10 +94,8 @@ class MovieReveiwPage extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            // comments={comments}
             commId={movieId}
-            // commId={movie.imdbID}
-            commentableType='Test'
+            commentableType='Movie'
           />
         </div>
 
@@ -148,4 +145,4 @@ const styles = theme => ({
   }
 })
 
-export default withStyles(styles)(MovieReveiwPage)
+export default withStyles(styles)(MovieContainer)

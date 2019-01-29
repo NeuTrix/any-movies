@@ -14,7 +14,7 @@ const propTypes = {
   commentableType: PropTypes.string.isRequired,
 }
 
-class CommmentableContainer extends Component {
+class CommentableContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -33,20 +33,20 @@ class CommmentableContainer extends Component {
   // search by imdbID
   getComments(id, type) {
 
-    let pathType = type === 'Movie' ? 'movies' : 'comments'
+    // let pathType = type === 'Movie' ? 'movies' : 'comments'
 
-    axios.get(`/api/${pathType}/${id}/comments`)
-      .then(resp => {
-        console.log('xxxxxx++>>',resp);
-        const data = resp.data;
-        this.setState({
-          comments: data
-        });
+    // axios.get(`/api/${pathType}/${id}/comments`)
+    //   .then(resp => {
+    //     console.log('xxxxxx++>>',resp);
+    //     const data = resp.data;
+    //     this.setState({
+    //       comments: data
+    //     });
 
-      })
-      .catch(err => {
-        console.log('ERROR=>',err);
-      })
+    //   })
+    //   .catch(err => {
+    //     console.log('ERROR=>',err);
+    //   })
   }
 
   render() {
@@ -76,6 +76,6 @@ const styles = {
   }
 }
 
-CommmentableContainer.propTypes = propTypes;
+CommentableContainer.propTypes = propTypes;
 
-export default withStyles(styles)(CommmentableContainer)
+export default withStyles(styles)(CommentableContainer)
