@@ -6,8 +6,8 @@ import CommentableContainer from './CommentableContainer';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
-  commentableID: PropTypes.instanceOf(Object).isRequired,
-  commentableType: PropTypes.instanceOf(Object).isRequired,
+  commentableID: PropTypes.number.isRequired,
+  commentableType: PropTypes.string.isRequired,
 }
 
 function Comment(props) {
