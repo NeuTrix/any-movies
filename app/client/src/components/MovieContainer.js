@@ -26,7 +26,7 @@ class MovieContainer extends Component {
   }
   
   componentDidMount(){
-    this.getMovieData('Star Wars')
+    this.getMovieData('Alien')
   }
 
   // get the movie data
@@ -89,7 +89,7 @@ const styles = theme => ({
       "comments"
     `,
     padding: theme.spacing.unit,
-    maxWidth: theme.spacing.unit * 90,
+    // maxWidth: theme.spacing.unit * 40,
   },
 
   comments: {

@@ -43,15 +43,16 @@ function SimpleCard(props) {
   );
 }
 
-const styles = {
+const styles = theme => ({
   card: {
     // gridTemplateAreas
-    minWidth: 275,
+    minWidth: 350,
+    marginBottom: theme.spacing.unit,
   },
   pos: {
     marginBottom: 12,
   },
-};
+});
 
 SimpleCard.propTypes = propTypes;
 

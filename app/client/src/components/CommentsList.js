@@ -1,7 +1,12 @@
-// to provide a list of comments for main display area
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles'; 
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import CommentCard from './CommentCard';
 
 const propTypes = {
@@ -9,38 +14,44 @@ const propTypes = {
   comments: PropTypes.instanceOf(Array).isRequired,
 }
 
-function CommentsList(props) {
-    const { classes, comments } = props
-    // let commentsList = [];
+function SimpleExpansionPanel(props) {
+  const { classes, comments } = props;
 
-    // if (comments.length) {
-      const commentsList = comments.map(com => {
-        return ( <li key={com.id}> 
-          <CommentCard 
-            comment={com}
-            // commentableID={com.id}
-            // commentableType='Comment'
-          /> 
-        </li>) })
-    // }`
-    
-    return (
-      <div className={classes.main}>
-        <h3> Comments </h3>
-        <span> { commentsList } </span>
-      </div>
-    )
+   const commentsList = comments.map(com => {
+      return ( 
+        <div key={com.id}> <CommentCard comment={com} /> </div>
+      ) 
+    })
+      
+  return (
+    <div className={classes.root}>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>
+            Comments: {comments.length} 
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <ul>
+           { commentsList }
+          </ul>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    </div>
+  );
 }
 
-const styles = {
-  main: {
-    background: 'aliceblue',
-    display: 'grid',
-    gridTemplateAreas: `"list"`,
-    margin: 5,
-  }
-}
+SimpleExpansionPanel.propTypes = propTypes;
 
-CommentsList.propTypes = propTypes;
+const styles = theme => ({
+  
+  root: {
+    // width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+});
 
-export default withStyles(styles)(CommentsList)
+export default withStyles(styles)(SimpleExpansionPanel);
