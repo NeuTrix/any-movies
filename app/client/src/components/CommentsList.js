@@ -14,18 +14,21 @@ function CommentsList(props) {
     const { classes, comments } = props
     let commentsList = [];
 
-    if (comments) {
+    if (comments.length) {
        commentsList = comments.map(com => {
         return ( <li key={com.id}> 
-          <Comment comment={com}/> 
+          <Comment 
+            comment={com}
+            commentableID={com.id}
+            commentableType='Comment'
+          /> 
         </li>) })
     }
     
     return (
       <div className={classes.main}>
         <h3> Comments List </h3>
-        {/* <p>{`Hi  List is ${comments.length} long`}</p> */}
-        <span> {commentsList} </span>
+        <span> { commentsList } </span>
       </div>
     )
 }

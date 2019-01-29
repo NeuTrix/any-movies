@@ -25,17 +25,19 @@ class CommentableContainer extends Component {
     this.getComments(commentableID, commentableType)
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { commentableID, commentableType } = this.props
 
-    if (prevProps.commentableID !== commentableID ) {
+    if (prevState.comments && 
+        prevProps.commentableID !== commentableID
+      ) {
      this.getComments(commentableID, commentableType)
     }
   }
 
   getComments(id, type) {
     // determine rails path for commentable
-    let pathType = type === 'Movie' ? 'movies' : 'comments'
+    let pathType = type === 'Movie' ? 'movies' : 'comment'
 
     return axios.get(`/api/${pathType}/${id}/comments`)
       .then(resp => {
