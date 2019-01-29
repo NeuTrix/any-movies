@@ -15,6 +15,7 @@ class HomeContainer extends Component {
       commentableID: 'Movie default',
       commentableType: 'Movie',
       movie: {},
+      user_id:'default',
     }
     this.getMovieData = this.getMovieData.bind(this);
     this.addReview = this.addReview.bind(this);
