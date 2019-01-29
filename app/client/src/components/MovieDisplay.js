@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
-import { Button } from '@material-ui/core';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
@@ -67,13 +66,6 @@ function MovieDisplay(props) {
           <div> 
             <h4> Critics Ratings: </h4>
             <div> { ratings } </div> <br/>
-            <Button
-              // variant="extendedFab"
-              variant="contained"
-              color="primary"
-            > 
-              Add Comment 
-            </Button> 
           </div>
       </div>
       
