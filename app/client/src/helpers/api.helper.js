@@ -1,4 +1,3 @@
-import React from 'react'
 // url for local host connection
 export const url_local_api = `http://localhost:3001`;
 
