@@ -26,7 +26,7 @@ class MovieContainer extends Component {
   }
   
   componentDidMount(){
-    this.getMovieData('Alien')
+    this.getMovieData('Star Wars')
   }
 
   // get the movie data

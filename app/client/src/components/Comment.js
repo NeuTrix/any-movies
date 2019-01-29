@@ -26,8 +26,10 @@ function Comment(props) {
       <div> This is: {comment.id} </div>
 
        <CommentableContainer 
-          commentableId={commentableID}
-          commentableType={commentableType}
+          // commentableId={commentableID}
+          // commentableType={commentableType}
+          commentableId={comment.id}
+          commentableType='Comment'
         />
         
     </div>

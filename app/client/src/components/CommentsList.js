@@ -12,18 +12,18 @@ const propTypes = {
 
 function CommentsList(props) {
     const { classes, comments } = props
-    let commentsList = [];
+    // let commentsList = [];
 
-    if (comments.length) {
-       commentsList = comments.map(com => {
+    // if (comments.length) {
+      const commentsList = comments.map(com => {
         return ( <li key={com.id}> 
           <Comment 
             comment={com}
-            commentableID={com.id}
-            commentableType='Comment'
+            // commentableID={com.id}
+            // commentableType='Comment'
           /> 
         </li>) })
-    }
+    // }`
     
     return (
       <div className={classes.main}>
