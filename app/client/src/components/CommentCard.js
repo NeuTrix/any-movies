@@ -14,7 +14,7 @@ const propTypes = {
   comment: PropTypes.instanceOf(Object).isRequired,
 }
 
-function SimpleCard(props) {
+function CommentCard(props) {
   const { classes, comment } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -33,17 +33,28 @@ function SimpleCard(props) {
           { comment.body }
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">see comments</Button>
-      </CardActions>
-      <CardActions className={classes.btnRight} >
-        <Button size="small">reply</Button>
-      </CardActions>
+      <div className={classes.actions} >
+        <div>
+           <CardActions>
+          <Button size="small">see comments</Button>
+        </CardActions>
+        </div>
+        <div>
+           <CardActions className={classes.btnRight} >
+          <Button size="small">reply</Button>
+        </CardActions>
+        </div>
+      </div>
+      
     </Card>
   );
 }
 
 const styles = theme => ({
+  actions: {
+    display: 'inline-flex',
+  },
+
   card: {
     // gridTemplateAreas
     minWidth: 275,
@@ -54,6 +65,6 @@ const styles = theme => ({
   },
 });
 
-SimpleCard.propTypes = propTypes;
+CommentCard.propTypes = propTypes;
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(CommentCard);

@@ -14,7 +14,7 @@ const propTypes = {
   comments: PropTypes.instanceOf(Array).isRequired,
 }
 
-function SimpleExpansionPanel(props) {
+function CommentsList(props) {
   const { classes, comments } = props;
 
    const commentsList = comments.map(com => {
@@ -41,18 +41,16 @@ function SimpleExpansionPanel(props) {
   );
 }
 
-SimpleExpansionPanel.propTypes = propTypes;
+CommentsList.propTypes = propTypes;
 
 const styles = theme => ({
   
   root: {
     textAlign:'left',
     padding: 5,
-
-    // width: '100%',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(17),
     fontWeight: theme.typography.fontWeightRegular,
   },
 
@@ -63,4 +61,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(SimpleExpansionPanel);
+export default withStyles(styles)(CommentsList);
