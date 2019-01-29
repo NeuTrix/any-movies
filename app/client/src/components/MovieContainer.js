@@ -63,10 +63,10 @@ class MovieContainer extends Component {
           getMovieData={this.getMovieData} 
         />
 
-        {/* <div className={classes.movies}>
+        <div className={classes.movies}>
           <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
         </div>
-         */}
+        
         <div className={classes.comments}>
           <CommentableContainer 
             commentableID={commentableID}
@@ -99,7 +99,7 @@ const styles = theme => ({
 
   movies: {
     display: 'grid',
-    background: theme.palette.secondary.main,
+    // background: theme.palette.secondary.main,
     gridArea: 'movies',
     marginTop: theme.spacing.unit,
   },
