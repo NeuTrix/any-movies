@@ -1,5 +1,5 @@
 // to provide a list of comments for main display area
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'; 
 import Comment from './Comment';
@@ -38,5 +38,7 @@ const styles = {
     margin: 5,
   }
 }
+
+CommentsList.propTypes = propTypes;
 
 export default withStyles(styles)(CommentsList)
