@@ -24,17 +24,20 @@ class CommentableContainer extends Component {
   // call this the first time the component mounts to set state
   componentDidMount() {
     const { commentableID, commentableType } = this.props
-    this.setState({
-      comments: [commentableID, commentableType]
-    })
+    this.getComments(commentableID, commentableType)
   }
 
   componentDidUpdate(prevProps) {
+    const { commentableID, commentableType } = this.props
+    
     console.log(prevProps.commentableID, this.props.commentableID)
     if (prevProps.commentableID !== this.props.commentableID ) {
       // alert(prevProps.commentableID)
         // alert(this.props.commentableID)
-        alert('something changed')
+        // alert('something changed')
+
+    this.getComments(commentableID, commentableType)
+        
     }
   }
     
@@ -43,22 +46,19 @@ class CommentableContainer extends Component {
   // search by imdbID
   getComments(id, type) {
 
-
-    // this.setState({comments: [1,2,3]})
     
-    // console.log('XXX---CCont props==>', this.props)
-
     let pathType = type === 'Movie' ? 'movies' : 'comments'
     // Look for corresponding comments for this object 
     axios.get(`/api/${pathType}/${id}/comments`)
       .then(resp => {
         const data = resp.data;
+        console.log('==> COMMENTS data: ', data);
         // verify 
-        if (resp.status === 200 && data.length > 1) {
-          console.log('==> COMMENTS data: ', data);
-          // this.setState({ comments: data }); 
-          return data
-        } 
+        this.setState({ comments: data }); 
+        // if (data && data.length > 1) {
+        // if (resp.status === 200 && data.length > 1) {
+          // return data
+        // } 
       })
       // catch error from the OMDB api
       .catch(err => {
@@ -79,8 +79,8 @@ class CommentableContainer extends Component {
       <div className={classes.main}>
        
         THE LENGTH IS: {comments.length}
-        <div>{comments[0]}</div>
-        <div>{comments[1]}</div>
+        {/* <div>{comments[0]}</div> */}
+        {/* <div>{comments[1]}</div> */}
 
       </div>
     )
