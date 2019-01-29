@@ -56,7 +56,9 @@ class MovieContainer extends Component {
     return (
       <div className={classes.grid}>
 
-        <h1 className={classes.title}> Movie Blog! </h1>
+        <h1 style = {{ background: 'aliceblue', gridArea: 'title'}} > 
+          Movie Blog! 
+        </h1>
 
         <MovieSearchBar 
           style={{ gridArea: 'search' }}
@@ -90,14 +92,8 @@ const styles = theme => ({
       "movies"
     `,
     padding: theme.spacing.unit,
-    // maxWidth: theme.spacing.unit * 40,
   },
 
-  title: { 
-    background: 'aliceblue',
-    gridArea: 'title',
-    marginTop: theme.spacing.unit,
-  }
 })
 
 MovieContainer.propTypes = propTypes;
