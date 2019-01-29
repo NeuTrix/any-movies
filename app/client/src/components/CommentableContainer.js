@@ -1,4 +1,4 @@
-// Will find comments, if any, for a SINGLE commentable object
+// Returns a JSON array comment objects, if any, for a commentable item
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -15,7 +15,7 @@ class CommentableContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      comments: {},
+      comments: [],
     }
     this.getComments = this.getComments.bind(this);
   }
@@ -34,12 +34,15 @@ class CommentableContainer extends Component {
 
     axios.get(`/api/${pathType}/${id}/comments`)
       .then(resp => {
-        console.log('xxxxxx++>>',resp);
         const data = resp.data;
-        console.log('xxxxxx++>>',data);
-        // this.setState({
-        //   comments: data
-        // });
+        // terminate a recurssive search if no or empty data object returned
+        if (data) {
+          console.log('==> Returned data: ',data);
+
+          // this.setState({
+            //   comments: data
+            // });
+          }
       })
       .catch(err => {
         console.log('ERROR=>',err);
