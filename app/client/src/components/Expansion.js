@@ -27,7 +27,9 @@ function SimpleExpansionPanel(props) {
     <div className={classes.root}>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Comments</Typography>
+          <Typography className={classes.heading}>
+            Comments: {comments.length} 
+          </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
            { commentsList }
