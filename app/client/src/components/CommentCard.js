@@ -17,8 +17,8 @@ const propTypes = {
 function CommentCard(props) {
   const { classes, comment } = props;
 
-  function getSubComments(id, type) {
-    alert(`reaching it!, ${id}, ${type}`)
+  function getSubComments() {
+    alert(`reaching it!, ${comment.id}, ${comment.title}`)
   }
 
   return (
@@ -48,7 +48,7 @@ function CommentCard(props) {
         <div>
           <CardActions>
             <Button 
-              onClick={ () => getSubComments("me", comment.title)} 
+              onClick={ () => getSubComments()} 
               size="small" 
             >
               more comments
