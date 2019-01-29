@@ -24,10 +24,20 @@ class CommentableContainer extends Component {
   // call this the first time the component mounts to set state
   componentDidMount() {
     const { commentableID, commentableType } = this.props
-    // if ( this.state.comments.length > 0) {
-      this.getComments(commentableID, commentableType)
-    // }
+    this.setState({
+      comments: [commentableID, commentableType]
+    })
   }
+
+  componentDidUpdate(prevProps) {
+    console.log(prevProps.commentableID, this.props.commentableID)
+    if (prevProps.commentableID !== this.props.commentableID ) {
+      // alert(prevProps.commentableID)
+        // alert(this.props.commentableID)
+        alert('something changed')
+    }
+  }
+    
 
   //  set a controller in API to find the id for this movie
   // search by imdbID
@@ -39,19 +49,18 @@ class CommentableContainer extends Component {
     // console.log('XXX---CCont props==>', this.props)
 
     let pathType = type === 'Movie' ? 'movies' : 'comments'
-
+    // Look for corresponding comments for this object 
     axios.get(`/api/${pathType}/${id}/comments`)
       .then(resp => {
         const data = resp.data;
-        // terminate a recurssive search if no or empty data object returned
-        if (data && data.length > 1) {
-          console.log('==> Returned data: ',data);
-
-          this.setState({
-              comments: data
-            });
-          }
+        // verify 
+        if (resp.status === 200 && data.length > 1) {
+          console.log('==> COMMENTS data: ', data);
+          // this.setState({ comments: data }); 
+          return data
+        } 
       })
+      // catch error from the OMDB api
       .catch(err => {
         console.log('ERROR=>',err);
       })
@@ -70,6 +79,8 @@ class CommentableContainer extends Component {
       <div className={classes.main}>
        
         THE LENGTH IS: {comments.length}
+        <div>{comments[0]}</div>
+        <div>{comments[1]}</div>
 
       </div>
     )
