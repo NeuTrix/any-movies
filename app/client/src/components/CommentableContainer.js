@@ -6,9 +6,10 @@ import axios from 'axios';
 import CommentsList from './CommentsList';
 
 const propTypes = {
-  classes: PropTypes.instanceOf(Object).isRequired,
-  comId: PropTypes.string.isRequired,
-  comType: PropTypes.string.isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired, // for MUI styling
+  comments: PropTypes.instanceOf(Array).isRequired, // comments for related item
+  // commentableID: PropTypes.string.isRequired,
+  // commentableType: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
@@ -21,9 +22,9 @@ class CommentableContainer extends Component {
   }
 
   componentDidReceiveProps() {
-    // const { comId, comType } = this.props
+    // const { commentableID, commentableType } = this.props
     // if ( this.state.comments.length > 0) {
-      // this.getComments(comId, comType)
+      // this.getComments(commentableID, commentableType)
     // }
   }
 
@@ -52,19 +53,19 @@ class CommentableContainer extends Component {
   // }
 
   render() {
-    const { classes, comId, comType } = this.props
-    const { comments } = this.state
+    const { classes, comments, commentableID, commentableType } = this.props
+    // const { comments } = this.state
 
-    // let display
-    // if (comments && comments.length > 0) {
-    //   display =  <CommentsList comments={comments}/>
-    // } 
+    let display
+    if (comments && comments.length > 0) {
+      display =  <CommentsList comments={comments}/>
+    } 
     
     return (
       <div className={classes.main}>
         {/* <h3> Comments Container </h3>
-        <p> @the commentable id is: {comId} </p>
-        <p> @the type is: {comType} </p> */}
+        <p> @the commentable id is: {commentableID} </p>
+        <p> @the type is: {commentableType} </p> */}
         {/* { display } */}
         <CommentsList comments={comments}/>
       </div>
