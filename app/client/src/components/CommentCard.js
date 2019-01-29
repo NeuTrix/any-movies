@@ -46,7 +46,7 @@ function SimpleCard(props) {
 const styles = theme => ({
   card: {
     // gridTemplateAreas
-    minWidth: 350,
+    minWidth: 275,
     marginBottom: theme.spacing.unit,
   },
   pos: {
