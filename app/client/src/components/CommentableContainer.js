@@ -17,39 +17,39 @@ class CommentableContainer extends Component {
     this.state = {
       comments: [],
     }
-    this.getComments = this.getComments.bind(this);
+    // this.getComments = this.getComments.bind(this);
   }
 
   componentDidReceiveProps() {
-    const { comId, comType } = this.props
+    // const { comId, comType } = this.props
     // if ( this.state.comments.length > 0) {
-      this.getComments(comId, comType)
+      // this.getComments(comId, comType)
     // }
   }
 
   //  set a controller in API to find the id for this movie
   // search by imdbID
-  getComments(id, type) {
-    console.log('XXX---CCont props==>', this.props)
+  // getComments(id, type) {
+  //   console.log('XXX---CCont props==>', this.props)
 
-    let pathType = type === 'Movie' ? 'movies' : 'comments'
+  //   let pathType = type === 'Movie' ? 'movies' : 'comments'
 
-    axios.get(`/api/${pathType}/${id}/comments`)
-      .then(resp => {
-        const data = resp.data;
-        // terminate a recurssive search if no or empty data object returned
-        if (data && data.length > 1) {
-          console.log('==> Returned data: ',data);
+  //   axios.get(`/api/${pathType}/${id}/comments`)
+  //     .then(resp => {
+  //       const data = resp.data;
+  //       // terminate a recurssive search if no or empty data object returned
+  //       if (data && data.length > 1) {
+  //         console.log('==> Returned data: ',data);
 
-          this.setState({
-              comments: data
-            });
-          }
-      })
-      .catch(err => {
-        console.log('ERROR=>',err);
-      })
-  }
+  //         this.setState({
+  //             comments: data
+  //           });
+  //         }
+  //     })
+  //     .catch(err => {
+  //       console.log('ERROR=>',err);
+  //     })
+  // }
 
   render() {
     const { classes, comId, comType } = this.props

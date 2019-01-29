@@ -15,13 +15,17 @@ const propTypes = {
 class MovieContainer extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
+      commentableID: 'default',
+      commentableType: 'Movie',
+      comments: [],
       movie: {},
       movieId: 'Find_a_Movie',
-      // comments: {},
     }
+
     this.getMovieData = this.getMovieData.bind(this);
-    // this.getComments = this.getComments.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
   
   // set a default movie to display
@@ -31,19 +35,20 @@ class MovieContainer extends Component {
 
   //  set a controller in API to find the id for this movie
   // search by imdbID
-  // getComments(movieId) {
-  //   // const { movie } = this.state
-  //   axios.get(`/api/movies/${movieId}/comments`)
-  //   .then(resp => {
-  //     console.log(resp);
-  //     const data = resp.data;
-  //     this.setState({ comments: data });
-
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // }
+  getComments(commentableID, commentableType) {
+    // determine the controller path based on commentable type
+    let comPath = commentableType === 'Movie' ? "movies" : "comments";
+    
+    axios.get(`/api/${comPath}/${commentableID}/comments`)
+    .then(resp => {
+      const data = resp.data;
+      this.setState({ comments: data });
+      console.log('==> got comments data',data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
   
   // get the movie data
   getMovieData(searchTerm) {
@@ -55,8 +60,8 @@ class MovieContainer extends Component {
         if (data.Error) {
           alert(`Error: ${data.Error} for: \n ==> ${searchTerm} <== \n Please try again`)
         } 
-          // buld the movie object
-          console.log('===> MovieCont got movie data!', data.imdbID)
+        // buld the movie object
+        console.log('===> MovieCont got movie data!', data.imdbID)
         this.setState({
           movie: data,
           movieId: data.imdbID,
@@ -64,18 +69,16 @@ class MovieContainer extends Component {
         return data
       })
       // build the comments object
-      // .then(data => {
-      //   this.getComments(data.imdbID);
-      //   console.log('====>', this.state)
-      //   return data;
-      // })
-      // catch errors outside of returned JSON object
+      .then(data => {
+        this.getComments(data.imdbID, 'Movie');
+        return data;
+      })
       .catch(err => {  console.log('===>',err) })
   }
 
   render() {
     const { classes } = this.props // for material UI
-    const { movie, movieId } = this.state
+    const { comments, movie, movieId } = this.state
     return (
       <div className={classes.grid}>
 
@@ -91,8 +94,9 @@ class MovieContainer extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            comId={movieId}
-            comType='Movie'
+            comments={comments}
+            // commentableID={movieId}
+            // commentableType='Movie'
           />
         </div>
 
