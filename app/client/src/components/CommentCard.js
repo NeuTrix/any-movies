@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -14,58 +14,71 @@ const propTypes = {
   comment: PropTypes.instanceOf(Object).isRequired,
 }
 
-function CommentCard(props) {
-  const { classes, comment } = props;
+class CommentCard extends Component {
 
-  function getSubComments() {
-    alert(`reaching it!, ${comment.id}, ${comment.title}`)
+  constructor(props) {
+    super(props)
+    this.state ={
+      display: false
+    }
   }
 
-  return (
-    <Card className={classes.card}>
+  render() {  
+    const { classes, comment } = this.props;
 
-      <CardContent>
+    let Test = ( <h3> Hey There </h3> )
 
-        <Typography variant="subtitle" component="h2">
-          { comment.title}
-        </Typography>
+    function getSubComments() {
+      return Test = ( < h3 > Changed! < /h3> )
+    }
 
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-        </Typography>
+    return (
+      <Card className={classes.card}>
 
-        <Typography className={classes.pos} color="textSecondary">
-          by: { comment.author }
-        </Typography>
+        <CardContent>
 
-        <Typography variant="body1" component="p">
-          { comment.body }
-        </Typography>
+          <Typography variant="subtitle" component="h2">
+            { comment.title}
+          </Typography>
 
-      </CardContent>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+          </Typography>
 
-      <div className={classes.actions} >
+          <Typography className={classes.pos} color="textSecondary">
+            by: { comment.author }
+          </Typography>
 
-        <div>
-          <CardActions>
-            <Button 
-              onClick={ () => getSubComments()} 
-              size="small" 
-            >
-              more comments
-            </Button>
-          </CardActions>
+          <Typography variant="body1" component="p">
+            { comment.body }
+          </Typography>
+
+          { Test }
+        </CardContent>
+
+        <div className={classes.actions} >
+
+          <div>
+            <CardActions>
+              <Button 
+                onClick={ () => getSubComments()} 
+                size="small" 
+              >
+                more comments
+              </Button>
+            </CardActions>
+          </div>
+
+          <div>
+            <CardActions className={classes.btnRight} >
+              <Button size="small">reply</Button>
+            </CardActions>
+          </div>
+
         </div>
-
-        <div>
-          <CardActions className={classes.btnRight} >
-            <Button size="small">reply</Button>
-          </CardActions>
-        </div>
-
-      </div>
-      
-    </Card>
-  );
+        
+      </Card>
+    );
+  }
 }
 
 const styles = theme => ({
