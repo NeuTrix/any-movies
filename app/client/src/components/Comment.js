@@ -5,18 +5,20 @@ import CommentableContainer from './CommentableContainer';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
+  // getComments: PropTypes.function.isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
+  subComments: PropTypes.instanceOf(Array).isRequired,
 }
 
 function Comment(props) {
   const {classes, comment } = props;
   return (
     <div className={classes.main}>
-      <p> ===================== </p>
+      <div> ===================== </div>
       <h4> {comment.title} </h4>
-      <p> Author: {comment.author} </p>
-      <p> {comment.body} </p>
-      <p> THis is: {comment.id} </p>
+      <div> Author: {comment.author} </div>
+      <div> {comment.body} </div>
+      <div> THis is: {comment.id} </div>
        <CommentableContainer 
           commentableId={comment.id}
           commentableType='Comment'

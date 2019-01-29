@@ -3,7 +3,7 @@ require 'test_helper'
 class Api::Movies::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @movie = movies(:one)
+    @movie = movies(:alien)
     @user = users(:one)
 
     # @comment = @commentable
@@ -18,8 +18,8 @@ class Api::Movies::CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should create comment" do
     # skip
     assert_difference('Comment.count') do
-      post "http://localhost:3001/api/movies/#{@movie.id}/comments", params: { comment: { 
-      # post api_movie_comments_url, params: { movie: { 
+      # post api_movie_comments_url(@movie), params: { comment: { 
+      post api_movie_comments_url(@movie), params: { movie: { 
         user_id: @user.id,
         # movie_id: @movie.id,
         critic_rating: @movie.critic_rating, 
@@ -34,19 +34,19 @@ class Api::Movies::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show movie" do
-    skip
+    # skip
     get api_movie_url(@movie), as: :json
     assert_response :success
   end
 
   test "should update movie" do
-    skip
+    # skip
     patch api_movie_url(@movie), params: { movie: { critic_rating: @movie.critic_rating, description: @movie.description, rated: @movie.rated, release_date: @movie.release_date, title: @movie.title } }, as: :json
     assert_response 200
   end
 
   test "should destroy movie" do
-    skip
+    # skip
     assert_difference('Movie.count', -1) do
       delete api_movie_url(@movie), as: :json
     end

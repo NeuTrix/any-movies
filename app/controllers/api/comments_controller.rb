@@ -20,7 +20,7 @@ module Api
       # @comment.user_id = current_user.id
 
       if @comment.save
-        render json: @current_user, status: :created
+        render json: @comment, status: :created
         # render "passed the saved comment"
         # , location: @comment
       else
@@ -53,13 +53,14 @@ module Api
       def comment_params
         params.require(:comment).permit(
           :author,
+          :imdb_id,
           :body, 
           :commentable_id, 
           :commentable_type, 
           :rating,
           :title, 
           :user_id, 
-          )
+        )
       end
   end
 end
