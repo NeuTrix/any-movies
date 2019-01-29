@@ -94,8 +94,8 @@ class MovieContainer extends Component {
 
         <div className={classes.comments}>
           <CommentableContainer 
-            commId={movieId}
-            commentableType='Movie'
+            comId={movieId}
+            comType='Movie'
           />
         </div>
 

@@ -1,17 +1,14 @@
-// provide the container to grab comments for a movie or a comment type
+// Will find comments, if any, for a SINGLE commentable object
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import CommentsList from './CommentsList';
 
-// include props declartaions (classes)
-
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  // comments: PropTypes.instanceOf(Object).isRequired,
-  commId: PropTypes.string.isRequired,
-  commentableType: PropTypes.string.isRequired,
+  comId: PropTypes.string.isRequired,
+  comType: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
@@ -25,7 +22,7 @@ class CommentableContainer extends Component {
 
   componentDidMount() {
     // const { commentableId, commentableType } = this.props
-    console.log('CommentableContainer props==>',this.props )
+    console.log('CommentableContainer props==>',this.props)
       // this.getComments(commentableId, commentableType)
   }
 
@@ -50,20 +47,20 @@ class CommentableContainer extends Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, comId, comType } = this.props
     const { comments } = this.state
 
-    let display
-    if (comments && comments.length > 0) {
-      display =  <CommentsList comments={comments}/>
-    } 
+    // let display
+    // if (comments && comments.length > 0) {
+    //   display =  <CommentsList comments={comments}/>
+    // } 
     
     return (
       <div className={classes.main}>
         <h3> Comments Container </h3>
-        {/* <p> the commentable id is: {commentableId} </p> */}
-        {/* <p> the type is: {commentableType} </p> */}
-        { display }
+        <p> @the commentable id is: {comId} </p>
+        <p> @the type is: {comType} </p>
+        {/* { display } */}
       </div>
     )
   }
