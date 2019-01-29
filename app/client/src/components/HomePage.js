@@ -12,7 +12,7 @@ const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
 }
 
-class MovieContainer extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props)
 
@@ -92,10 +92,11 @@ const styles = theme => ({
       "movies"
     `,
     padding: theme.spacing.unit,
+
   },
 
 })
 
-MovieContainer.propTypes = propTypes;
+HomePage.propTypes = propTypes;
 
-export default withStyles(styles)(MovieContainer)
+export default withStyles(styles)(HomePage)
