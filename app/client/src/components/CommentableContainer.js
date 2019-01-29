@@ -20,7 +20,7 @@ class CommentableContainer extends Component {
     this.getComments = this.getComments.bind(this);
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     // const { commentableId, commentableType } = this.props
     console.log('CommentableContainer props==>',this.props)
       // this.getComments(commentableId, commentableType)
