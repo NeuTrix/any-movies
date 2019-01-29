@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from './CommentableContainer';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  // getComments: PropTypes.function.isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
-  subComments: PropTypes.instanceOf(Array).isRequired,
 }
 
 function Comment(props) {
@@ -24,7 +22,7 @@ function Comment(props) {
           commentableType='Comment'
         />
     </div>
-    );
+  );
 }
  
 const styles = {
@@ -34,5 +32,7 @@ const styles = {
     outline: '2px solid blue',
   }
 }
+
+Comment.propTypes = propTypes;
 
 export default withStyles(styles)(Comment);
