@@ -1,20 +1,19 @@
 // container to gather movie logic
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import { url_movie_data} from '../helpers/api.helper';
+
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
-import { Button } from '@material-ui/core';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  commentableID: PropTypes.string.isRequired,
-  commentableType: PropTypes.string.isRequired,
-  getMovieData: PropTypes.func.isRequired,
-  movie: PropTypes.instanceOf(Object).isRequired,
+  commentableID: PropTypes.string.isRequired, // for comment search
+  commentableType: PropTypes.string.isRequired, // for comment search
+  getMovieData: PropTypes.func.isRequired, // search for movie
+  movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
 }
 
 function HomePage(props) {
