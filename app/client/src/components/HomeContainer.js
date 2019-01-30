@@ -112,9 +112,11 @@ class HomeContainer extends Component {
       // make the post call
       axios.post(`/api/movies`, data)
       .then(resp => {
-        resp.status === 200 
+        resp.status === 201
           ? alert(`Added ${data.title} to our database with id: ${data.imdb_id}`)
           : alert(`Oops! There was a problem. See the console logs for more info`)
+          console.log(resp.data)
+          return  resp.data
       })
       .catch(err => {
         console.log(err)
