@@ -58,6 +58,17 @@ class AddCommentForm extends Component {
 					variant="outlined"
 				/>
 
+				<TextField
+					name="title"
+					label = "enter title"
+					fullWidth
+					margin="dense"
+					onChange={this.onChange}
+					type="text"
+					value={this.state.title}
+					variant="outlined"
+				/>
+
         <TextField
 					name="body"
 					label = "enter your review"
@@ -69,16 +80,6 @@ class AddCommentForm extends Component {
 					variant="outlined"
 				/>
 
-				<TextField
-					name="title"
-					label = "enter title"
-					fullWidth
-					margin="dense"
-					onChange={this.onChange}
-					type="text"
-					value={this.state.title}
-					variant="outlined"
-				/>
 
         <Button component="button" type="submit" > Submit </Button>
 
