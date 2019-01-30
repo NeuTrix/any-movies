@@ -30,7 +30,7 @@ function CommentsList(props) {
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
-            See Comments: {comments.length} 
+            Show Comments: {comments.length} 
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>

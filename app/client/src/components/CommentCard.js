@@ -73,27 +73,18 @@ class CommentCard extends Component {
             { comment.body }
           </Typography>
 
-        {/* </CardContent> */}
-
-        <div className={classes.actions} >
-
-          <div>
-            <CardActions className={classes.btnRight} >
-              <Button size="small" onClick={toggleCommentForm} >reply</Button>
-            </CardActions>
-          </div>
-
-          <div>
-            <CardActions>
-               <CommentContainer
-                commentableID = { comment.id }
-                commentableType = "Comment" 
-              />
-            </CardActions>
-          </div>
-
-        </div>
         </CardContent>
+
+        <CardActions className={classes.actions} >
+          <Button size="small" onClick={toggleCommentForm} >reply</Button>
+        </CardActions>
+
+        <CardActions className={classes.actions} >
+          <CommentContainer
+            commentableID = { comment.id }
+            commentableType = "Comment" 
+          />
+        </CardActions>
           
       </Card>
     );
@@ -107,7 +98,7 @@ const styles = theme => ({
 
   card: {
     // gridTemplateAreas
-    minWidth: 275,
+    minWidth: 350,
     marginBottom: theme.spacing.unit,
   },
   pos: {
