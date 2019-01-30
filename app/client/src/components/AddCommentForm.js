@@ -9,10 +9,10 @@ import { Button } from '@material-ui/core';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	userName: PropTypes.string.isRequired, 
-  addReview: PropTypes.instanceOf(Function).isRequired,
+  addComment: PropTypes.instanceOf(Function).isRequired,
 };
 
-class AddReview extends Component {
+class AddCommentForm extends Component {
 
 	constructor(props) {
 		super(props)
@@ -35,7 +35,7 @@ class AddReview extends Component {
 	// post the review to the rails API
   onSubmit(e) {
     e.preventDefault();
-    this.props.addReview(this.state)
+    this.props.addComment(this.state)
   }
 
 	render() {
@@ -91,6 +91,6 @@ const styles= theme => ({
 	main: { } // place holder for styling
  });
 
-AddReview.propTypes = propTypes;
+AddCommentForm.propTypes = propTypes;
 
-export default withStyles(styles)(AddReview)
+export default withStyles(styles)(AddCommentForm)

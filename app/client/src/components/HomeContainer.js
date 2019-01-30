@@ -22,7 +22,7 @@ class HomeContainer extends Component {
       userName: "DanTastic333"
     }
 
-    this.addReview = this.addReview.bind(this);
+    this.addComment = this.addComment.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
     this.isMovieRegistered = this.isMovieRegistered.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
@@ -45,7 +45,7 @@ class HomeContainer extends Component {
   // adds a new review for the currently displayed Movie
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
-  addReview(data) {
+  addComment(data) {
     const { commentableID, commentableType, userID, movieRegistered } = this.state;
 
     // veerify registration
@@ -86,7 +86,7 @@ class HomeContainer extends Component {
         console.log(err) 
       })
   }
-
+  
   // boolean to determine whetehr the movie is in the current db
   isMovieRegistered() {
     const { commentableID } = this.state
@@ -127,7 +127,7 @@ class HomeContainer extends Component {
     }
   }
 
-  // allows the addReview form to toggle on and off
+  // allows the addComment form to toggle on and off
   toggleForm() {
     this.setState({ showForm: !this.state.showForm });
   }
@@ -142,7 +142,7 @@ class HomeContainer extends Component {
       showForm={this.state.showForm}
       userName={this.state.userName}
       // functions
-      addReview={this.addReview}
+      addComment={this.addComment}
       getMovieData={this.getMovieData}
       toggleForm={this.toggleForm}
       />

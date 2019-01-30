@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import AddReviewForm from './AddReviewForm';
+import AddCommentForm from './AddCommentForm';
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
@@ -17,7 +17,7 @@ const propTypes = {
   showForm: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
-  addReview: PropTypes.func.isRequired, // adds a new review instance to api
+  addComment: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
   toggleForm: PropTypes.func.isRequired,
 }
@@ -32,7 +32,7 @@ function HomePage(props) {
     showForm,
     userName,
     // functions
-    addReview,
+    addComment,
     getMovieData,
     toggleForm,
   } = props
@@ -44,7 +44,7 @@ function HomePage(props) {
         Movie Blog! 
       </h1>
     
-      <div className={classes.actions} style={{ gridArea: 'addReview' }}>
+      <div className={classes.actions} style={{ gridArea: 'addComment' }}>
         <Button 
           variant="contained" 
           color="primary" 
@@ -58,7 +58,7 @@ function HomePage(props) {
 
       <div style={{ gridArea: 'form' }}>
         { showForm && 
-          <AddReviewForm userName={userName} addReview={addReview} /> 
+          <AddCommentForm userName={userName} addComment={addComment} /> 
         } 
       </div>
       
@@ -83,7 +83,7 @@ const styles = theme => ({
     gridTemplateAreas: `
       "title title "
       "comments comments"
-      "search addReview"
+      "search addComment"
       "form form"
       "movies movies"
     `,
