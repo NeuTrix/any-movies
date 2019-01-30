@@ -26,7 +26,7 @@ class HomeContainer extends Component {
     this.getMovieData = this.getMovieData.bind(this);
     this.isMovieRegistered = this.isMovieRegistered.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
-    this.toggleForm = this.toggleForm.bind(this);
+    this.toggleReviewForm = this.toggleReviewForm.bind(this);
   }
   
   // set initial state of the page
@@ -128,7 +128,7 @@ class HomeContainer extends Component {
   }
 
   // allows the addReview form to toggle on and off
-  toggleForm() {
+  toggleReviewForm() {
     this.setState({ showForm: !this.state.showForm });
   }
 
@@ -144,7 +144,7 @@ class HomeContainer extends Component {
       // functions
       addReview={this.addReview}
       getMovieData={this.getMovieData}
-      toggleForm={this.toggleForm}
+      toggleReviewForm={this.toggleReviewForm}
       />
     )
   }

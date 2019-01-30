@@ -19,7 +19,7 @@ const propTypes = {
   // ===> functions
   addReview: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
-  toggleForm: PropTypes.func.isRequired, // toggles the addReview form in view
+  toggleReviewForm: PropTypes.func.isRequired, // toggles the addReview form in view
 }
 
 function HomePage(props) {
@@ -34,7 +34,7 @@ function HomePage(props) {
     // functions
     addReview,
     getMovieData,
-    toggleForm,
+    toggleReviewForm,
   } = props
   
   return (
@@ -48,7 +48,7 @@ function HomePage(props) {
         <Button 
           variant="contained" 
           color="primary" 
-          onClick={toggleForm}
+          onClick={toggleReviewForm}
         >
           Add Review
         </Button>
