@@ -10,6 +10,8 @@ const propTypes = {
   bugger: PropTypes.bool.isRequired, // test to see if can stimlate preState
 }
 
+let memo = ' x';
+
 class HomeContainer extends Component {
   constructor(props) {
     super(props)
@@ -32,18 +34,20 @@ class HomeContainer extends Component {
     this.toggleReviewForm = this.toggleReviewForm.bind(this);
   }
   
+  // static getDerivedStateFromProps(props, state){}
   // set initial state of the page
   componentDidMount() {
     this.getMovieData('Alien');
   }
-// prevState object undefined in HomeContainer
-  componentDidUpdate(prevState, prevProps) {
-    console.log('HC.js ==>', prevState)
-    // console.log('HC.js ==>', prevState, '==> props', prevProps)
 
-    // if (true) {
-      // this.isMovieRegistered();
-    // } 
+  // prevState object is undefined in HomeContainer
+  // `snapshot` only works if preceeded by `prevState` or `prevProps`
+  // otherwise prevState doesn't load.
+  componentDidUpdate( prevState, snapshot) {
+    // const {}
+    const { commentableID, movieRegistered } = snapshot
+    console.log('==>', 'm:',memo,'reg:', movieRegistered, 'pr:',prevState, 'sn:', commentableID);
+    memo = commentableID
   }
 
   // adds a new review for the currently displayed Movie
@@ -97,7 +101,7 @@ class HomeContainer extends Component {
 
     axios.get(`/api/movies/${commentableID}`)
       .then(resp => {
-        console.log('adadfasdf', resp)
+        console.log('from isMovieRegitstered', resp)
         if (resp.status === 404) {
           // alert(`registered ${resp.data.Title}`)
           this.setState({movieRegistered: false})
