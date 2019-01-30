@@ -5,24 +5,16 @@ import axios from 'axios';
 import CommentsList from './CommentsList';
 
 const propTypes = {
-  // when marked as 'required' generating a console warning
   commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
   userID: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
-  // add comment base on registraion status
-  // movieRegistered: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      comments: [],
-    }
-
-    this.addComment = this.addComment.bind(this); // pass to form
+    this.state = { comments: [], }
     this.getComments = this.getComments.bind(this);
   }
   
@@ -38,36 +30,6 @@ class CommentableContainer extends Component {
     }
   }
 
-  addComment(data) {
-     const {
-       commentableID,
-       commentableType,
-       userID,
-      //  movieRegistered
-     } = this.state;
-
-     // veerify registration
-     /* if (!movieRegistered) {
-       this.registerMovie();
-     } */
-    //  update the data object with required fields
-     data.commentable_id = commentableID;
-     data.commentable_type = commentableType;
-     data.user_id = userID;
-
-     return axios.post(`/api/comments/${commentableID}/comments`, data)
-       .then(resp => {
-         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-         this.setState({
-           showForm: false
-         });
-         return resp.data
-       })
-       .catch(err => {
-         console.log('ERROR=>', err);
-       })
-  }
-
   getComments(id, type) {
     const { commentableID, commentableType } = this.props
     
@@ -80,20 +42,15 @@ class CommentableContainer extends Component {
         return resp.data
       })
       .catch(err => { 
-        // console.log('ERROR=>',err); 
         alert(`Movie may not be registered for comments \n ${err}`)
+        console.log('ERROR=>',err); 
         // reset the comments for an unregistered movie
         this.setState({ comments: [] }); 
       })
   }
 
   render() {
-    return ( 
-      <CommentsList 
-        comments={this.state.comments}
-        addComment={this.addComment}
-      />
-    )
+    return <CommentsList comments={this.state.comments} />
   }
 }
 

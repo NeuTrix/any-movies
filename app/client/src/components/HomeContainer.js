@@ -46,7 +46,7 @@ class HomeContainer extends Component {
   addReview(data) {
     const { movie, movieType, userID, movieRegistered } = this.state;
 
-    // veerify registration
+    // veerify registration for movie comments only. (not comments/comments)
     if (!movieRegistered) {
       this.registerMovie();
     }
