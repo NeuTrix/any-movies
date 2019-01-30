@@ -25,6 +25,14 @@ function HomePage(props) {
   const { classes, movie, showForm, userID, userName,  } = props // decon prop variables
   const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
   
+  const MovieCommentForm =(
+    <AddCommentableForm 
+      author={userName} 
+      addCommentable={addReview} 
+      userID={userID}
+    /> 
+  )
+
   return (
     <div className={classes.grid}>
 
@@ -47,14 +55,7 @@ function HomePage(props) {
       </div>
 
       <div style={{ gridArea: 'form' }}>
-        { showForm && 
-          <AddCommentableForm 
-            author={userName} 
-            addCommentable={addReview} 
-            userID={userID}
-            userName={userName}
-          /> 
-        } 
+        { showForm &&  MovieCommentForm } 
       </div>
       
       <div style={{ gridArea: 'movies' }} >

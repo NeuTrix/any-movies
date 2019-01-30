@@ -44,13 +44,12 @@ class CommentCard extends Component {
   addComment(data) {
     const { comment, userID, userName } = this.props;
 
-
-    // update the data object with required fields
-    data.commentable_id = comment.imdbID;
+    // update the data object with required fields. The rest is in the form data
+    data.commentable_id = comment.id;
     data.commentable_type = 'Comment';
     data.user_id = userID;
 
-    return axios.post(`/api/comments/${comment.imdbID}/comments`, data)
+    return axios.post(`/api/comments/${comment.id}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showForm: false });
@@ -70,14 +69,15 @@ class CommentCard extends Component {
   }
 
   render() {  
-    const { classes, comment } = this.props;
+    const { classes, comment, userName, userID } = this.props;
     const { showCommentForm, displaySubComments } = this.state;
 
-    let SubComments = ( 
-      <CommentContainer
-        movieID={comment.id}
-        commentableType="Comment"
-      />
+    const CommentCommentForm =(
+      <AddCommentableForm 
+        author={userName} 
+        addCommentable={this.addComment} 
+        userID={userID}
+      /> 
     )
 
     return (
@@ -114,8 +114,7 @@ class CommentCard extends Component {
         </CardActions>
         
         <CardContent>
-          { showCommentForm && <AddCommentableForm/> }
-          {/* <AddCommentableForm/> */}
+          { showCommentForm && CommentCommentForm }
         </CardContent>
           
       </Card>

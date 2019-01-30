@@ -11,12 +11,9 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	commentableID: PropTypes.string.isRequired,
-	commentableType: PropTypes.string.isRequired,
+	author: PropTypes.string.isRequired,
+	addCommentable: PropTypes.func.isRequired, // create relative commentable
 	userID: PropTypes.string.isRequired,
-	userName: PropTypes.string.isRequired,
-	// acction to create the commentable object
-	addCommentable: PropTypes.instanceOf(Function).isRequired,
 };
 
 class AddCommentableForm extends Component {
