@@ -11,12 +11,11 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	userName: PropTypes.string.isRequired, 
+	author: PropTypes.string.isRequired, 
 	addCommentable: PropTypes.instanceOf(Function).isRequired,
 	// get comm ID, Type and User Id passed in.  Id from COmmCont?
 	commentableID: PropTypes.string.isRequired,
 	commentableType: PropTypes.string.isRequired,
-	userName: PropTypes.string.isRequired,
 	userID: PropTypes.string.isRequired,
 };
 
@@ -35,10 +34,10 @@ class AddCommentableForm extends Component {
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
 	}
-	// prefill the form with the current user's name
 	componentDidMount() {
 		this.setState({ 
-			author: this.props.userName, 
+			// prefill the form with the current user's name
+			author: this.props.author, 
 			commentable_id: this.props.commentableID,
 			commentable_type: this.props.commentableType,
 			user_id: this.props.userID,

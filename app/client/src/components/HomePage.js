@@ -11,34 +11,19 @@ import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  // movieID: PropTypes.string.isRequired, // for comment search
-  // movieType: PropTypes.string.isRequired, // for comment search
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
-  // movieTitle: PropTypes.string.isRequired,
-  // movieRegistered: PropTypes.string.isRequired,  
   showForm: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired,
   // ===> functions
   addReview: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
-  toggleReviewForm: PropTypes.func.isRequired, // toggles the addReview form in view
+  toggleReviewForm: PropTypes.func.isRequired, // toggles the addReviewForm 
 }
 
 function HomePage(props) {
-  
-  const {
-    classes,
-    // movieID,
-    // movieType,
-    movie,
-    // movieRegistered,
-    showForm,
-    userName,
-    // functions
-    addReview,
-    getMovieData,
-    toggleReviewForm,
-  } = props
+  const { classes, movie, showForm, userName } = props // decon prop variables
+  const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
   
   return (
     <div className={classes.grid}>
@@ -63,7 +48,7 @@ function HomePage(props) {
 
       <div style={{ gridArea: 'form' }}>
         { showForm && 
-          <AddCommentableForm userName={userName} addCommentable={addReview} /> 
+          <AddCommentableForm author={userName} addCommentable={addReview} /> 
         } 
       </div>
       
@@ -75,9 +60,6 @@ function HomePage(props) {
         <CommentableContainer 
           commentableID={movie.imdbID}
           commentableType={"Movie"}
-          // these may not be neccessary props
-          // movieTitle={movie.Title}
-          // movieRegistered={movieRegistered}
         />
       </div>
     </div>

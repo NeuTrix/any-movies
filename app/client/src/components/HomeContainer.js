@@ -139,13 +139,10 @@ class HomeContainer extends Component {
     
     return (
       <HomePage 
-        // movieID={this.state.movieID}
-        movieType={this.state.movieType}
         movie={this.state.movie}
-        // movieTitle={this.state.movie.Title}
-        // movieRegistered={this.state.movieRegistered}
         showForm={this.state.showForm}
         userName={this.state.userName}
+        userID={this.state.userID}
         // functions
         addReview={this.addReview}
         getMovieData={this.getMovieData}
