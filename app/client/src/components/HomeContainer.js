@@ -37,7 +37,8 @@ class HomeContainer extends Component {
   componentDidUpdate(prevState) {
     const { commentableID } = this.state
     // verify registration status of current movie
-    if (!prevState.commentableID === commentableID ) {
+    console.log('====> prev',prevState.commentableID, 'curr',commentableID)
+    if (prevState.commentableID !== commentableID ) {
       this.isMovieRegistered();
     } 
   }
@@ -93,8 +94,10 @@ class HomeContainer extends Component {
 
     axios.get(`/api/movies/${commentableID}`)
       .then(resp => {
-        if (resp.status === 200) {
-          this.setState({movieRegistered: true})
+        console.log('adadfasdf', resp)
+        if (resp.status === 404) {
+          // alert(`registered ${resp.data.Title}`)
+          this.setState({movieRegistered: false})
         }
       })
       .catch(err => {
@@ -139,6 +142,8 @@ class HomeContainer extends Component {
       commentableID={this.state.commentableID}
       commentableType={this.state.commentableType}
       movie={this.state.movie}
+      movieTitle={this.state.movie.Title}
+      movieRegistered={this.state.movieRegistered}
       showForm={this.state.showForm}
       userName={this.state.userName}
       // functions

@@ -8,6 +8,8 @@ const propTypes = {
   // when marked as 'required' generating a console warning
   commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
+  movieTitle: PropTypes.string.isRequired,
+  movieRegistered: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
@@ -28,9 +30,7 @@ class CommentableContainer extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { commentableID, commentableType } = this.props
 
-    if (prevState.comments && 
-        prevProps.commentableID !== commentableID
-      ) {
+    if (prevProps.commentableID !== commentableID) {
      this.getComments(commentableID, commentableType)
     }
   }

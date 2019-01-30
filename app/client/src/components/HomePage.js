@@ -14,6 +14,8 @@ const propTypes = {
   commentableID: PropTypes.string.isRequired, // for comment search
   commentableType: PropTypes.string.isRequired, // for comment search
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
+  movieTitle: PropTypes.string.isRequired,
+  movieRegistered: PropTypes.string.isRequired,  
   showForm: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
@@ -29,6 +31,7 @@ function HomePage(props) {
     commentableID,
     commentableType,
     movie,
+    movieRegistered,
     showForm,
     userName,
     // functions
@@ -72,6 +75,8 @@ function HomePage(props) {
         <CommentableContainer 
           commentableID={commentableID}
           commentableType={commentableType}
+          movieTitle={movie.Title}
+          movieRegistered={movieRegistered}
         />˝
       </div>
     </div>
