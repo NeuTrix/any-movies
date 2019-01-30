@@ -16,9 +16,13 @@ class HomeContainer extends Component {
 
     this.state = {
     //  change this movieID-  so not to confuse with commentId
+    // get rid of this;;;
       movieID: 'tt0078748', // default to 'Alien'- an awesome movie
       movieType: 'Movie',
-      movie: {Title: 'Alien'}, // default setting. OMDB object will override
+      movie: {
+        imdbID: 'tt0078748',
+        Title: 'Alien',
+      }, // default setting. OMDB object will override
       movieRegistered: false,
       showForm: false,
       userID: 1, // must use an exisiting user_id
@@ -135,11 +139,11 @@ class HomeContainer extends Component {
     
     return (
       <HomePage 
-        movieID={this.state.movieID}
+        // movieID={this.state.movieID}
         movieType={this.state.movieType}
         movie={this.state.movie}
-        movieTitle={this.state.movie.Title}
-        movieRegistered={this.state.movieRegistered}
+        // movieTitle={this.state.movie.Title}
+        // movieRegistered={this.state.movieRegistered}
         showForm={this.state.showForm}
         userName={this.state.userName}
         // functions

@@ -88,6 +88,7 @@ class CommentableContainer extends Component {
   render() {
     return ( 
       <CommentsList 
+      // pass more propslike homepage
         comments={this.state.comments}
       />
     )
