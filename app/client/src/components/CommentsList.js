@@ -30,7 +30,7 @@ function CommentsList(props) {
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
-            Comments: {comments.length} 
+            See Comments: {comments.length} 
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -50,9 +50,10 @@ const styles = theme => ({
   root: {
     textAlign:'left',
     padding: 5,
+    maxWidth: 400,
   },
   heading: {
-    fontSize: theme.typography.pxToRem(17),
+    // fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightRegular,
   },
 

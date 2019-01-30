@@ -24,7 +24,7 @@ class CommentCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayComments: false,
+      displayComments: true,
       showCommentForm: false,
     }
     this.getSubComments = this.getSubComments.bind(this);
@@ -73,20 +73,9 @@ class CommentCard extends Component {
             { comment.body }
           </Typography>
 
-        </CardContent>
+        {/* </CardContent> */}
 
         <div className={classes.actions} >
-
-          <div>
-            <CardActions>
-              <Button 
-                onClick={this.getSubComments} 
-                size="small" 
-              >
-                more comments
-              </Button>
-            </CardActions>
-          </div>
 
           <div>
             <CardActions className={classes.btnRight} >
@@ -94,10 +83,16 @@ class CommentCard extends Component {
             </CardActions>
           </div>
 
+          <div>
+            <CardActions>
+               <CommentContainer
+                commentableID = { comment.id }
+                commentableType = "Comment" 
+              />
+            </CardActions>
+          </div>
+
         </div>
-         {/* allows dispalyr for subComments */}
-        < CardContent>
-          { displayComments && SubComments }
         </CardContent>
           
       </Card>
