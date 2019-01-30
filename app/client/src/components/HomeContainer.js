@@ -25,7 +25,6 @@ class HomeContainer extends Component {
     this.addReview = this.addReview.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
     this.isMovieRegistered = this.isMovieRegistered.bind(this);
-    this.isMovieRegistered = this.isMovieRegistered.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
   }
@@ -44,8 +43,12 @@ class HomeContainer extends Component {
   }
 
   // adds a new review for the currently displayed Movie
+  //  this function is trying to do too many thigs.  
+  // Movie save should be an option that pops up/* */
   addReview(data) {
     const { commentableID, commentableType, userID, movieRegistered } = this.state;
+
+    // veerify registration
     if (!movieRegistered) {
       this.registerMovie();
     }
@@ -123,9 +126,7 @@ class HomeContainer extends Component {
       })
     }
   }
-  
 
-  // { title: "Babe", imdb_id: "tt0112431" }
   // allows the addReview form to toggle on and off
   toggleForm() {
     this.setState({ showForm: !this.state.showForm });
