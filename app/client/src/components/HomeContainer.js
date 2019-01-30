@@ -10,8 +10,6 @@ const propTypes = {
   bugger: PropTypes.bool.isRequired, // test to see if can stimlate preState
 }
 
-let memo = ' x';
-
 class HomeContainer extends Component {
   constructor(props) {
     super(props)
@@ -19,7 +17,7 @@ class HomeContainer extends Component {
    this.state = {
       commentableID: 'tt0078748', // default to 'Alien'- an awesome movie
       commentableType: 'Movie',
-      movie: {},
+      movie: {Title: 'Alien'}, // default setting. OMDB object will override
       movieRegistered: false,
       showForm: false,
       userID: 1, // must use an exisiting user_id
@@ -28,29 +26,14 @@ class HomeContainer extends Component {
 
     this.addReview = this.addReview.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
-    this.isMovieRegistered = this.isMovieRegistered.bind(this);
+    this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
     this.toggleReviewForm = this.toggleReviewForm.bind(this);
   }
   
-  // static getDerivedStateFromProps(props, state){}
-  // set initial state of the page
+  // set initial rednering of the page to default
   componentDidMount() {
-    this.getMovieData('Alien');
-  }
-
-  // prevState object is undefined in HomeContainer
-  // `snapshot` only works if preceeded by `prevState` or `prevProps`
-  // otherwise prevState doesn't load.
-  componentDidUpdate( prevState, snapshot) {
-    const { commentableID, movieRegistered } = snapshot
-    // if (memo !== commentableID) {
-    //   console.log('before', 'memo:', memo, 'reg:', movieRegistered)
-    //   this.isMovieRegistered()
-    // }
-    // memo = commentableID;
-    // console.log('after', 'memo:', memo, 'reg:', movieRegistered)
-    console.log('//===>', prevState)
+    this.getMovieData(this.state.movie.Title);
   }
 
   // adds a new review for the currently displayed Movie
@@ -80,40 +63,26 @@ class HomeContainer extends Component {
       })
   }
 
-  // search and get movie data from OMDB Api
+  // retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
 
-    return axios.get(`${url_movie_data}&t=${searchTerm}`)
+     return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
 
         if (data.Error) {
           alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
+        // verify whether movie is in my api
+        this.validateMovieRegistration()
+        // update the state movie object (with OMDB movie)
         this.setState({ movie: data, commentableID: data.imdbID })
-
       })
       .catch(err => { 
         console.log(err) 
       })
   }
-  
-  // boolean to determine whetehr the movie is in the current db
-  isMovieRegistered() {
-    const { commentableID } = this.state;
-    // let answer = false;
-
-    axios.get(`/api/movies/${commentableID}`)
-      .then((resp) => {
-          this.setState({movieRegistered: true})
-      })
-      .catch(err => {
-        // this.setState({movieRegistered: false})
-      })
-
-      // return answer;
-  }
-
+  // adds a new movie to the internal app database
   registerMovie() {
     const { movie, movieRegistered } = this.state;
     if (!movieRegistered) {
@@ -143,6 +112,26 @@ class HomeContainer extends Component {
   toggleReviewForm() {
     this.setState({ showForm: !this.state.showForm });
   }
+
+  // checks whether movie is currently in the app api database
+   validateMovieRegistration() {
+
+     const {
+       commentableID
+     } = this.state;
+
+     axios.get(`/api/movies/${commentableID}`)
+       .then((resp) => {
+         this.setState({
+           movieRegistered: true
+         })
+       })
+       .catch(err => {
+         this.setState({
+           movieRegistered: false
+         })
+       })
+   }
 
   render() {
     
