@@ -1,5 +1,8 @@
+//  Should abstract out view from logic for Cards
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 // material UI components
 import { withStyles } from '@material-ui/core/styles';
@@ -24,19 +27,44 @@ class CommentCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayComments: true,
+      displaySubComments: true,
       showCommentForm: false,
     }
-    this.getSubComments = this.getSubComments.bind(this);
+    this.addComment = this.addComment.bind(this);
+    this.toggleSubComments = this.toggleSubComments.bind(this);
     this.toggleCommentForm = this.toggleCommentForm.bind(this);
   }
 
-  getSubComments(prevState) {
-    // toggle displayComments
-    this.setState({ displayComments: !this.state.displayComments  });
+  toggleSubComments(prevState) {
+    // toggle displaySubComments
+    this.setState({ displaySubComments: !this.state.displaySubComments  });
   }
 
-  // allows the addReview form to toggle on and off
+  addComment(data) {
+    const { movie, movieType, userID, movieRegistered } = this.state;
+
+    // veerify registration for movie comments only. (not comments/comments)
+    if (!movieRegistered) {
+      this.registerMovie();
+    }
+    // update the data object with required fields
+    data.commentable_id = movie.imdbID;
+    data.commentable_type = movieType;
+    data.user_id = userID;
+
+    return axios.post(`/api/movies/${movie.imdbID}/comments`, data)
+      .then(resp => {
+        alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
+        this.setState({ showForm: false });
+        return resp.data
+      })
+      .catch(err => { 
+        alert (`There was a problem adding your comment. \n ${err}`)
+        console.log('ERROR=>',err); 
+      })
+  }
+
+  // allows the addCommentableForm to toggle on and off
   toggleCommentForm() {
     this.setState({
       showCommentForm: !this.state.showCommentForm
@@ -45,7 +73,7 @@ class CommentCard extends Component {
 
   render() {  
     const { classes, comment } = this.props;
-    const { showCommentForm, displayComments } = this.state;
+    const { showCommentForm, displaySubComments } = this.state;
 
     let SubComments = ( 
       <CommentContainer
@@ -99,7 +127,7 @@ class CommentCard extends Component {
 
 const styles = theme => ({
   actions: {
-    displayComments: 'inline-flex',
+    displaySubComments: 'inline-flex',
   },
 
   card: {
