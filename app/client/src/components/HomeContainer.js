@@ -57,7 +57,7 @@ class HomeContainer extends Component {
     return axios.post(`/api/${pathType}/${commentableID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-
+        this.setState({ showForm: false });
         return resp.data
       })
       .catch(err => { 
