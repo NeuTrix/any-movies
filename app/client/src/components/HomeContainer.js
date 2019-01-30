@@ -36,19 +36,20 @@ class HomeContainer extends Component {
   }
 
   componentDidUpdate(prevState) {
+    const { commentableID } = this.state
     // verify registration status of current movie
-    if (!prevState.movieRegistered) {
+    if (!prevState.commentableID === commentableID ) {
       this.isMovieRegistered();
-    }
+    } 
   }
 
   // adds a new review for the currently displayed Movie
   addReview(data) {
-    const { commentableID, commentableType, userID } = this.state;
-    // data is a state object, passed from the form
-    console.log("===> Review Added", data)
-    // !! need to remove redundant data from props.  pass in directly
-    // to data object here .meth
+    const { commentableID, commentableType, userID, movieRegistered } = this.state;
+    if (!movieRegistered) {
+      this.registerMovie();
+    }
+    // update the data object with required fields
     data.commentable_id = commentableID;
     data.commentable_type = commentableType;
     data.user_id = userID;
@@ -58,8 +59,7 @@ class HomeContainer extends Component {
 
     return axios.post(`/api/${pathType}/${commentableID}/comments`, data)
       .then(resp => {
-        console.log('KKKKK==> addRev data',resp)
-        // return resp.data
+        return resp.data
       })
       .catch(err => { 
         console.log('ERROR=>',err); 
@@ -80,7 +80,7 @@ class HomeContainer extends Component {
 
       })
       .catch(err => { 
-        console.log('===>Error',err) 
+        console.log(err) 
       })
   }
 
@@ -99,10 +99,31 @@ class HomeContainer extends Component {
       })
   }
 
-  registerMovie(movieId) {
+  registerMovie() {
+    const { movie, movieRegistered } = this.state;
+    if (!movieRegistered) {
 
+      // create the data object
+      let data = {
+        title: movie.Title,
+        imdb_id: movie.imdbID,
+      };
+
+      // make the post call
+      axios.post(`/api/movies`, data)
+      .then(resp => {
+        resp.status === 200 
+          ? alert(`Added ${data.title} to our database with id: ${data.imdb_id}`)
+          : alert(`Oops! There was a problem. See the console logs for more info`)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
   }
   
+
+  // { title: "Babe", imdb_id: "tt0112431" }
   // allows the addReview form to toggle on and off
   toggleForm() {
     this.setState({ showForm: !this.state.showForm });
