@@ -8,9 +8,9 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	commentableID: PropTypes.instanceOf(Object).isRequired,
-	commentableType: PropTypes.instanceOf(Object).isRequired,
-  userID: PropTypes.string.isRequired, // placeholder until auth/ath
+	// commentableID: PropTypes.instanceOf(Object).isRequired,
+	// commentableType: PropTypes.instanceOf(Object).isRequired,
+  userName: PropTypes.string.isRequired, // placeholder until auth/ath
   // == functions
   addReview: PropTypes.instanceOf(Function).isRequired,
 };
@@ -25,14 +25,17 @@ class AddReview extends Component {
       title: '',
       author: '',
       // from these  props
-      commentable_type: '',
-      commentable_id: '',
+      // commentable_type: '',
+      // commentable_id: '',
       user_id: '',
 		}
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
 	}
 
+	componentDidMount() {
+		this.setState({ author: this.props.userName });
+	}
   // update the state with form entries
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
@@ -42,9 +45,9 @@ class AddReview extends Component {
     e.preventDefault();
     // set state with remaining props
     this.setState({
-      commentable_type: this.props.commentableType,
-      commentable_id: this.props.commentableID,
-      user_id: this.props.userID,
+      // commentable_type: this.props.commentableType,
+      // commentable_id: this.props.commentableID,
+      // user_id: this.props.userID,
     })
     // pass state to executable fn
     this.props.addReview(this.state)

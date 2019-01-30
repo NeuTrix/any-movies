@@ -16,6 +16,7 @@ const propTypes = {
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
   showForm: PropTypes.bool.isRequired,
   userID: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   // ===> functions
   addReview: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
@@ -31,6 +32,7 @@ function HomePage(props) {
     movie,
     showForm,
     userID,
+    userName,
     // functions
     addReview,
     getMovieData,
@@ -41,7 +43,7 @@ function HomePage(props) {
     <AddReviewForm
       commentableID={commentableID}
       commentableType={commentableType}
-      userID={userID}
+      userName={userName}
       addReview={addReview}
     />
   )

@@ -18,6 +18,7 @@ class HomeContainer extends Component {
       movie: {},
       showForm: false,
       userID: 1, // must use an exisiting user_id
+      userName: "DanTastic333"
     }
 
     this.addReview = this.addReview.bind(this);
@@ -30,11 +31,12 @@ class HomeContainer extends Component {
     this.getMovieData('Alien')
   }
 
-  // adds a new review for a Movie
+  // adds a new review for the currently displayed Movie
   addReview(data) {
     // data is a state object, passed from the form
     console.log("===> Review Added", data)
-    // /api/movies / tt0076759 / comments ?
+    // !! need to remove redundant data from props.  pass in directly
+    // to data object here .meth
     const { commentableID, commentableType } = this.state;
     // determine rails path for commentable
     let pathType = commentableType === 'Movie' ? 'movies' : 'comments'
@@ -49,7 +51,7 @@ class HomeContainer extends Component {
       })
   }
 
-  // get the movie data
+  // search and get movie data from OMDB Api
   getMovieData(searchTerm) {
 
     axios.get(`${url_movie_data}&t=${searchTerm}`)
@@ -67,6 +69,7 @@ class HomeContainer extends Component {
       })
   }
 
+  // allows the addReview form to toggle on and off
   toggleForm() {
     this.setState({ showForm: !this.state.showForm });
   }
@@ -80,6 +83,7 @@ class HomeContainer extends Component {
       movie={this.state.movie}
       showForm={this.state.showForm}
       userID={this.state.userID}
+      userName={this.state.userName}
       // functions
       addReview={this.addReview}
       getMovieData={this.getMovieData}
