@@ -88,18 +88,15 @@ class HomeContainer extends Component {
     if (!movieRegistered) {
 
       // create the data object
-      let data = {
-        title: movie.Title,
-        imdb_id: movie.imdbID,
-      };
+      let data = { title: movie.Title, imdb_id: movie.imdbID, };
 
       // make the post call
       axios.post(`/api/movies`, data)
       .then(resp => {
         resp.status === 201
-          ? alert(`Added ${data.title} to our database with id: ${data.imdb_id}`)
-          : alert(`Oops! There was a problem. See the console logs for more info`)
-          console.log(resp.data)
+          ? alert(`Added ${data.title} to db with id: ${data.imdb_id}`)
+          : alert(`Oops! There was a problem. See the logs for more info`)
+          // console.log(resp.data)
           return  resp.data
       })
       .catch(err => {
