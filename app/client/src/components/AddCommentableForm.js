@@ -12,7 +12,12 @@ import { Button } from '@material-ui/core';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	userName: PropTypes.string.isRequired, 
-  addCommentable: PropTypes.instanceOf(Function).isRequired,
+	addCommentable: PropTypes.instanceOf(Function).isRequired,
+	// get comm ID, Type and User Id passed in.  Id from COmmCont?
+	commentableID: PropTypes.string.isRequired,
+	commentableType: PropTypes.string.isRequired,
+	userName: PropTypes.string.isRequired,
+	userID: PropTypes.string.isRequired,
 };
 
 class AddCommentableForm extends Component {
@@ -20,16 +25,24 @@ class AddCommentableForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			author: '',
       body: '',
+			commentable_id: '',
+			commentable_type: '',
       title: '',
-      author: '',
+			user_id: '',
 		}
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
 	}
 	// prefill the form with the current user's name
 	componentDidMount() {
-		this.setState({ author: this.props.userName });
+		this.setState({ 
+			author: this.props.userName, 
+			commentable_id: this.props.commentableID,
+			commentable_type: this.props.commentableType,
+			user_id: this.props.userID,
+		});
 	}
   // update the state with form entries
   onChange(e) {
@@ -37,7 +50,8 @@ class AddCommentableForm extends Component {
   }
 	// post the review to the rails API
   onSubmit(e) {
-    e.preventDefault();
+		e.preventDefault();
+		
     this.props.addCommentable(this.state)
   }
 

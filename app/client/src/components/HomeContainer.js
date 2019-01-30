@@ -47,9 +47,9 @@ class HomeContainer extends Component {
       this.registerMovie();
     }
     // update the data object with required fields
-    data.commentable_id = commentableID;
-    data.commentable_type = commentableType;
-    data.user_id = userID;
+    // data.commentable_id = commentableID;
+    // data.commentable_type = commentableType;
+    // data.user_id = userID;
 
     return axios.post(`/api/movies/${commentableID}/comments`, data)
       .then(resp => {
@@ -58,6 +58,7 @@ class HomeContainer extends Component {
         return resp.data
       })
       .catch(err => { 
+        alert (`There was a problem adding your comment. \n ${err}`)
         console.log('ERROR=>',err); 
       })
   }

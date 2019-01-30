@@ -49,11 +49,9 @@ class CommentableContainer extends Component {
        this.registerMovie();
      }
      // update the data object with required fields
-     data.commentable_id = commentableID;
-     data.commentable_type = commentableType;
-     data.user_id = userID;
-
-     // determine rails path for commentable
+    //  data.commentable_id = commentableID;
+    //  data.commentable_type = commentableType;
+    //  data.user_id = userID;
 
      return axios.post(`/api/comments/${commentableID}/comments`, data)
        .then(resp => {
