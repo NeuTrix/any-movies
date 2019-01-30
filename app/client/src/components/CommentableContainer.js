@@ -8,8 +8,8 @@ const propTypes = {
   // when marked as 'required' generating a console warning
   commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
-  movieTitle: PropTypes.string.isRequired,
-  movieRegistered: PropTypes.string.isRequired,
+  // movieTitle: PropTypes.string.isRequired,
+  // movieRegistered: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
@@ -48,10 +48,10 @@ class CommentableContainer extends Component {
      if (!movieRegistered) {
        this.registerMovie();
      }
-     // update the data object with required fields
-    //  data.commentable_id = commentableID;
-    //  data.commentable_type = commentableType;
-    //  data.user_id = userID;
+    //  update the data object with required fields
+     data.commentable_id = commentableID;
+     data.commentable_type = commentableType;
+     data.user_id = userID;
 
      return axios.post(`/api/comments/${commentableID}/comments`, data)
        .then(resp => {
@@ -64,8 +64,7 @@ class CommentableContainer extends Component {
        .catch(err => {
          console.log('ERROR=>', err);
        })
-   }
-
+  }
 
   getComments(id, type) {
     const { commentableID, commentableType } = this.props
@@ -80,7 +79,7 @@ class CommentableContainer extends Component {
       })
       .catch(err => { 
         // console.log('ERROR=>',err); 
-        console.log('Movie not registered')
+        alert(`Movie may not be registered for comments \n ${err}`)
         // reset the comments for an unregistered movie
         this.setState({ comments: [] }); 
       })

@@ -14,9 +14,10 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props)
 
-   this.state = {
-      commentableID: 'tt0078748', // default to 'Alien'- an awesome movie
-      commentableType: 'Movie',
+    this.state = {
+    //  change this movieID-  so not to confuse with commentId
+      movieID: 'tt0078748', // default to 'Alien'- an awesome movie
+      movieType: 'Movie',
       movie: {Title: 'Alien'}, // default setting. OMDB object will override
       movieRegistered: false,
       showForm: false,
@@ -40,18 +41,18 @@ class HomeContainer extends Component {
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
   addReview(data) {
-    const { commentableID, commentableType, userID, movieRegistered } = this.state;
+    const { movieID, movieType, userID, movieRegistered } = this.state;
 
     // veerify registration
     if (!movieRegistered) {
       this.registerMovie();
     }
     // update the data object with required fields
-    // data.commentable_id = commentableID;
-    // data.commentable_type = commentableType;
-    // data.user_id = userID;
+    data.commentable_id = movieID;
+    data.commentable_type = movieType;
+    data.user_id = userID;
 
-    return axios.post(`/api/movies/${commentableID}/comments`, data)
+    return axios.post(`/api/movies/${movieID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showForm: false });
@@ -76,7 +77,7 @@ class HomeContainer extends Component {
         // verify whether movie is in my api
         this.validateMovieRegistration()
         // update the state movie object (with OMDB movie)
-        this.setState({ movie: data, commentableID: data.imdbID })
+        this.setState({ movie: data, movieID: data.imdbID })
       })
       .catch(err => { 
         console.log(err) 
@@ -114,10 +115,10 @@ class HomeContainer extends Component {
    validateMovieRegistration() {
 
      const {
-       commentableID
+       movieID
      } = this.state;
 
-     axios.get(`/api/movies/${commentableID}`)
+     axios.get(`/api/movies/${movieID}`)
        .then((resp) => {
          this.setState({
            movieRegistered: true
@@ -134,8 +135,8 @@ class HomeContainer extends Component {
     
     return (
       <HomePage 
-        commentableID={this.state.commentableID}
-        commentableType={this.state.commentableType}
+        movieID={this.state.movieID}
+        movieType={this.state.movieType}
         movie={this.state.movie}
         movieTitle={this.state.movie.Title}
         movieRegistered={this.state.movieRegistered}

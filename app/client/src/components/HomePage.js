@@ -11,8 +11,8 @@ import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  commentableID: PropTypes.string.isRequired, // for comment search
-  commentableType: PropTypes.string.isRequired, // for comment search
+  movieID: PropTypes.string.isRequired, // for comment search
+  movieType: PropTypes.string.isRequired, // for comment search
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
   movieTitle: PropTypes.string.isRequired,
   movieRegistered: PropTypes.string.isRequired,  
@@ -28,8 +28,8 @@ function HomePage(props) {
   
   const {
     classes,
-    commentableID,
-    commentableType,
+    movieID,
+    movieType,
     movie,
     movieRegistered,
     showForm,
@@ -73,10 +73,11 @@ function HomePage(props) {
       
       <div style={{ gridArea: 'comments' }} >
         <CommentableContainer 
-          commentableID={commentableID}
-          commentableType={commentableType}
-          movieTitle={movie.Title}
-          movieRegistered={movieRegistered}
+          commentableID={movieID}
+          commentableType={movieType}
+          // these may not be neccessary props
+          // movieTitle={movie.Title}
+          // movieRegistered={movieRegistered}
         />
       </div>
     </div>

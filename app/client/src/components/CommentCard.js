@@ -49,7 +49,7 @@ class CommentCard extends Component {
 
     let SubComments = ( 
       <CommentContainer
-        commentableID={comment.id}
+        movieID={comment.id}
         commentableType="Comment"
       />
     )
