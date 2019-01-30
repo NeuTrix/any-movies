@@ -15,18 +15,17 @@ class HomeContainer extends Component {
     super(props)
 
     this.state = {
-    //  change this movieID-  so not to confuse with commentId
-    // get rid of this;;;
-      movieID: 'tt0078748', // default to 'Alien'- an awesome movie
-      movieType: 'Movie',
+      // default setting. OMDB object will override
       movie: {
         imdbID: 'tt0078748',
         Title: 'Alien',
-      }, // default setting. OMDB object will override
+      }, 
+      movieType: 'Movie',
       movieRegistered: false,
       showForm: false,
-      userID: 1, // must use an exisiting user_id
-      userName: "DanTastic333", // defaul userName (not matching in db)
+      // must use an exisiting user_id.  Will add later throgh auth/auth
+      userID: 1, 
+      userName: "DanTastic333", 
     }
 
     this.addReview = this.addReview.bind(this);
@@ -45,18 +44,18 @@ class HomeContainer extends Component {
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
   addReview(data) {
-    const { movieID, movieType, userID, movieRegistered } = this.state;
+    const { movie, movieType, userID, movieRegistered } = this.state;
 
     // veerify registration
     if (!movieRegistered) {
       this.registerMovie();
     }
     // update the data object with required fields
-    data.commentable_id = movieID;
+    data.commentable_id = movie.imdbID;
     data.commentable_type = movieType;
     data.user_id = userID;
 
-    return axios.post(`/api/movies/${movieID}/comments`, data)
+    return axios.post(`/api/movies/${movie.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showForm: false });
@@ -81,12 +80,13 @@ class HomeContainer extends Component {
         // verify whether movie is in my api
         this.validateMovieRegistration()
         // update the state movie object (with OMDB movie)
-        this.setState({ movie: data, movieID: data.imdbID })
+        this.setState({ movie: data })
       })
       .catch(err => { 
         console.log(err) 
       })
   }
+
   // adds a new movie to the internal app database
   registerMovie() {
     const { movie, movieRegistered } = this.state;
@@ -116,23 +116,20 @@ class HomeContainer extends Component {
   }
 
   // checks whether movie is currently in the app api database
-   validateMovieRegistration() {
+  validateMovieRegistration() {
+    const { movie } = this.state;
 
-     const {
-       movieID
-     } = this.state;
-
-     axios.get(`/api/movies/${movieID}`)
-       .then((resp) => {
-         this.setState({
-           movieRegistered: true
-         })
-       })
-       .catch(err => {
-         this.setState({
-           movieRegistered: false
-         })
-       })
+    axios.get(`/api/movies/${movie.imdbID}`)
+      .then((resp) => {
+        this.setState({
+          movieRegistered: true
+        })
+      })
+      .catch(err => {
+        this.setState({
+          movieRegistered: false
+        })
+      })
    }
 
   render() {
