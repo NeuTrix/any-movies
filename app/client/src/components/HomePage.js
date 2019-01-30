@@ -72,7 +72,6 @@ function HomePage(props) {
         <CommentableContainer 
           commentableID={commentableID}
           commentableType={commentableType}
-          toggleForm={toggleForm} 
         />˝
       </div>
     </div>

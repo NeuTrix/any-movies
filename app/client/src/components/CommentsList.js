@@ -12,16 +12,15 @@ import CommentCard from './CommentCard';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
-  toggleForm: PropTypes.func.isRequired,
 }
 
 function CommentsList(props) {
-  const { classes, comments, toggleForm } = props;
+  const { classes, comments } = props;
 
    const commentsList = comments.map(com => {
       return ( 
         <div key={com.id}> 
-          <CommentCard comment={com} toggleForm={toggleForm} /> 
+          <CommentCard comment={com} /> 
         </div>
       ) 
     })
