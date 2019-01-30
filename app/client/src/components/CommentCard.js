@@ -19,7 +19,8 @@ import AddCommentableForm from "./AddCommentableForm";
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
-  toggleCommentForm: PropTypes.func.isRequired, // toggles the addComment form in view
+  userID: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
 }
 
 class CommentCard extends Component {
@@ -41,18 +42,15 @@ class CommentCard extends Component {
   }
 
   addComment(data) {
-    const { movie, movieType, userID, movieRegistered } = this.state;
+    const { comment, userID, userName } = this.props;
 
-    // veerify registration for movie comments only. (not comments/comments)
-    if (!movieRegistered) {
-      this.registerMovie();
-    }
+
     // update the data object with required fields
-    data.commentable_id = movie.imdbID;
-    data.commentable_type = movieType;
+    data.commentable_id = comment.imdbID;
+    data.commentable_type = 'Comment';
     data.user_id = userID;
 
-    return axios.post(`/api/movies/${movie.imdbID}/comments`, data)
+    return axios.post(`/api/comments/${comment.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showForm: false });

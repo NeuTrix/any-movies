@@ -50,7 +50,11 @@ class CommentableContainer extends Component {
   }
 
   render() {
-    return <CommentsList comments={this.state.comments} />
+    return <CommentsList 
+      comments={this.state.comments} 
+      userID={this.props.userID}
+      userName={this.props.userName}
+    />
   }
 }
 

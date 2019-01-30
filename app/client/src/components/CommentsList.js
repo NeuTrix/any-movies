@@ -12,15 +12,21 @@ import CommentCard from './CommentCard';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
+  userID: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
 }
 
 function CommentsList(props) {
   const { classes, comments } = props;
 
-   const commentsList = comments.map(com => {
+   const commentsList = comments.map(comment => {
       return ( 
-        <div key={com.id}> 
-          <CommentCard comment={com} /> 
+        <div key={comment.id}> 
+          <CommentCard 
+            comment={comment} 
+            userID={props.userID}
+            userName={props.userName}
+          /> 
         </div>
       ) 
     })
