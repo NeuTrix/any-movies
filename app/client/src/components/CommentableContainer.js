@@ -24,9 +24,7 @@ class CommentableContainer extends Component {
   }
   
   componentDidMount() {
-    const { commentableID, commentableType } = this.props
-
-    this.getComments(commentableID, commentableType)
+    this.getComments()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,16 +36,19 @@ class CommentableContainer extends Component {
   }
 
   getComments(id, type) {
+    const { commentableID, commentableType } = this.props
+    
     // determine rails path for commentable
-    let pathType = type === 'Movie' ? 'movies' : 'comments'
+    let pathType = commentableType === 'Movie' ? 'movies' : 'comments'
 
-    return axios.get(`/api/${pathType}/${id}/comments`)
+    return axios.get(`/api/${pathType}/${commentableID}/comments`)
       .then(resp => {
         this.setState({ comments: resp.data }); 
         return resp.data
       })
       .catch(err => { 
-        console.log('ERROR=>',err); 
+        // console.log('ERROR=>',err); 
+        console.log('Movie not registered')
         // reset the comments for an unregistered movie
         this.setState({ comments: [] }); 
       })

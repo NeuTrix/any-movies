@@ -17,14 +17,13 @@ class HomeContainer extends Component {
     super(props)
 
    this.state = {
-      commentableID: 'Movie default',
+      commentableID: 'tt0078748', // default to 'Alien'- an awesome movie
       commentableType: 'Movie',
       movie: {},
-
       movieRegistered: false,
       showForm: false,
       userID: 1, // must use an exisiting user_id
-      userName: "DanTastic333",
+      userName: "DanTastic333", // defaul userName (not matching in db)
     }
 
     this.addReview = this.addReview.bind(this);
@@ -101,29 +100,18 @@ class HomeContainer extends Component {
   // boolean to determine whetehr the movie is in the current db
   isMovieRegistered() {
     const { commentableID } = this.state;
+    let answer = false;
 
     axios.get(`/api/movies/${commentableID}`)
-      .then((resp, err) => {
-        let status = resp.status;
-        if (err) {
-          console.log('oo=>', err)
-        }
-        console.log('T: isMovieRegitstered', resp)
-        // if (status === 200) {
-          // alert(`registered ${resp.data.Title}`)
-          // console.log('movie has returned status:', status)
-        // } else {
-          console.log('T: movie has returned status:', status)
+      .then((resp) => {
+        // console.log('xxx',resp.status)
           this.setState({movieRegistered: true})
-        // }
-        return resp
       })
-      .catch((resp, err) => {
-        console.log('F: isMovieRegitstered', resp)
-        
+      .catch(err => {
         this.setState({movieRegistered: false})
-        console.log('xx=>', err)
       })
+
+      return answer;
   }
 
   registerMovie() {
