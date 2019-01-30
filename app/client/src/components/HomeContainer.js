@@ -30,19 +30,16 @@ class HomeContainer extends Component {
   }
   
   // set initial state of the page
-  componentDidMount(){
+  componentDidMount() {
     this.getMovieData('Alien');
   }
-
+// prevState object undefined in HomeContainer
   componentDidUpdate(prevState) {
-    // const { commentableID } = this.state
-    // verify registration status of current movie
-      console.log(prevState)
+    console.log('home prev state',prevState)
 
-    // console.log('====> prev', prevState.userID, 'curr',commentableID)
-    // if (prevState.commentableID !== commentableID ) {
-    //   this.isMovieRegistered();
-    // } 
+    if (!this.state.movieRegistered ) {
+      this.isMovieRegistered();
+    } 
   }
 
   // adds a new review for the currently displayed Movie

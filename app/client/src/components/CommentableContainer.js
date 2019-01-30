@@ -15,9 +15,11 @@ const propTypes = {
 class CommentableContainer extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       comments: [],
     }
+    
     this.getComments = this.getComments.bind(this);
   }
   
@@ -29,8 +31,6 @@ class CommentableContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { commentableID, commentableType } = this.props
-
-    console.log('==Comtble==>', prevState)
 
     if (prevProps.commentableID !== commentableID) {
      this.getComments(commentableID, commentableType)
