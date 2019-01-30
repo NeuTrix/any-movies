@@ -80,7 +80,6 @@ class AddCommentForm extends Component {
 					variant="outlined"
 				/>
 
-
         <Button component="button" type="submit" > Submit </Button>
 
 			</FormControl>
@@ -88,6 +87,7 @@ class AddCommentForm extends Component {
   }
 }
 
+// add grid to update form layout
 const styles= theme => ({
 	main: { } // place holder for styling
  });
