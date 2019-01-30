@@ -77,7 +77,7 @@ function HomePage(props) {
           commentableType={commentableType}
           movieTitle={movie.Title}
           movieRegistered={movieRegistered}
-        />˝
+        />
       </div>
     </div>
   )
