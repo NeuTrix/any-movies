@@ -134,17 +134,17 @@ class HomeContainer extends Component {
     
     return (
       <HomePage 
-      commentableID={this.state.commentableID}
-      commentableType={this.state.commentableType}
-      movie={this.state.movie}
-      movieTitle={this.state.movie.Title}
-      movieRegistered={this.state.movieRegistered}
-      showForm={this.state.showForm}
-      userName={this.state.userName}
-      // functions
-      addReview={this.addReview}
-      getMovieData={this.getMovieData}
-      toggleReviewForm={this.toggleReviewForm}
+        commentableID={this.state.commentableID}
+        commentableType={this.state.commentableType}
+        movie={this.state.movie}
+        movieTitle={this.state.movie.Title}
+        movieRegistered={this.state.movieRegistered}
+        showForm={this.state.showForm}
+        userName={this.state.userName}
+        // functions
+        addReview={this.addReview}
+        getMovieData={this.getMovieData}
+        toggleReviewForm={this.toggleReviewForm}
       />
     )
   }
