@@ -17,9 +17,9 @@ const propTypes = {
   showForm: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
-  addComment: PropTypes.func.isRequired, // adds a new review instance to api
+  addReview: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
-  toggleForm: PropTypes.func.isRequired, // toggles the addComment form in view
+  toggleForm: PropTypes.func.isRequired, // toggles the addReview form in view
 }
 
 function HomePage(props) {
@@ -32,7 +32,7 @@ function HomePage(props) {
     showForm,
     userName,
     // functions
-    addComment,
+    addReview,
     getMovieData,
     toggleForm,
   } = props
@@ -44,7 +44,7 @@ function HomePage(props) {
         Movie Blog! 
       </h1>
     
-      <div className={classes.actions} style={{ gridArea: 'addComment' }}>
+      <div className={classes.actions} style={{ gridArea: 'addReview' }}>
         <Button 
           variant="contained" 
           color="primary" 
@@ -60,7 +60,7 @@ function HomePage(props) {
 
       <div style={{ gridArea: 'form' }}>
         { showForm && 
-          <AddCommentForm userName={userName} addComment={addComment} /> 
+          <AddCommentForm userName={userName} addReview={addReview} /> 
         } 
       </div>
       
@@ -85,7 +85,7 @@ const styles = theme => ({
     gridTemplateAreas: `
       "title title "
       "form form"
-      "search addComment"
+      "search addReview"
       "comments comments"
       "movies movies"
     `,

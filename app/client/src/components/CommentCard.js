@@ -31,7 +31,7 @@ class CommentCard extends Component {
     this.setState({ display: !this.state.display  });
   }
 
-  // allows the addComment form to toggle on and off
+  // allows the addReview form to toggle on and off
   toggleCommentForm() {
     this.setState({
       showCommentForm: !this.state.showCommentForm

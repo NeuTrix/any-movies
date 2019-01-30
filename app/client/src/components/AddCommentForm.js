@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	userName: PropTypes.string.isRequired, 
-  addComment: PropTypes.instanceOf(Function).isRequired,
+  addReview: PropTypes.instanceOf(Function).isRequired,
 };
 
 class AddCommentForm extends Component {
@@ -35,7 +35,7 @@ class AddCommentForm extends Component {
 	// post the review to the rails API
   onSubmit(e) {
     e.preventDefault();
-    this.props.addComment(this.state)
+    this.props.addReview(this.state)
   }
 
 	render() {
