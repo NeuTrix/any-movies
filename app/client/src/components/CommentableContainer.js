@@ -26,11 +26,11 @@ class CommentableContainer extends Component {
     const { commentableID, commentableType } = this.props
 
     if (prevProps.commentableID !== commentableID) {
-     this.getComments(commentableID, commentableType)
+     this.getComments()
     }
   }
 
-  getComments(id, type) {
+  getComments() {
     const { commentableID, commentableType } = this.props
     
     // determine rails path for commentable
