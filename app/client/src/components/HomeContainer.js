@@ -33,11 +33,15 @@ class HomeContainer extends Component {
 
   // adds a new review for the currently displayed Movie
   addReview(data) {
+    const { commentableID, commentableType, userID } = this.state;
     // data is a state object, passed from the form
     console.log("===> Review Added", data)
     // !! need to remove redundant data from props.  pass in directly
     // to data object here .meth
-    const { commentableID, commentableType } = this.state;
+    data.commentable_id = commentableID;
+    data.commentable_type = commentableType;
+    data.user_id = userID;
+    
     // determine rails path for commentable
     let pathType = commentableType === 'Movie' ? 'movies' : 'comments'
 

@@ -8,10 +8,7 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	// commentableID: PropTypes.instanceOf(Object).isRequired,
-	// commentableType: PropTypes.instanceOf(Object).isRequired,
-  userName: PropTypes.string.isRequired, // placeholder until auth/ath
-  // == functions
+	userName: PropTypes.string.isRequired, 
   addReview: PropTypes.instanceOf(Function).isRequired,
 };
 
@@ -20,19 +17,14 @@ class AddReview extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-      // data from this form
       body: '',
       title: '',
       author: '',
-      // from these  props
-      // commentable_type: '',
-      // commentable_id: '',
-      user_id: '',
 		}
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
 	}
-
+	// prefill the form with the current user's name
 	componentDidMount() {
 		this.setState({ author: this.props.userName });
 	}
@@ -40,24 +32,16 @@ class AddReview extends Component {
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
-
+	// post the review to the rails API
   onSubmit(e) {
     e.preventDefault();
-    // set state with remaining props
-    this.setState({
-      // commentable_type: this.props.commentableType,
-      // commentable_id: this.props.commentableID,
-      // user_id: this.props.userID,
-    })
-    // pass state to executable fn
     this.props.addReview(this.state)
   }
 
 	render() {
 		const { classes } = this.props;
 
-		
-    return (
+		return (
 			<FormControl
 				className={classes.main}
 				component="form"
@@ -104,7 +88,7 @@ class AddReview extends Component {
 }
 
 const styles= theme => ({
-	main: { }
+	main: { } // place holder for styling
  });
 
 AddReview.propTypes = propTypes;

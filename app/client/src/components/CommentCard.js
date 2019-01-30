@@ -53,7 +53,7 @@ class CommentCard extends Component {
           </Typography>
 
           <Typography className={classes.pos} color="textSecondary">
-            by: { comment.author }...{comment.id}
+            by: { comment.author }
           </Typography>
 
           <Typography variant="body1" component="p">

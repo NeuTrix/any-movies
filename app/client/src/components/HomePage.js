@@ -15,7 +15,6 @@ const propTypes = {
   commentableType: PropTypes.string.isRequired, // for comment search
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
   showForm: PropTypes.bool.isRequired,
-  userID: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
   addReview: PropTypes.func.isRequired, // adds a new review instance to api
@@ -31,7 +30,6 @@ function HomePage(props) {
     commentableType,
     movie,
     showForm,
-    userID,
     userName,
     // functions
     addReview,
@@ -39,15 +37,6 @@ function HomePage(props) {
     toggleForm,
   } = props
   
-  const theForm = (
-    <AddReviewForm
-      commentableID={commentableID}
-      commentableType={commentableType}
-      userName={userName}
-      addReview={addReview}
-    />
-  )
-
   return (
     <div className={classes.grid}>
 
@@ -66,10 +55,11 @@ function HomePage(props) {
       <div style={{ gridArea: 'search' }}>
         <MovieSearchBar getMovieData={getMovieData} /> 
       </div>
-      <div style={{ gridArea: 'form' }}>
 
-      {/* { theForm } */}
-      { showForm && theForm }
+      <div style={{ gridArea: 'form' }}>
+        { showForm && 
+          <AddReviewForm userName={userName} addReview={addReview} /> 
+        } 
       </div>
       
       <div style={{ gridArea: 'movies' }} >
