@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+// material UI components
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,7 +9,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+// custom components
 import CommentContainer from './CommentableContainer';
+import AddCommentableForm from "./AddCommentableForm";
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
@@ -20,15 +24,15 @@ class CommentCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      display: false,
+      displayComments: false,
       showCommentForm: false,
     }
     this.getSubComments = this.getSubComments.bind(this);
   }
 
   getSubComments(prevState) {
-    // toggle display
-    this.setState({ display: !this.state.display  });
+    // toggle displayComments
+    this.setState({ displayComments: !this.state.displayComments  });
   }
 
   // allows the addReview form to toggle on and off
@@ -40,7 +44,7 @@ class CommentCard extends Component {
 
   render() {  
     const { classes, comment, toggleCommentForm } = this.props;
-    const { display } = this.state;
+    const { displayComments } = this.state;
 
     let SubComments = ( 
       <CommentContainer
@@ -91,9 +95,9 @@ class CommentCard extends Component {
           </div>
 
         </div>
-         {/* place holder for subComments */}
+         {/* allows dispalyr for subComments */}
         < CardContent>
-          { display && SubComments }
+          { displayComments && SubComments }
         </CardContent>
           
       </Card>
@@ -103,7 +107,7 @@ class CommentCard extends Component {
 
 const styles = theme => ({
   actions: {
-    display: 'inline-flex',
+    displayComments: 'inline-flex',
   },
 
   card: {
