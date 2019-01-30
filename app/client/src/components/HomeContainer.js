@@ -44,10 +44,13 @@ class HomeContainer extends Component {
   // `snapshot` only works if preceeded by `prevState` or `prevProps`
   // otherwise prevState doesn't load.
   componentDidUpdate( prevState, snapshot) {
-    // const {}
     const { commentableID, movieRegistered } = snapshot
-    console.log('==>', 'm:',memo,'reg:', movieRegistered, 'pr:',prevState, 'sn:', commentableID);
-    memo = commentableID
+    if (memo !== commentableID) {
+      console.log('before', 'memo:', memo, 'reg:', movieRegistered)
+      this.isMovieRegistered()
+    }
+    memo = commentableID;
+    console.log('after', 'memo:', memo, 'reg:', movieRegistered)
   }
 
   // adds a new review for the currently displayed Movie
@@ -100,17 +103,26 @@ class HomeContainer extends Component {
     const { commentableID } = this.state;
 
     axios.get(`/api/movies/${commentableID}`)
-      .then(resp => {
-        console.log('from isMovieRegitstered', resp)
-        if (resp.status === 404) {
-          // alert(`registered ${resp.data.Title}`)
-          this.setState({movieRegistered: false})
-        } else {
-          this.setState({movieRegistered: true})
+      .then((resp, err) => {
+        let status = resp.status;
+        if (err) {
+          console.log('oo=>', err)
         }
+        console.log('T: isMovieRegitstered', resp)
+        // if (status === 200) {
+          // alert(`registered ${resp.data.Title}`)
+          // console.log('movie has returned status:', status)
+        // } else {
+          console.log('T: movie has returned status:', status)
+          this.setState({movieRegistered: true})
+        // }
+        return resp
       })
-      .catch(err => {
-        console.log(err)
+      .catch((resp, err) => {
+        console.log('F: isMovieRegitstered', resp)
+        
+        this.setState({movieRegistered: false})
+        console.log('xx=>', err)
       })
   }
 

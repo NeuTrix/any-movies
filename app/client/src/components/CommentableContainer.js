@@ -19,7 +19,7 @@ class CommentableContainer extends Component {
     this.state = {
       comments: [],
     }
-    
+
     this.getComments = this.getComments.bind(this);
   }
   
@@ -48,6 +48,8 @@ class CommentableContainer extends Component {
       })
       .catch(err => { 
         console.log('ERROR=>',err); 
+        // reset the comments for an unregistered movie
+        this.setState({ comments: [] }); 
       })
   }
 
