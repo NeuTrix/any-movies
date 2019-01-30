@@ -13,8 +13,8 @@ const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
   showForm: PropTypes.bool.isRequired,
-  userName: PropTypes.string.isRequired,
   userID: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   // ===> functions
   addReview: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
@@ -22,7 +22,7 @@ const propTypes = {
 }
 
 function HomePage(props) {
-  const { classes, movie, showForm, userName } = props // decon prop variables
+  const { classes, movie, showForm, userID, userName,  } = props // decon prop variables
   const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
   
   return (
@@ -48,7 +48,12 @@ function HomePage(props) {
 
       <div style={{ gridArea: 'form' }}>
         { showForm && 
-          <AddCommentableForm author={userName} addCommentable={addReview} /> 
+          <AddCommentableForm 
+            author={userName} 
+            addCommentable={addReview} 
+            userID={userID}
+            userName={userName}
+          /> 
         } 
       </div>
       
@@ -60,6 +65,8 @@ function HomePage(props) {
         <CommentableContainer 
           commentableID={movie.imdbID}
           commentableType={"Movie"}
+          userID={userID}
+          userName={userName}
         />
       </div>
     </div>

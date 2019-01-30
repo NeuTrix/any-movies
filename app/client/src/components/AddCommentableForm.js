@@ -11,12 +11,12 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	author: PropTypes.string.isRequired, 
-	addCommentable: PropTypes.instanceOf(Function).isRequired,
-	// get comm ID, Type and User Id passed in.  Id from COmmCont?
 	commentableID: PropTypes.string.isRequired,
 	commentableType: PropTypes.string.isRequired,
 	userID: PropTypes.string.isRequired,
+	userName: PropTypes.string.isRequired,
+	// acction to create the commentable object
+	addCommentable: PropTypes.instanceOf(Function).isRequired,
 };
 
 class AddCommentableForm extends Component {
@@ -24,12 +24,14 @@ class AddCommentableForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			author: '',
-      body: '',
+			// from props
 			commentable_id: '',
 			commentable_type: '',
-      title: '',
 			user_id: '',
+			author: '',
+			// from form
+      body: '',
+      title: '',
 		}
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
@@ -106,7 +108,7 @@ class AddCommentableForm extends Component {
 // add grid to update form layout
 const styles= theme => ({
 	main: { } // place holder for styling
- });
+});
 
 AddCommentableForm.propTypes = propTypes;
 

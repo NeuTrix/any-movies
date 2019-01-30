@@ -8,6 +8,8 @@ const propTypes = {
   // when marked as 'required' generating a console warning
   commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   // movieTitle: PropTypes.string.isRequired,
   // movieRegistered: PropTypes.string.isRequired,
 }

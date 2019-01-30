@@ -23,7 +23,7 @@ class HomeContainer extends Component {
       movieType: 'Movie',
       movieRegistered: false,
       showForm: false,
-      // must use an exisiting user_id.  Will add later throgh auth/auth
+      // must use an exisiting user.  Will add a user object later
       userID: 1, 
       userName: "DanTastic333", 
     }
