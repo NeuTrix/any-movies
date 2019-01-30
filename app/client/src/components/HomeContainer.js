@@ -19,7 +19,7 @@ class HomeContainer extends Component {
       movieRegistered: false,
       showForm: false,
       userID: 1, // must use an exisiting user_id
-      userName: "DanTastic333"
+      userName: "DanTastic333",
     }
 
     this.addReview = this.addReview.bind(this);
@@ -35,12 +35,14 @@ class HomeContainer extends Component {
   }
 
   componentDidUpdate(prevState) {
-    const { commentableID } = this.state
+    // const { commentableID } = this.state
     // verify registration status of current movie
-    console.log('====> prev',prevState.commentableID, 'curr',commentableID)
-    if (prevState.commentableID !== commentableID ) {
-      this.isMovieRegistered();
-    } 
+      console.log(prevState)
+
+    // console.log('====> prev', prevState.userID, 'curr',commentableID)
+    // if (prevState.commentableID !== commentableID ) {
+    //   this.isMovieRegistered();
+    // } 
   }
 
   // adds a new review for the currently displayed Movie
