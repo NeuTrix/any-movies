@@ -6,16 +6,19 @@ import axios from 'axios';
 import { url_movie_data} from '../helpers/api.helper';
 import HomePage from './HomePage';
 
-const propTypes = { }
+const propTypes = { 
+  bugger: PropTypes.bool.isRequired, // test to see if can stimlate preState
+}
 
 class HomeContainer extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+   this.state = {
       commentableID: 'Movie default',
       commentableType: 'Movie',
       movie: {},
+
       movieRegistered: false,
       showForm: false,
       userID: 1, // must use an exisiting user_id
@@ -34,12 +37,13 @@ class HomeContainer extends Component {
     this.getMovieData('Alien');
   }
 // prevState object undefined in HomeContainer
-  componentDidUpdate(prevState) {
-    console.log('home prev state',prevState)
+  componentDidUpdate(prevState, prevProps) {
+    console.log('HC.js ==>', prevState)
+    // console.log('HC.js ==>', prevState, '==> props', prevProps)
 
-    if (!this.state.movieRegistered ) {
-      this.isMovieRegistered();
-    } 
+    // if (true) {
+      // this.isMovieRegistered();
+    // } 
   }
 
   // adds a new review for the currently displayed Movie
@@ -89,7 +93,7 @@ class HomeContainer extends Component {
   
   // boolean to determine whetehr the movie is in the current db
   isMovieRegistered() {
-    const { commentableID } = this.state
+    const { commentableID } = this.state;
 
     axios.get(`/api/movies/${commentableID}`)
       .then(resp => {
@@ -97,6 +101,8 @@ class HomeContainer extends Component {
         if (resp.status === 404) {
           // alert(`registered ${resp.data.Title}`)
           this.setState({movieRegistered: false})
+        } else {
+          this.setState({movieRegistered: true})
         }
       })
       .catch(err => {
