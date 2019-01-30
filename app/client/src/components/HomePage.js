@@ -49,7 +49,9 @@ function HomePage(props) {
           variant="contained" 
           color="primary" 
           onClick={toggleForm}
-        >Add Review</Button>
+        >
+          Add Review
+        </Button>
       </div>
 
       <div style={{ gridArea: 'search' }}>
@@ -69,8 +71,9 @@ function HomePage(props) {
       <div style={{ gridArea: 'comments' }} >
         <CommentableContainer 
           commentableID={commentableID}
-          commentableType={commentableType} 
-        />
+          commentableType={commentableType}
+          toggleForm={toggleForm} 
+        />˝
       </div>
     </div>
   )

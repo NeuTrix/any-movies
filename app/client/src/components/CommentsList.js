@@ -12,6 +12,8 @@ import CommentCard from './CommentCard';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
+
+  
 }
 
 function CommentsList(props) {

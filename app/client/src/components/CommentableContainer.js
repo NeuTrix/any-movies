@@ -8,6 +8,7 @@ const propTypes = {
   // when marked as 'required' generating a console warning
   commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
+  toggleForm: PropTypes.func.isRequired,
 }
 
 class CommentableContainer extends Component {
@@ -50,7 +51,12 @@ class CommentableContainer extends Component {
   }
 
   render() {
-    return <CommentsList comments={this.state.comments}/>
+    return ( 
+      <CommentsList 
+        comments={this.state.comments}
+        toggleForm={this.props.toggleForm} 
+      />
+    )
   }
 }
 
