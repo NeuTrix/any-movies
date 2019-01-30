@@ -63,7 +63,7 @@ function HomePage(props) {
 
       <div style={{ gridArea: 'form' }}>
         { showForm && 
-          <AddCommentableForm userName={userName} addReview={addReview} /> 
+          <AddCommentableForm userName={userName} addCommentable={addReview} /> 
         } 
       </div>
       
