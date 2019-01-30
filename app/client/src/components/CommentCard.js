@@ -12,6 +12,7 @@ import CommentContainer from './CommentableContainer';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
+  toggleForm: PropTypes.func.isRequired, // toggles the addComment form in view
 }
 
 class CommentCard extends Component {
@@ -30,7 +31,7 @@ class CommentCard extends Component {
   }
 
   render() {  
-    const { classes, comment } = this.props;
+    const { classes, comment, toggleForm } = this.props;
     const { display } = this.state;
 
     let SubComments = ( 
@@ -77,7 +78,7 @@ class CommentCard extends Component {
 
           <div>
             <CardActions className={classes.btnRight} >
-              <Button size="small">reply</Button>
+              <Button size="small" onClick={toggleForm} >reply</Button>
             </CardActions>
           </div>
 

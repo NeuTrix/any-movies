@@ -19,7 +19,7 @@ const propTypes = {
   // ===> functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for movie
-  toggleForm: PropTypes.func.isRequired,
+  toggleForm: PropTypes.func.isRequired, // toggles the addComment form in view
 }
 
 function HomePage(props) {
@@ -85,9 +85,9 @@ const styles = theme => ({
     display: 'inline-grid',
     gridTemplateAreas: `
       "title title "
-      "comments comments"
-      "search addComment"
       "form form"
+      "search addComment"
+      "comments comments"
       "movies movies"
     `,
     gridTemplateColumns: '1fr 1fr',
