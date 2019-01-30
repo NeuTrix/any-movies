@@ -16,6 +16,7 @@ class HomeContainer extends Component {
       commentableID: 'Movie default',
       commentableType: 'Movie',
       movie: {},
+      movieRegistered: false,
       showForm: false,
       userID: 1, // must use an exisiting user_id
       userName: "DanTastic333"
@@ -23,12 +24,22 @@ class HomeContainer extends Component {
 
     this.addReview = this.addReview.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
+    this.isMovieRegistered = this.isMovieRegistered.bind(this);
+    this.isMovieRegistered = this.isMovieRegistered.bind(this);
+    this.registerMovie = this.registerMovie.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
   }
   
   // set initial state of the page
   componentDidMount(){
-    this.getMovieData('Alien')
+    this.getMovieData('Alien');
+  }
+
+  componentDidUpdate(prevState) {
+    // verify registration status of current movie
+    if (!prevState.movieRegistered) {
+      this.isMovieRegistered();
+    }
   }
 
   // adds a new review for the currently displayed Movie
@@ -58,7 +69,7 @@ class HomeContainer extends Component {
   // search and get movie data from OMDB Api
   getMovieData(searchTerm) {
 
-    axios.get(`${url_movie_data}&t=${searchTerm}`)
+    return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
 
@@ -66,13 +77,32 @@ class HomeContainer extends Component {
           alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
         this.setState({ movie: data, commentableID: data.imdbID })
-        
+
       })
       .catch(err => { 
         console.log('===>Error',err) 
       })
   }
 
+  // boolean to determine whetehr the movie is in the current db
+  isMovieRegistered() {
+    const { commentableID } = this.state
+
+    axios.get(`/api/movies/${commentableID}`)
+      .then(resp => {
+        if (resp.status === 200) {
+          this.setState({movieRegistered: true})
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  registerMovie(movieId) {
+
+  }
+  
   // allows the addReview form to toggle on and off
   toggleForm() {
     this.setState({ showForm: !this.state.showForm });
@@ -86,7 +116,6 @@ class HomeContainer extends Component {
       commentableType={this.state.commentableType}
       movie={this.state.movie}
       showForm={this.state.showForm}
-      userID={this.state.userID}
       userName={this.state.userName}
       // functions
       addReview={this.addReview}
