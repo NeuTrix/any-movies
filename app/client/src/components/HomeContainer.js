@@ -44,12 +44,13 @@ class HomeContainer extends Component {
   // otherwise prevState doesn't load.
   componentDidUpdate( prevState, snapshot) {
     const { commentableID, movieRegistered } = snapshot
-    if (memo !== commentableID) {
-      console.log('before', 'memo:', memo, 'reg:', movieRegistered)
-      this.isMovieRegistered()
-    }
-    memo = commentableID;
-    console.log('after', 'memo:', memo, 'reg:', movieRegistered)
+    // if (memo !== commentableID) {
+    //   console.log('before', 'memo:', memo, 'reg:', movieRegistered)
+    //   this.isMovieRegistered()
+    // }
+    // memo = commentableID;
+    // console.log('after', 'memo:', memo, 'reg:', movieRegistered)
+    console.log('//===>', prevState)
   }
 
   // adds a new review for the currently displayed Movie
@@ -100,18 +101,17 @@ class HomeContainer extends Component {
   // boolean to determine whetehr the movie is in the current db
   isMovieRegistered() {
     const { commentableID } = this.state;
-    let answer = false;
+    // let answer = false;
 
     axios.get(`/api/movies/${commentableID}`)
       .then((resp) => {
-        // console.log('xxx',resp.status)
           this.setState({movieRegistered: true})
       })
       .catch(err => {
-        this.setState({movieRegistered: false})
+        // this.setState({movieRegistered: false})
       })
 
-      return answer;
+      // return answer;
   }
 
   registerMovie() {

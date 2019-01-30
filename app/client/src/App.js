@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={masterTheme}>  
         <div className="App">
-          <HomeContainer bugger="true"/>
+          <HomeContainer/>
         </div>
       </MuiThemeProvider>
     );
