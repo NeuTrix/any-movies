@@ -12,7 +12,7 @@ const propTypes = {
   addReview: PropTypes.instanceOf(Function).isRequired,
 };
 
-class AddCommentForm extends Component {
+class AddCommentableForm extends Component {
 
 	constructor(props) {
 		super(props)
@@ -92,6 +92,6 @@ const styles= theme => ({
 	main: { } // place holder for styling
  });
 
-AddCommentForm.propTypes = propTypes;
+AddCommentableForm.propTypes = propTypes;
 
-export default withStyles(styles)(AddCommentForm)
+export default withStyles(styles)(AddCommentableForm)

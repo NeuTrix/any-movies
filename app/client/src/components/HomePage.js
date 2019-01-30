@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import AddCommentForm from './AddCommentForm';
+import AddCommentableForm from './AddCommentableForm';
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
@@ -60,7 +60,7 @@ function HomePage(props) {
 
       <div style={{ gridArea: 'form' }}>
         { showForm && 
-          <AddCommentForm userName={userName} addReview={addReview} /> 
+          <AddCommentableForm userName={userName} addReview={addReview} /> 
         } 
       </div>
       
