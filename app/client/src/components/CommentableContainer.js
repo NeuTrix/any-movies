@@ -20,6 +20,7 @@ class CommentableContainer extends Component {
       comments: [],
     }
 
+    this.addComment = this.addComment.bind(this); // pass to form
     this.getComments = this.getComments.bind(this);
   }
   
@@ -34,6 +35,39 @@ class CommentableContainer extends Component {
      this.getComments(commentableID, commentableType)
     }
   }
+
+  addComment(data) {
+     const {
+       commentableID,
+       commentableType,
+       userID,
+       movieRegistered
+     } = this.state;
+
+     // veerify registration
+     if (!movieRegistered) {
+       this.registerMovie();
+     }
+     // update the data object with required fields
+     data.commentable_id = commentableID;
+     data.commentable_type = commentableType;
+     data.user_id = userID;
+
+     // determine rails path for commentable
+
+     return axios.post(`/api/comments/${commentableID}/comments`, data)
+       .then(resp => {
+         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
+         this.setState({
+           showForm: false
+         });
+         return resp.data
+       })
+       .catch(err => {
+         console.log('ERROR=>', err);
+       })
+   }
+
 
   getComments(id, type) {
     const { commentableID, commentableType } = this.props

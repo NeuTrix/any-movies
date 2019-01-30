@@ -50,11 +50,8 @@ class HomeContainer extends Component {
     data.commentable_id = commentableID;
     data.commentable_type = commentableType;
     data.user_id = userID;
-    
-    // determine rails path for commentable
-    let pathType = commentableType === 'Movie' ? 'movies' : 'comments'
 
-    return axios.post(`/api/${pathType}/${commentableID}/comments`, data)
+    return axios.post(`/api/movies/${commentableID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showForm: false });
