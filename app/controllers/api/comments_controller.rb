@@ -51,7 +51,8 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def comment_params
-        params.require(:comment).permit(
+        # needed to remove .require(:comment) to use #create
+        params.permit(
           :author,
           :imdb_id,
           :body, 
