@@ -28,6 +28,7 @@ class CommentCard extends Component {
       showCommentForm: false,
     }
     this.getSubComments = this.getSubComments.bind(this);
+    this.toggleCommentForm = this.toggleCommentForm.bind(this);
   }
 
   getSubComments(prevState) {
@@ -43,8 +44,8 @@ class CommentCard extends Component {
   }
 
   render() {  
-    const { classes, comment, toggleCommentForm } = this.props;
-    const { displayComments } = this.state;
+    const { classes, comment } = this.props;
+    const { showCommentForm, displayComments } = this.state;
 
     let SubComments = ( 
       <CommentContainer
@@ -76,7 +77,7 @@ class CommentCard extends Component {
         </CardContent>
 
         <CardActions className={classes.actions} >
-          <Button size="small" onClick={toggleCommentForm} >reply</Button>
+          <Button size="small" onClick={this.toggleCommentForm} >reply</Button>
         </CardActions>
 
         <CardActions className={classes.actions} >
@@ -85,6 +86,11 @@ class CommentCard extends Component {
             commentableType = "Comment" 
           />
         </CardActions>
+        
+        <CardContent>
+          { showCommentForm && <AddCommentableForm/> }
+          {/* <AddCommentableForm/> */}
+        </CardContent>
           
       </Card>
     );
