@@ -10,7 +10,7 @@ const propTypes = {
   commentableType: PropTypes.string.isRequired,
   userID: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
-  // movieTitle: PropTypes.string.isRequired,
+  // add comment base on registraion status
   // movieRegistered: PropTypes.string.isRequired,
 }
 
@@ -43,13 +43,13 @@ class CommentableContainer extends Component {
        commentableID,
        commentableType,
        userID,
-       movieRegistered
+      //  movieRegistered
      } = this.state;
 
      // veerify registration
-     if (!movieRegistered) {
+     /* if (!movieRegistered) {
        this.registerMovie();
-     }
+     } */
     //  update the data object with required fields
      data.commentable_id = commentableID;
      data.commentable_type = commentableType;
@@ -90,8 +90,8 @@ class CommentableContainer extends Component {
   render() {
     return ( 
       <CommentsList 
-      // pass more propslike homepage
         comments={this.state.comments}
+        addComment={this.addComment}
       />
     )
   }
