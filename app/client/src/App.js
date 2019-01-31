@@ -9,7 +9,7 @@ import masterTheme from './helpers/masterTheme';
 // mock a current user session
 const curr_user = {
   userName: "Dantastic3339",
-  userID: "1",
+  id: "1",
 }
 
 class App extends Component {

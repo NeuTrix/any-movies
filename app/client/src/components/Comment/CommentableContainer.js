@@ -5,10 +5,9 @@ import axios from 'axios';
 import CommentsList from './CommentsList';
 
 const propTypes = {
+  curr_user: PropTypes.instanceOf(Object).isRequired,
   commentableID: PropTypes.string,
   commentableType: PropTypes.string.isRequired,
-  userID: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
@@ -52,8 +51,7 @@ class CommentableContainer extends Component {
   render() {
     return <CommentsList 
       comments={this.state.comments} 
-      userID={this.props.userID}
-      userName={this.props.userName}
+      curr_user={this.props.curr_user}
     />
   }
 }

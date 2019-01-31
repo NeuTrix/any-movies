@@ -21,14 +21,13 @@ class MovieContainer extends Component {
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: '', // mock, recieved from props
       movieRegistered: false, // is movie in our current app db as well
-      showCommentableForm: false, // for new/edit views
+      displayingAddCommentForm: false, // for new/edit views
     }
 
     this.addComment = this.addComment.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
     this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
-    this.toggleReviewForm = this.toggleReviewForm.bind(this);
     this.getCommentableComments = this.getCommentableComments.bind(this)
   }
   
@@ -59,7 +58,7 @@ class MovieContainer extends Component {
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-        this.setState({ showCommentableForm: false });
+        this.setState({ displayingAddCommentForm: false });
         return resp.data
       })
       .catch(err => { 
@@ -115,11 +114,6 @@ class MovieContainer extends Component {
     }
   }
 
-  // allows the addComment form to toggle on and off
-  toggleReviewForm() {
-    this.setState({ showCommentableForm: !this.state.showCommentableForm });
-  }
-
   // checks whether movie is currently in the app api database
   validateMovieRegistration() {
     const { curr_movie } = this.state;
@@ -139,19 +133,18 @@ class MovieContainer extends Component {
 
   render() {
     // deconstruct state objects
-    const { curr_movie, curr_user, comments, showCommentableForm } = this.state
+    const { curr_movie, curr_user, comments, displayingAddCommentForm } = this.state
     
     return (
       <MoviePage 
         // objects
         curr_movie={curr_movie}
         curr_user={curr_user}
-        showCommentableForm={showCommentableForm}
+        displayingAddCommentForm={displayingAddCommentForm}
         comments={comments}
         // functions
         addComment={this.addComment}
         getMovieData={this.getMovieData}
-        toggleReviewForm={this.toggleReviewForm}
       />
     )
   }
