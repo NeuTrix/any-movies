@@ -39,7 +39,8 @@ class CommentsPage extends Component {
     
     const { 
       classes, 
-      commentable, 
+      commentable_type, 
+      commentable_id, 
       commentsList, 
       curr_user, 
       addComment 
@@ -47,11 +48,12 @@ class CommentsPage extends Component {
 
     const commentableForm = (
       // generate commentable form for current movie
-      <CommentableForm 
-        addCommentable={addComment} 
-        commentable={commentable}
+       <CommentableForm 
+        commentable_id={commentable_id}
+        commentable_type={commentable_type}
         curr_user={curr_user}
-      /> 
+        addCommentable={addComment} 
+      />
     );
 
     return (

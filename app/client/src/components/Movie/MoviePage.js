@@ -68,7 +68,9 @@ toggleCommentableForm() {
     // generate commentable form for current movie
     const commentableForm = (
       <CommentableForm 
-        commentable={curr_movie}
+        // commentable={curr_movie}
+        commentable_id={curr_movie.imdbID}
+        commentable_type={"Movie"}
         curr_user={curr_user}
         addCommentable={addComment} 
       /> 

@@ -123,8 +123,11 @@ class CommentableContainer extends Component {
     return (
       <CommentsPage 
         commentable={commentable} 
-        commentsList={commentsList} 
+        commentable_id={commentable_id}
+        commentable_type={commentable_type} 
         curr_user={curr_user} 
+
+        commentsList={commentsList} 
         addComment={this.addComment} // for form execution
       />
     )

@@ -11,8 +11,9 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // movie or comment obj
-	curr_user: PropTypes.instanceOf(Object).isRequired, // from session. Mocked
+	commentable_id: PropTypes.string.isRequired, 
+	commentable_type: PropTypes.string.isRequired, 
+	curr_user: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
 	addCommentable: PropTypes.func.isRequired, // create relative commentable
 };
@@ -34,15 +35,23 @@ class CommentableForm extends Component {
 		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
 	}
-	componentDidMount() {
-		const { commentable, curr_user } = this.props
-		let author = curr_user.username;
-		// commentable_id: this.props.commentable_id,
-		// commentable_type: this.props.commentable_type,
-		// user_id: this.props.curr_user.id,
 
-		this.setState({ 
+	componentDidMount() {
+		const { commentable_id, commentable_type, curr_user } = this.props
+		let author = curr_user.username;
+		let user_id = curr_user.id;
+		// let commentable_id = commentable_id;
+		// let commentable_type = commentable_type;
+
+		this.setState(state => { 
 			// prefill the form with the current user's name
+			return {
+				...state, 
+				author,
+				commentable_id,
+				commentable_type,
+				user_id,
+			}
 		});
 	}
   // update the state with form entries
