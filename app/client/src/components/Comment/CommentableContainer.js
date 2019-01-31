@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CommentsList from './CommentsList';
-import CommentableForm from '../Comment/CommentableForm';
 
 const propTypes = {
   commentable_id: PropTypes.string.isRequired,
@@ -70,7 +69,7 @@ class CommentableContainer extends Component {
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
-          console.log('===>',comments, state.comments)
+          console.log('===>', comments, state.comments)
           return {...state, comments}
         });
         
@@ -90,7 +89,7 @@ class CommentableContainer extends Component {
   }
 
    render() {
-    const { comments, curr_user } = this.props;
+    const { comments, curr_user } = this.state;
     // console.log(comments)
     return <CommentsList 
       comments={comments} 
