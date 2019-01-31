@@ -1,8 +1,8 @@
 @user = User.new
-@user.username = 'theMouse'
-@user.email = 'mickey@dl.com'
-@user.password = 'bananaKing'
-@user.password_confirmation = 'bananaKing'
+@user.username = 'Dantastic3339'
+@user.email = 'dantonio@dl.com'
+@user.password = 'anyRoadCanGetYouThere'
+@user.password_confirmation = 'anyRoadCanGetYouThere'
 @user.admin = true
 @user.save
 
