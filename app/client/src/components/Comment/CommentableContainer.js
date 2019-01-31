@@ -90,11 +90,7 @@ class CommentableContainer extends Component {
 
    render() {
     const { comments, curr_user } = this.state;
-    // console.log(comments)
-    return <CommentsList 
-      comments={comments} 
-      curr_user={curr_user}
-    />
+    return <CommentsList comments={comments} curr_user={curr_user} />
   }
 }
 
