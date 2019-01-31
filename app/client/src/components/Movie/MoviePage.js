@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import CommentableForm from './CommentableForm';
-import CommentableContainer from './Comment/CommentableContainer';
+import CommentableContainer from '../Comment/CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
