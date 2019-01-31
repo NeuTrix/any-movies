@@ -10,10 +10,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CommentCard from './CommentCard';
 
 const propTypes = {
-  classes: PropTypes.instanceOf(Object).isRequired,
-  comments: PropTypes.instanceOf(Array),
-  userID: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired, // material UI
+  curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
+  comments: PropTypes.instanceOf(Array), // from commentable
 }
 
 // some commentables may not have comments defined
@@ -22,15 +21,14 @@ const defaultProps = {
 }
 
 function CommentsList(props) {
-  const { classes, comments } = props;
+  const { classes, comments, curr_user } = props;
 
    const commentsList = comments.map(comment => {
       return ( 
         <div key={comment.id}> 
           <CommentCard 
             comment={comment} 
-            userID={props.userID}
-            username={props.username}
+            curr_user={props.curr_user}
           /> 
         </div>
       ) 
@@ -41,13 +39,11 @@ function CommentsList(props) {
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
-            Show Comments: {CommentsList.length} 
+            Show Comments: {commentsList.length} 
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <div className={classes.list} >
-           { commentsList }
-          </div>
+          <div className={classes.list} > { commentsList } </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
@@ -64,13 +60,14 @@ const styles = theme => ({
     padding: 5,
     maxWidth: 400,
   },
+
   heading: {
     // fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightRegular,
   },
 
   list: {
-    // debugging
+    // for design and debugging
     background: 'yellow',
     outline: '1px solid orangered',
   }

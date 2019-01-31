@@ -42,6 +42,10 @@ class MovieContainer extends Component {
     })
   }
 
+  componentDidUpdate() {
+    
+  }
+
   // adds a new review for the currently displayed Movie
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
