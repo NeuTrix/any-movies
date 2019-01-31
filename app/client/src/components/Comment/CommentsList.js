@@ -11,9 +11,14 @@ import CommentCard from './CommentCard';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  comments: PropTypes.instanceOf(Array).isRequired,
+  comments: PropTypes.instanceOf(Array),
   userID: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
+}
+
+// some commentables may not have comments defined
+const defaultProps = {
+  comments: [],
 }
 
 function CommentsList(props) {
@@ -36,7 +41,7 @@ function CommentsList(props) {
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
-            Show Comments: {comments.length} 
+            Show Comments: {CommentsList.length} 
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -50,6 +55,7 @@ function CommentsList(props) {
 }
 
 CommentsList.propTypes = propTypes;
+CommentsList.defaultProps = defaultProps;
 
 const styles = theme => ({
   
