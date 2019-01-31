@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import CommentableForm from '../Comment/CommentableForm';
-import CommentableContainer from '../Comment/CommentableContainer';
-import MovieDisplay from './MovieDisplay';
+import CommentableForm from './CommentableForm';
+import CommentableContainer from './CommentableContainer';
+import MovieDisplay from '../Movie/MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api curr_movie object
-  showCommentableForm: PropTypes.bool.isRequired,
+  curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
+  showForm: PropTypes.bool.isRequired,
   userID: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
   addReview: PropTypes.func.isRequired, // adds a new review instance to api
-  getMovieData: PropTypes.func.isRequired, // search for curr_movie
+  getMovieData: PropTypes.func.isRequired, // search for movie
   toggleReviewForm: PropTypes.func.isRequired, // toggles the addReviewForm 
 }
 
 function MoviePage(props) {
-  const { classes, curr_movie, showCommentableForm, userID, userName,  } = props // decon prop variables
+  const { classes, curr_movie, showForm, userID, userName,  } = props // decon prop variables
   const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
   
   const MovieCommentForm =(
@@ -55,7 +55,7 @@ function MoviePage(props) {
       </div>
 
       <div style={{ gridArea: 'form' }}>
-        { showCommentableForm &&  MovieCommentForm } 
+        { showForm &&  MovieCommentForm } 
       </div>
       
       <div style={{ gridArea: 'movies' }} >

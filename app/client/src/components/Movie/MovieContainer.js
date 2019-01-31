@@ -16,12 +16,12 @@ class MovieContainer extends Component {
 
     this.state = {
       // default setting. OMDB object will override
-      movie: { imdbID: 'tt0078748', Title: 'Alien', }, 
+      curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, 
       commentableType: 'Movie',
       commentableID: 'tt0078748',
       movieRegistered: false,
       showCommentableForm: false,
-      // must use an exisiting user.  Will add a user object later
+      cur_user: '',
       userID: 1, 
       userName: "DanTastic333", 
     }
@@ -35,25 +35,25 @@ class MovieContainer extends Component {
   
   // set initial rednering of the page to default
   componentDidMount() {
-    this.getMovieData(this.state.movie.Title);
+    this.getMovieData(this.state.curr_movie.Title);
   }
 
   // adds a new review for the currently displayed Movie
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
   addReview(data) {
-    const { movie, movieType, userID, movieRegistered } = this.state;
+    const { curr_movie, movieType, userID, movieRegistered } = this.state;
 
     // veerify registration for movie comments only. (not comments/comments)
     if (!movieRegistered) {
       this.registerMovie();
     }
     // update the data object with required fields
-    data.commentable_id = movie.imdbID;
+    data.commentable_id = curr_movie.imdbID;
     data.commentable_type = movieType;
     data.user_id = userID;
 
-    return axios.post(`/api/movies/${movie.imdbID}/comments`, data)
+    return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showCommentableForm: false });
@@ -77,8 +77,8 @@ class MovieContainer extends Component {
         } 
         // verify whether movie is in my api
         this.validateMovieRegistration()
-        // update the state movie object (with OMDB movie)
-        this.setState({ movie: data })
+        // update the state movie object (with OMDB curr_movie)
+        this.setState({ curr_movie: data })
       })
       .catch(err => { 
         console.log(err) 
@@ -87,11 +87,11 @@ class MovieContainer extends Component {
 
   // adds a new movie to the internal app database
   registerMovie() {
-    const { movie, movieRegistered } = this.state;
+    const { curr_movie, movieRegistered } = this.state;
     if (!movieRegistered) {
 
       // create the data object
-      let data = { title: movie.Title, imdb_id: movie.imdbID, };
+      let data = { title: curr_movie.Title, imdb_id: curr_movie.imdbID, };
 
       // make the post call
       axios.post(`/api/movies`, data)
@@ -115,9 +115,9 @@ class MovieContainer extends Component {
 
   // checks whether movie is currently in the app api database
   validateMovieRegistration() {
-    const { movie } = this.state;
+    const { curr_movie } = this.state;
 
-    axios.get(`/api/movies/${movie.imdbID}`)
+    axios.get(`/api/movies/${curr_movie.imdbID}`)
       .then((resp) => {
         this.setState({
           movieRegistered: true
@@ -134,7 +134,7 @@ class MovieContainer extends Component {
     
     return (
       <MoviePage 
-        movie={this.state.movie}
+        curr_movie={this.state.curr_movie}
         showCommentableForm={this.state.showCommentableForm}
         userName={this.state.userName}
         userID={this.state.userID}

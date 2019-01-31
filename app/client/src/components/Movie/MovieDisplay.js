@@ -5,15 +5,15 @@ import Typography from '@material-ui/core/Typography'
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  movie: PropTypes.instanceOf(Object).isRequired,
+  curr_movie: PropTypes.instanceOf(Object).isRequired,
 }
 
 function MovieDisplay(props) {
 
-  const { classes, movie } = props
+  const { classes, curr_movie } = props
   
   // generate list of movie ratings
-  const ratings = movie.Ratings && movie.Ratings.map((rating, index) => {
+  const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating, index) => {
     return ( 
       <div key={index} className={classes.ratingUnit}> 
         <div style={{gridArea: 'critic'}} > {rating.Source}: </div>
@@ -23,7 +23,7 @@ function MovieDisplay(props) {
   })
 
   // if actors listed, make a list
-  const actors = movie.Actors && movie.Actors.split(',').map((actor, index) => {
+  const actors = curr_movie.Actors && curr_movie.Actors.split(',').map((actor, index) => {
     return ( <div key={index}> - {actor} </div> )
   })
 
@@ -31,28 +31,28 @@ function MovieDisplay(props) {
     <div className={classes.main} >
 
       <div className={classes.title}>
-        <Typography variant="h4"> { movie.Title } </Typography> 
+        <Typography variant="h4"> { curr_movie.Title } </Typography> 
       </div>
 
       <div className={classes.image} >
-        <img className={classes.poster} src={movie.Poster} alt="movie poster"/>
-        <div> Released: {movie.Year} </div> <br/>
+        <img className={classes.poster} src={curr_movie.Poster} alt="curr_movie poster"/>
+        <div> Released: {curr_movie.Year} </div> <br/>
         <div> Rated 
-          <h3>{movie.Rated} </h3> 
+          <h3>{curr_movie.Rated} </h3> 
         </div> 
-        <div> <h6> imdbID: { movie.imdbID }</h6> </div>
+        <div> <h6> imdbID: { curr_movie.imdbID }</h6> </div>
       </div>
 
       <div className={classes.info}>
 
         <div>
           <h4> Genre: </h4>
-          <div> - {movie.Genre} </div>
+          <div> - {curr_movie.Genre} </div>
         </div> 
 
         <div> 
           <h4> Director: </h4>
-          <div> - {movie.Director} </div> 
+          <div> - {curr_movie.Director} </div> 
         </div> 
        
         <div> 
@@ -71,7 +71,7 @@ function MovieDisplay(props) {
       
       <div className={classes.plot} > 
         <h4> Movie Plot: </h4>
-        <div> {movie.Plot} </div> 
+        <div> {curr_movie.Plot} </div> 
       </div> 
 
     </div>
