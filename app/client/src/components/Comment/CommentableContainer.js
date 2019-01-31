@@ -23,14 +23,16 @@ class CommentableContainer extends Component {
   
   // immutably set state for comments
   componentDidMount() {
-    // const { commentable_id, commentable_type } = this.props;
     this.setState((state, props) => {
       this.getComments();
     })
   }
 
+  // update the component if new props recieved
   componentDidUpdate(prevProps) {
-    if ( prevProps.commentable_id !== this.props.commentable_id) {
+    const { commentable_id } = this.props;
+    
+    if ( prevProps.commentable_id !== commentable_id) {
       this.getComments();
     }
   }
@@ -43,8 +45,6 @@ class CommentableContainer extends Component {
     data.commentable_type = commentable_type;
     data.user_id = curr_user.id;
 
-    // refactor:  comments have a type (from my api).  movies (OMDB) don't
-    // refactor to ask for type, if none -> 'movies'
     //   // determine rails path for commentable
     let path = commentable_type === 'Movie' ? 'movies' : 'comments'
 
@@ -66,27 +66,25 @@ class CommentableContainer extends Component {
 
   // used to populate the comments state object
   getComments() {
-    const { commentable_id, commentable_type, curr_user } = this.props;
+    const { commentable_id, commentable_type } = this.props;
 
-    // determine rails path for commentable
-    let pathType = commentable_type === 'Movie' ? 'movies' : 'comments'
+    // determine correct path for commentable
+    // not DRY duplicated in other functions
+    let path = commentable_type === 'Movie' ? 'movies' : 'comments'
 
-    return axios.get(`/api/${pathType}/${commentable_id}/comments`)
+    return axios.get(`/api/${path}/${commentable_id}/comments`)
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
-          // console.log('===>', comments, state.comments)
           return {...state, comments}
         });
         
-        // console.log('>>>>', comments, this.state.comments)
         return comments
       })
       .catch(err => {
         alert(`Err...This Movie may not be registered \n ${err}`)
         console.log('ERROR=>', err);
 
-        // reset the comments for an unregistered movie
         this.setState((state) => {
           let comments = [];
           return { ...state, comments }
