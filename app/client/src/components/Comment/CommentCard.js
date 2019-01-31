@@ -52,7 +52,7 @@ class CommentCard extends Component {
     return axios.post(`/api/comments/${comment.id}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-        this.setState({ showForm: false });
+        this.setState({ showCommentableForm: false });
         return resp.data
       })
       .catch(err => { 

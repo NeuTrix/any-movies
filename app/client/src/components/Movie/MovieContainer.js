@@ -16,13 +16,11 @@ class MovieContainer extends Component {
 
     this.state = {
       // default setting. OMDB object will override
-      movie: {
-        imdbID: 'tt0078748',
-        Title: 'Alien',
-      }, 
-      movieType: 'Movie',
+      movie: { imdbID: 'tt0078748', Title: 'Alien', }, 
+      commentableType: 'Movie',
+      commentableID: 'tt0078748',
       movieRegistered: false,
-      showForm: false,
+      showCommentableForm: false,
       // must use an exisiting user.  Will add a user object later
       userID: 1, 
       userName: "DanTastic333", 
@@ -58,7 +56,7 @@ class MovieContainer extends Component {
     return axios.post(`/api/movies/${movie.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-        this.setState({ showForm: false });
+        this.setState({ showCommentableForm: false });
         return resp.data
       })
       .catch(err => { 
@@ -112,7 +110,7 @@ class MovieContainer extends Component {
 
   // allows the addReview form to toggle on and off
   toggleReviewForm() {
-    this.setState({ showForm: !this.state.showForm });
+    this.setState({ showCommentableForm: !this.state.showCommentableForm });
   }
 
   // checks whether movie is currently in the app api database
@@ -137,7 +135,7 @@ class MovieContainer extends Component {
     return (
       <MoviePage 
         movie={this.state.movie}
-        showForm={this.state.showForm}
+        showCommentableForm={this.state.showCommentableForm}
         userName={this.state.userName}
         userID={this.state.userID}
         // functions

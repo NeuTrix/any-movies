@@ -12,7 +12,7 @@ import MovieSearchBar from './MovieSearchBar';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   movie: PropTypes.instanceOf(Object).isRequired, // OMBD api movie object
-  showForm: PropTypes.bool.isRequired,
+  showCommentableForm: PropTypes.bool.isRequired,
   userID: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
@@ -22,7 +22,7 @@ const propTypes = {
 }
 
 function MoviePage(props) {
-  const { classes, movie, showForm, userID, userName,  } = props // decon prop variables
+  const { classes, movie, showCommentableForm, userID, userName,  } = props // decon prop variables
   const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
   
   const MovieCommentForm =(
@@ -55,7 +55,7 @@ function MoviePage(props) {
       </div>
 
       <div style={{ gridArea: 'form' }}>
-        { showForm &&  MovieCommentForm } 
+        { showCommentableForm &&  MovieCommentForm } 
       </div>
       
       <div style={{ gridArea: 'movies' }} >
