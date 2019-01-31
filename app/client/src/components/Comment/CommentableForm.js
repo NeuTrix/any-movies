@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
+import Input from '@material-ui/core/Input';
+import { Button, InputLabel } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -24,9 +25,9 @@ class CommentableForm extends Component {
 		super(props)
 		this.state = {
 			// from props
-			commentable_id: '',
-			commentable_type: '',
-			user_id: '',
+			// commentable_id: '',
+			// commentable_type: '',
+			// user_id: '',
 			author: '',
 			// from form
       body: '',
@@ -36,24 +37,24 @@ class CommentableForm extends Component {
 		this.onChange = this.onChange.bind(this)
 	}
 
-	componentDidMount() {
-		const { commentable_id, commentable_type, curr_user } = this.props
-		let author = curr_user.username;
-		let user_id = curr_user.id;
-		// let commentable_id = commentable_id;
-		// let commentable_type = commentable_type;
+	// componentDidMount() {
+		// this.setState((state, props) => { 
+		// // const { commentable_id, commentable_type, curr_user } = props
+		// let author = props.curr_user.username;
+		// let user_id = props.curr_user.id;
+		// let commentable_id = props.commentable_id;
+		// let commentable_type = props.commentable_type;
 
-		this.setState(state => { 
-			// prefill the form with the current user's name
-			return {
-				...state, 
-				author,
-				commentable_id,
-				commentable_type,
-				user_id,
-			}
-		});
-	}
+		// 	// prefill the form with the current user's name
+		// 	return {
+		// 		...state, 
+		// 		author,
+		// 		commentable_id,
+		// 		commentable_type,
+		// 		user_id,
+		// 	}
+		// });
+	// }
   // update the state with form entries
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
@@ -61,12 +62,19 @@ class CommentableForm extends Component {
 	// post the review to the rails API
   onSubmit(e) {
 		e.preventDefault();
+
+		this.setState((state, props) => {
+			const { commentable_id, commentable_type, curr_user } = props
+			let author = curr_user.username;
+			let user_id = curr_user.id;
+			return { ...state, author, user_id, commentable_id, commentable_type }
+		});
 		
     this.props.addCommentable(this.state)
   }
 
 	render() {
-		const { classes, curr_user } = this.props;
+		const { classes, curr_user, commentable_id, commentable_type } = this.props;
 
 		return (
 			<FormControl
@@ -74,15 +82,16 @@ class CommentableForm extends Component {
 				component="form"
 				onSubmit={this.onSubmit}
 			>
-				<TextField
+				<Input
 					name="author"
 					label = "enter your name"
 					fullWidth
 					margin="dense"
 					onChange={this.onChange}
 					type="text"
-					value={this.state.author}
+					value={curr_user.username}
 					variant="outlined"
+					readOnly
 				/>
 
 				<TextField
@@ -106,7 +115,7 @@ class CommentableForm extends Component {
 					value={this.state.body}
 					variant="outlined"
 				/>
-
+				
         <Button component="button" type="submit" > Submit  </Button>
 
 			</FormControl>
