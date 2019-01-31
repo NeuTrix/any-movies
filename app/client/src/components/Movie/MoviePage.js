@@ -25,22 +25,32 @@ class MoviePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filteredComments: [], // comments related to this specific film
-      curr_movie: 'default',
+      commentable_id: 'default',
       commentable_type: 'default',
-      displayingCommentForm: false
+      displayingCommentForm: false,
+      filteredComments: [], // comments related to this specific film
     }
 
     this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
   }
 
 componentDidMount() {
-  const { curr_movie } = this.props;
-  let commentable_id = curr_movie.imdbID;
-  let commentable_type = "Movie";
+  const { all_comments, curr_movie, curr_user } = this.props;
+  const commentable_id = curr_movie.imdbID;
+  const commentable_type = "Movie";
+  let filteredComments = all_comments.filter(com => {
+    return com.commentable_id === commentable_id;
+  })
 
   this.setState(state => {
-    return { ...state, commentable_id, commentable_type }
+
+    return { 
+      ...state, 
+      commentable_id, 
+      commentable_type,
+      // filteredComments,
+    }
+
   })
 
   // this.props.getComments(commentable_id, commentable_type)
