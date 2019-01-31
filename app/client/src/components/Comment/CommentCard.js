@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 
 // custom components
 import CommentContainer from './CommentableContainer';
-import AddCommentableForm from "./AddCommentableForm";
+import CommentableForm from "./CommentableForm";
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
@@ -73,7 +73,7 @@ class CommentCard extends Component {
     const { showCommentForm, displaySubComments } = this.state;
 
     const CommentCommentForm =(
-      <AddCommentableForm 
+      <CommentableForm 
         author={userName} 
         addCommentable={this.addComment} 
         userID={userID}

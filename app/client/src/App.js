@@ -6,6 +6,7 @@ import MovieContainer from './components/Movie/MovieContainer';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import masterTheme from './helpers/masterTheme';
 
+// mock a current user session
 const curr_user = {
   userName: "Dantastic3339",
   userId: 1

@@ -16,7 +16,7 @@ const propTypes = {
 	userID: PropTypes.string.isRequired,
 };
 
-class AddCommentableForm extends Component {
+class CommentableForm extends Component {
 
 	constructor(props) {
 		super(props)
@@ -107,6 +107,6 @@ const styles= theme => ({
 	main: { } // place holder for styling
 });
 
-AddCommentableForm.propTypes = propTypes;
+CommentableForm.propTypes = propTypes;
 
-export default withStyles(styles)(AddCommentableForm)
+export default withStyles(styles)(CommentableForm)

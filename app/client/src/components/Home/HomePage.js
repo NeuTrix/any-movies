@@ -5,8 +5,8 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import CommentableForm from './CommentableForm';
-import CommentableContainer from './Comment/CommentableContainer';
-import MovieDisplay from './MovieDisplay';
+import CommentableContainer from './CommentableContainer';
+import MovieDisplay from '../Movie/MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
