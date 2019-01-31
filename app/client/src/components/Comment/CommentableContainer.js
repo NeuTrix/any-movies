@@ -98,18 +98,18 @@ class CommentableContainer extends Component {
  // build comment cards
     const commentsList = this.state.comments.map(comment => {
       // should consider spreading props from the parent instead
-        return ( 
-          <div key={comment.id}> 
-            <CommentCard 
-              commentable={comment} 
-              commentable_id={commentable_id}
-              commentable_type={commentable_type}
-              curr_user={curr_user}
-              addComment={this.addComment}
-            /> 
-          </div>
-        ) 
-      })
+      return ( 
+        <div key={comment.id}> 
+          <CommentCard 
+            commentable={comment} 
+            commentable_id={commentable_id}
+            commentable_type={commentable_type}
+            curr_user={curr_user}
+            addComment={this.addComment}
+          /> 
+        </div>
+      ) 
+    })
 
     return <CommentsPage commentsList={commentsList} />
   }
