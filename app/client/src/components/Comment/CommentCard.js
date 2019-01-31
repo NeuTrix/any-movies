@@ -108,7 +108,7 @@ class CommentCard extends Component {
 
         <CardActions className={classes.actions} >
           <CommentContainer
-            commentableID = { comment.id }
+            commentable_id = { comment.id }
             commentableType = "Comment" 
           />
         </CardActions>

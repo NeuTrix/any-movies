@@ -27,7 +27,7 @@ class MoviePage extends Component {
     super(props)
     this.state = {
       commentable_id: 'default',
-      commentableType: 'default',
+      commentable_type: 'default',
       displayingCommentForm: false
     }
 
@@ -36,11 +36,14 @@ class MoviePage extends Component {
 
 componentDidMount() {
   const { curr_movie } = this.props;
+  let commentable_id = curr_movie.imdbID;
+  let commentable_type = "Movie";
+
   this.setState(state => {
-    let commentable_id = curr_movie.imdbID;
-    let commentable_type = "Movie";
     return { ...state, commentable_id, commentable_type }
   })
+
+  // this.props.getComments(commentable_id, commentable_type)
 }
 
 // allows the addComment form to toggle on and off
@@ -53,13 +56,14 @@ toggleCommentableForm() {
     const { classes, comments, curr_movie, curr_user } = this.props 
     // deconstruct prop functions
     const { addComment, getMovieData, } = this.props 
-    const { displayingCommentForm, commentable_id, commentable_type } = this.state;
+    const { displayingCommentForm } = this.state;
+    const { commentable_id, commentable_type } = this.props;
     
-    const commmentsGroup = comments.map(com => {
-      return (
-        <li key={com.id} > {com.title} </li>
-      )
-    })
+    // const commmentsGroup = comments.map(com => {
+    //   return (
+    //     <li key={com.id} > {com.title} </li>
+    //   )
+    // })
 
     const p =(
       <CommentableForm 
@@ -80,7 +84,7 @@ toggleCommentableForm() {
 
         <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
           Movie Blog! 
-          {commmentsGroup} 
+          {/* {commmentsGroup}  */}
         </h1>
       
       
@@ -108,8 +112,9 @@ toggleCommentableForm() {
         
         <div style={{ gridArea: 'comments' }} >
           <CommentableContainer 
-            commentableID={curr_movie.imdbID}
-            commentableType={"Movie"}
+            comments={comments}
+            commentable_id={this.state.commentable_id}
+            commentable_type={this.state.commentable_type}
             curr_user={curr_user}
           />
         </div>

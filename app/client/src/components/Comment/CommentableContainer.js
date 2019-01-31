@@ -6,14 +6,17 @@ import CommentsList from './CommentsList';
 
 const propTypes = {
   curr_user: PropTypes.instanceOf(Object).isRequired,
-  commentableID: PropTypes.string,
-  commentableType: PropTypes.string.isRequired,
+  comments: PropTypes.instanceOf(Object).isRequired,
+  commentable_id: PropTypes.string,
+  commentable_type: PropTypes.string.isRequired,
 }
 
 class CommentableContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = { comments: [], }
+    this.state = {
+      //  comments: [], 
+      }
     // this.getComments = this.getComments.bind(this);
   }
   
@@ -22,20 +25,20 @@ class CommentableContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { commentableID, commentableType } = this.props
+    // const { commentable_id, commentable_type } = this.props
 
-    if (prevProps.commentableID !== commentableID) {
-    //  this.getComments(commentableID, commentableType)
-    }
+    // // if (prevProps.commentable_id !== commentable_id) {
+    //  this.getComments(commentable_id, commentable_type)
+    // }
   }
 
   // getComments(id, type) {
-  //   const { commentableID, commentableType } = this.props
+  //   const { commentable_id, commentable_type } = this.props
     
   //   // determine rails path for commentable
-  //   let pathType = commentableType === 'Movie' ? 'movies' : 'comments'
+  //   let pathType = commentable_type === 'Movie' ? 'movies' : 'comments'
 
-  //   return axios.get(`/api/${pathType}/${commentableID}/comments`)
+  //   return axios.get(`/api/${pathType}/${commentable_id}/comments`)
   //     .then(resp => {
   //       this.setState({ comments: resp.data }); 
   //       return resp.data
@@ -49,9 +52,10 @@ class CommentableContainer extends Component {
   // }
 
   render() {
+    const { comments, curr_user } = this.props;
     return <CommentsList 
-      comments={this.state.comments} 
-      curr_user={this.props.curr_user}
+      comments={comments} 
+      curr_user={curr_user}
     />
   }
 }

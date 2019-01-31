@@ -37,8 +37,8 @@ class CommentableForm extends Component {
 		this.setState({ 
 			// prefill the form with the current user's name
 			author: this.props.author, 
-			commentable_id: this.props.commentableID,
-			commentable_type: this.props.commentableType,
+			commentable_id: this.props.commentable_id,
+			commentable_type: this.props.commentable_type,
 			user_id: this.props.curr_user.id,
 		});
 	}

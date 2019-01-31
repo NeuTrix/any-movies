@@ -6,16 +6,16 @@ import CommentableContainer from './CommentableContainer';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
-  commentableID: PropTypes.number.isRequired,
-  commentableType: PropTypes.string.isRequired,
+  commentable_id: PropTypes.number.isRequired,
+  commentable_type: PropTypes.string.isRequired,
 }
 
 function Comment(props) {
   const {
     classes,
     comment,
-    commentableID,
-    commentableType,
+    commentable_id,
+    commentable_type,
   } = props;
   return (
     <div className={classes.main}>
@@ -26,10 +26,10 @@ function Comment(props) {
       <div> This is: {comment.id} </div>
 
        <CommentableContainer 
-          // commentableId={commentableID}
-          // commentableType={commentableType}
-          commentableId={comment.id}
-          commentableType='Comment'
+          // commentable_id={commentable_id}
+          // commentable_type={commentable_type}
+          commentable_id={comment.id}
+          commentable_type='Comment'
         />
         
     </div>

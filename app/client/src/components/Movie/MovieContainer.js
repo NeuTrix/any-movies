@@ -15,8 +15,8 @@ class MovieContainer extends Component {
     super(props)
     // set intial state for the application
     this.state = {
-      commentableID: 'tt0078748', // derived from app Api commentable object 
-      commentableType: 'Movie', // dervied from app Api commentable object
+      commentable_id: 'tt0078748', // derived from app Api commentable object 
+      commentable_type: 'Movie', // dervied from app Api commentable object
       comments:[], // comments related to current app state
 
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
