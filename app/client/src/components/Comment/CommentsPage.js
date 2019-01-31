@@ -7,7 +7,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import CommentCard from './CommentCard';
 import CommentableForm from './CommentableForm';
 
 const propTypes = {
@@ -24,18 +23,16 @@ const propTypes = {
 // some commentables may not have comments defined
 const defaultProps = {
   commentsList: [],
+  curr_user: {username:'mickeyMouse'}
 }
-
-
-
 
 class CommentsPage extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
 
     }
-
   }
 
   render() {

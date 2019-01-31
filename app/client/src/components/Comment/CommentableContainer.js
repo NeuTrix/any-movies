@@ -115,7 +115,7 @@ class CommentableContainer extends Component {
             commentable_id={commentable_id}
             commentable_type={commentable_type}
             curr_user={curr_user}
-            /> 
+          /> 
         </div>
       ) 
     })

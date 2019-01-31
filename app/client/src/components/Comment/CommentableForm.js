@@ -57,7 +57,7 @@ class CommentableForm extends Component {
   }
 
 	render() {
-		const { classes } = this.props;
+		const { classes, curr_user } = this.props;
 
 		return (
 			<FormControl
@@ -98,7 +98,7 @@ class CommentableForm extends Component {
 					variant="outlined"
 				/>
 
-        <Button component="button" type="submit" > Submit </Button>
+        <Button component="button" type="submit" > Submit  </Button>
 
 			</FormControl>
 		)
