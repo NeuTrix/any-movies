@@ -38,12 +38,12 @@ class CommentableContainer extends Component {
   }
 
   addComment(data) {
-    const { commentable_id, commentable_type, curr_user } = this.props;
     
     // update the data object with required fields
-    data.commentable_id = commentable_id;
-    data.commentable_type = commentable_type;
-    data.user_id = curr_user.id;
+    let commentable_id = data.commentable_id
+    let commentable_type = data.commentable_type
+    // data.commentable_type = commentable_type;
+    // data.user_id = curr_user.id;
 
     //   // determine rails path for commentable
     let path = commentable_type === 'Movie' ? 'movies' : 'comments'
