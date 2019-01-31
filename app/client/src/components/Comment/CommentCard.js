@@ -16,12 +16,16 @@ import Typography from '@material-ui/core/Typography';
 import CommentContainer from './CommentableContainer';
 import CommentableForm from "./CommentableForm";
 
+// should consider spreading props from the parent instead 
 const propTypes = {
-  classes: PropTypes.instanceOf(Object).isRequired,
-  comment: PropTypes.instanceOf(Object).isRequired,
-  userID: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  classes: PropTypes.instanceOf(Object).isRequired, // material UI
+  comments: PropTypes.instanceOf(Array), // from commentable
+  commentable_id: PropTypes.string.isRequired,
+  commentable_type: PropTypes.string.isRequired,
+  curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
 }
+
+
 
 class CommentCard extends Component {
 
@@ -31,6 +35,7 @@ class CommentCard extends Component {
       displaySubComments: true,
       showCommentForm: false,
     }
+
     this.addComment = this.addComment.bind(this);
     this.toggleSubComments = this.toggleSubComments.bind(this);
     this.toggleCommentForm = this.toggleCommentForm.bind(this);
@@ -42,17 +47,17 @@ class CommentCard extends Component {
   }
 
   addComment(data) {
-    const { comment, userID, username } = this.props;
+    const { commentable, curr_user } = this.props;
 
     // update the data object with required fields. The rest is in the form data
-    data.commentable_id = comment.id;
-    data.commentable_type = 'Comment';
-    data.user_id = userID;
+    data.commentable_id = commentable.id;
+    data.commentable_type = commentable.type === 'Comment' || 'Movie';
+    data.user_id = curr_user.id;
 
-    return axios.post(`/api/comments/${comment.id}/comments`, data)
+    return axios.post(`/api/comments/${commentable.id}/comments`, data)
       .then(resp => {
-        alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ showCommentableForm: false });
+        alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         return resp.data
       })
       .catch(err => { 
@@ -69,14 +74,14 @@ class CommentCard extends Component {
   }
 
   render() {  
-    const { classes, comment, username, userID } = this.props;
+    const { classes, commentable, curr_user} = this.props;
     const { showCommentForm, displaySubComments } = this.state;
 
     const CommentCommentForm =(
       <CommentableForm 
-        author={username} 
+        curr_user={curr_user}
+        commentable={commentable}
         addCommentable={this.addComment} 
-        userID={userID}
       /> 
     )
 
@@ -86,18 +91,18 @@ class CommentCard extends Component {
         <CardContent>
 
           <Typography variant="subtitle" component="h2">
-            { comment.title}
+            { commentable.title}
           </Typography>
 
           <Typography className={classes.title} color="textSecondary" gutterBottom>
           </Typography>
 
           <Typography className={classes.pos} color="textSecondary">
-            by: { comment.author }
+            by: { commentable.author }
           </Typography>
 
           <Typography variant="body1" component="p">
-            { comment.body }
+            { commentable.body }
           </Typography>
 
         </CardContent>
@@ -108,7 +113,7 @@ class CommentCard extends Component {
 
         <CardActions className={classes.actions} >
           <CommentContainer
-            commentable_id = { comment.id }
+            commentable_id = { commentable.id }
             commentableType = "Comment" 
           />
         </CardActions>

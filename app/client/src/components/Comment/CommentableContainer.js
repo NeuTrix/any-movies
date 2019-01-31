@@ -38,12 +38,12 @@ class CommentableContainer extends Component {
   }
 
   addComment(data) {
+    const { commentable_id, commentable_type , curr_user} = this.props;
     
     // update the data object with required fields
-    let commentable_id = data.commentable_id
-    let commentable_type = data.commentable_type
-    // data.commentable_type = commentable_type;
-    // data.user_id = curr_user.id;
+    data.commentable_id = commentable_id;
+    data.commentable_type = commentable_type;
+    data.user_id = curr_user.id;
 
     //   // determine rails path for commentable
     let path = commentable_type === 'Movie' ? 'movies' : 'comments'
@@ -93,8 +93,13 @@ class CommentableContainer extends Component {
   }
 
    render() {
-    const { comments, curr_user } = this.state;
-    return <CommentsList comments={comments} curr_user={curr_user} />
+    const { commentable_id, commentable_type,  curr_user } = this.props;
+    return <CommentsList 
+      comments={this.state.comments} 
+      commentable_id={commentable_id}
+      commentable_type={commentable_type}
+      curr_user={curr_user} 
+      />
   }
 }
 

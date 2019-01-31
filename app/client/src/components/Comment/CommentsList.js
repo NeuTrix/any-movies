@@ -11,8 +11,10 @@ import CommentCard from './CommentCard';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
-  curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
   comments: PropTypes.instanceOf(Array), // from commentable
+  commentable_id: PropTypes.string.isRequired,
+  commentable_type: PropTypes.string.isRequired,
+  curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
 }
 
 // some commentables may not have comments defined
@@ -21,13 +23,23 @@ const defaultProps = {
 }
 
 function CommentsList(props) {
-  const { classes, comments, curr_user } = props;
+  const {
+    classes,
+    comments,
+    commentable_id,
+    commentable_type,
+    curr_user,
+  } = props;
 
-   const commentsList = comments.map(comment => {
+  // build comment cards
+  const commentsList = comments.map(comment => {
+    // should consider spreading props from the parent instead
       return ( 
         <div key={comment.id}> 
           <CommentCard 
-            comment={comment} 
+            commentable={comment} 
+            commentable_id={commentable_id}
+            commentable_type={commentable_type}
             curr_user={props.curr_user}
           /> 
         </div>

@@ -36,9 +36,9 @@ class CommentableForm extends Component {
 	componentDidMount() {
 		const { commentable, curr_user } = this.props
 		let author = curr_user.username;
-		commentable_id: this.props.commentable_id,
-		commentable_type: this.props.commentable_type,
-		user_id: this.props.curr_user.id,
+		// commentable_id: this.props.commentable_id,
+		// commentable_type: this.props.commentable_type,
+		// user_id: this.props.curr_user.id,
 
 		this.setState({ 
 			// prefill the form with the current user's name
