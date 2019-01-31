@@ -11,13 +11,12 @@ import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
-  comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
+  all_comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
   // ===> functions
-  
-  getComments: PropTypes.func.isRequired, // adds a new review instance to api
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
+  getComments: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for curr_movie
 }
 
@@ -26,7 +25,8 @@ class MoviePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      commentable_id: 'default',
+      filteredComments: [], // comments related to this specific film
+      curr_movie: 'default',
       commentable_type: 'default',
       displayingCommentForm: false
     }

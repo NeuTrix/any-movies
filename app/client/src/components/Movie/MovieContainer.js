@@ -15,7 +15,7 @@ class MovieContainer extends Component {
     super(props)
     // set intial state for the application
     this.state = {
-      comments: [], // comments related to current app state
+      comments: [], // all (unfiltered) comments in the current app state
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: '', // mock, recieved from props
       movieRegistered: false, // is movie in our current app db as well
@@ -179,7 +179,7 @@ class MovieContainer extends Component {
     return (
       <MoviePage 
         // objects
-        comments={comments}
+        all_comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}
         // functions
