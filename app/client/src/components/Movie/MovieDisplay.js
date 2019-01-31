@@ -8,7 +8,7 @@ const propTypes = {
   movie: PropTypes.instanceOf(Object).isRequired,
 }
 
-function MoviePage(props) {
+function MovieDisplay(props) {
 
   const { classes, movie } = props
   
@@ -136,6 +136,6 @@ const styles = theme => ({
   }
 })
 
-MoviePage.propTypes = propTypes;
+MovieDisplay.propTypes = propTypes;
 
-export default withStyles(styles)(MoviePage)
+export default withStyles(styles)(MovieDisplay)

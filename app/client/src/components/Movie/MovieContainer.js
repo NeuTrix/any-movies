@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 // import shortid from 'shortid';
 import { url_movie_data} from '../helpers/api.helper';
-import HomePage from './HomePage';
+import MoviePage from './MoviePage';
 
 const propTypes = { 
-  bugger: PropTypes.bool.isRequired, // test to see if can stimlate preState
+  curr_user: PropTypes.instanceOf(Object).isRequired, 
 }
 
 class MovieContainer extends Component {
@@ -135,7 +135,7 @@ class MovieContainer extends Component {
   render() {
     
     return (
-      <HomePage 
+      <MoviePage 
         movie={this.state.movie}
         showForm={this.state.showForm}
         userName={this.state.userName}

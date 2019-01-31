@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import AddCommentableForm from './AddCommentableForm';
 import CommentableContainer from './CommentableContainer';
-import MoviePage from '../Movie/MoviePage';
+import MovieDisplay from '../Movie/MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
@@ -21,7 +21,7 @@ const propTypes = {
   toggleReviewForm: PropTypes.func.isRequired, // toggles the addReviewForm 
 }
 
-function HomePage(props) {
+function MoviePage(props) {
   const { classes, movie, showForm, userID, userName,  } = props // decon prop variables
   const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
   
@@ -59,7 +59,7 @@ function HomePage(props) {
       </div>
       
       <div style={{ gridArea: 'movies' }} >
-        <MoviePage movie={movie} posterUrl={movie.Poster}/>
+        <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
       </div>
       
       <div style={{ gridArea: 'comments' }} >
@@ -95,6 +95,6 @@ const styles = theme => ({
   }
 })
 
-HomePage.propTypes = propTypes;
+MoviePage.propTypes = propTypes;
 
-export default withStyles(styles)(HomePage)
+export default withStyles(styles)(MoviePage)
