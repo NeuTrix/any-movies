@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import CommentsList from './CommentsList';
+import CommentsPage from './CommentsPage';
 
 const propTypes = {
   commentable_id: PropTypes.string.isRequired,
@@ -94,13 +94,13 @@ class CommentableContainer extends Component {
 
    render() {
     const { commentable_id, commentable_type,  curr_user } = this.props;
-    return <CommentsList
+    return <CommentsPage
      
       comments={this.state.comments} 
       commentable_id={commentable_id}
       commentable_type={commentable_type}
       curr_user={curr_user} 
-      />
+    />
   }
 }
 
