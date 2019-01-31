@@ -66,27 +66,27 @@ class CommentableContainer extends Component {
     // determine rails path for commentable
     let pathType = commentable_type === 'Movie' ? 'movies' : 'comments'
 
-    // return axios.get(`/api/${pathType}/${commentable_id}/comments`)
-    //   .then(resp => {
-    //     let comments = resp.data;
-    //     this.setState((state) => {
-    //       console.log('===>',comments, state.comments)
-    //       return {...state, comments}
-    //     });
+    return axios.get(`/api/${pathType}/${commentable_id}/comments`)
+      .then(resp => {
+        let comments = resp.data;
+        this.setState((state) => {
+          console.log('===>',comments, state.comments)
+          return {...state, comments}
+        });
         
-    //     console.log('>>>>', comments, this.state.comments)
-    //     return comments
-    //   })
-    //   .catch(err => {
-    //     alert(`Err...This Movie may not be registered \n ${err}`)
-    //     console.log('ERROR=>', err);
+        console.log('>>>>', comments, this.state.comments)
+        return comments
+      })
+      .catch(err => {
+        alert(`Err...This Movie may not be registered \n ${err}`)
+        console.log('ERROR=>', err);
 
-    //     // reset the comments for an unregistered movie
-    //     this.setState((state) => {
-    //       let comments = [];
-    //       return { ...state, comments }
-    //     });
-    //   })
+        // reset the comments for an unregistered movie
+        this.setState((state) => {
+          let comments = [];
+          return { ...state, comments }
+        });
+      })
   }
 
    render() {
