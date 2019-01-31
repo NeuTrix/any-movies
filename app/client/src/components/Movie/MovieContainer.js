@@ -1,9 +1,9 @@
 // container to gather movie logic
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 // import shortid from 'shortid';
-import { url_movie_data} from '../helpers/api.helper';
+import { url_movie_data } from '../../helpers/api.helper';
 import MoviePage from './MoviePage';
 
 const propTypes = { 
