@@ -11,7 +11,7 @@ import CommentCard from './CommentCard';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
-  comments: PropTypes.instanceOf(Array), // from commentable
+  commentsList: PropTypes.instanceOf(Array), // from commentable
   commentable_id: PropTypes.string.isRequired,
   commentable_type: PropTypes.string.isRequired,
   curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
@@ -23,41 +23,25 @@ const defaultProps = {
 }
 
 function CommentsPage(props) {
-  const {
-    classes,
-    comments,
-    commentable_id,
-    commentable_type,
-    curr_user,
-  } = props;
-
-  // build comment cards
-  const commentsList = comments.map(comment => {
-    // should consider spreading props from the parent instead
-      return ( 
-        <div key={comment.id}> 
-          <CommentCard 
-            commentable={comment} 
-            commentable_id={commentable_id}
-            commentable_type={commentable_type}
-            curr_user={props.curr_user}
-          /> 
-        </div>
-      ) 
-    })
+  const { classes, commentsList } = props;
       
   return (
     <div className={classes.root}>
+  
       <ExpansionPanel>
+
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>
             Show Comments: {commentsList.length} 
           </Typography>
         </ExpansionPanelSummary>
+
         <ExpansionPanelDetails>
           <div className={classes.list} > { commentsList } </div>
         </ExpansionPanelDetails>
+
       </ExpansionPanel>
+      
     </div>
   );
 }

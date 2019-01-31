@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CommentsPage from './CommentsPage';
+import CommentCard from './CommentCard';
 
 const propTypes = {
   commentable_id: PropTypes.string.isRequired,
@@ -94,13 +95,23 @@ class CommentableContainer extends Component {
 
    render() {
     const { commentable_id, commentable_type,  curr_user } = this.props;
-    return <CommentsPage
-     
-      comments={this.state.comments} 
-      commentable_id={commentable_id}
-      commentable_type={commentable_type}
-      curr_user={curr_user} 
-    />
+ // build comment cards
+    const commentsList = this.state.comments.map(comment => {
+      // should consider spreading props from the parent instead
+        return ( 
+          <div key={comment.id}> 
+            <CommentCard 
+              commentable={comment} 
+              commentable_id={commentable_id}
+              commentable_type={commentable_type}
+              curr_user={curr_user}
+              addComment={this.addComment}
+            /> 
+          </div>
+        ) 
+      })
+
+    return <CommentsPage commentsList={commentsList} />
   }
 }
 
