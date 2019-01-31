@@ -17,7 +17,7 @@ class MovieContainer extends Component {
     this.state = {
       commentable_id: 'tt0078748', // derived from app Api commentable object 
       commentable_type: 'Movie', // dervied from app Api commentable object
-      comments:[], // comments related to current app state
+      comments: [], // comments related to current app state
 
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: '', // mock, recieved from props
@@ -31,10 +31,12 @@ class MovieContainer extends Component {
     this.registerMovie = this.registerMovie.bind(this);
   }
   
+  // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
-    this.getMovieData(this.state.curr_movie.Title);
-    // immutably set state with curr_user props
     this.setState((state, props) => {
+      const { commentable_id, commentable_type, curr_movie} = state;
+      this.getMovieData(curr_movie.Title);
+      this.getComments(commentable_id, commentable_type);
       let curr_user = props.curr_user
       return { ...state, curr_user }
     })
@@ -77,13 +79,15 @@ class MovieContainer extends Component {
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
+          // console.log(comments, state.comments)
           return {...state, comments}
         });
-
+        
+        console.log(comments, this.state.comments)
         return comments
       })
       .catch(err => {
-        alert(`This Movie may not be registered \n ${err}`)
+        alert(`Err...This Movie may not be registered \n ${err}`)
         console.log('ERROR=>', err);
 
         // reset the comments for an unregistered movie
@@ -156,7 +160,7 @@ class MovieContainer extends Component {
   render() {
     // deconstruct state objects
     const { curr_movie, curr_user, comments } = this.state
-    
+    // console.log(this.state)
     return (
       <MoviePage 
         // objects
