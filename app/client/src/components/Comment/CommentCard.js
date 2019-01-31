@@ -25,8 +25,6 @@ const propTypes = {
   curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
 }
 
-
-
 class CommentCard extends Component {
 
   constructor(props) {

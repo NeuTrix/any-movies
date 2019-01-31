@@ -94,7 +94,8 @@ class CommentableContainer extends Component {
 
    render() {
     const { commentable_id, commentable_type,  curr_user } = this.props;
-    return <CommentsList 
+    return <CommentsList
+     
       comments={this.state.comments} 
       commentable_id={commentable_id}
       commentable_type={commentable_type}
