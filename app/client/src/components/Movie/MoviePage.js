@@ -59,15 +59,11 @@ toggleCommentableForm() {
     const { displayingCommentForm } = this.state;
     const { commentable_id, commentable_type } = this.props;
     
-    // const commmentsGroup = comments.map(com => {
-    //   return (
-    //     <li key={com.id} > {com.title} </li>
-    //   )
-    // })
-
-    const p =(
+    const commentableForm = (
+      // generate commentable form for current movie
       <CommentableForm 
         addCommentable={addComment} 
+        commetnable={curr_movie}
         curr_user={curr_user}
       /> 
     )
@@ -84,9 +80,7 @@ toggleCommentableForm() {
 
         <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
           Movie Blog! 
-          {/* {commmentsGroup}  */}
         </h1>
-      
       
         <div className={classes.actions} style={{ gridArea: 'addComment' }}>
           <Button 
@@ -103,7 +97,7 @@ toggleCommentableForm() {
         </div>
 
         <div style={{ gridArea: 'form' }}>
-          { displayingCommentForm &&  p } 
+          { displayingCommentForm &&  commentableForm } 
         </div>
         
         <div style={{ gridArea: 'movies' }} >
