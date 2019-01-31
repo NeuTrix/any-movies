@@ -41,7 +41,7 @@ onSubmit(e) {
 				onSubmit={this.onSubmit}
 			>
 				<TextField
-					label = "enter curr_movie title"
+					label = "enter movie title"
 					fullWidth
 					margin="dense"
 					name="searchTerm"

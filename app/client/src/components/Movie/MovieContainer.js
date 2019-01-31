@@ -13,17 +13,15 @@ const propTypes = {
 class MovieContainer extends Component {
   constructor(props) {
     super(props)
-
+    // set intial state for the application
     this.state = {
-      // default setting. OMDB object will override
-      curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, 
-      commentableType: 'Movie',
-      commentableID: 'tt0078748',
-      movieRegistered: false,
-      showCommentableForm: false,
-      cur_user: '',
-      userID: 1, 
-      userName: "DanTastic333", 
+      commentableID: 'tt0078748', // derived from app Api commentable object 
+      commentableType: 'Movie', // dervied from app Api commentable object
+      comments:[], // comments related to current app state
+      curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
+      curr_user: '', // mock, recieved from props
+      movieRegistered: false, // is movie in our current app db as well
+      showCommentableForm: false, // for new/edit views
     }
 
     this.addReview = this.addReview.bind(this);
@@ -31,11 +29,16 @@ class MovieContainer extends Component {
     this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
     this.toggleReviewForm = this.toggleReviewForm.bind(this);
+    this.getCommentableComments = this.getCommentableComments.bind(this)
   }
   
-  // set initial rednering of the page to default
   componentDidMount() {
     this.getMovieData(this.state.curr_movie.Title);
+    // immutably set state with curr_user props
+    this.setState((state, props) => {
+      let curr_user = props.curr_user
+      return { ...state, curr_user }
+    })
   }
 
   // adds a new review for the currently displayed Movie
@@ -65,6 +68,10 @@ class MovieContainer extends Component {
       })
   }
 
+  // used to populate the comments state object
+  getCommentableComments(id, type) {
+    // code it up!!!
+  }
   // retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
 
@@ -138,6 +145,7 @@ class MovieContainer extends Component {
         showCommentableForm={this.state.showCommentableForm}
         userName={this.state.userName}
         userID={this.state.userID}
+        curr_user={this.state.curr_user}
         // functions
         addReview={this.addReview}
         getMovieData={this.getMovieData}
