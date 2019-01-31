@@ -14,7 +14,6 @@ const propTypes = {
   comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
-  displayingCommentForm: PropTypes.bool.isRequired, 
   // ===> functions
   
   getComments: PropTypes.func.isRequired, // adds a new review instance to api
@@ -27,11 +26,22 @@ class MoviePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      commentable_id: 'default',
+      commentableType: 'default',
       displayingCommentForm: false
     }
 
     this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
   }
+
+componentDidMount() {
+  const { curr_movie } = this.props;
+  this.setState(state => {
+    let commentable_id = curr_movie.imdbID;
+    let commentable_type = "Movie";
+    return { ...state, commentable_id, commentable_type }
+  })
+}
 
 // allows the addComment form to toggle on and off
 toggleCommentableForm() {
@@ -43,7 +53,7 @@ toggleCommentableForm() {
     const { classes, comments, curr_movie, curr_user } = this.props 
     // deconstruct prop functions
     const { addComment, getMovieData, } = this.props 
-    const { displayingCommentForm } = this.state;
+    const { displayingCommentForm, commentable_id, commentable_type } = this.state;
     
     const commmentsGroup = comments.map(com => {
       return (
@@ -63,7 +73,7 @@ toggleCommentableForm() {
 
         <Button 
           variant="contained"
-          onClick={() => this.props.getComments(curr_movie.imdbID, "Movie")}
+          onClick={() => this.props.getComments(commentable_id, commentable_type)}
         >  
           Get Comments
         </Button>
@@ -74,7 +84,7 @@ toggleCommentableForm() {
         </h1>
       
       
-        {/* <div className={classes.actions} style={{ gridArea: 'addComment' }}>
+        <div className={classes.actions} style={{ gridArea: 'addComment' }}>
           <Button 
             variant="contained" 
             color="primary" 
@@ -102,7 +112,7 @@ toggleCommentableForm() {
             commentableType={"Movie"}
             curr_user={curr_user}
           />
-        </div> */}
+        </div>
       </div>
     )
   }

@@ -21,7 +21,6 @@ class MovieContainer extends Component {
 
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: '', // mock, recieved from props
-      displayingCommentForm: false, // for new/edit views
       movieRegistered: false, // is movie in our current app db as well
     }
 
@@ -156,7 +155,7 @@ class MovieContainer extends Component {
 
   render() {
     // deconstruct state objects
-    const { curr_movie, curr_user, comments, displayingCommentForm } = this.state
+    const { curr_movie, curr_user, comments } = this.state
     
     return (
       <MoviePage 
@@ -164,7 +163,6 @@ class MovieContainer extends Component {
         comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}
-        displayingCommentForm={displayingCommentForm}
         // functions
         addComment={this.addComment}
         getComments={this.getComments}
