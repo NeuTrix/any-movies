@@ -65,12 +65,12 @@ toggleCommentableForm() {
     const { displayingCommentForm } = this.state;
     // const { commentable_id, commentable_type } = this.props;
     
+    // generate commentable form for current movie
     const commentableForm = (
-      // generate commentable form for current movie
       <CommentableForm 
-        addCommentable={addComment} 
         commentable={curr_movie}
         curr_user={curr_user}
+        addCommentable={addComment} 
       /> 
     )
 
@@ -105,6 +105,7 @@ toggleCommentableForm() {
         
         <div style={{ gridArea: 'comments' }} >
           <CommentableContainer 
+            commentable={curr_movie}
             commentable_id={curr_movie.imdbID}
             commentable_type={"Movie"}
             curr_user={curr_user}

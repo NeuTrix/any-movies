@@ -6,6 +6,7 @@ import CommentsPage from './CommentsPage';
 import CommentCard from './CommentCard';
 
 const propTypes = {
+	commentable: PropTypes.instanceOf(Object).isRequired, // movie or comment obj
   commentable_id: PropTypes.string.isRequired,
   commentable_type: PropTypes.string.isRequired,
   curr_user: PropTypes.instanceOf(Object).isRequired,
@@ -20,6 +21,8 @@ class CommentableContainer extends Component {
 
     this.addComment = this.addComment.bind(this);
     this.getComments = this.getComments.bind(this)
+    // this.editComment = this.editComment.bind(this)
+    // this.deleteComment = this.deleteComment.bind(this)
   }
   
   // immutably set state for comments
@@ -94,8 +97,15 @@ class CommentableContainer extends Component {
   }
 
    render() {
-    const { commentable_id, commentable_type,  curr_user } = this.props;
- // build comment cards
+    //  dconstruct props
+    const { 
+      commentable, 
+      commentable_id, 
+      commentable_type,  
+      curr_user 
+    } = this.props;
+ 
+    // build comment cards
     const commentsList = this.state.comments.map(comment => {
       // should consider spreading props from the parent instead
       return ( 
@@ -105,13 +115,19 @@ class CommentableContainer extends Component {
             commentable_id={commentable_id}
             commentable_type={commentable_type}
             curr_user={curr_user}
-            addComment={this.addComment}
-          /> 
+            /> 
         </div>
       ) 
     })
-
-    return <CommentsPage commentsList={commentsList} />
+    
+    return (
+      <CommentsPage 
+        commentable={commentable} 
+        commentsList={commentsList} 
+        curr_user={curr_user} 
+        addComment={this.addComment} // for form execution
+      />
+    )
   }
 }
 
