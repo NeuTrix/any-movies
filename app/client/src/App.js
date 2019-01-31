@@ -8,7 +8,7 @@ import masterTheme from './helpers/masterTheme';
 
 // mock a current user session
 const curr_user = {
-  userName: "Dantastic3339",
+  username: "Dantastic3339",
   id: "1",
 }
 

@@ -13,7 +13,7 @@ const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comments: PropTypes.instanceOf(Array).isRequired,
   userID: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
 function CommentsList(props) {
@@ -25,7 +25,7 @@ function CommentsList(props) {
           <CommentCard 
             comment={comment} 
             userID={props.userID}
-            userName={props.userName}
+            username={props.username}
           /> 
         </div>
       ) 

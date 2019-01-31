@@ -20,7 +20,7 @@ const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   comment: PropTypes.instanceOf(Object).isRequired,
   userID: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
 class CommentCard extends Component {
@@ -42,7 +42,7 @@ class CommentCard extends Component {
   }
 
   addComment(data) {
-    const { comment, userID, userName } = this.props;
+    const { comment, userID, username } = this.props;
 
     // update the data object with required fields. The rest is in the form data
     data.commentable_id = comment.id;
@@ -69,12 +69,12 @@ class CommentCard extends Component {
   }
 
   render() {  
-    const { classes, comment, userName, userID } = this.props;
+    const { classes, comment, username, userID } = this.props;
     const { showCommentForm, displaySubComments } = this.state;
 
     const CommentCommentForm =(
       <CommentableForm 
-        author={userName} 
+        author={username} 
         addCommentable={this.addComment} 
         userID={userID}
       /> 
