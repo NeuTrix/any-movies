@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import AddCommentableForm from './AddCommentableForm';
 import CommentableContainer from './CommentableContainer';
-import MovieDisplay from './MovieDisplay';
+import MoviePage from '../Movie/MoviePage';
 import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
@@ -59,7 +59,7 @@ function HomePage(props) {
       </div>
       
       <div style={{ gridArea: 'movies' }} >
-        <MovieDisplay movie={movie} posterUrl={movie.Poster}/>
+        <MoviePage movie={movie} posterUrl={movie.Poster}/>
       </div>
       
       <div style={{ gridArea: 'comments' }} >
