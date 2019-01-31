@@ -36,7 +36,7 @@ class MovieContainer extends Component {
       this.getMovieData(curr_movie.Title);
 
       let curr_user = props.curr_user
-      this.getComments(curr_movie.imdbID, "Movie");
+      this.getComments();
       return { ...state, curr_user }
     })
   }
@@ -61,7 +61,7 @@ class MovieContainer extends Component {
   addComment(data) {
     const { curr_movie, movieType, userID, movieRegistered } = this.state;
 
-    // veerify registration for movie comments only. (not comments/comments)
+    // verify registration for movie comments only. (not comments/comments)
     if (!movieRegistered) {
       this.registerMovie();
     }
@@ -83,12 +83,10 @@ class MovieContainer extends Component {
   }
 
   // used to populate the comments state object
-  getComments(id, type) {
-
-    // determine rails path for commentable
-    let pathType = type === 'Movie' ? 'movies' : 'comments'
-
-    return axios.get(`/api/${pathType}/${id}/comments`)
+  getComments() {
+    const { curr_movie } = this.state;
+    console.log(curr_movie.imdbID)
+    return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
