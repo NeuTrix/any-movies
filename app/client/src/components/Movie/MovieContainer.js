@@ -18,17 +18,18 @@ class MovieContainer extends Component {
       commentableID: 'tt0078748', // derived from app Api commentable object 
       commentableType: 'Movie', // dervied from app Api commentable object
       comments:[], // comments related to current app state
+
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: '', // mock, recieved from props
+      displayingCommentForm: false, // for new/edit views
       movieRegistered: false, // is movie in our current app db as well
-      displayingAddCommentForm: false, // for new/edit views
     }
 
     this.addComment = this.addComment.bind(this);
+    this.getComments = this.getComments.bind(this)
     this.getMovieData = this.getMovieData.bind(this);
     this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
-    this.getCommentableComments = this.getCommentableComments.bind(this)
   }
   
   componentDidMount() {
@@ -58,7 +59,7 @@ class MovieContainer extends Component {
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-        this.setState({ displayingAddCommentForm: false });
+        this.setState({ displayingCommentForm: false });
         return resp.data
       })
       .catch(err => { 
@@ -68,8 +69,30 @@ class MovieContainer extends Component {
   }
 
   // used to populate the comments state object
-  getCommentableComments(id, type) {
-    // code it up!!!
+  getComments(id, type) {
+
+    // determine rails path for commentable
+    let pathType = type === 'Movie' ? 'movies' : 'comments'
+
+    return axios.get(`/api/${pathType}/${id}/comments`)
+      .then(resp => {
+        let comments = resp.data;
+        this.setState((state) => {
+          return {...state, comments}
+        });
+
+        return comments
+      })
+      .catch(err => {
+        alert(`This Movie may not be registered \n ${err}`)
+        console.log('ERROR=>', err);
+
+        // reset the comments for an unregistered movie
+        this.setState((state) => {
+          let comments = [];
+          return { ...state, comments }
+        });
+      })
   }
   // retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
@@ -133,17 +156,18 @@ class MovieContainer extends Component {
 
   render() {
     // deconstruct state objects
-    const { curr_movie, curr_user, comments, displayingAddCommentForm } = this.state
+    const { curr_movie, curr_user, comments, displayingCommentForm } = this.state
     
     return (
       <MoviePage 
         // objects
+        comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}
-        displayingAddCommentForm={displayingAddCommentForm}
-        comments={comments}
+        displayingCommentForm={displayingCommentForm}
         // functions
         addComment={this.addComment}
+        getComments={this.getComments}
         getMovieData={this.getMovieData}
       />
     )

@@ -11,10 +11,13 @@ import MovieSearchBar from './MovieSearchBar';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
+  comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
-  displayingAddCommentForm: PropTypes.bool.isRequired, 
+  displayingCommentForm: PropTypes.bool.isRequired, 
   // ===> functions
+  
+  getComments: PropTypes.func.isRequired, // adds a new review instance to api
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for curr_movie
 }
@@ -24,7 +27,7 @@ class MoviePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayingAddCommentForm: false
+      displayingCommentForm: false
     }
 
     this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
@@ -32,18 +35,23 @@ class MoviePage extends Component {
 
 // allows the addComment form to toggle on and off
 toggleCommentableForm() {
-  this.setState({ displayingAddCommentForm: !this.state.displayingAddCommentForm });
+  this.setState({ displayingCommentForm: !this.state.displayingCommentForm });
 }
 
   render() {  
-
     // deconstruct prop objects
-    const { classes, curr_movie, curr_user } = this.props 
+    const { classes, comments, curr_movie, curr_user } = this.props 
     // deconstruct prop functions
     const { addComment, getMovieData, } = this.props 
-    const { displayingAddCommentForm } = this.state;
+    const { displayingCommentForm } = this.state;
     
-    const MovieCommentForm =(
+    const commmentsGroup = comments.map(com => {
+      return (
+        <li key={com.id} > {com.title} </li>
+      )
+    })
+
+    const p =(
       <CommentableForm 
         addCommentable={addComment} 
         curr_user={curr_user}
@@ -53,11 +61,20 @@ toggleCommentableForm() {
     return (
       <div className={classes.grid}>
 
+        <Button 
+          variant="contained"
+          onClick={() => this.props.getComments(curr_movie.imdbID, "Movie")}
+        >  
+          Get Comments
+        </Button>
+
         <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
           Movie Blog! 
+          {commmentsGroup} 
         </h1>
       
-        <div className={classes.actions} style={{ gridArea: 'addComment' }}>
+      
+        {/* <div className={classes.actions} style={{ gridArea: 'addComment' }}>
           <Button 
             variant="contained" 
             color="primary" 
@@ -72,7 +89,7 @@ toggleCommentableForm() {
         </div>
 
         <div style={{ gridArea: 'form' }}>
-          { displayingAddCommentForm &&  MovieCommentForm } 
+          { displayingCommentForm &&  p } 
         </div>
         
         <div style={{ gridArea: 'movies' }} >
@@ -85,7 +102,7 @@ toggleCommentableForm() {
             commentableType={"Movie"}
             curr_user={curr_user}
           />
-        </div>
+        </div> */}
       </div>
     )
   }
