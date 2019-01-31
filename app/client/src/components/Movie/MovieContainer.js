@@ -15,10 +15,7 @@ class MovieContainer extends Component {
     super(props)
     // set intial state for the application
     this.state = {
-      commentable_id: 'tt0078748', // derived from app Api commentable object 
-      commentable_type: 'Movie', // dervied from app Api commentable object
       comments: [], // comments related to current app state
-
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: '', // mock, recieved from props
       movieRegistered: false, // is movie in our current app db as well
@@ -34,16 +31,28 @@ class MovieContainer extends Component {
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
     this.setState((state, props) => {
-      const { commentable_id, commentable_type, curr_movie} = state;
+      const { curr_movie } = state;
+
       this.getMovieData(curr_movie.Title);
-      this.getComments(commentable_id, commentable_type);
+
       let curr_user = props.curr_user
+      this.getComments(curr_movie.imdbID, "Movie");
       return { ...state, curr_user }
     })
   }
 
-  componentDidUpdate() {
-    
+  componentDidUpdate(prevProps, prevState) {
+
+// console.log(prevProps)
+    // this.setState((state, props) => {
+    //   const { curr_movie } = state;
+
+    //   this.getMovieData(curr_movie.Title);
+
+    //   let curr_user = props.curr_user
+    //   this.getComments(curr_movie.imdbID, "Movie");
+    //   return { ...state, curr_user }
+    // })
   }
 
   // adds a new review for the currently displayed Movie
@@ -87,7 +96,7 @@ class MovieContainer extends Component {
           return {...state, comments}
         });
         
-        console.log(comments, this.state.comments)
+        // console.log(comments, this.state.comments)
         return comments
       })
       .catch(err => {
@@ -113,6 +122,8 @@ class MovieContainer extends Component {
         } 
         // verify whether movie is in my api
         this.validateMovieRegistration()
+        this.getComments(data.imdbID, "Movie");
+        
         // update the state movie object (with OMDB curr_movie)
         this.setState({ curr_movie: data })
       })

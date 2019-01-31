@@ -53,7 +53,7 @@ class CommentableContainer extends Component {
 
   render() {
     const { comments, curr_user } = this.props;
-    console.log(comments)
+    // console.log(comments)
     return <CommentsList 
       comments={comments} 
       curr_user={curr_user}
