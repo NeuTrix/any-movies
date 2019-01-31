@@ -14,19 +14,25 @@ class CommentableContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      comments: [], // all (unfiltered) comments in the current app state
+      comments: [], // generated comments for this instance
     }
 
     this.addComment = this.addComment.bind(this);
     this.getComments = this.getComments.bind(this)
   }
   
-  // immutably set state with curr_user props, movie data, and comments
+  // immutably set state for comments
   componentDidMount() {
-    const { commentable_id, commentable_type } = this.props;
+    // const { commentable_id, commentable_type } = this.props;
     this.setState((state, props) => {
-      this.getComments(commentable_id, commentable_type);
+      this.getComments();
     })
+  }
+
+  componentDidUpdate(prevProps) {
+    if ( prevProps.commentable_id !== this.props.commentable_id) {
+      this.getComments();
+    }
   }
 
   addComment(data) {
@@ -69,11 +75,11 @@ class CommentableContainer extends Component {
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
-          console.log('===>', comments, state.comments)
+          // console.log('===>', comments, state.comments)
           return {...state, comments}
         });
         
-        console.log('>>>>', comments, this.state.comments)
+        // console.log('>>>>', comments, this.state.comments)
         return comments
       })
       .catch(err => {

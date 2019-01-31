@@ -33,26 +33,13 @@ class MovieContainer extends Component {
     this.setState((state, props) => {
       const { curr_movie } = state;
 
+      // resets state of current movie
       this.getMovieData(curr_movie.Title);
 
       let curr_user = props.curr_user
       this.getComments();
       return { ...state, curr_user }
     })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-// console.log(prevProps)
-    // this.setState((state, props) => {
-    //   const { curr_movie } = state;
-
-    //   this.getMovieData(curr_movie.Title);
-
-    //   let curr_user = props.curr_user
-    //   this.getComments(curr_movie.imdbID, "Movie");
-    //   return { ...state, curr_user }
-    // })
   }
 
   // adds a new review for the currently displayed Movie
@@ -85,16 +72,16 @@ class MovieContainer extends Component {
   // used to populate the comments state object
   getComments() {
     const { curr_movie } = this.state;
-    console.log(curr_movie.imdbID)
+    console.log('getting comments for:',curr_movie.Title, curr_movie.imdbID)
+
     return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
       .then(resp => {
         let comments = resp.data;
+
         this.setState((state) => {
-          // console.log(comments, state.comments)
           return {...state, comments}
         });
         
-        // console.log(comments, this.state.comments)
         return comments
       })
       .catch(err => {
@@ -118,12 +105,28 @@ class MovieContainer extends Component {
         if (data.Error) {
           alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
+        return data
+      })
+      .then(data => {
         // verify whether movie is in my api
+        console.log('movie container: validating')
         this.validateMovieRegistration()
-        this.getComments(data.imdbID, "Movie");
-        
+        return data
+      })
+      .then(data => {
         // update the state movie object (with OMDB curr_movie)
-        this.setState({ curr_movie: data })
+        console.log('movie container: resetting movie state')
+        this.setState((state) => { 
+          let curr_movie = data
+          return { ...state, curr_movie }
+        })
+        return data
+      })
+      .then(data => {
+        const { curr_movie, comments } = this.state;
+        // reset the comments state
+        console.log('movie container: updating comments');
+        this.getComments();
       })
       .catch(err => { 
         console.log(err) 
@@ -173,7 +176,6 @@ class MovieContainer extends Component {
   render() {
     // deconstruct state objects
     const { curr_movie, curr_user, comments } = this.state
-    // console.log(this.state)
     return (
       <MoviePage 
         // objects
