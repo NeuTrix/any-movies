@@ -24,7 +24,7 @@ class MovieContainer extends Component {
       showCommentableForm: false, // for new/edit views
     }
 
-    this.addReview = this.addReview.bind(this);
+    this.addComment = this.addComment.bind(this);
     this.getMovieData = this.getMovieData.bind(this);
     this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
@@ -44,7 +44,7 @@ class MovieContainer extends Component {
   // adds a new review for the currently displayed Movie
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
-  addReview(data) {
+  addComment(data) {
     const { curr_movie, movieType, userID, movieRegistered } = this.state;
 
     // veerify registration for movie comments only. (not comments/comments)
@@ -115,7 +115,7 @@ class MovieContainer extends Component {
     }
   }
 
-  // allows the addReview form to toggle on and off
+  // allows the addComment form to toggle on and off
   toggleReviewForm() {
     this.setState({ showCommentableForm: !this.state.showCommentableForm });
   }
@@ -138,16 +138,18 @@ class MovieContainer extends Component {
    }
 
   render() {
+    // deconstruct state objects
+    const { curr_movie, curr_user, comments, showCommentableForm } = this.state
     
     return (
       <MoviePage 
-        curr_movie={this.state.curr_movie}
-        showCommentableForm={this.state.showCommentableForm}
-        userName={this.state.userName}
-        userID={this.state.userID}
-        curr_user={this.state.curr_user}
+        // objects
+        curr_movie={curr_movie}
+        curr_user={curr_user}
+        showCommentableForm={showCommentableForm}
+        comments={comments}
         // functions
-        addReview={this.addReview}
+        addComment={this.addComment}
         getMovieData={this.getMovieData}
         toggleReviewForm={this.toggleReviewForm}
       />

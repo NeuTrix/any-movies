@@ -16,19 +16,19 @@ const propTypes = {
   userID: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   // ===> functions
-  addReview: PropTypes.func.isRequired, // adds a new review instance to api
+  addComment: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for curr_movie
   toggleReviewForm: PropTypes.func.isRequired, // toggles the addReviewForm 
 }
 
 function MoviePage(props) {
   const { classes, curr_movie, showCommentableForm, userID, userName,  } = props // decon prop variables
-  const { addReview, getMovieData, toggleReviewForm } = props // dcon prop fns
+  const { addComment, getMovieData, toggleReviewForm } = props // dcon prop fns
   
   const MovieCommentForm =(
     <CommentableForm 
       author={userName} 
-      addCommentable={addReview} 
+      addCommentable={addComment} 
       userID={userID}
     /> 
   )
@@ -40,7 +40,7 @@ function MoviePage(props) {
         Movie Blog! 
       </h1>
     
-      <div className={classes.actions} style={{ gridArea: 'addReview' }}>
+      <div className={classes.actions} style={{ gridArea: 'addComment' }}>
         <Button 
           variant="contained" 
           color="primary" 
@@ -73,7 +73,6 @@ function MoviePage(props) {
     </div>
   )
 }
-
 // move the display logic outside of the containder component
 const styles = theme => ({
   grid: {
@@ -81,7 +80,7 @@ const styles = theme => ({
     gridTemplateAreas: `
       "title title "
       "form form"
-      "search addReview"
+      "search addComment"
       "comments comments"
       "movies movies"
     `,
