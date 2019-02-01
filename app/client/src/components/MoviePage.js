@@ -63,7 +63,8 @@ class MoviePage extends Component {
       
         <div className={classes.actions} style={{ gridArea: 'addComment' }}>
           <Button 
-            variant="outline" 
+            variant="contained"
+            size="small" 
             onClick={this.toggleCommentableForm}
           >
             Comment
