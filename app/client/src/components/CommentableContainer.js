@@ -69,28 +69,26 @@ class CommentableContainer extends Component {
   }
 
   deleteComment(child_id, child_type) {
-    alert('in the del comment call')
-    console.log(this.state, this.props)
     // const { commentable_id } = this.props
     // let parent_id = this.props.commentable_id
-    // // determine rails path for commentable
-    // let path = child_type === 'Movie' ? 'movies' : 'comments'
+    // determine rails path for commentable
+    let path = child_type === 'Movie' ? 'movies' : 'comments'
 
-    // return axios.delete(`/api/${path}/${parent_id}/${child_id}`)
-    //   .then(resp => {
-    //     this.setState({ displayingCommentForm: false });
-    //     // -> make another .then to reply upon confirmatio or status vs alert
-    //     alert(`Your comment was deleted! \n child_id: ${resp.data.id}`)
-    //     return resp.data
-    //   })
-    //   .catch(err => { 
-    //     alert (
-    //       `There was a problem deleting your comment. 
-    //       \n "CommentableContainer"
-    //       \n ${err}`
-    //     )
-    //     console.log('ERROR=>',err); 
-    //   })
+    return axios.delete(`/api/${path}/${child_id}`)
+      .then(resp => {
+        this.setState({ displayingCommentForm: false });
+        // -> make another .then to reply upon confirmatio or status vs alert
+        alert(`Your comment was deleted! \n child_id: ${resp.data.id}`)
+        return resp.data
+      })
+      .catch(err => { 
+        alert (
+          `There was a problem deleting your comment. 
+          \n "CommentableContainer"
+          \n ${err}`
+        )
+        console.log('ERROR=>',err); 
+      })
   }
 
   // used to populate the comments state object
