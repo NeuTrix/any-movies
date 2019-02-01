@@ -41,7 +41,9 @@ class CommentCard extends Component {
     // this.addComment = this.addComment.bind(this);
     this.toggleSubComments = this.toggleSubComments.bind(this);
     this.toggleCommentForm = this.toggleCommentForm.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
 
@@ -57,10 +59,17 @@ class CommentCard extends Component {
     });
   }
 
-  handleClick(e) {  
+  handleDelete(e) {  
     e.preventDefault();
     const { commentable_id, commentable_type } = this.props
     this.props.deleteComment(commentable_id, commentable_type)
+  }
+
+  handleEdit(e) {  
+    e.preventDefault();
+    this.toggleCommentForm()
+    // const { commentable_id, commentable_type } = this.props
+    // this.props.deleteComment(commentable_id, commentable_type)
   }
 
   render() {  
@@ -109,7 +118,8 @@ class CommentCard extends Component {
           style={{ gridArea: 'reply'}}
         >
           <Button size="small" onClick={this.toggleCommentForm} >reply</Button>
-          <Button size="small" onClick={this.handleClick} > delete </Button>
+          <Button size="small" onClick={this.handleDelete} > delete </Button>
+          <Button size="small" onClick={this.handleEdit} > edit </Button>
         </CardActions>
 
         <CardActions 
