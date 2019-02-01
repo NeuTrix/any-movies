@@ -39,6 +39,10 @@ class CommentsPage extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.handleGetComments()
+  }
+
   render() {
     
     const { 
@@ -68,7 +72,7 @@ class CommentsPage extends Component {
     return (
       <div className={classes.root}>
         < ExpansionPanel 
-        expanded 
+        // expanded 
           className={classes.expansion} >
           <ExpansionPanelSummary 
           className={classes.summary}
@@ -76,7 +80,7 @@ class CommentsPage extends Component {
               <ExpandMoreIcon onClick={handleGetComments} />
             }>
               <Typography className={classes.heading} >
-                  See Responses... {commentsList.count}
+                  See Responses... {commentsList.length}
               </Typography>
 
           </ExpansionPanelSummary>
