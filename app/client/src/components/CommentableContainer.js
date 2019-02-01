@@ -45,6 +45,7 @@ class CommentableContainer extends Component {
   } 
 
   addComment(data) {
+    // 'data' is from the component state
     const { commentable_id, commentable_type } = data;
     
     //   // determine rails path for commentable
@@ -52,13 +53,38 @@ class CommentableContainer extends Component {
 
     return axios.post(`/api/${path}/${commentable_id}/comments`, data)
       .then(resp => {
-        alert(`Your comment was added! \n commentable_id: ${resp.data.id}`)
         this.setState({ displayingCommentForm: false });
+        // -> make another .then to reply upon confirmatio or status vs alert
+        alert(`Your comment was added! \n commentable_id: ${resp.data.id}`)
         return resp.data
       })
       .catch(err => { 
         alert (
           `There was a problem adding your comment. 
+          \n "CommentableContainer"
+          \n ${err}`
+        )
+        console.log('ERROR=>',err); 
+      })
+  }
+
+  deleteComment(data) {
+    // 'data' is from the component state 
+    const { commentable_id, commentable_type } = data;
+    
+    //   // determine rails path for commentable
+    let path = commentable_type === 'Movie' ? 'movies' : 'comments'
+
+    return axios.delete(`/api/${path}/${commentable_id}/comments`, data)
+      .then(resp => {
+        this.setState({ displayingCommentForm: false });
+        // -> make another .then to reply upon confirmatio or status vs alert
+        alert(`Your comment was deleted! \n commentable_id: ${resp.data.id}`)
+        return resp.data
+      })
+      .catch(err => { 
+        alert (
+          `There was a problem deleting your comment. 
           \n "CommentableContainer"
           \n ${err}`
         )
@@ -94,7 +120,7 @@ class CommentableContainer extends Component {
       })
   }
 
-   render() {
+  render() {
     //  dconstruct props
     const { 
       commentable, 
@@ -114,6 +140,7 @@ class CommentableContainer extends Component {
             commentable_type={"Comment"}
             curr_user={curr_user}
             addComment={this.addComment}
+            deleteComment={this.deleteComment}
           /> 
         </div>
       ) 
