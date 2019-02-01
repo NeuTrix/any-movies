@@ -177,7 +177,7 @@ class MovieContainer extends Component {
     const { curr_movie, curr_user, comments } = this.state
     return (
       <MoviePage 
-        // objects
+      // objects
         comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}

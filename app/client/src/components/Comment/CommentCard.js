@@ -13,16 +13,20 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 // custom components
-import CommentContainer from './CommentableContainer';
+import CommentableContainer from './CommentableContainer';
 import CommentableForm from "./CommentableForm";
 
 // should consider spreading props from the parent instead 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
-  comments: PropTypes.instanceOf(Array), // from commentable
+  commentable: PropTypes.instanceOf(Object).isRequired, // material UI
   commentable_id: PropTypes.string.isRequired,
   commentable_type: PropTypes.string.isRequired,
+  // comments: PropTypes.instanceOf(Array), // from commentable
   curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
+  // functions
+  addComment: PropTypes.func.isRequired, // adds a new review instance to api
+  
 }
 
 class CommentCard extends Component {
@@ -30,38 +34,50 @@ class CommentCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      comments: [],
       displaySubComments: true,
       showCommentForm: false,
     }
 
-    this.addComment = this.addComment.bind(this);
+    // this.addComment = this.addComment.bind(this);
     this.toggleSubComments = this.toggleSubComments.bind(this);
     this.toggleCommentForm = this.toggleCommentForm.bind(this);
   }
 
+  componentDidMount() {
+    // this.
+  }
+
+   // used to populate the comments state object
+  // getComments() {
+  //   const { curr_movie } = this.state;
+  //   console.log('getting comments for:',curr_movie.Title, curr_movie.imdbID)
+
+  //   return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
+  //     .then(resp => {
+  //       let comments = resp.data;
+
+  //       this.setState((state) => {
+  //         return {...state, comments}
+  //       });
+        
+  //       return comments
+  //     })
+  //     .catch(err => {
+  //       alert(`Err...This Movie may not be registered \n ${err}`)
+  //       console.log('ERROR=>', err);
+
+  //       // reset the comments for an unregistered movie
+  //       this.setState((state) => {
+  //         let comments = [];
+  //         return { ...state, comments }
+  //       });
+  //     })
+  // }
+
   toggleSubComments(prevState) {
     // toggle displaySubComments
     this.setState({ displaySubComments: !this.state.displaySubComments  });
-  }
-
-  addComment(data) {
-    const { commentable, curr_user } = this.props;
-
-    // update the data object with required fields. The rest is in the form data
-    data.commentable_id = commentable.id;
-    data.commentable_type = commentable.type === 'Comment' || 'Movie';
-    data.user_id = curr_user.id;
-
-    return axios.post(`/api/comments/${commentable.id}/comments`, data)
-      .then(resp => {
-        this.setState({ showCommentableForm: false });
-        alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-        return resp.data
-      })
-      .catch(err => { 
-        alert (`There was a problem adding your comment. \n ${err}`)
-        console.log('ERROR=>',err); 
-      })
   }
 
   // allows the addCommentableForm to toggle on and off
@@ -72,14 +88,15 @@ class CommentCard extends Component {
   }
 
   render() {  
-    const { classes, commentable, curr_user} = this.props;
+    const { addComment, classes, commentable, commentable_id, commentable_type, curr_user} = this.props;
     const { showCommentForm, displaySubComments } = this.state;
-
-    const CommentCommentForm =(
-      <CommentableForm 
+   
+      const commentableForm = (
+        <CommentableForm 
+        commentable_id={commentable_id}
+        commentable_type={commentable_type}
         curr_user={curr_user}
-        commentable={commentable}
-        addCommentable={this.addComment} 
+        addCommentable={addComment} 
       /> 
     )
 
@@ -110,14 +127,18 @@ class CommentCard extends Component {
         </CardActions>
 
         <CardActions className={classes.actions} >
-          <CommentContainer
-            commentable_id = { commentable.id }
-            commentableType = "Comment" 
+        
+         <CommentableContainer 
+            commentable={commentable}
+            // comments={comments}
+            commentable_id={commentable_id}
+            commentable_type={"Comment"}
+            curr_user={curr_user}
           />
         </CardActions>
         
         <CardContent>
-          { showCommentForm && CommentCommentForm }
+          { showCommentForm && commentableForm }
         </CardContent>
           
       </Card>

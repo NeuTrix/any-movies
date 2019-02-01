@@ -16,7 +16,7 @@ const propTypes = {
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
   // ===> functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
-  getComments: PropTypes.func.isRequired, // adds a new review instance to api
+  // getComments: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for curr_movie
 }
 
@@ -28,29 +28,10 @@ class MoviePage extends Component {
       // commentable_id: 'default',
       // commentable_type: 'default',
       displayingCommentForm: false,
-      // filteredComments: [], // comments related to this specific film
     }
 
     this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
   }
-
-componentDidMount() {
-  // const { comments, curr_movie, curr_user } = this.props;
-  // const commentable_id = curr_movie.imdbID;
-  // const commentable_type = "Movie";
-
-  // this.setState(state => {
-
-  //   return { 
-  //     ...state, 
-  //     // commentable_id, 
-  //     // commentable_type,
-  //   }
-
-  // })
-
-  // this.props.getComments(commentable_id, commentable_type)
-}
 
 // allows the addComment form to toggle on and off
 toggleCommentableForm() {
@@ -63,12 +44,10 @@ toggleCommentableForm() {
     // deconstruct prop functions
     const { addComment, getMovieData, } = this.props 
     const { displayingCommentForm } = this.state;
-    // const { commentable_id, commentable_type } = this.props;
     
     // generate commentable form for current movie
     const commentableForm = (
       <CommentableForm 
-        // commentable={curr_movie}
         commentable_id={curr_movie.imdbID}
         commentable_type={"Movie"}
         curr_user={curr_user}
