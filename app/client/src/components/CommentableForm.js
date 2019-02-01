@@ -18,6 +18,7 @@ const propTypes = {
 	// functions
 	editMode: PropTypes.bool, // new or edit form 
 	submitAction: PropTypes.func.isRequired, // create or edit commentable
+	toggleForm: PropTypes.func.isRequired, // create or edit commentable
 };
 
 const defaultProps = {
@@ -67,7 +68,10 @@ class CommentableForm extends Component {
 
   onSubmit(e) {
 		e.preventDefault();
-		this.props.submitAction(this.state)
+		this.props.submitAction(this.state);
+		setTimeout(() => {
+			this.props.toggleForm();
+		}, 750)
   }
 
 	render() {

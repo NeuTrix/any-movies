@@ -32,9 +32,9 @@ class MoviePage extends Component {
   }
 
 // allows the addComment form to toggle on and off
-toggleCommentableForm() {
-  this.setState({ displayingCommentForm: !this.state.displayingCommentForm });
-}
+  toggleCommentableForm() {
+    this.setState({ displayingCommentForm: !this.state.displayingCommentForm });
+  }
 
   render() {  
     // deconstruct prop objects
@@ -50,6 +50,7 @@ toggleCommentableForm() {
         commentable_type={"Movie"}
         curr_user={curr_user}
         submitAction={addComment} 
+        toggleForm={this.toggleCommentableForm}
       /> 
     )
 

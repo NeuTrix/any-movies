@@ -94,6 +94,7 @@ class CommentCard extends Component {
         commentable_type={"Comment"}
         curr_user={curr_user}
         submitAction={addComment}
+        toggleForm={this.toggleNewCommentForm}
       /> 
     )
 
@@ -105,6 +106,8 @@ class CommentCard extends Component {
         curr_user={curr_user}
         submitAction={editComment}
         editMode="true"
+        toggleForm={this.toggleEditCommentForm}
+        
       /> 
     )
 
