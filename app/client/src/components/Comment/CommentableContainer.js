@@ -30,9 +30,6 @@ class CommentableContainer extends Component {
     // this.deleteComment = this.deleteComment.bind(this)
   }
   
-  componentDidMount() {
-    this.getComments();
-  }
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
@@ -127,7 +124,8 @@ class CommentableContainer extends Component {
         curr_user={curr_user} 
 
         commentsList={commentsList} 
-        addComment={this.addComment} // for form execution
+        handleAddComment={this.addComment} // for form execution
+        handleGetComments={this.getComment} // get items for this commentable
       />
     )
   }

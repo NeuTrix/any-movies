@@ -15,7 +15,8 @@ const propTypes = {
   commentsList: PropTypes.instanceOf(Array), // from commentable
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
   // functions
-  addComment: PropTypes.func.isRequired, // adds a new comment to the list
+  handleAddComment: PropTypes.func.isRequired, // adds a new comment to the list
+  handleGetComment: PropTypes.func.isRequired, // adds a new comment to the list
   // editComment: PropTypes.func.isRequired, // edit a comment in the list
   // deleteComment: PropTypes.func.isRequired, // remove a comment from the list
 }
@@ -43,7 +44,7 @@ class CommentsPage extends Component {
       commentable_id, 
       commentsList, 
       curr_user, 
-      addComment 
+      handleAddComment 
     } = this.props
 
     const commentableForm = (
@@ -52,7 +53,7 @@ class CommentsPage extends Component {
         commentable_id={commentable_id}
         commentable_type={commentable_type}
         curr_user={curr_user}
-        addCommentable={addComment} 
+        addCommentable={handleAddComment} 
       />
     );
 
