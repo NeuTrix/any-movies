@@ -7,16 +7,19 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import { Button } from '@material-ui/core';
 
 const propTypes = {
-	classes: PropTypes.instanceOf(Object).isRequired,
-	author: PropTypes.string.isRequired,
+	classes: PropTypes.instanceOf(Object).isRequired, // material UI
+	commentable_id: PropTypes.string.isRequired, 
+	commentable_type: PropTypes.string.isRequired, 
+	curr_user: PropTypes.instanceOf(Object).isRequired, // material UI
+	// functions
 	addCommentable: PropTypes.func.isRequired, // create relative commentable
-	userID: PropTypes.string.isRequired,
 };
 
-class AddCommentableForm extends Component {
+class CommentableForm extends Component {
 
 	constructor(props) {
 		super(props)
@@ -30,31 +33,32 @@ class AddCommentableForm extends Component {
       body: '',
       title: '',
 		}
-		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
 	}
-	componentDidMount() {
-		this.setState({ 
-			// prefill the form with the current user's name
-			author: this.props.author, 
-			commentable_id: this.props.commentableID,
-			commentable_type: this.props.commentableType,
-			user_id: this.props.userID,
-		});
-	}
+
   // update the state with form entries
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
-  }
+	}
+	
 	// post the review to the rails API
+	componentDidMount() {
+		this.setState((state, props) => {
+			const { commentable_id, commentable_type, curr_user } = props
+			let author = curr_user.username;
+			let user_id = curr_user.id;
+			return { ...state, author, user_id, commentable_id, commentable_type }
+		});
+	}
+	
   onSubmit(e) {
 		e.preventDefault();
-		
-    this.props.addCommentable(this.state)
+		this.props.addCommentable(this.state)
   }
 
 	render() {
-		const { classes } = this.props;
+		const { classes, curr_user } = this.props;
 
 		return (
 			<FormControl
@@ -62,15 +66,16 @@ class AddCommentableForm extends Component {
 				component="form"
 				onSubmit={this.onSubmit}
 			>
-				<TextField
+				<Input
 					name="author"
 					label = "enter your name"
 					fullWidth
 					margin="dense"
 					onChange={this.onChange}
 					type="text"
-					value={this.state.author}
+					value={curr_user.username}
 					variant="outlined"
+					readOnly
 				/>
 
 				<TextField
@@ -94,8 +99,8 @@ class AddCommentableForm extends Component {
 					value={this.state.body}
 					variant="outlined"
 				/>
-
-        <Button component="button" type="submit" > Submit </Button>
+				
+        <Button component="button" type="submit" > Submit  </Button>
 
 			</FormControl>
 		)
@@ -107,6 +112,6 @@ const styles= theme => ({
 	main: { } // place holder for styling
 });
 
-AddCommentableForm.propTypes = propTypes;
+CommentableForm.propTypes = propTypes;
 
-export default withStyles(styles)(AddCommentableForm)
+export default withStyles(styles)(CommentableForm)
