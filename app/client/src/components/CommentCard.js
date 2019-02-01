@@ -128,7 +128,7 @@ class CommentCard extends Component {
 
 const styles = theme => ({
   actions: {
-    // display: 'inline-flex',
+    display: 'inherit',
   },
 
   grid: {

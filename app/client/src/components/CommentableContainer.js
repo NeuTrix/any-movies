@@ -30,6 +30,10 @@ class CommentableContainer extends Component {
     // this.deleteComment = this.deleteComment.bind(this)
   }
 
+  componentDidMount() {
+    this.getComments()
+  }
+
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
 
