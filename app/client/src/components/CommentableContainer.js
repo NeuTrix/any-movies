@@ -41,7 +41,7 @@ class CommentableContainer extends Component {
   } 
 
   addComment(data) {
-    const { commentable_id, commentable_type } = this.props;
+    const { commentable_id, commentable_type } = data;
     
     //   // determine rails path for commentable
     let path = commentable_type === 'Movie' ? 'movies' : 'comments'
@@ -109,6 +109,7 @@ class CommentableContainer extends Component {
             commentable_id={comment.id}
             commentable_type={"Comment"}
             curr_user={curr_user}
+            addComment={this.addComment}
           /> 
         </div>
       ) 

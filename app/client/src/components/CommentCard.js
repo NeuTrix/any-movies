@@ -24,6 +24,7 @@ const propTypes = {
   // functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
   
+  
 }
 
 class CommentCard extends Component {
@@ -61,7 +62,7 @@ class CommentCard extends Component {
       const commentableForm = (
         <CommentableForm 
           commentable_id={commentable_id}
-          commentable_type={commentable_type}
+          commentable_type={"Comment"}
           curr_user={curr_user}
           addCommentable={addComment} 
         /> 
