@@ -82,7 +82,7 @@ toggleCommentableForm() {
           <MovieDisplay curr_movie={curr_movie} posterUrl={curr_movie.Poster}/>
         </div>
         
-        <div style={{ gridArea: 'comments' }} >
+        <div className={classes.comments} >
           <CommentableContainer 
             commentable={curr_movie}
             comments={comments}
@@ -108,12 +108,18 @@ const styles = theme => ({
     `,
     gridTemplateColumns: '1fr 1fr',
     padding: theme.spacing.unit,
+    // debug
+    // background: 'lime',
   },
 
   actions: {
     display: 'grid',
     padding: theme.spacing.unit,
-  }
+  },
+
+  comments: {
+    gridArea: 'comments'
+  },
 })
 
 MoviePage.propTypes = propTypes;

@@ -153,7 +153,7 @@ const styles = theme => ({
 
   card: {
     // gridTemplateAreas
-    minWidth: 350,
+    // minWidth: 350,
     marginBottom: theme.spacing.unit,
   },
   pos: {
