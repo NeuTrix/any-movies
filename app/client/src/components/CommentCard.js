@@ -140,7 +140,7 @@ class CommentCard extends Component {
 
         </CardContent>
 
-        <CardActions className={classes.actions} 
+        <CardActions className={classes.buttons} 
           style={{ gridArea: 'reply'}}
         >
           <Button size="small" onClick={this.toggleNewCommentForm} >
