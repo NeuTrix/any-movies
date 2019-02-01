@@ -69,28 +69,26 @@ class CommentableContainer extends Component {
   }
 
   editComment(data) {
-    alert('editing comment')
-    // // 'data' is from the component state
-    // const { commentable_id, commentable_type } = data;
-    
-    // //   // determine rails path for commentable
-    // let path = commentable_type === 'Movie' ? 'movies' : 'comments'
+    const {commentable_id} = data
 
-    // return axios.post(`/api/${path}/${commentable_id}/comments`, data)
-    //   .then(resp => {
-    //     this.setState({ displayingCommentForm: false });
-    //     // -> make another .then to reply upon confirmatio or status vs alert
-    //     alert(`Your comment was added! \n commentable_id: ${resp.data.id}`)
-    //     return resp.data
-    //   })
-    //   .catch(err => { 
-    //     alert (
-    //       `There was a problem adding your comment. 
-    //       \n "CommentableContainer"
-    //       \n ${err}`
-    //     )
-    //     console.log('ERROR=>',err); 
-    //   })
+    return axios.put(`/api/comments/${commentable_id}`, data)
+      .then(resp => {
+        this.setState({
+          // add this for edit and delete==>
+          displayingCommentForm: false 
+        });
+        // -> make another .then to reply upon confirmatio or status vs alert
+        if (resp.status === 204) {
+          alert(`Your comment was EDITED! \n Status code: ${resp.status} \n commentable_id: ${resp.data.id}`)
+        } else {
+          alert(`Caution. Status code ${resp.status}`)
+        }
+        return resp.data
+      })
+      .catch(err => {
+        alert(`There was a problem editing your comment. \n "CommentableContainer" \n ${err}`)
+        console.log('ERROR=>', err);
+      })
   }
 
   deleteComment(commentable_id) {
