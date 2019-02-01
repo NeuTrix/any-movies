@@ -92,27 +92,22 @@ class CommentableContainer extends Component {
     //     console.log('ERROR=>',err); 
     //   })
   }
-// refactor to just take an id and use the comments path directly
-// no need to determine an alt path
-  deleteComment(commentable_id, commentable_type) {
-    // const { commentable_id } = this.props
-    // let parent_id = this.props.commentable_id
-    // determine rails path for commentable
-    let path = commentable_type === 'Movie' ? 'movies' : 'comments'
 
-    return axios.delete(`/api/${path}/${commentable_id}`)
+  deleteComment(commentable_id) {
+
+    return axios.delete(`/api/comments/${commentable_id}`)
       .then(resp => {
         this.setState({ displayingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert
-        alert(`Your comment was deleted! \n commentable_id: ${resp.data.id}`)
+        if (resp.status === 204) {
+          alert(`Your comment was deleted! \n Status code: ${resp.status} \n commentable_id: ${resp.data.id}`)
+        } else {
+          alert(`Caution. Status code ${resp.status}`)
+        }
         return resp.data
       })
       .catch(err => { 
-        alert (
-          `There was a problem deleting your comment. 
-          \n "CommentableContainer"
-          \n ${err}`
-        )
+        alert ( `There was a problem deleting your comment. \n "CommentableContainer" \n ${err}`)
         console.log('ERROR=>',err); 
       })
   }
