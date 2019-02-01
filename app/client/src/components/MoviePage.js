@@ -62,15 +62,17 @@ toggleCommentableForm() {
       
         <div className={classes.actions} style={{ gridArea: 'addComment' }}>
           <Button 
-            variant="contained" 
-            color="primary" 
+            variant="outline" 
             onClick={this.toggleCommentableForm}
           >
-            Add Review
+            Comment
           </Button>
         </div>
 
-        <div style={{ gridArea: 'search' }}>
+        <div 
+          className={classes.actions} 
+          style={{ gridArea: 'search' }}
+        >
           <MovieSearchBar getMovieData={getMovieData} /> 
         </div>
 
@@ -98,15 +100,15 @@ toggleCommentableForm() {
 
 const styles = theme => ({
   grid: {
-    display: 'inline-grid',
+    display: 'grid',
     gridTemplateAreas: `
-      "title title "
-      "form form"
-      "search addComment"
-      "comments comments"
-      "movies movies"
+      "title title title "
+      "form form form"
+      "search search addComment"
+      "comments comments comments"
+      "movies movies movies"
     `,
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr 1fr 1fr',
     padding: theme.spacing.unit,
   },
 

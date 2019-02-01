@@ -100,7 +100,15 @@ class CommentableForm extends Component {
 					variant="outlined"
 				/>
 				
-        <Button component="button" type="submit" > Submit  </Button>
+				<Button 
+					className={classes.button}
+					component="button" 
+					type="submit" 
+					variant="contained"
+					color="primary"
+				> 
+					Submit  
+				</Button>
 
 			</FormControl>
 		)
@@ -109,9 +117,13 @@ class CommentableForm extends Component {
 
 // add grid to update form layout
 const styles= theme => ({
+	button: {
+		width: 100,
+	},
+
 	main: { 
 		display: 'grid'
-	} // place holder for styling
+	}, // place holder for styling
 });
 
 CommentableForm.propTypes = propTypes;
