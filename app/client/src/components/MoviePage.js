@@ -101,7 +101,7 @@ class MoviePage extends Component {
 
 const styles = theme => ({
   grid: {
-    display: 'grid',
+    display: 'inline-grid',
     gridTemplateAreas: `
       "title title title "
       "form form form"
@@ -111,6 +111,8 @@ const styles = theme => ({
     `,
     gridTemplateColumns: '1fr 1fr 1fr',
     padding: theme.spacing.unit,
+    maxWidth: 600,
+    // [theme.breakpoints.up("md")]
   },
 
   actions: {

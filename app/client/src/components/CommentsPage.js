@@ -35,7 +35,6 @@ class CommentsPage extends Component {
     super(props)
 
     this.state = {
-
     }
   }
 
@@ -57,17 +56,16 @@ class CommentsPage extends Component {
 
     return (
       <div className={classes.root}>
-        < ExpansionPanel 
-        // expanded 
-          className={classes.expansion} >
+        < ExpansionPanel className={classes.expansion} >
+
           <ExpansionPanelSummary 
-          className={classes.summary}
-            expandIcon={
-              <ExpandMoreIcon onClick={handleGetComments} />
-            }>
-              <Typography variant="subtitle"  className={classes.heading} >
-                  See Responses... {commentsList.length}
-              </Typography>
+            className={classes.summary}
+            onClick={handleGetComments} 
+            expandIcon={ <ExpandMoreIcon />}
+          >
+            <Typography variant="subtitle"  className={classes.heading} >
+                See Responses... {commentsList.length}
+            </Typography>
 
           </ExpansionPanelSummary>
 
