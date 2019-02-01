@@ -55,20 +55,6 @@ class CommentsPage extends Component {
       handleGetComments, 
     } = this.props
 
-    // const commentableForm = (
-    //   // generate commentable form for current movie
-    //    <CommentableForm 
-    //     commentable_id={commentable_id}
-    //     commentable_type={"Comment"}
-    //     curr_user={curr_user}
-    //     addCommentable={handleAddComment} 
-    //   />
-    // );
-
-    // const showCommentCount = (
-    //   <div> Show Comments: {commentsList.length} </div>
-    // )
-
     return (
       <div className={classes.root}>
         < ExpansionPanel 
