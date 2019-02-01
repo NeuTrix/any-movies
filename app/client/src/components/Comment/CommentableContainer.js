@@ -44,7 +44,6 @@ class CommentableContainer extends Component {
   addComment(data) {
     const { commentable_id, commentable_type } = this.props;
     
-
     //   // determine rails path for commentable
     let path = commentable_type === 'Movie' ? 'movies' : 'comments'
 
