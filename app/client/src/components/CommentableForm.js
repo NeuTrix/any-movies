@@ -109,7 +109,9 @@ class CommentableForm extends Component {
 
 // add grid to update form layout
 const styles= theme => ({
-	main: { } // place holder for styling
+	main: { 
+		display: 'grid'
+	} // place holder for styling
 });
 
 CommentableForm.propTypes = propTypes;
