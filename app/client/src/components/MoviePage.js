@@ -49,7 +49,7 @@ toggleCommentableForm() {
         commentable_id={curr_movie.imdbID}
         commentable_type={"Movie"}
         curr_user={curr_user}
-        addCommentable={addComment} 
+        submitAction={addComment} 
       /> 
     )
 
