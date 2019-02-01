@@ -82,7 +82,7 @@ class CommentableContainer extends Component {
         return comments
       })
       .catch(err => {
-        alert(`Err...This Movie may not be registered \n ${err}`)
+        alert(`Err... for ${commentable_id} \n This item had an error: \n ${err}`)
         console.log('ERROR=>', err);
 
         this.setState((state) => {
@@ -108,8 +108,8 @@ class CommentableContainer extends Component {
         <div key={comment.id}> 
           <CommentCard 
             commentable={comment} 
-            commentable_id={commentable_id}
-            commentable_type={commentable_type}
+            commentable_id={comment.id}
+            commentable_type={"Comment"}
             curr_user={curr_user}
           /> 
         </div>

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import CommentableForm from './CommentableForm';
+import { Button } from '@material-ui/core';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -44,7 +45,8 @@ class CommentsPage extends Component {
       commentable_id, 
       commentsList, 
       curr_user, 
-      handleAddComment 
+      handleAddComment, 
+      handleGetComment, 
     } = this.props
 
     const commentableForm = (
@@ -57,15 +59,25 @@ class CommentsPage extends Component {
       />
     );
 
+    const showCommentCount = (
+      <div> Show Comments: {commentsList.length} </div>
+    )
+
     return (
       <div className={classes.root}>
     
+          Comments for {commentable_type} : {commentable_id} 
         <ExpansionPanel>
-            { commentableForm}
-
+          <Button 
+            variant="contained"
+            onClick={handleGetComment} 
+          > 
+            get comments
+          </Button>
+            
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>
-              Show Comments: {commentsList.length} 
+                See Responses... {commentsList.count}
             </Typography>
           </ExpansionPanelSummary>
 
