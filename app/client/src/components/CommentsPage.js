@@ -7,8 +7,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import CommentableForm from './CommentableForm';
-import { Button } from '@material-ui/core';
+// import CommentableForm from './CommentableForm';
+// import { Button } from '@material-ui/core';
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -51,15 +51,15 @@ class CommentsPage extends Component {
       handleGetComments, 
     } = this.props
 
-    const commentableForm = (
-      // generate commentable form for current movie
-       <CommentableForm 
-        commentable_id={commentable_id}
-        commentable_type={"Comment"}
-        curr_user={curr_user}
-        addCommentable={handleAddComment} 
-      />
-    );
+    // const commentableForm = (
+    //   // generate commentable form for current movie
+    //    <CommentableForm 
+    //     commentable_id={commentable_id}
+    //     commentable_type={"Comment"}
+    //     curr_user={curr_user}
+    //     addCommentable={handleAddComment} 
+    //   />
+    // );
 
     // const showCommentCount = (
     //   <div> Show Comments: {commentsList.length} </div>
@@ -68,7 +68,7 @@ class CommentsPage extends Component {
     return (
       <div className={classes.root}>
         < ExpansionPanel 
-        // expanded 
+        expanded 
           className={classes.expansion} >
           <ExpansionPanelSummary 
           className={classes.summary}
@@ -116,7 +116,7 @@ const styles = theme => ({
   }, 
 
   summary: {
-    background: "lime"
+    background: "lime",
   },
 });
 

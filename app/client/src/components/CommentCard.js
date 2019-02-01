@@ -60,11 +60,11 @@ class CommentCard extends Component {
    
       const commentableForm = (
         <CommentableForm 
-        commentable_id={commentable_id}
-        commentable_type={commentable_type}
-        curr_user={curr_user}
-        addCommentable={addComment} 
-      /> 
+          commentable_id={commentable_id}
+          commentable_type={commentable_type}
+          curr_user={curr_user}
+          addCommentable={addComment} 
+        /> 
     )
 
     return (
@@ -100,7 +100,6 @@ class CommentCard extends Component {
           style={{ gridArea: 'reply'}}
         >
           <Button size="small" onClick={this.toggleCommentForm} >reply</Button>
-          { showCommentForm && commentableForm}
         </CardActions>
 
         <CardActions 
@@ -117,7 +116,7 @@ class CommentCard extends Component {
           />
         </CardActions>
         
-        <CardContent>
+        <CardContent style={{ gridArea: 'form'}} >
           { showCommentForm && commentableForm }
         </CardContent>
           
@@ -128,7 +127,7 @@ class CommentCard extends Component {
 
 const styles = theme => ({
   actions: {
-    display: 'inline-flex',
+    // display: 'inline-flex',
   },
 
   grid: {
