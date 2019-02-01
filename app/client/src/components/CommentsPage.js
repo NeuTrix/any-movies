@@ -58,7 +58,7 @@ class CommentsPage extends Component {
     return (
       <div className={classes.root}>
         < ExpansionPanel 
-        // expanded 
+        expanded 
           className={classes.expansion} >
           <ExpansionPanelSummary 
           className={classes.summary}

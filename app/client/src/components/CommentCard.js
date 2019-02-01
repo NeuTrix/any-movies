@@ -23,6 +23,7 @@ const propTypes = {
   curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
   // functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
+  deleteComment: PropTypes.func.isRequired, // adds a new review instance to api
   
   
 }
@@ -40,6 +41,7 @@ class CommentCard extends Component {
     // this.addComment = this.addComment.bind(this);
     this.toggleSubComments = this.toggleSubComments.bind(this);
     this.toggleCommentForm = this.toggleCommentForm.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
@@ -55,8 +57,14 @@ class CommentCard extends Component {
     });
   }
 
+  handleClick(e) {  
+    e.preventDefault();
+    const { commentable_id, commentable_type } = this.props
+    this.props.deleteComment(commentable_id, commentable_type)
+  }
+
   render() {  
-    const { addComment, classes, commentable, commentable_id, commentable_type, curr_user} = this.props;
+    const { addComment, deleteComment, classes, commentable, commentable_id, commentable_type, curr_user} = this.props;
     const { showCommentForm, displaySubComments } = this.state;
    
       const commentableForm = (
@@ -64,7 +72,7 @@ class CommentCard extends Component {
           commentable_id={commentable_id}
           commentable_type={"Comment"}
           curr_user={curr_user}
-          addCommentable={addComment} 
+          addCommentable={addComment}
         /> 
     )
 
@@ -101,6 +109,7 @@ class CommentCard extends Component {
           style={{ gridArea: 'reply'}}
         >
           <Button size="small" onClick={this.toggleCommentForm} >reply</Button>
+          <Button size="small" onClick={this.handleClick} > delete </Button>
         </CardActions>
 
         <CardActions 
@@ -135,9 +144,9 @@ const styles = theme => ({
     display: 'grid',
     gridTemplateAreas:`
       "title title"
-      "response response"
       "reply reply"
       "form form"
+      "response response"
     `,
     border: '2px solid lime',
 

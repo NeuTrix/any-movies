@@ -26,8 +26,8 @@ class CommentableContainer extends Component {
 
     this.addComment = this.addComment.bind(this);
     this.getComments = this.getComments.bind(this)
+    this.deleteComment = this.deleteComment.bind(this)
     // this.editComment = this.editComment.bind(this)
-    // this.deleteComment = this.deleteComment.bind(this)
   }
 
   componentDidMount() {
@@ -68,28 +68,29 @@ class CommentableContainer extends Component {
       })
   }
 
-  deleteComment(data) {
-    // 'data' is from the component state 
-    const { commentable_id, commentable_type } = data;
-    
-    //   // determine rails path for commentable
-    let path = commentable_type === 'Movie' ? 'movies' : 'comments'
+  deleteComment(child_id, child_type) {
+    alert('in the del comment call')
+    console.log(this.state, this.props)
+    // const { commentable_id } = this.props
+    // let parent_id = this.props.commentable_id
+    // // determine rails path for commentable
+    // let path = child_type === 'Movie' ? 'movies' : 'comments'
 
-    return axios.delete(`/api/${path}/${commentable_id}/comments`, data)
-      .then(resp => {
-        this.setState({ displayingCommentForm: false });
-        // -> make another .then to reply upon confirmatio or status vs alert
-        alert(`Your comment was deleted! \n commentable_id: ${resp.data.id}`)
-        return resp.data
-      })
-      .catch(err => { 
-        alert (
-          `There was a problem deleting your comment. 
-          \n "CommentableContainer"
-          \n ${err}`
-        )
-        console.log('ERROR=>',err); 
-      })
+    // return axios.delete(`/api/${path}/${parent_id}/${child_id}`)
+    //   .then(resp => {
+    //     this.setState({ displayingCommentForm: false });
+    //     // -> make another .then to reply upon confirmatio or status vs alert
+    //     alert(`Your comment was deleted! \n child_id: ${resp.data.id}`)
+    //     return resp.data
+    //   })
+    //   .catch(err => { 
+    //     alert (
+    //       `There was a problem deleting your comment. 
+    //       \n "CommentableContainer"
+    //       \n ${err}`
+    //     )
+    //     console.log('ERROR=>',err); 
+    //   })
   }
 
   // used to populate the comments state object
