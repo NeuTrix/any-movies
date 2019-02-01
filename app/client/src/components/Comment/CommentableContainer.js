@@ -6,9 +6,9 @@ import CommentsPage from './CommentsPage';
 import CommentCard from './CommentCard';
 
 const propTypes = {
+  comments: PropTypes.instanceOf(Object), //may be passed down from a parent 
 	commentable: PropTypes.instanceOf(Object).isRequired, // movie or comment obj
-	comments: PropTypes.instanceOf(Object), //may be passed down from a parent 
-  commentable_id: PropTypes.string.isRequired,
+  commentable_id: PropTypes.string.isRequired, // need these props for OMDB objs
   commentable_type: PropTypes.string.isRequired,
   curr_user: PropTypes.instanceOf(Object).isRequired,
 }
@@ -30,9 +30,6 @@ class CommentableContainer extends Component {
     // this.deleteComment = this.deleteComment.bind(this)
   }
   
-  // immutably set state for comments
-  
-
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
 
@@ -46,10 +43,6 @@ class CommentableContainer extends Component {
   addComment(data) {
     const { commentable_id, commentable_type } = this.props;
     
-    // update the data object with required fields
-    // data.commentable_id = commentable_id;
-    // data.commentable_type = commentable_type;
-    // data.user_id = curr_user.id;
 
     //   // determine rails path for commentable
     let path = commentable_type === 'Movie' ? 'movies' : 'comments'
