@@ -79,7 +79,7 @@ class CommentsPage extends Component {
             expandIcon={
               <ExpandMoreIcon onClick={handleGetComments} />
             }>
-              <Typography className={classes.heading} >
+              <Typography variant="subtitle"  className={classes.heading} >
                   See Responses... {commentsList.length}
               </Typography>
 
