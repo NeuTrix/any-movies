@@ -125,7 +125,7 @@ class CommentableContainer extends Component {
 
         commentsList={commentsList} 
         handleAddComment={this.addComment} // for form execution
-        handleGetComments={this.getComment} // get items for this commentable
+        handleGetComments={this.getComments} // get items for this commentable
       />
     )
   }

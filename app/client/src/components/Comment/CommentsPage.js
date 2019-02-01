@@ -17,7 +17,7 @@ const propTypes = {
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
   // functions
   handleAddComment: PropTypes.func.isRequired, // adds a new comment to the list
-  handleGetComment: PropTypes.func.isRequired, // adds a new comment to the list
+  handleGetComments: PropTypes.func.isRequired, // adds a new comment to the list
   // editComment: PropTypes.func.isRequired, // edit a comment in the list
   // deleteComment: PropTypes.func.isRequired, // remove a comment from the list
 }
@@ -46,7 +46,7 @@ class CommentsPage extends Component {
       commentsList, 
       curr_user, 
       handleAddComment, 
-      handleGetComment, 
+      handleGetComments, 
     } = this.props
 
     const commentableForm = (
@@ -70,7 +70,7 @@ class CommentsPage extends Component {
         <ExpansionPanel>
           <Button 
             variant="contained"
-            onClick={handleGetComment} 
+            onClick={handleGetComments} 
           > 
             get comments
           </Button>

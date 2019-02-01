@@ -34,7 +34,7 @@ class CommentCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      comments: [],
+      // comments: [],
       displaySubComments: true,
       showCommentForm: false,
     }
@@ -49,31 +49,31 @@ class CommentCard extends Component {
   }
 
    // used to populate the comments state object
-  getComments() {
-    const { curr_movie } = this.state;
-    console.log('getting comments for:',curr_movie.Title, curr_movie.imdbID)
+  // getComments() {
+  //   const { curr_movie } = this.state;
+  //   console.log('getting comments for:',curr_movie.Title, curr_movie.imdbID)
 
-    return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
-      .then(resp => {
-        let comments = resp.data;
+  //   return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
+  //     .then(resp => {
+  //       let comments = resp.data;
 
-        this.setState((state) => {
-          return {...state, comments}
-        });
+  //       this.setState((state) => {
+  //         return {...state, comments}
+  //       });
         
-        return comments
-      })
-      .catch(err => {
-        alert(`Err...This Movie may not be registered \n ${err}`)
-        console.log('ERROR=>', err);
+  //       return comments
+  //     })
+  //     .catch(err => {
+  //       alert(`Err...This Movie may not be registered \n ${err}`)
+  //       console.log('ERROR=>', err);
 
-        // reset the comments for an unregistered movie
-        this.setState((state) => {
-          let comments = [];
-          return { ...state, comments }
-        });
-      })
-  }
+  //       // reset the comments for an unregistered movie
+  //       this.setState((state) => {
+  //         let comments = [];
+  //         return { ...state, comments }
+  //       });
+  //     })
+  // }
 
   toggleSubComments(prevState) {
     // toggle displaySubComments
