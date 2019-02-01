@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+// import axios from 'axios';
 
 // material UI components
 import { withStyles } from '@material-ui/core/styles';
@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 
 // custom components
 import CommentableContainer from './CommentableContainer';
-import CommentableForm from "./CommentableForm";
+// import CommentableForm from "./CommentableForm";/*  */
 
 // should consider spreading props from the parent instead 
 const propTypes = {

@@ -61,34 +61,25 @@ class CommentsPage extends Component {
       />
     );
 
-    const showCommentCount = (
-      <div> Show Comments: {commentsList.length} </div>
-    )
+    // const showCommentCount = (
+    //   <div> Show Comments: {commentsList.length} </div>
+    // )
 
     return (
       <div className={classes.root}>
-      Comments Page
-          Comments for {commentable_type} : {commentable_id} 
         <ExpansionPanel>
-          
             
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Button 
-              className={classes.heading}
-              variant="outlined" 
-              onClick={handleGetComments} 
-            >
+          <ExpansionPanelSummary expandIcon={
+            <ExpandMoreIcon onClick={handleGetComments} />
+          }>
+            <Typography className={classes.heading} >
                 See Responses... {commentsList.count}
-            </Button>
+            </Typography>
 
           </ExpansionPanelSummary>
 
           <ExpansionPanelDetails>
             <div className={classes.list} > { commentsList } </div>
-          <div>
-            { commentableForm }
-          </div>
-            
           </ExpansionPanelDetails>
 
         </ExpansionPanel>
@@ -96,7 +87,6 @@ class CommentsPage extends Component {
       </div>
     );
   }
-  
 }
 
 CommentsPage.propTypes = propTypes;
@@ -107,7 +97,7 @@ const styles = theme => ({
   root: {
     textAlign:'left',
     padding: 5,
-    maxWidth: 400,
+    // maxWidth: 400,
   },
 
   heading: {
