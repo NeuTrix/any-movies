@@ -68,7 +68,7 @@ class CommentCard extends Component {
     )
 
     return (
-      <div className={classes.card}>
+      <Card className={classes.card}>
 
         <CardContent>
 
@@ -106,10 +106,10 @@ class CommentCard extends Component {
         </CardActions>
         
         <CardContent>
-          {/* { showCommentForm && commentableForm } */}
+          { showCommentForm && commentableForm }
         </CardContent>
           
-      </div>
+      </Card>
     );
   }
 }
