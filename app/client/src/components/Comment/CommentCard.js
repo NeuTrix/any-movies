@@ -1,9 +1,7 @@
 //  Should abstract out view from logic for Cards
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import axios from 'axios';
-
 // material UI components
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -11,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 // custom components
 import CommentableContainer from './CommentableContainer';
 // import CommentableForm from "./CommentableForm";/*  */
@@ -101,7 +98,7 @@ class CommentCard extends Component {
     // )
 
     return (
-      <Card className={classes.card}>
+      <div className={classes.card}>
 
         <CardContent>
 
@@ -141,20 +138,21 @@ class CommentCard extends Component {
           {/* { showCommentForm && commentableForm } */}
         </CardContent>
           
-      </Card>
+      </div>
     );
   }
 }
 
 const styles = theme => ({
   actions: {
-    displaySubComments: 'inline-flex',
+    display: 'inline-flex',
   },
 
   card: {
     // gridTemplateAreas
     // minWidth: 350,
-    marginBottom: theme.spacing.unit,
+    margin: 'none',
+    // marginBottom: theme.spacing.unit,
   },
   pos: {
     marginBottom: 12,

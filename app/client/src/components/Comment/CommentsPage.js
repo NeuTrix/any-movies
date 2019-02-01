@@ -67,7 +67,7 @@ class CommentsPage extends Component {
 
     return (
       <div className={classes.root}>
-        <ExpansionPanel>
+        <ExpansionPanel className={classes.expansion} >
             
           <ExpansionPanelSummary expandIcon={
             <ExpandMoreIcon onClick={handleGetComments} />
@@ -78,7 +78,7 @@ class CommentsPage extends Component {
 
           </ExpansionPanelSummary>
 
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails className={classes.expansion} >
             <div className={classes.list} > { commentsList } </div>
           </ExpansionPanelDetails>
 
@@ -96,8 +96,12 @@ const styles = theme => ({
   
   root: {
     textAlign:'left',
-    padding: 5,
     // maxWidth: 400,
+  },
+
+  expansion: {
+    background: 'lime',
+    padding: 0,
   },
 
   heading: {
