@@ -72,16 +72,23 @@ class CommentCard extends Component {
 
         <CardContent>
 
-          <Typography variant="subtitle" component="h2">
-            { commentable.title}
-          </Typography>
+          <div
+            className={classes.title}
+            style={{ gridArea: 'title'}}
+          >
+            <Typography variant="subtitle" component="h2">
+              { commentable.title}
+            </Typography>
 
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-          </Typography>
+            <Typography ccolor="textSecondary" gutterBottom>
+              by: { commentable.author }
+            </Typography>
 
-          <Typography className={classes.pos} color="textSecondary">
-            by: { commentable.author }
-          </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              comment_id: { commentable.id}
+            </Typography>
+
+          </div>
 
           <Typography variant="body1" component="p">
             { commentable.body }
@@ -89,12 +96,17 @@ class CommentCard extends Component {
 
         </CardContent>
 
-        <CardActions className={classes.actions} >
+        <CardActions className={classes.actions} 
+          style={{ gridArea: 'reply'}}
+        >
           <Button size="small" onClick={this.toggleCommentForm} >reply</Button>
           { showCommentForm && commentableForm}
         </CardActions>
 
-        <CardActions className={classes.actions} >
+        <CardActions 
+          className={classes.actions} 
+          style={{ gridArea: 'response'}}
+        >
         
          <CommentableContainer 
             commentable={commentable}
@@ -123,7 +135,8 @@ const styles = theme => ({
     display: 'grid',
     gridTemplateAreas:`
       "title title"
-      "reply response"
+      "response response"
+      "reply reply"
       "form form"
     `,
     border: '2px solid lime',

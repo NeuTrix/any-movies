@@ -67,8 +67,9 @@ class CommentsPage extends Component {
 
     return (
       <div className={classes.root}>
-        <ExpansionPanel className={classes.expansion} >
-            
+        < ExpansionPanel 
+        // expanded 
+          className={classes.expansion} >
           <ExpansionPanelSummary 
           className={classes.summary}
             expandIcon={
@@ -80,7 +81,7 @@ class CommentsPage extends Component {
 
           </ExpansionPanelSummary>
 
-          <ExpansionPanelDetails className={classes.expansion} >
+          <ExpansionPanelDetails  className={classes.expansion} >
             <div className={classes.list} > { commentsList } </div>
           </ExpansionPanelDetails>
 
