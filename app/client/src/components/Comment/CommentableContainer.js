@@ -7,9 +7,14 @@ import CommentCard from './CommentCard';
 
 const propTypes = {
 	commentable: PropTypes.instanceOf(Object).isRequired, // movie or comment obj
+	comments: PropTypes.instanceOf(Object), //may be passed down from a parent 
   commentable_id: PropTypes.string.isRequired,
   commentable_type: PropTypes.string.isRequired,
   curr_user: PropTypes.instanceOf(Object).isRequired,
+}
+
+const defaultProps ={
+  comments: [],
 }
 
 class CommentableContainer extends Component {
@@ -26,20 +31,17 @@ class CommentableContainer extends Component {
   }
   
   // immutably set state for comments
-  componentDidMount() {
-    this.setState((state, props) => {
-      this.getComments();
-    })
-  }
+  
 
   // update the component if new props recieved
-  componentDidUpdate(prevProps) {
-    const { commentable_id } = this.props;
-    
-    if ( prevProps.commentable_id !== commentable_id) {
+  componentDidUpdate(prevProps, prevState) {
+
+    if ( prevProps.commentable_id !== this.props.commentable_id
+     || prevProps.comments.length !== this.props.comments.length
+    ) {
       this.getComments();
-    }
-  }
+    } 
+  } 
 
   addComment(data) {
     const { commentable_id, commentable_type } = this.props;
@@ -135,5 +137,6 @@ class CommentableContainer extends Component {
 }
 
 CommentableContainer.propTypes = propTypes;
+CommentableContainer.defaultProps = defaultProps;
 
 export default CommentableContainer

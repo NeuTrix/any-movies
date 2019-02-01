@@ -48,20 +48,19 @@ class MovieContainer extends Component {
   addComment(data) {
     const { curr_movie, movieRegistered } = this.state;
 
-    // verify registration for movie comments only. (not comments/comments)
     if (!movieRegistered) {
       this.registerMovie();
     }
-    // update the data object with required fields
-    // data.commentable_id = curr_movie.imdbID;
-    // data.commentable_type = movieType;
-    // data.user_id = userID;
 
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
         alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
         this.setState({ displayingCommentForm: false });
         return resp.data
+      })
+      .then(data => {
+        // reset the comments data
+        this.getComments()        
       })
       .catch(err => { 
         alert (`There was a problem adding your comment. \n ${err}`)
@@ -179,7 +178,7 @@ class MovieContainer extends Component {
     return (
       <MoviePage 
         // objects
-        all_comments={comments}
+        comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}
         // functions

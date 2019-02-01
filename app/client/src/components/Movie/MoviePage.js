@@ -35,19 +35,19 @@ class MoviePage extends Component {
   }
 
 componentDidMount() {
-  const { comments, curr_movie, curr_user } = this.props;
+  // const { comments, curr_movie, curr_user } = this.props;
   // const commentable_id = curr_movie.imdbID;
   // const commentable_type = "Movie";
 
-  this.setState(state => {
+  // this.setState(state => {
 
-    return { 
-      ...state, 
-      // commentable_id, 
-      // commentable_type,
-    }
+  //   return { 
+  //     ...state, 
+  //     // commentable_id, 
+  //     // commentable_type,
+  //   }
 
-  })
+  // })
 
   // this.props.getComments(commentable_id, commentable_type)
 }
@@ -108,6 +108,7 @@ toggleCommentableForm() {
         <div style={{ gridArea: 'comments' }} >
           <CommentableContainer 
             commentable={curr_movie}
+            comments={comments}
             commentable_id={curr_movie.imdbID}
             commentable_type={"Movie"}
             curr_user={curr_user}
