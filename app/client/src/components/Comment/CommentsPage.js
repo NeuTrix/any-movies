@@ -69,12 +69,14 @@ class CommentsPage extends Component {
       <div className={classes.root}>
         <ExpansionPanel className={classes.expansion} >
             
-          <ExpansionPanelSummary expandIcon={
-            <ExpandMoreIcon onClick={handleGetComments} />
-          }>
-            <Typography className={classes.heading} >
-                See Responses... {commentsList.count}
-            </Typography>
+          <ExpansionPanelSummary 
+          className={classes.summary}
+            expandIcon={
+              <ExpandMoreIcon onClick={handleGetComments} />
+            }>
+              <Typography className={classes.heading} >
+                  See Responses... {commentsList.count}
+              </Typography>
 
           </ExpansionPanelSummary>
 
@@ -89,18 +91,15 @@ class CommentsPage extends Component {
   }
 }
 
-CommentsPage.propTypes = propTypes;
-CommentsPage.defaultProps = defaultProps;
-
 const styles = theme => ({
   
   root: {
     textAlign:'left',
-    // maxWidth: 400,
   },
 
   expansion: {
-    background: 'lime',
+    background: 'aliceblue',
+    border: '1px solid darkgrey',
     padding: 0,
   },
 
@@ -111,11 +110,16 @@ const styles = theme => ({
 
   list: {
     // for design and debugging
-    background: 'aliceblue',
-    outline: '1px solid orangered',
     padding: 'none',
     margin:'none',
-  }
+  }, 
+
+  summary: {
+    background: "lime"
+  },
 });
+
+CommentsPage.propTypes = propTypes;
+CommentsPage.defaultProps = defaultProps;
 
 export default withStyles(styles)(CommentsPage);

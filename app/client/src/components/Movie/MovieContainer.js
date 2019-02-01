@@ -40,6 +40,7 @@ class MovieContainer extends Component {
       this.getComments();
       return { ...state, curr_user }
     })
+    
   }
 
   // adds a new review for the currently displayed Movie

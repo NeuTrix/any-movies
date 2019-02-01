@@ -149,9 +149,9 @@ const styles = theme => ({
   },
 
   card: {
-    // gridTemplateAreas
-    // minWidth: 350,
-    margin: 'none',
+    // border: '1px solid orangered',
+
+    // margin: 'none',
     marginBottom: theme.spacing.unit,
   },
   pos: {
