@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :comments, module: :movies
     end
     # only show comment comments route
-    resources :comments, only: [:index, :show, :destroy] do
+    resources :comments do
       resources :comments, module: :comments
     end
   end

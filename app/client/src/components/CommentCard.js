@@ -24,8 +24,7 @@ const propTypes = {
   // functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
   deleteComment: PropTypes.func.isRequired, // adds a new review instance to api
-  
-  
+  editComment: PropTypes.func.isRequired, // adds a new review instance to api
 }
 
 class CommentCard extends Component {
@@ -35,28 +34,32 @@ class CommentCard extends Component {
     this.state = {
       // comments: [],
       displaySubComments: true,
-      showCommentForm: false,
+      showNewCommentForm: false,
+      showEditCommentForm: false,
     }
 
     // this.addComment = this.addComment.bind(this);
     this.toggleSubComments = this.toggleSubComments.bind(this);
-    this.toggleCommentForm = this.toggleCommentForm.bind(this);
+    this.toggleNewCommentForm = this.toggleNewCommentForm.bind(this);
+    this.toggleEditCommentForm = this.toggleEditCommentForm.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    // this.handleEdit = this.handleEdit.bind(this);
   }
 
-
+  // using this?
   toggleSubComments(prevState) {
     // toggle displaySubComments
     this.setState({ displaySubComments: !this.state.displaySubComments  });
   }
 
   // allows the addCommentableForm to toggle on and off
-  toggleCommentForm() {
-    this.setState({
-      showCommentForm: !this.state.showCommentForm
-    });
+  toggleNewCommentForm() {
+    this.setState({ showNewCommentForm: !this.state.showNewCommentForm });
+  }
+
+  // allows the editCommentableForm to toggle on and off
+  toggleEditCommentForm() {
+    this.setState({ showEditCommentForm: !this.state.showEditCommentForm });
   }
 
   handleDelete(e) {  
@@ -67,22 +70,42 @@ class CommentCard extends Component {
 
   handleEdit(e) {  
     e.preventDefault();
-    this.toggleCommentForm()
-    // const { commentable_id, commentable_type } = this.props
-    // this.props.deleteComment(commentable_id, commentable_type)
+    const { commentable_id } = this.props
+    this.props.editComment(commentable_id)
   }
 
   render() {  
-    const { addComment, deleteComment, classes, commentable, commentable_id, commentable_type, curr_user} = this.props;
-    const { showCommentForm, displaySubComments } = this.state;
+    const { 
+      addComment, 
+      deleteComment, 
+      editComment,
+      classes, 
+      commentable, 
+      commentable_id, 
+      commentable_type, 
+      curr_user
+    } = this.props;
+    const { showNewCommentForm, showEditCommentForm } = this.state;
    
-      const commentableForm = (
-        <CommentableForm 
-          commentable_id={commentable_id}
-          commentable_type={"Comment"}
-          curr_user={curr_user}
-          addCommentable={addComment}
-        /> 
+    const newCommentForm = (
+      <CommentableForm 
+        commentable={commentable}
+        commentable_id={commentable_id}
+        commentable_type={"Comment"}
+        curr_user={curr_user}
+        submitAction={addComment}
+      /> 
+    )
+
+    const editCommentForm = (
+      <CommentableForm 
+        commentable={commentable}
+        commentable_id={commentable_id}
+        commentable_type={"Comment"}
+        curr_user={curr_user}
+        submitAction={editComment}
+        editMode="true"
+      /> 
     )
 
     return (
@@ -117,9 +140,18 @@ class CommentCard extends Component {
         <CardActions className={classes.actions} 
           style={{ gridArea: 'reply'}}
         >
-          <Button size="small" onClick={this.toggleCommentForm} >reply</Button>
-          <Button size="small" onClick={this.handleDelete} > delete </Button>
-          <Button size="small" onClick={this.handleEdit} > edit </Button>
+          <Button size="small" onClick={this.toggleNewCommentForm} >
+            reply
+          </Button>
+          
+          <Button size="small" onClick={this.handleDelete} >
+             delete 
+          </Button>
+          
+          <Button size="small" onClick={this.toggleEditCommentForm} >
+             edit 
+          </Button>
+          
         </CardActions>
 
         <CardActions 
@@ -137,7 +169,8 @@ class CommentCard extends Component {
         </CardActions>
         
         <CardContent style={{ gridArea: 'form'}} >
-          { showCommentForm && commentableForm }
+          { showNewCommentForm && newCommentForm }
+          { showEditCommentForm && editCommentForm }
         </CardContent>
           
       </Card>

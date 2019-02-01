@@ -1,5 +1,5 @@
 // form returns an author, body, and title for a commentable object
-// create action (addCommentable) is dellivered through props
+// create action (submitAction) is dellivered through props
 // allows movie or comments to share the component
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -16,8 +16,13 @@ const propTypes = {
 	commentable_type: PropTypes.string.isRequired, 
 	curr_user: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
-	addCommentable: PropTypes.func.isRequired, // create relative commentable
+	editMode: PropTypes.bool, // new or edit form 
+	submitAction: PropTypes.func.isRequired, // create or edit commentable
 };
+
+const defaultProps = {
+	editMode: false,
+}
 
 class CommentableForm extends Component {
 
@@ -37,24 +42,32 @@ class CommentableForm extends Component {
 		this.onSubmit = this.onSubmit.bind(this)
 	}
 
-  // update the state with form entries
-  onChange(e) {
-    this.setState({[e.target.name]: e.target.value})
-	}
-	
 	// post the review to the rails API
 	componentDidMount() {
 		this.setState((state, props) => {
-			const { commentable_id, commentable_type, curr_user } = props
+			const { commentable, commentable_id, commentable_type, curr_user, editMode } = props
 			let author = curr_user.username;
 			let user_id = curr_user.id;
-			return { ...state, author, user_id, commentable_id, commentable_type }
+			// prepopulate if this is an editing item
+			let body, title
+			if (editMode) {
+				body = commentable.body 
+				title = commentable.title
+			}
+			return { ...state, author, body, title, user_id, commentable_id, commentable_type }
 		});
 	}
 	
+	// update the state with form entries
+	onChange(e) {
+		this.setState({
+			[e.target.name]: e.target.value
+		})
+	}
+
   onSubmit(e) {
 		e.preventDefault();
-		this.props.addCommentable(this.state)
+		this.props.submitAction(this.state)
   }
 
 	render() {
@@ -127,5 +140,6 @@ const styles= theme => ({
 });
 
 CommentableForm.propTypes = propTypes;
+CommentableForm.defaultProps = defaultProps;
 
 export default withStyles(styles)(CommentableForm)
