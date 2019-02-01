@@ -25,7 +25,7 @@ class MoviePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // commentable_id: 'default',
+      // commentable_id: 'defalt',
       // commentable_type: 'default',
       displayingCommentForm: false,
     }

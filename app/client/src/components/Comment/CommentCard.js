@@ -91,14 +91,14 @@ class CommentCard extends Component {
     const { addComment, classes, commentable, commentable_id, commentable_type, curr_user} = this.props;
     const { showCommentForm, displaySubComments } = this.state;
    
-      const commentableForm = (
-        <CommentableForm 
-        commentable_id={commentable_id}
-        commentable_type={commentable_type}
-        curr_user={curr_user}
-        addCommentable={addComment} 
-      /> 
-    )
+    //   const commentableForm = (
+    //     <CommentableForm 
+    //     commentable_id={commentable_id}
+    //     commentable_type={commentable_type}
+    //     curr_user={curr_user}
+    //     addCommentable={addComment} 
+    //   /> 
+    // )
 
     return (
       <Card className={classes.card}>
@@ -138,7 +138,7 @@ class CommentCard extends Component {
         </CardActions>
         
         <CardContent>
-          { showCommentForm && commentableForm }
+          {/* { showCommentForm && commentableForm } */}
         </CardContent>
           
       </Card>

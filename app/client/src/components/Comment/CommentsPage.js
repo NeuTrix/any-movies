@@ -13,8 +13,10 @@ import { Button } from '@material-ui/core';
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
   commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-  commentsList: PropTypes.instanceOf(Array), // from commentable
+  commentable_id: PropTypes.string.isRequired, 
+  commentable_type: PropTypes.string.isRequired, 
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
+  commentsList: PropTypes.instanceOf(Array), // from commentable
   // functions
   handleAddComment: PropTypes.func.isRequired, // adds a new comment to the list
   handleGetComments: PropTypes.func.isRequired, // adds a new comment to the list
@@ -53,7 +55,7 @@ class CommentsPage extends Component {
       // generate commentable form for current movie
        <CommentableForm 
         commentable_id={commentable_id}
-        commentable_type={commentable_type}
+        commentable_type={"Comment"}
         curr_user={curr_user}
         addCommentable={handleAddComment} 
       />
@@ -65,24 +67,28 @@ class CommentsPage extends Component {
 
     return (
       <div className={classes.root}>
-    
+      Comments Page
           Comments for {commentable_type} : {commentable_id} 
         <ExpansionPanel>
-          <Button 
-            variant="contained"
-            onClick={handleGetComments} 
-          > 
-            get comments
-          </Button>
+          
             
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>
+            <Button 
+              className={classes.heading}
+              variant="outlined" 
+              onClick={handleGetComments} 
+            >
                 See Responses... {commentsList.count}
-            </Typography>
+            </Button>
+
           </ExpansionPanelSummary>
 
           <ExpansionPanelDetails>
             <div className={classes.list} > { commentsList } </div>
+          <div>
+            { commentableForm }
+          </div>
+            
           </ExpansionPanelDetails>
 
         </ExpansionPanel>

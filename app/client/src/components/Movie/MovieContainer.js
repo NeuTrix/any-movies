@@ -182,6 +182,7 @@ class MovieContainer extends Component {
         curr_movie={curr_movie}
         curr_user={curr_user}
         // functions
+        // rename as 'handlexxx'
         addComment={this.addComment}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
