@@ -99,7 +99,7 @@ const styles = theme => ({
 
   expansion: {
     background: 'aliceblue',
-    border: '1px solid darkgrey',
+    // border: '1px solid darkgrey',
     padding: 0,
   },
 

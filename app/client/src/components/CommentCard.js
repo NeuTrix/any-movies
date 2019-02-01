@@ -120,7 +120,7 @@ const styles = theme => ({
   },
 
   card: {
-    // border: '1px solid orangered',
+    border: '2px solid lime',
 
     // margin: 'none',
     marginBottom: theme.spacing.unit,
