@@ -68,7 +68,7 @@ class CommentCard extends Component {
     )
 
     return (
-      <Card className={classes.card}>
+      <Card className={classes.grid}>
 
         <CardContent>
 
@@ -119,7 +119,13 @@ const styles = theme => ({
     display: 'inline-flex',
   },
 
-  card: {
+  grid: {
+    display: 'grid',
+    gridTemplateAreas:`
+      "title title"
+      "reply response"
+      "form form"
+    `,
     border: '2px solid lime',
 
     // margin: 'none',
