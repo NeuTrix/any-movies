@@ -152,7 +152,7 @@ const styles = theme => ({
     // gridTemplateAreas
     // minWidth: 350,
     margin: 'none',
-    // marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
   },
   pos: {
     marginBottom: 12,

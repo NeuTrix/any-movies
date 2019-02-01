@@ -111,8 +111,10 @@ const styles = theme => ({
 
   list: {
     // for design and debugging
-    background: 'yellow',
+    background: 'aliceblue',
     outline: '1px solid orangered',
+    padding: 'none',
+    margin:'none',
   }
 });
 
