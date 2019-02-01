@@ -25,52 +25,35 @@ class CommentableForm extends Component {
 		super(props)
 		this.state = {
 			// from props
-			// commentable_id: '',
-			// commentable_type: '',
-			// user_id: '',
+			commentable_id: '',
+			commentable_type: '',
+			user_id: '',
 			author: '',
 			// from form
       body: '',
       title: '',
 		}
-		this.onSubmit = this.onSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
 	}
 
-	// componentDidMount() {
-		// this.setState((state, props) => { 
-		// // const { commentable_id, commentable_type, curr_user } = props
-		// let author = props.curr_user.username;
-		// let user_id = props.curr_user.id;
-		// let commentable_id = props.commentable_id;
-		// let commentable_type = props.commentable_type;
-
-		// 	// prefill the form with the current user's name
-		// 	return {
-		// 		...state, 
-		// 		author,
-		// 		commentable_id,
-		// 		commentable_type,
-		// 		user_id,
-		// 	}
-		// });
-	// }
   // update the state with form entries
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
 	// post the review to the rails API
-  onSubmit(e) {
-		e.preventDefault();
-
+	componentDidMount() {
 		this.setState((state, props) => {
 			const { commentable_id, commentable_type, curr_user } = props
 			let author = curr_user.username;
 			let user_id = curr_user.id;
 			return { ...state, author, user_id, commentable_id, commentable_type }
 		});
-		
-    this.props.addCommentable(this.state)
+	}
+	
+  onSubmit(e) {
+		e.preventDefault();
+		this.props.addCommentable(this.state)
   }
 
 	render() {

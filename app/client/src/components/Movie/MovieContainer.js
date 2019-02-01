@@ -46,16 +46,16 @@ class MovieContainer extends Component {
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
   addComment(data) {
-    const { curr_movie, movieType, userID, movieRegistered } = this.state;
+    const { curr_movie, movieRegistered } = this.state;
 
     // verify registration for movie comments only. (not comments/comments)
     if (!movieRegistered) {
       this.registerMovie();
     }
     // update the data object with required fields
-    data.commentable_id = curr_movie.imdbID;
-    data.commentable_type = movieType;
-    data.user_id = userID;
+    // data.commentable_id = curr_movie.imdbID;
+    // data.commentable_type = movieType;
+    // data.user_id = userID;
 
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
