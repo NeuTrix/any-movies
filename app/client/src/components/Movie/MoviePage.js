@@ -108,8 +108,6 @@ const styles = theme => ({
     `,
     gridTemplateColumns: '1fr 1fr',
     padding: theme.spacing.unit,
-    // debug
-    // background: 'lime',
   },
 
   actions: {
