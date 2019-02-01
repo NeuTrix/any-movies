@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
-import { Button, InputLabel } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -40,7 +40,8 @@ class CommentableForm extends Component {
   // update the state with form entries
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
-  }
+	}
+	
 	// post the review to the rails API
 	componentDidMount() {
 		this.setState((state, props) => {
@@ -57,7 +58,7 @@ class CommentableForm extends Component {
   }
 
 	render() {
-		const { classes, curr_user, commentable_id, commentable_type } = this.props;
+		const { classes, curr_user } = this.props;
 
 		return (
 			<FormControl
