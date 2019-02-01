@@ -23,11 +23,11 @@ class CommentableContainer extends Component {
     this.state = {
       comments: [], // generated comments for this instance
     }
-
-    this.addComment = this.addComment.bind(this);
-    this.getComments = this.getComments.bind(this)
-    this.deleteComment = this.deleteComment.bind(this)
-    // this.editComment = this.editComment.bind(this)
+    // CRUD functions
+    this.addComment = this.addComment.bind(this); // Create
+    this.editComment = this.editComment.bind(this) // Update
+    this.getComments = this.getComments.bind(this) // Read
+    this.deleteComment = this.deleteComment.bind(this) // Delete
   }
 
   componentDidMount() {
@@ -66,6 +66,31 @@ class CommentableContainer extends Component {
         )
         console.log('ERROR=>',err); 
       })
+  }
+
+  editComment(data) {
+    alert('editing comment')
+    // // 'data' is from the component state
+    // const { commentable_id, commentable_type } = data;
+    
+    // //   // determine rails path for commentable
+    // let path = commentable_type === 'Movie' ? 'movies' : 'comments'
+
+    // return axios.post(`/api/${path}/${commentable_id}/comments`, data)
+    //   .then(resp => {
+    //     this.setState({ displayingCommentForm: false });
+    //     // -> make another .then to reply upon confirmatio or status vs alert
+    //     alert(`Your comment was added! \n commentable_id: ${resp.data.id}`)
+    //     return resp.data
+    //   })
+    //   .catch(err => { 
+    //     alert (
+    //       `There was a problem adding your comment. 
+    //       \n "CommentableContainer"
+    //       \n ${err}`
+    //     )
+    //     console.log('ERROR=>',err); 
+    //   })
   }
 
   deleteComment(child_id, child_type) {
@@ -140,6 +165,7 @@ class CommentableContainer extends Component {
             curr_user={curr_user}
             addComment={this.addComment}
             deleteComment={this.deleteComment}
+            editComment={this.editComment}
           /> 
         </div>
       ) 
