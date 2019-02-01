@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 // import shortid from 'shortid';
-import { url_movie_data } from '../../helpers/api.helper';
+import { url_movie_data } from '../helpers/api.helper';
 import MoviePage from './MoviePage';
 
 const propTypes = { 
@@ -40,6 +40,7 @@ class MovieContainer extends Component {
       this.getComments();
       return { ...state, curr_user }
     })
+    
   }
 
   // adds a new review for the currently displayed Movie
