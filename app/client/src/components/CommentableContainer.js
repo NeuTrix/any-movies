@@ -43,10 +43,6 @@ class CommentableContainer extends Component {
 
   // DRY up the duplicate code in add and edit
   addComment(commentable, data) {
-    // 'data' is from the component state
-    
-    //   // determine rails path for commentable
-    // let path = commentable.type === 'Comment' ? 'comments' : 'movies'
 
     let url
     if (commentable.commentable_type) {
@@ -105,10 +101,9 @@ class CommentableContainer extends Component {
       })
   }
 
-  deleteComment() {
-    const { commentable } = this.props;
+  deleteComment(id) {
 
-    return axios.delete(`/api/comments/${commentable.id}`)
+    return axios.delete(`/api/comments/${id}`)
       .then(resp => {
         this.setState({ displayingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert

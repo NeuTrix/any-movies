@@ -40,9 +40,17 @@ class CommentsPage extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  // to update the sub comments pages and counts
   componentDidMount() {
-    //Need to refactor as Did Update with conditional
     this.props.handleGetComments()
+  }
+  
+  // update the component if new props recieved
+  componentDidUpdate(prevProps, prevState) {
+    // need better logic=- how to get commentable id?
+    if (prevProps.commentsList.length !== this.props.commentsList.length) {
+      this.props.handleGetComments()
+    }
   }
 
   handleChange(event, expanded) {
