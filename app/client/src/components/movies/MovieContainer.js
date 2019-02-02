@@ -32,7 +32,7 @@ class MovieContainer extends Component {
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
     const { curr_movie } = this.state;
-    
+    this.setState({ curr_user: this.props.curr_user  });
     this.getMovieData(curr_movie.Title);
     this.validateMovieRegistration()
     
@@ -64,15 +64,20 @@ class MovieContainer extends Component {
   addComment({data, commentable}) {
     const { curr_movie, movieRegistered } = this.state;
     // adds movie to the api db for commenting. Only when comment attempted
-    if (!movieRegistered) {
-      this.registerMovie()
-    }
+    // if (!movieRegistered) {
+    //   this.registerMovie()
+    // }
 
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
-        alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
-        this.setState({ displayingCommentForm: false });
-        return resp.data
+        if (resp.status === 201) {
+
+          alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
+          this.setState({ displayingCommentForm: false });
+          return resp.data
+        } else {
+          alert('problems with adding comms, dude')
+        }
       })
       .then(data => {
         // reset the comments data
@@ -195,6 +200,7 @@ class MovieContainer extends Component {
   render() {
     // deconstruct state objects
     const { curr_movie, curr_user, comments } = this.state
+
     return (
       <MoviePage 
       // consider renamng as CommentsList?
