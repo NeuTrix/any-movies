@@ -72,14 +72,12 @@ class CommentableForm extends Component {
 		const { commentable } = this.props
 		const data = this.state;
 		console.log('submitting', this.props)
-	this.props.submitAction({ commentable, data });
-		setTimeout(() => {
-			this.props.toggleForm();
-		}, 750)
-  }
+		// sending an args object to protect against arg order errors
+		this.props.submitAction({ commentable, data });
+			setTimeout(() => { this.props.toggleForm(); }, 750) }
 
 	render() {
-		const { classes, commentable_type, curr_user } = this.props;
+		const { classes, curr_user } = this.props;
 
 		return (
 			<FormControl
