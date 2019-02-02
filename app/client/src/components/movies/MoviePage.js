@@ -78,6 +78,8 @@ class MoviePage extends Component {
           <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
             {/* Movie Blog!  */}
             <SearchAppBar 
+              isFormDisplayed={this.state.displayingCommentForm}
+              toggleCommentableForm={this.toggleCommentableForm}
               getMovieData={getMovieData} 
             />
           </h1>
