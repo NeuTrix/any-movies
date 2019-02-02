@@ -59,24 +59,17 @@ class MovieContainer extends Component {
   }
 
   // adds a new review for the currently displayed Movie
-  //  this function is trying to do too many thigs.  
-  // Movie save should be an option that pops up/* */
   addComment({data, commentable}) {
-    const { curr_movie, movieRegistered } = this.state;
-    // adds movie to the api db for commenting. Only when comment attempted
-    // if (!movieRegistered) {
-    //   this.registerMovie()
-    // }
+    const { curr_movie } = this.state;
 
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
       .then(resp => {
         if (resp.status === 201) {
-
           alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
           this.setState({ displayingCommentForm: false });
           return resp.data
         } else {
-          alert('problems with adding comms, dude')
+          alert('Got problems with adding comments, dude! \n Please check the console logs')
         }
       })
       .then(data => {
