@@ -102,9 +102,9 @@ class CommentableContainer extends Component {
       })
   }
 
-  deleteComment(commentable_id) {
+  deleteComment(comment_id) {
 
-    return axios.delete(`/api/comments/${commentable_id}`)
+    return axios.delete(`/api/comments/${comment_id}`)
       .then(resp => {
         this.setState({ displayingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert

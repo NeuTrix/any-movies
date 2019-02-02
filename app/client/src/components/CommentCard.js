@@ -64,8 +64,8 @@ class CommentCard extends Component {
 
   handleDelete(e) {  
     e.preventDefault();
-    const { commentable_id } = this.props
-    this.props.deleteComment(commentable_id)
+    const { commentable } = this.props
+    this.props.deleteComment(commentable.id)
   }
 
   handleEdit(e) {  
