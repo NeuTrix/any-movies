@@ -53,47 +53,68 @@ class MoviePage extends Component {
         toggleForm={this.toggleCommentableForm}
         />
     )
+    console.log('url',curr_movie.Poster)
 
     return (
-      <div className={classes.grid}>
-
-        <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
-          Movie Blog! 
-        </h1>
       
-        <div className={classes.actions} style={{ gridArea: 'addComment' }}>
-          <Button 
-            variant="contained"
-            size="small" 
-            onClick={this.toggleCommentableForm}
+      <div 
+        style={{
+          backgroundImage: `url(${curr_movie.Poster})`,
+          backgroundRepeat: 'repeat-y',
+          backgroundSize:'contain',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+      <div 
+      classNameß={classes.grid}
+      style={{
+        height: '100%',
+        width: '100%', 
+        display: 'block',
+        backgroundColor: 'white',
+        opacity: '0.92',
+      }} >
+
+      {/* fake opacity */}
+        
+          <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
+            Movie Blog! 
+          </h1>
+        
+          <div className={classes.actions} style={{ gridArea: 'addComment' }}>
+            <Button 
+              variant="contained"
+              size="small" 
+              onClick={this.toggleCommentableForm}
+            >
+              Comment
+            </Button>
+          </div>
+
+          <div 
+            className={classes.actions} 
+            style={{ gridArea: 'search' }}
           >
-            Comment
-          </Button>
-        </div>
+            <MovieSearchBar getMovieData={getMovieData} /> 
+          </div>
 
-        <div 
-          className={classes.actions} 
-          style={{ gridArea: 'search' }}
-        >
-          <MovieSearchBar getMovieData={getMovieData} /> 
-        </div>
-
-        <div style={{ gridArea: 'form' }}>
-          { displayingCommentForm &&  commentableForm } 
-        </div>
-        
-        <div style={{ gridArea: 'movies' }} >
-          <MovieDisplay curr_movie={curr_movie} posterUrl={curr_movie.Poster}/>
-        </div>
-        
-        <div className={classes.comments} >
-          <CommentableContainer 
-            commentable={curr_movie}
-            comments={comments}
-            commentable_id={curr_movie.imdbID}
-            commentable_type={"Movie"}
-            curr_user={curr_user}
-          />
+          <div style={{ gridArea: 'form' }}>
+            { displayingCommentForm &&  commentableForm } 
+          </div>
+          
+          <div style={{ gridArea: 'movies' }} >
+            <MovieDisplay curr_movie={curr_movie} posterUrl={curr_movie.Poster}/>
+          </div>
+          
+          <div className={classes.comments} >
+            <CommentableContainer 
+              commentable={curr_movie}
+              comments={comments}
+              commentable_id={curr_movie.imdbID}
+              commentable_type={"Movie"}
+              curr_user={curr_user}
+            />
+          </div>
         </div>
       </div>
     )
@@ -113,6 +134,7 @@ const styles = theme => ({
     gridTemplateColumns: '1fr 1fr 1fr',
     padding: theme.spacing.unit,
     maxWidth: 600,
+    // background: 'yellow',
     // [theme.breakpoints.up("md")]
   },
 
