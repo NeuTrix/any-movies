@@ -159,7 +159,7 @@ class MovieContainer extends Component {
       axios.post(`/api/movies`, data)
       .then(resp => {
         resp.status === 201
-          ? alert(`Added ${data.title} to db with id: ${data.imdb_id}`)
+          ? alert(`Congratulations.  \n You'll be the first one to comment on this film! \n Added ${data.title} to db with id: ${data.imdb_id}`)
           : alert(`Oops! There was a problem. See the logs for more info`)
           // console.log(resp.data)
           return  resp.data
