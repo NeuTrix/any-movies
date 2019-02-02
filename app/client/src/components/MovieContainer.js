@@ -96,7 +96,6 @@ class MovieContainer extends Component {
         return comments
       })
       .catch(err => {
-        // alert(`Err...This Movie may not be registered \n ${err}`)
         console.log('ERROR=>', err);
 
         // reset the comments for an unregistered movie
@@ -113,7 +112,6 @@ class MovieContainer extends Component {
      return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
-        // must figure why this loops if no movie mathcing
        if (data.Error) {
           alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
@@ -121,23 +119,23 @@ class MovieContainer extends Component {
       })
       .then(data => {
         // verify whether movie is in my api
-        console.log('movie container: validating')
         this.validateMovieRegistration()
+        console.log('movie container: validating')
         return data
       })
       .then(data => {
         // update the state movie object (with OMDB curr_movie)
-        console.log('movie container: resetting movie state')
         this.setState((state) => { 
           let curr_movie = data
           return { ...state, curr_movie }
         })
+        console.log('movie container: resetting movie state')
         return data
       })
       .then(data => {
         // reset the comments state
-        console.log('movie container: updating comments');
         this.getComments();
+        console.log('movie container: updating comments');
       })
       .catch(err => {
         console.log(err) 
@@ -189,7 +187,6 @@ class MovieContainer extends Component {
     const { curr_movie, curr_user, comments } = this.state
     return (
       <MoviePage 
-      // objects
       // consider renamng as CommentsList?
         comments={comments}
         curr_movie={curr_movie}

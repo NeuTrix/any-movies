@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
 import CommentableForm from './CommentableForm';
 import CommentableContainer from './CommentableContainer';
 import MovieDisplay from './MovieDisplay';
@@ -16,7 +15,6 @@ const propTypes = {
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
   // ===> functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
-  // getComments: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for curr_movie
 }
 
@@ -44,7 +42,6 @@ class MoviePage extends Component {
     const { displayingCommentForm } = this.state;
     
     // generate comment form for current movie
-
     const newCommentForm = (
       <CommentableForm 
       // using OMDB obj vs api so need to define commentable_id/type
@@ -121,8 +118,6 @@ const styles = theme => ({
     maxWidth: 600,
     backgroundColor: 'white',
       opacity: '0.92',
-    // background: 'yellow',
-    
   },
 
   actions: {
@@ -133,7 +128,6 @@ const styles = theme => ({
   comments: {
     gridArea: 'comments'
   },
-  
 
   posterBackground: {
     // adjust poster background based on screen size
