@@ -58,6 +58,10 @@ class CommentableContainer extends Component {
         alert(`Your comment was added! \n commentable_id: ${resp.data.id}`)
         return resp.data
       })
+      .then(() => {
+        // update the subcomments object
+        this.getComments();
+      })
       .catch(err => { 
         alert (
           `There was a problem adding your comment. 
@@ -87,6 +91,10 @@ class CommentableContainer extends Component {
           alert(`Caution. Status code ${resp.status}`)
         }
         return resp.data
+      })
+      .then(() => {
+        // update the subcomments object
+        this.getComments();
       })
       .catch(err => {
         alert(`There was a problem editing your comment. \n "CommentableContainer" \n ${err}`)
