@@ -1,12 +1,12 @@
 // container to gather movie logic
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+
 import CommentableForm from '../comments/CommentableForm';
 import CommentableContainer from '../comments/CommentableContainer';
 import MovieDisplay from './MovieDisplay';
-import MovieSearchBar from './MovieSearchBar';
 import SearchAppBar from '../tools/SearchAppBar';
 
 
@@ -77,26 +77,23 @@ class MoviePage extends Component {
 
           <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
             {/* Movie Blog!  */}
-            <SearchAppBar getMovieData={getMovieData} />
+            <SearchAppBar 
+              getMovieData={getMovieData} 
+            />
           </h1>
         
-          <div className={classes.actions} style={{ gridArea: 'addComment' }}>
-            <Button 
-              variant="contained"
-              size="small" 
-              onClick={this.handleCommentsClick}
-              // onClick={this.toggleCommentableForm}
-            >
-              Comments?
-            </Button>
+          <div className={classes.toggleComment} style={{ gridArea: 'addComment' }}>
+            <Link color="primary" onClick={this.handleCommentsClick} >
+              Comment on this movie?
+            </Link>
           </div>
 
-          <div 
-            className={classes.actions} 
+          {/* <div 
+            className={classes.toggleComment} 
             style={{ gridArea: 'search' }}
           >
             <MovieSearchBar getMovieData={getMovieData} /> 
-          </div>
+          </div> */}
 
           <div style={{ gridArea: 'form' }}>
             { displayingCommentForm &&  newCommentForm } 
@@ -124,11 +121,12 @@ const styles = theme => ({
     display: 'inline-grid',
     gridTemplateAreas: `
       "title title title "
+      "addComment addComment ."
       "form form form"
-      "search search addComment"
       "comments comments comments"
       "movies movies movies"
     `,
+    gridRowGap: '8px',
     gridTemplateColumns: '1fr 1fr 1fr',
     padding: theme.spacing.unit,
     maxWidth: 600,
@@ -136,9 +134,11 @@ const styles = theme => ({
     opacity: '0.93',
   },
 
-  actions: {
+  toggleComment: {
     display: 'grid',
+    marginBelow: theme.spacing.unit,
     padding: theme.spacing.unit,
+    textAlign: 'left'
   },
 
   comments: {
