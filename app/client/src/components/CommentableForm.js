@@ -12,6 +12,7 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
+	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentable_id: PropTypes.string.isRequired, 
 	commentable_type: PropTypes.string.isRequired, 
 	curr_user: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -68,8 +69,9 @@ class CommentableForm extends Component {
 
   onSubmit(e) {
 		e.preventDefault();
+		const { commentable } = this.props
 		console.log('submitting', this.props)
-		this.props.submitAction(this.state);
+		this.props.submitAction(commentable, this.state);
 		setTimeout(() => {
 			this.props.toggleForm();
 		}, 750)

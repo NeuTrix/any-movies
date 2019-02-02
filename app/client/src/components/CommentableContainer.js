@@ -41,14 +41,21 @@ class CommentableContainer extends Component {
     } 
   } 
 
-  addComment(data) {
+  // DRY up the duplicate code in add and edit
+  addComment(commentable, data) {
     // 'data' is from the component state
-    const { commentable } = this.props;
     
     //   // determine rails path for commentable
-    let path = commentable.type === 'Comment' ? 'comments' : 'movies'
+    // let path = commentable.type === 'Comment' ? 'comments' : 'movies'
 
-    return axios.post(`/api/${path}/${commentable.id}/comments`, data)
+    let url
+    if (commentable.commentable_type) {
+      url = `/api/comments/${commentable.id}/comments`
+    } else {
+      url = `/api/movies/${commentable.imdbID}/comments`
+    }
+
+    return axios.post(url, data)
       .then(resp => {
         this.setState({ displayingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert
@@ -78,7 +85,6 @@ class CommentableContainer extends Component {
           console.log('-->', data)
         this.setState({
           // add this for edit and delete==>
-          
           displayingCommentForm: false 
         });
         // -> make another .then to reply upon confirmatio or status vs alert
@@ -123,12 +129,12 @@ class CommentableContainer extends Component {
   getComments() {
     const { commentable } = this.props;
 
-    let url
-    if (!commentable) {
-      return console.log(`No comments yet for this item \n Feel free to add one by clicking "reply" below`)
-    }
+    // if (!commentable) {
+    //   return console.log(`No comments yet for this item \n Feel free to add one by clicking "reply" below`)
+    // }
     // set url based on commentable type
     // OMDB data structure differs
+    let url
     if (commentable.commentable_type) {
       url = `/api/comments/${commentable.id}/comments`
     } else {
