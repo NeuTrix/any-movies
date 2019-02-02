@@ -98,7 +98,7 @@ class CommentableForm extends Component {
 				/>
 
 				<TextField
-					focus
+					autoFocus
 					fullWidth
 					label = "enter title"
 					margin="dense"
