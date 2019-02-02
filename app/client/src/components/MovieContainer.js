@@ -59,7 +59,7 @@ class MovieContainer extends Component {
   // Movie save should be an option that pops up/* */
   addComment(data) {
     const { curr_movie, movieRegistered } = this.state;
-
+    // adds movie to the api db for commenting. Only when comment attempted
     if (!movieRegistered) {
       this.registerMovie();
     }

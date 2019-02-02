@@ -74,7 +74,7 @@ class MoviePage extends Component {
               size="small" 
               onClick={this.toggleCommentableForm}
             >
-              Comment
+              Comments?
             </Button>
           </div>
 
