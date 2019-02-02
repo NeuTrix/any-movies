@@ -56,27 +56,18 @@ class MoviePage extends Component {
     console.log('url',curr_movie.Poster)
 
     return (
-      
-      <div 
+      // set style for poset her.  need to access url variable
+      <div className={classes.posterBack}
         style={{
           backgroundImage: `url(${curr_movie.Poster})`,
           backgroundRepeat: 'repeat-y',
-          backgroundSize:'contain',
+          backgroundSize:'cover',
           backgroundAttachment: 'fixed'
         }}
       >
-      <div 
-      classNameß={classes.grid}
-      style={{
-        height: '100%',
-        width: '100%', 
-        display: 'block',
-        backgroundColor: 'white',
-        opacity: '0.92',
-      }} >
-
       {/* fake opacity */}
-        
+      <div className={classes.grid}>
+
           <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
             Movie Blog! 
           </h1>
@@ -134,6 +125,8 @@ const styles = theme => ({
     gridTemplateColumns: '1fr 1fr 1fr',
     padding: theme.spacing.unit,
     maxWidth: 600,
+    backgroundColor: 'white',
+      opacity: '0.92',
     // background: 'yellow',
     // [theme.breakpoints.up("md")]
   },
