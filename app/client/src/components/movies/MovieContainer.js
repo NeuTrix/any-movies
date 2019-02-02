@@ -112,7 +112,8 @@ class MovieContainer extends Component {
 
   // retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
-
+      this.validateMovieRegistration()
+    
      return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
@@ -138,8 +139,10 @@ class MovieContainer extends Component {
       })
       .then(data => {
         // reset the comments state
-        this.getComments();
-        console.log('movie container: updating comments');
+        if (this.state.movieRegistered) {
+          this.getComments();
+          console.log('movie container: updating comments');
+        }
       })
       .catch(err => {
         console.log(err) 
@@ -198,11 +201,13 @@ class MovieContainer extends Component {
         comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}
+        movieIsRegistered={this.state.movieRegistered}
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
+        handleMovieRegistration={this.registerMovie}
       />
     )
   }

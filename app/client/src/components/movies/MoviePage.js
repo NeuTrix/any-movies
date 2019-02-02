@@ -15,9 +15,11 @@ const propTypes = {
   comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
+  movieIsRegistered: PropTypes.bool.isRequired, // is this currently in api db?
   // ===> functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
   getMovieData: PropTypes.func.isRequired, // search for curr_movie
+  handleMovieRegistration: PropTypes.func.isRequired, // search for curr_movie
 }
 
 class MoviePage extends Component {
@@ -29,11 +31,21 @@ class MoviePage extends Component {
     }
 
     this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
+    this.handleCommentsClick = this.handleCommentsClick.bind(this);
   }
 
 // allows the addComment form to toggle on and off
   toggleCommentableForm() {
     this.setState({ displayingCommentForm: !this.state.displayingCommentForm });
+  }
+
+  handleCommentsClick(e) {
+    e.preventDefault();
+    // register the movie if not validated
+    if (!this.props.movieIsRegistered){
+      this.props.handleMovieRegistration()
+    }
+    this.toggleCommentableForm();
   }
 
   render() {  
@@ -72,7 +84,8 @@ class MoviePage extends Component {
             <Button 
               variant="contained"
               size="small" 
-              onClick={this.toggleCommentableForm}
+              onClick={this.handleCommentsClick}
+              // onClick={this.toggleCommentableForm}
             >
               Comments?
             </Button>
