@@ -76,12 +76,13 @@ class MoviePage extends Component {
       <div className={classes.grid}>
 
           <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
-            {/* Movie Blog!  */}
+
             <SearchAppBar 
               isFormDisplayed={this.state.displayingCommentForm}
               toggleCommentableForm={this.toggleCommentableForm}
               getMovieData={getMovieData} 
             />
+
           </h1>
         
           <div className={classes.toggleComment} style={{ gridArea: 'addComment' }}>
@@ -89,13 +90,6 @@ class MoviePage extends Component {
               Comment on this movie?
             </Link>
           </div>
-
-          {/* <div 
-            className={classes.toggleComment} 
-            style={{ gridArea: 'search' }}
-          >
-            <MovieSearchBar getMovieData={getMovieData} /> 
-          </div> */}
 
           <div style={{ gridArea: 'form' }}>
             { displayingCommentForm &&  newCommentForm } 

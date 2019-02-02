@@ -91,12 +91,6 @@ const styles = theme => ({
     gridTemplateColumns: '2fr 3fr',
   },
 
-  title: {
-    gridArea: 'title',
-    padding: theme.spacing.unit,
-    borderBottom: '1px solid lightgrey',
-  },
-
   info: {
     textAlign: 'left',
     gridArea: 'info',
@@ -133,7 +127,16 @@ const styles = theme => ({
       "critic grade"
     `,
     gridTemplateColumns: '3rf 1fr',
-  }
+  },
+
+  title: {
+    backgroundColor: 'lightgrey',
+    fontColor: 'white',
+    borderBottom: '1px solid lightgrey',
+    gridArea: 'title',
+    padding: theme.spacing.unit,
+  },
+
 })
 
 MovieDisplay.propTypes = propTypes;
