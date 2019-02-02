@@ -7,6 +7,8 @@ import CommentableForm from '../comments/CommentableForm';
 import CommentableContainer from '../comments/CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import MovieSearchBar from './MovieSearchBar';
+import SearchAppBar from '../tools/SearchAppBar';
+
 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -62,7 +64,8 @@ class MoviePage extends Component {
       <div className={classes.grid}>
 
           <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
-            Movie Blog! 
+            {/* Movie Blog!  */}
+            <SearchAppBar />
           </h1>
         
           <div className={classes.actions} style={{ gridArea: 'addComment' }}>
@@ -117,7 +120,7 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     maxWidth: 600,
     backgroundColor: 'white',
-      opacity: '0.92',
+    opacity: '0.95',
   },
 
   actions: {
