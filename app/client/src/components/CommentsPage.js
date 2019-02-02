@@ -111,7 +111,7 @@ const styles = theme => ({
   }, 
 
   summary: {
-    background: "lime",
+    background: theme.palette.secondary.main,
   },
 });
 

@@ -18,7 +18,7 @@ const options = {
     },
 
     secondary: {
-      main: lightGreen[shadeMain],
+      main: lightGreen['A400'],
     },
 
     tertiary: {
