@@ -64,7 +64,7 @@ class CommentableContainer extends Component {
       })
   }
 
-  editComment(commentable,data) {
+  editComment({commentable, data}) {
 
     return axios.put(`/api/comments/${commentable.id}`, data)
       .then(resp => {
