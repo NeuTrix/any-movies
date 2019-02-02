@@ -36,7 +36,7 @@ class CommentableContainer extends Component {
   } 
 
   // DRY up the duplicate code in add and edit
-  addComment(commentable, data) {
+  addComment({ commentable, data }) {
 
     let url
     if (commentable.commentable_type) {

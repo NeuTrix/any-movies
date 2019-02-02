@@ -57,11 +57,11 @@ class MovieContainer extends Component {
   // adds a new review for the currently displayed Movie
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
-  addComment(data) {
+  addComment({data, commentable}) {
     const { curr_movie, movieRegistered } = this.state;
     // adds movie to the api db for commenting. Only when comment attempted
     if (!movieRegistered) {
-      this.registerMovie();
+      this.registerMovie()
     }
 
     return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)

@@ -21,8 +21,8 @@ class Api::Movies::CommentsControllerTest < ActionDispatch::IntegrationTest
       # post api_movie_comments_url(@movie), params: { comment: { 
       post api_movie_comments_url(@movie), params: { movie: { 
         user_id: @user.id,
-        # movie_id: @movie.id,
-        critic_rating: @movie.critic_rating, 
+         movie_id: @movie.id,
+        critic_rating: @movie.critic_rating,
         description: @movie.description, 
         rated: @movie.rated, 
         release_date: @movie.release_date, 

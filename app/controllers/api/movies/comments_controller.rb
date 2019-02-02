@@ -7,8 +7,8 @@ module Api
 
       def set_commentable
         @commentable = Movie.find(params[:movie_id])
+        # params.permit(:movie_id)
       end
-
     end
   end
 end
