@@ -114,8 +114,10 @@ class CommentableForm extends Component {
 					fullWidth
 					label = "enter your comment"
 					margin="dense"
+					multiline
 					name="body"
 					required
+					rows="4"
 					type="text"
 					value={this.state.body}
 					variant="outlined"
