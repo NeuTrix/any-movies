@@ -125,7 +125,7 @@ class CommentableContainer extends Component {
 
     let url
     if (!commentable) {
-      return alert(`No comments yet for this item \n Feel free to add one by clicking "reply" below`)
+      return console.log(`No comments yet for this item \n Feel free to add one by clicking "reply" below`)
     }
     // set url based on commentable type
     // OMDB data structure differs
@@ -171,7 +171,9 @@ class CommentableContainer extends Component {
       return ( 
         <div key={comment.id}> 
           <CommentCard 
-            comment={comment} 
+            commentable={comment} 
+            commentable_id={comment.commentable_id} 
+            commentable_type={comment.commentable_type} 
             curr_user={curr_user}
             addComment={this.addComment}
             deleteComment={this.deleteComment}
