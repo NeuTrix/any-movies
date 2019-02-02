@@ -65,7 +65,7 @@ class MoviePage extends Component {
 
           <h1 style={{ background: 'aliceblue', gridArea: 'title'}} > 
             {/* Movie Blog!  */}
-            <SearchAppBar />
+            <SearchAppBar getMovieData={getMovieData} />
           </h1>
         
           <div className={classes.actions} style={{ gridArea: 'addComment' }}>
@@ -120,7 +120,7 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     maxWidth: 600,
     backgroundColor: 'white',
-    opacity: '0.95',
+    opacity: '0.93',
   },
 
   actions: {
