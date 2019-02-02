@@ -1,4 +1,4 @@
-// container to gather movie logic
+// container to gather Comment logic
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -13,7 +13,6 @@ const propTypes = {
 
 const defaultProps ={
   comments: [],
-  // commentable: {},
 }
 
 class CommentableContainer extends Component {
@@ -29,11 +28,6 @@ class CommentableContainer extends Component {
     this.deleteComment = this.deleteComment.bind(this) // Delete
   }
 
-  componentDidMount() {
-    // this.getComments()
-  }
-
-  // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
   // need better logic=- how to get commentable id?
    if (prevProps.comments.length !== this.props.comments.length) {
@@ -53,14 +47,12 @@ class CommentableContainer extends Component {
 
     return axios.post(url, data)
       .then(resp => {
-        this.setState({ displayingCommentForm: false });
-        // -> make another .then to reply upon confirmatio or status vs alert
         alert(`Your comment was added! \n commentable id: ${resp.data.id}`)
         return resp.data
       })
       .then(() => {
         // update the subcomments object
-        this.getComments();
+        this.setState({ displayingCommentForm: false });
       })
       .catch(err => { 
         alert (
@@ -76,13 +68,7 @@ class CommentableContainer extends Component {
 
     return axios.put(`/api/comments/${commentable.id}`, data)
       .then(resp => {
-          console.log(resp.data)
-          console.log('-->', data)
-        this.setState({
-          // add this for edit and delete==>
-          displayingCommentForm: false 
-        });
-        // -> make another .then to reply upon confirmatio or status vs alert
+        this.setState({ displayingCommentForm: false }); 
         if (resp.status === 200) {
           alert(`Your comment was EDITED! \n Status code: ${resp.status} \n commentable_id: ${resp.data.id}`)
         } else {
@@ -122,12 +108,6 @@ class CommentableContainer extends Component {
   // used to populate the comments state object
   getComments() {
     const { commentable } = this.props;
-
-    // if (!commentable) {
-    //   return console.log(`No comments yet for this item \n Feel free to add one by clicking "reply" below`)
-    // }
-    // set url based on commentable type
-    // OMDB data structure differs
     let url
     if (commentable.commentable_type) {
       url = `/api/comments/${commentable.id}/comments`
@@ -145,8 +125,6 @@ class CommentableContainer extends Component {
         return comments
       })
       .catch(err => {
-        // make this more descriptive for debugging or lose it
-        // alert(`Err... for ${commentable.id} \n This item had an error: \n ${err}`)
         console.log('ERROR=>', err);
 
         this.setState((state) => {
@@ -160,8 +138,6 @@ class CommentableContainer extends Component {
     //  dconstruct props
     const { 
       commentable, 
-      // commentable_id, 
-      // commentable_type,  
       curr_user 
     } = this.props;
  
@@ -187,7 +163,6 @@ class CommentableContainer extends Component {
       <CommentsPage 
         commentsList={commentsList} 
         curr_user={curr_user} 
-        handleAddComment={this.addComment} // for form execution
         handleGetComments={this.getComments} // get items for this commentable
       />
     )

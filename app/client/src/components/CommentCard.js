@@ -18,7 +18,6 @@ const propTypes = {
   commentable: PropTypes.instanceOf(Object).isRequired, // material UI
   commentable_id: PropTypes.string.isRequired,
   commentable_type: PropTypes.string.isRequired,
-  // comments: PropTypes.instanceOf(Array), // from commentable
   curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
   // functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -31,7 +30,6 @@ class CommentCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // comments: [],
       displaySubComments: true,
       showNewCommentForm: false,
       showEditCommentForm: false,
@@ -73,7 +71,6 @@ class CommentCard extends Component {
   render() {  
     const { 
       addComment, 
-      deleteComment, 
       editComment,
       classes, 
       commentable, 
@@ -103,7 +100,6 @@ class CommentCard extends Component {
         submitAction={editComment}
         editMode="true"
         toggleForm={this.toggleEditCommentForm}
-        
       /> 
     )
 
@@ -160,7 +156,6 @@ class CommentCard extends Component {
         
          <CommentableContainer 
             commentable={commentable}
-            // comments={comments}
             commentable_id={commentable_id}
             commentable_type={"Comment"}
             curr_user={curr_user}

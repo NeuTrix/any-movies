@@ -7,21 +7,12 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-// import CommentableForm from './CommentableForm';
-// import { Button } from '@material-ui/core';
-
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
   commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-  commentable_id: PropTypes.string.isRequired, 
-  commentable_type: PropTypes.string.isRequired, 
   curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
   commentsList: PropTypes.instanceOf(Array), // from commentable
-  // functions
-  // handleAddComment: PropTypes.func.isRequired, // adds a new comment to the list
-  handleGetComments: PropTypes.func.isRequired, // adds a new comment to the list
-  // editComment: PropTypes.func.isRequired, // edit a comment in the list
-  // deleteComment: PropTypes.func.isRequired, // remove a comment from the list
+  handleGetComments: PropTypes.func.isRequired, // update comment to the list
 }
 
 // some commentables may not have comments defined
@@ -65,11 +56,7 @@ class CommentsPage extends Component {
     
     const { 
       classes, 
-      commentable_type, 
-      commentable_id, 
       commentsList, 
-      curr_user, 
-      // handleAddComment, 
       handleGetComments, 
     } = this.props
 
@@ -111,17 +98,14 @@ const styles = theme => ({
 
   expansion: {
     background: 'aliceblue',
-    // border: '1px solid darkgrey',
     padding: 0,
   },
 
   heading: {
-    // fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightRegular,
   },
 
   list: {
-    // for design and debugging
     padding: 'none',
     margin:'none',
   }, 
