@@ -11,6 +11,7 @@ const propTypes = {
 }
 
 class MovieContainer extends Component {
+
   constructor(props) {
     super(props)
     // set intial state for the application
@@ -43,15 +44,16 @@ class MovieContainer extends Component {
     
   }
 
-   // update the component if new props recieved
-   componentDidUpdate(prevProps, prevState) {
+  // update the component if new props recieved
+  componentDidUpdate(prevProps, prevState) {
 
-     if (prevProps.commentable_id !== this.props.commentable_id ||
-       prevState.comments.length !== this.state.comments.length
-     ) {
-       this.getComments();
-     }
-   }
+    if (prevProps.commentable_id !== this.props.commentable_id ||
+      prevState.comments.length !== this.state.comments.length
+    ) {
+      this.getComments();
+    }
+  }
+
   // adds a new review for the currently displayed Movie
   //  this function is trying to do too many thigs.  
   // Movie save should be an option that pops up/* */
@@ -81,7 +83,7 @@ class MovieContainer extends Component {
   // used to populate the comments state object
   getComments() {
     const { curr_movie } = this.state;
-    console.log('getting comments for:',curr_movie.Title, curr_movie.imdbID)
+    console.log('getting comments for:', curr_movie.Title, curr_movie.imdbID)
 
     return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
       .then(resp => {
@@ -104,6 +106,7 @@ class MovieContainer extends Component {
         });
       })
   }
+
   // retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
 
@@ -179,8 +182,8 @@ class MovieContainer extends Component {
           movieRegistered: false
         })
       })
-   }
-
+  }
+  
   render() {
     // deconstruct state objects
     const { curr_movie, curr_user, comments } = this.state
@@ -199,6 +202,7 @@ class MovieContainer extends Component {
       />
     )
   }
+
 }
 
 MovieContainer.propTypes = propTypes;

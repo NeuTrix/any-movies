@@ -55,7 +55,6 @@ class MoviePage extends Component {
         toggleForm={this.toggleCommentableForm}
       />
     )
-    console.log('url',curr_movie.Poster)
 
     return (
       // set style for poset her.  need to access url variable

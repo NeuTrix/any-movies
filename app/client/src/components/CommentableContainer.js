@@ -6,7 +6,7 @@ import CommentsPage from './CommentsPage';
 import CommentCard from './CommentCard';
 
 const propTypes = {
-  comments: PropTypes.instanceOf(Object), // a possible list of curr comments 
+  comments: PropTypes.instanceOf(Object), // a possible list of curr comments
   commentable: PropTypes.instanceOf(Object).isRequired, // comment belongs to...
   curr_user: PropTypes.instanceOf(Object).isRequired,
 }
@@ -29,7 +29,7 @@ class CommentableContainer extends Component {
   }
 
   componentDidMount() {
-    this.getComments()
+    // this.getComments()
   }
 
   // update the component if new props recieved
@@ -124,9 +124,17 @@ class CommentableContainer extends Component {
 
     // determine correct path for commentable
     // not DRY duplicated in other functions
-    let path = commentable.type === 'Comment' ? 'comments' : 'movies'
+   
+    // set url based on commentable type
+    // OMDB data structure differs
+    let url
+    if (commentable.commentable_type) {
+      url = `/api/comments/${commentable.id}/comments`
+    } else {
+      url = `/api/movies/${commentable.imdbID}/comments`
+    }
 
-    return axios.get(`/api/${path}/${commentable.id}/comments`)
+    return axios.get(url)
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
