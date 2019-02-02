@@ -78,7 +78,7 @@ class CommentableContainer extends Component {
           displayingCommentForm: false 
         });
         // -> make another .then to reply upon confirmatio or status vs alert
-        if (resp.status === 204) {
+        if (resp.status === 200) {
           alert(`Your comment was EDITED! \n Status code: ${resp.status} \n commentable_id: ${resp.data.id}`)
         } else {
           alert(`Caution. Status code ${resp.status}`)
