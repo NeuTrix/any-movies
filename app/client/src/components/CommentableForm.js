@@ -68,6 +68,7 @@ class CommentableForm extends Component {
 
   onSubmit(e) {
 		e.preventDefault();
+		console.log('submitting', this.props)
 		this.props.submitAction(this.state);
 		setTimeout(() => {
 			this.props.toggleForm();

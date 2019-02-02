@@ -73,8 +73,11 @@ class CommentableContainer extends Component {
 
     return axios.put(`/api/comments/${commentable_id}`, data)
       .then(resp => {
+          console.log(resp.data)
+          console.log('-->', data)
         this.setState({
           // add this for edit and delete==>
+          
           displayingCommentForm: false 
         });
         // -> make another .then to reply upon confirmatio or status vs alert

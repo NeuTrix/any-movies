@@ -43,7 +43,7 @@ class CommentCard extends Component {
     this.toggleNewCommentForm = this.toggleNewCommentForm.bind(this);
     this.toggleEditCommentForm = this.toggleEditCommentForm.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    // this.handleEdit = this.handleEdit.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   // using this?
@@ -64,8 +64,8 @@ class CommentCard extends Component {
 
   handleDelete(e) {  
     e.preventDefault();
-    const { commentable_id, commentable_type } = this.props
-    this.props.deleteComment(commentable_id, commentable_type)
+    const { commentable_id } = this.props
+    this.props.deleteComment(commentable_id)
   }
 
   handleEdit(e) {  
