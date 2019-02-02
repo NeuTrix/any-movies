@@ -94,7 +94,7 @@ class MovieContainer extends Component {
         return comments
       })
       .catch(err => {
-        alert(`Err...This Movie may not be registered \n ${err}`)
+        // alert(`Err...This Movie may not be registered \n ${err}`)
         console.log('ERROR=>', err);
 
         // reset the comments for an unregistered movie
@@ -110,8 +110,8 @@ class MovieContainer extends Component {
      return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
-
-        if (data.Error) {
+        // must figure why this loops if no movie mathcing
+       if (data.Error) {
           alert(`Error: ${data.Error} for:\n => ${searchTerm} <= \nTry again`)
         } 
         return data
@@ -132,12 +132,11 @@ class MovieContainer extends Component {
         return data
       })
       .then(data => {
-        const { curr_movie, comments } = this.state;
         // reset the comments state
         console.log('movie container: updating comments');
         this.getComments();
       })
-      .catch(err => { 
+      .catch(err => {
         console.log(err) 
       })
   }

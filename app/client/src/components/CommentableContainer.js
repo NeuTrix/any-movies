@@ -136,7 +136,8 @@ class CommentableContainer extends Component {
         return comments
       })
       .catch(err => {
-        alert(`Err... for ${commentable.id} \n This item had an error: \n ${err}`)
+        // make this more descriptive for debugging or lose it
+        // alert(`Err... for ${commentable.id} \n This item had an error: \n ${err}`)
         console.log('ERROR=>', err);
 
         this.setState((state) => {
