@@ -31,7 +31,6 @@ module Api
     # PATCH/PUT /comments/1
     def update
       if @comment.update(comment_params)
-        @comment.author = User.find(:user_id).username
         render json: @comment
       else
         render json: @comment.errors, status: :unprocessable_entity

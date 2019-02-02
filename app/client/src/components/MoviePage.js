@@ -51,7 +51,7 @@ class MoviePage extends Component {
         curr_user={curr_user}
         submitAction={addComment} 
         toggleForm={this.toggleCommentableForm}
-      /> 
+        />
     )
 
     return (

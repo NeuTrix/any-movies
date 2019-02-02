@@ -49,6 +49,7 @@ class CommentableForm extends Component {
 			const { commentable, commentable_id, commentable_type, curr_user, editMode } = props
 			let author = curr_user.username;
 			let user_id = curr_user.id;
+			// let user_id = curr_user.id;
 			// prepopulate if this is an editing item
 			let body, title
 			if (editMode) {
@@ -75,7 +76,7 @@ class CommentableForm extends Component {
   }
 
 	render() {
-		const { classes, curr_user } = this.props;
+		const { classes, commentable_type, curr_user } = this.props;
 
 		return (
 			<FormControl

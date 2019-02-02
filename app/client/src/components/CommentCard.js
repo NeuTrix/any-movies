@@ -91,7 +91,7 @@ class CommentCard extends Component {
       <CommentableForm 
         commentable={commentable}
         commentable_id={commentable_id}
-        commentable_type={"Comment"}
+        commentable_type={commentable_type}
         curr_user={curr_user}
         submitAction={addComment}
         toggleForm={this.toggleNewCommentForm}
@@ -102,7 +102,7 @@ class CommentCard extends Component {
       <CommentableForm 
         commentable={commentable}
         commentable_id={commentable_id}
-        commentable_type={"Comment"}
+        commentable_type={commentable_type}
         curr_user={curr_user}
         submitAction={editComment}
         editMode="true"
