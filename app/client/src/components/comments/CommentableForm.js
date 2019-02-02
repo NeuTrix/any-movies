@@ -100,7 +100,7 @@ class CommentableForm extends Component {
 				<TextField
 					autoFocus
 					fullWidth
-					label = "enter title"
+					label = "enter comment Title"
 					margin="dense"
 					name="title"
 					required
@@ -112,7 +112,7 @@ class CommentableForm extends Component {
 
         <TextField
 					fullWidth
-					label = "enter your review"
+					label = "enter your comment"
 					margin="dense"
 					name="body"
 					required
