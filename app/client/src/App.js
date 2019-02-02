@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // pass in state to the MovieReveiwPage via Redux
 import './App.css';
-import MovieContainer from './components/MovieContainer';
+import MovieContainer from './components/movies/MovieContainer';
 // add @material UI theme provider
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import masterTheme from './helpers/masterTheme';
