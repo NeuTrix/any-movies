@@ -78,6 +78,7 @@ class CommentableContainer extends Component {
       })
       .then(() => {
         // update the subcomments object
+        this.setState({ displayingCommentForm: false });
         this.getComments();
       })
       .catch(err => {

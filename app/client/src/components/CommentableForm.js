@@ -74,7 +74,7 @@ class CommentableForm extends Component {
 		console.log('submitting', this.props)
 		// sending an args object to protect against arg order errors
 		this.props.submitAction({ commentable, data });
-			setTimeout(() => { this.props.toggleForm(); }, 750) }
+			setTimeout(() => { this.props.toggleForm(); }, 250) }
 
 	render() {
 		const { classes, curr_user } = this.props;
