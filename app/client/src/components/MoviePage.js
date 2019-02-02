@@ -43,15 +43,17 @@ class MoviePage extends Component {
     const { addComment, getMovieData, } = this.props 
     const { displayingCommentForm } = this.state;
     
-    // generate commentable form for current movie
-    const commentableForm = (
+    // generate comment form for current movie
+
+    const newCommentForm = (
       <CommentableForm 
-        commentable_id={curr_movie.imdbID}
+      // using OMDB obj vs api so need to define commentable_id/type
+        commentable_id={curr_movie.imdbID} 
         commentable_type={"Movie"}
         curr_user={curr_user}
         submitAction={addComment} 
         toggleForm={this.toggleCommentableForm}
-        />
+      />
     )
     console.log('url',curr_movie.Poster)
 
@@ -90,7 +92,7 @@ class MoviePage extends Component {
           </div>
 
           <div style={{ gridArea: 'form' }}>
-            { displayingCommentForm &&  commentableForm } 
+            { displayingCommentForm &&  newCommentForm } 
           </div>
           
           <div style={{ gridArea: 'movies' }} >
@@ -99,10 +101,8 @@ class MoviePage extends Component {
           
           <div className={classes.comments} >
             <CommentableContainer 
-              commentable={curr_movie}
               comments={comments}
-              commentable_id={curr_movie.imdbID}
-              commentable_type={"Movie"}
+              commentable={curr_movie}
               curr_user={curr_user}
             />
           </div>

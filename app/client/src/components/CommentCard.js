@@ -16,10 +16,10 @@ import CommentableForm from "./CommentableForm";/*  */
 // should consider spreading props from the parent instead 
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
-  commentable: PropTypes.instanceOf(Object).isRequired, // material UI
+  comment: PropTypes.instanceOf(Object).isRequired, // material UI
   commentable_id: PropTypes.string.isRequired,
   commentable_type: PropTypes.string.isRequired,
-  // comments: PropTypes.instanceOf(Array), // from commentable
+  // comments: PropTypes.instanceOf(Array), // from comment
   curr_user: PropTypes.instanceOf(Object).isRequired, //mocked.Will be from auth
   // functions
   addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -38,12 +38,10 @@ class CommentCard extends Component {
       showEditCommentForm: false,
     }
 
-    // this.addComment = this.addComment.bind(this);
     this.toggleSubComments = this.toggleSubComments.bind(this);
     this.toggleNewCommentForm = this.toggleNewCommentForm.bind(this);
     this.toggleEditCommentForm = this.toggleEditCommentForm.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
   }
 
   // using this?
@@ -61,17 +59,16 @@ class CommentCard extends Component {
   toggleEditCommentForm() {
     this.setState({ showEditCommentForm: !this.state.showEditCommentForm });
   }
-
+  // Read, Create and Update/Edit actions handled in form via CommentsPage
   handleDelete(e) {  
     e.preventDefault();
-    const { commentable } = this.props
-    this.props.deleteComment(commentable.id)
+    const { comment } = this.props
+    this.props.deleteComment(comment.id)
   }
-
   handleEdit(e) {  
     e.preventDefault();
-    const { commentable_id } = this.props
-    this.props.editComment(commentable_id)
+    const { comment } = this.props
+    this.props.eidtComment(comment.id)
   }
 
   render() {  
@@ -80,7 +77,7 @@ class CommentCard extends Component {
       deleteComment, 
       editComment,
       classes, 
-      commentable, 
+      comment, 
       commentable_id, 
       commentable_type, 
       curr_user
@@ -89,7 +86,7 @@ class CommentCard extends Component {
    
     const newCommentForm = (
       <CommentableForm 
-        commentable={commentable}
+        comment={comment}
         commentable_id={commentable_id}
         commentable_type={commentable_type}
         curr_user={curr_user}
@@ -100,7 +97,7 @@ class CommentCard extends Component {
 
     const editCommentForm = (
       <CommentableForm 
-        commentable={commentable}
+        comment={comment}
         commentable_id={commentable_id}
         commentable_type={commentable_type}
         curr_user={curr_user}
@@ -121,21 +118,21 @@ class CommentCard extends Component {
             style={{ gridArea: 'title'}}
           >
             <Typography variant="subtitle" component="h2">
-              { commentable.title}
+              { comment.title}
             </Typography>
 
             <Typography ccolor="textSecondary" gutterBottom>
-              by: { commentable.author }
+              by: { comment.author }
             </Typography>
 
             <Typography className={classes.pos} color="textSecondary">
-              comment_id: { commentable.id}
+              comment_id: { comment.id}
             </Typography>
 
           </div>
 
           <Typography variant="body1" component="p">
-            { commentable.body }
+            { comment.body }
           </Typography>
 
         </CardContent>
@@ -163,7 +160,7 @@ class CommentCard extends Component {
         >
         
          <CommentableContainer 
-            commentable={commentable}
+            comment={comment}
             // comments={comments}
             commentable_id={commentable_id}
             commentable_type={"Comment"}

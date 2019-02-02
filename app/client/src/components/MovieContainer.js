@@ -188,6 +188,7 @@ class MovieContainer extends Component {
     return (
       <MoviePage 
       // objects
+      // consider renamng as CommentsList?
         comments={comments}
         curr_movie={curr_movie}
         curr_user={curr_user}

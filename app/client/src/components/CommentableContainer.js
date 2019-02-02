@@ -6,10 +6,8 @@ import CommentsPage from './CommentsPage';
 import CommentCard from './CommentCard';
 
 const propTypes = {
-  comments: PropTypes.instanceOf(Object), //may be passed down from a parent 
-	commentable: PropTypes.instanceOf(Object).isRequired, // movie or comment obj
-  commentable_id: PropTypes.string.isRequired, // need these props for OMDB objs
-  commentable_type: PropTypes.string.isRequired,
+  comments: PropTypes.instanceOf(Object), // a possible list of curr comments 
+  commentable: PropTypes.instanceOf(Object).isRequired, // comment belongs to...
   curr_user: PropTypes.instanceOf(Object).isRequired,
 }
 
@@ -21,7 +19,7 @@ class CommentableContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      comments: [], // generated comments for this instance
+      comments: [], // generated sub comments for this instance
     }
     // CRUD functions
     this.addComment = this.addComment.bind(this); // Create
@@ -36,26 +34,24 @@ class CommentableContainer extends Component {
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
-
-    if ( prevProps.commentable_id !== this.props.commentable_id
-     || prevProps.comments.length !== this.props.comments.length
-    ) {
+  // need better logic=- how to get commentable id?
+   if (prevProps.comments.length !== this.props.comments.length) {
       this.getComments();
     } 
   } 
 
   addComment(data) {
     // 'data' is from the component state
-    const { commentable_id, commentable_type } = data;
+    const { commentable } = this.props;
     
     //   // determine rails path for commentable
-    let path = commentable_type === 'Movie' ? 'movies' : 'comments'
+    let path = commentable.type === 'Comment' ? 'comments' : 'movies'
 
-    return axios.post(`/api/${path}/${commentable_id}/comments`, data)
+    return axios.post(`/api/${path}/${commentable.id}/comments`, data)
       .then(resp => {
         this.setState({ displayingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert
-        alert(`Your comment was added! \n commentable_id: ${resp.data.id}`)
+        alert(`Your comment was added! \n commentable id: ${resp.data.id}`)
         return resp.data
       })
       .then(() => {
@@ -72,10 +68,10 @@ class CommentableContainer extends Component {
       })
   }
 
-  editComment(data) {
-    const {commentable_id} = data
+  editComment(id,data) {
+    const {commentable} = this.props;
 
-    return axios.put(`/api/comments/${commentable_id}`, data)
+    return axios.put(`/api/comments/${commentable.id}`, data)
       .then(resp => {
           console.log(resp.data)
           console.log('-->', data)
@@ -102,9 +98,10 @@ class CommentableContainer extends Component {
       })
   }
 
-  deleteComment(comment_id) {
+  deleteComment() {
+    const { commentable } = this.props;
 
-    return axios.delete(`/api/comments/${comment_id}`)
+    return axios.delete(`/api/comments/${commentable.id}`)
       .then(resp => {
         this.setState({ displayingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert
@@ -123,13 +120,13 @@ class CommentableContainer extends Component {
 
   // used to populate the comments state object
   getComments() {
-    const { commentable_id, commentable_type } = this.props;
+    const { commentable } = this.props;
 
     // determine correct path for commentable
     // not DRY duplicated in other functions
-    let path = commentable_type === 'Movie' ? 'movies' : 'comments'
+    let path = commentable.type === 'Comment' ? 'comments' : 'movies'
 
-    return axios.get(`/api/${path}/${commentable_id}/comments`)
+    return axios.get(`/api/${path}/${commentable.id}/comments`)
       .then(resp => {
         let comments = resp.data;
         this.setState((state) => {
@@ -139,7 +136,7 @@ class CommentableContainer extends Component {
         return comments
       })
       .catch(err => {
-        alert(`Err... for ${commentable_id} \n This item had an error: \n ${err}`)
+        alert(`Err... for ${commentable.id} \n This item had an error: \n ${err}`)
         console.log('ERROR=>', err);
 
         this.setState((state) => {
@@ -153,8 +150,8 @@ class CommentableContainer extends Component {
     //  dconstruct props
     const { 
       commentable, 
-      commentable_id, 
-      commentable_type,  
+      // commentable_id, 
+      // commentable_type,  
       curr_user 
     } = this.props;
  
@@ -164,9 +161,7 @@ class CommentableContainer extends Component {
       return ( 
         <div key={comment.id}> 
           <CommentCard 
-            commentable={comment} 
-            commentable_id={comment.id}
-            commentable_type={"Comment"}
+            comment={comment} 
             curr_user={curr_user}
             addComment={this.addComment}
             deleteComment={this.deleteComment}
@@ -178,12 +173,8 @@ class CommentableContainer extends Component {
     
     return (
       <CommentsPage 
-        commentable={commentable} 
-        commentable_id={commentable_id}
-        commentable_type={commentable_type} 
-        curr_user={curr_user} 
-
         commentsList={commentsList} 
+        curr_user={curr_user} 
         handleAddComment={this.addComment} // for form execution
         handleGetComments={this.getComments} // get items for this commentable
       />
