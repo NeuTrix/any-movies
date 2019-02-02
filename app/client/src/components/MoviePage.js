@@ -134,8 +134,10 @@ const styles = theme => ({
   comments: {
     gridArea: 'comments'
   },
+  
 
   posterBackground: {
+    // adjust poster background based on screen size
     [theme.breakpoints.down("sm")] :{
       backgroundRepeat: 'repeat-y',
       backgroundSize: 'cover',
