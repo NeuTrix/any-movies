@@ -35,6 +35,7 @@ class CommentsPage extends Component {
     super(props)
 
     this.state = {
+
     }
     this.handleChange = this.handleChange.bind(this);
   }
