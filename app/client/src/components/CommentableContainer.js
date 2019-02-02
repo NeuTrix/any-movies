@@ -13,6 +13,7 @@ const propTypes = {
 
 const defaultProps ={
   comments: [],
+  // commentable: {},
 }
 
 class CommentableContainer extends Component {
@@ -122,12 +123,12 @@ class CommentableContainer extends Component {
   getComments() {
     const { commentable } = this.props;
 
-    // determine correct path for commentable
-    // not DRY duplicated in other functions
-   
+    let url
+    if (!commentable) {
+      return alert(`No comments yet for this item \n Feel free to add one by clicking "reply" below`)
+    }
     // set url based on commentable type
     // OMDB data structure differs
-    let url
     if (commentable.commentable_type) {
       url = `/api/comments/${commentable.id}/comments`
     } else {
