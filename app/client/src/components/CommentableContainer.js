@@ -100,6 +100,9 @@ class CommentableContainer extends Component {
         }
         return resp.data
       })
+      .then(() => {
+        this.getComments()
+      })
       .catch(err => { 
         alert ( `There was a problem deleting your comment. \n "CommentableContainer" \n ${err}`)
         console.log('ERROR=>',err); 
