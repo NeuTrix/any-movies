@@ -31,17 +31,20 @@ class MovieContainer extends Component {
   
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
-    this.setState((state, props) => {
-      const { curr_movie } = state;
-
-      // resets state of current movie
-      this.getMovieData(curr_movie.Title);
-
-      let curr_user = props.curr_user
-      this.getComments();
-      return { ...state, curr_user }
-    })
+    const { curr_movie } = this.state;
     
+    this.getMovieData(curr_movie.Title);
+    this.validateMovieRegistration()
+    
+    if (this.state.movieRegistered)
+      // resets comments state of current movie
+      this.setState((state, props) => {
+        let curr_user = props.curr_user
+        this.getComments();
+        return { ...state,
+          curr_user
+        }
+    })
   }
 
   // update the component if new props recieved
@@ -51,6 +54,7 @@ class MovieContainer extends Component {
       prevState.comments.length !== this.state.comments.length
     ) {
       this.getComments();
+      this.validateMovieRegistration()
     }
   }
 
@@ -117,12 +121,12 @@ class MovieContainer extends Component {
         } 
         return data
       })
-      .then(data => {
-        // verify whether movie is in my api
-        this.validateMovieRegistration()
-        console.log('movie container: validating')
-        return data
-      })
+      // .then(data => {
+      //   // verify whether movie is in my api
+      //   this.validateMovieRegistration()
+      //   console.log('movie container: validating')
+      //   return data
+      // })
       .then(data => {
         // update the state movie object (with OMDB curr_movie)
         this.setState((state) => { 
@@ -171,9 +175,12 @@ class MovieContainer extends Component {
 
     axios.get(`/api/movies/${curr_movie.imdbID}`)
       .then((resp) => {
-        this.setState({
-          movieRegistered: true
-        })
+        if (resp.status === 200 ) {
+
+          this.setState({
+            movieRegistered: true
+          })
+        }
       })
       .catch(err => {
         this.setState({
