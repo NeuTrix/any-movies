@@ -59,13 +59,8 @@ class MoviePage extends Component {
 
     return (
       // set style for poset her.  need to access url variable
-      <div className={classes.posterBack}
-        style={{
-          backgroundImage: `url(${curr_movie.Poster})`,
-          backgroundRepeat: 'repeat-y',
-          backgroundSize:'cover',
-          backgroundAttachment: 'fixed'
-        }}
+      <div className={classes.posterBackground}
+        style={{ backgroundImage: `url(${curr_movie.Poster})` }}
       >
       {/* fake opacity */}
       <div className={classes.grid}>
@@ -128,7 +123,7 @@ const styles = theme => ({
     backgroundColor: 'white',
       opacity: '0.92',
     // background: 'yellow',
-    // [theme.breakpoints.up("md")]
+    
   },
 
   actions: {
@@ -139,6 +134,14 @@ const styles = theme => ({
   comments: {
     gridArea: 'comments'
   },
+
+  posterBackground: {
+    [theme.breakpoints.down("sm")] :{
+      backgroundRepeat: 'repeat-y',
+      backgroundSize: 'cover',
+      backgroundAttachment: 'fixed'
+    }
+  }
 })
 
 MoviePage.propTypes = propTypes;
