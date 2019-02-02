@@ -36,13 +36,22 @@ class CommentsPage extends Component {
 
     this.state = {
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     //Need to refactor as Did Update with conditional
-    // this.props.handleGetComments()
+    this.props.handleGetComments()
   }
 
+  handleChange(event, expanded) {
+    if(expanded) {
+      alert('expanded')
+      this.props.handleGetComments()
+    } else {
+      alert('closed')
+    }
+  }
   render() {
     
     const { 
@@ -57,7 +66,9 @@ class CommentsPage extends Component {
 
     return (
       <div className={classes.root}>
-        < ExpansionPanel  className={classes.expansion} >
+        < ExpansionPanel 
+          className={classes.expansion} 
+        >
 
           <ExpansionPanelSummary 
             className={classes.summary}
@@ -70,7 +81,9 @@ class CommentsPage extends Component {
 
           </ExpansionPanelSummary>
 
-          <ExpansionPanelDetails  className={classes.expansion} >
+          <ExpansionPanelDetails 
+            className={classes.expansion} 
+          >
             <div className={classes.list} > { commentsList } </div>
           </ExpansionPanelDetails>
 
