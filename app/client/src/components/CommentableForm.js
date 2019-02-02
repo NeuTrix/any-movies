@@ -86,45 +86,48 @@ class CommentableForm extends Component {
 				onSubmit={this.onSubmit}
 			>
 				<Input
-					name="author"
-					label = "enter your name"
 					fullWidth
+					label = "enter your name"
 					margin="dense"
-					onChange={this.onChange}
+					name="author"
+					readOnly
 					type="text"
 					value={curr_user.username}
 					variant="outlined"
-					readOnly
+					onChange={this.onChange}
 				/>
 
 				<TextField
-					name="title"
-					label = "enter title"
+					focus
 					fullWidth
+					label = "enter title"
 					margin="dense"
-					onChange={this.onChange}
+					name="title"
+					required
 					type="text"
-					value={this.state.title}
 					variant="outlined"
+					value={this.state.title}
+					onChange={this.onChange}
 				/>
 
         <TextField
-					name="body"
-					label = "enter your review"
 					fullWidth
+					label = "enter your review"
 					margin="dense"
-					onChange={this.onChange}
+					name="body"
+					required
 					type="text"
 					value={this.state.body}
 					variant="outlined"
+					onChange={this.onChange}
 				/>
 				
 				<Button 
 					className={classes.button}
+					color="primary"
 					component="button" 
 					type="submit" 
 					variant="contained"
-					color="primary"
 				> 
 					Submit  
 				</Button>
