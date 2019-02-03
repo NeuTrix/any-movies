@@ -10,9 +10,6 @@
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "yarn build && yarn deploy"
   },
-  "dependencies": {
-    "terser": "^3.16.0"
-  },
    "resolutions": {
      "terser": "3.14.1"
    }
