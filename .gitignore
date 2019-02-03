@@ -26,4 +26,5 @@
 .env
 
 #heroku
-/publis
+/public
+/node_modules
