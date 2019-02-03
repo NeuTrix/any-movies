@@ -5,5 +5,3 @@ export const url_local_api = `http://localhost:3001`;
 // utilize CRA's Env variables (start with 'REACT_APP')
 export const apiKey = process.env.REACT_APP_OMBD_MOVIE_API_KEY
 export const url_movie_data = `https://www.omdbapi.com/?apikey=${apiKey}`;
-console.log('--->', apiKey)
-console.log('--->', url_movie_data)
