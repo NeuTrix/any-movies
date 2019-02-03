@@ -1,0 +1,55 @@
+Arguments: 
+  /usr/local/Cellar/node/11.6.0/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js --help
+
+PATH: 
+  /Users/michaelwalker/.rvm/gems/ruby-2.5.3/bin:/Users/michaelwalker/.rvm/gems/ruby-2.5.3@global/bin:/Users/michaelwalker/.rvm/rubies/ruby-2.5.3/bin:/Users/michaelwalker/.rvm/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  11.6.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/michaelwalker/00-Developer/AnyRoadAudition/AnyRoadProject/any_movie/package.json: Unexpected token { in JSON at position 234
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:304:30)
+      at /usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "engines": {
+    },
+    "scripts": {
+      "build": "cd client && npm install && npm run build && cd ..",
+      "deploy": "cp -a client/build/. public/",
+      "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    }
+  }
+  
+  {
+    "name": "list-of-ingredients",
+    "name": "any-movies",
+    
+    "license": "MIT",
+    "engines": {
+      "node": "^11.9.0",
+      "yarn": "1.6.0"
+    },
+    "scripts": {
+      "build": "yarn --cwd client install && yarn --cwd client build",
+      "deploy": "cp -a client/build/. public/",
+      "heroku-postbuild": "yarn build && yarn deploy"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

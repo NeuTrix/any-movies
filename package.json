@@ -1,11 +1,13 @@
 {
   "name": "any-movies",
+  "license": "MIT",
   "engines": {
-     "node": "^11.9.0"
+    "node": "^11.9.0",
+    "yarn": "1.6.0"
   },
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
+    "build": "yarn --cwd client install && yarn --cwd client build",
     "deploy": "cp -a client/build/. public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "heroku-postbuild": "yarn build && yarn deploy"
   }
 }
