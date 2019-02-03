@@ -1,2 +1,2 @@
-web: cd app/client &&  npm start
+web: cd app/client && yarn start
 api: bundle exec rails s -p 3001
