@@ -24,3 +24,6 @@
 
 # Api Keys
 .env
+
+#heroku
+/publis
