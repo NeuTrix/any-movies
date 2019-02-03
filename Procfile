@@ -1,2 +1,2 @@
-web: cd client && PORT=3000 npm start
+web: cd client && yarn start
 api: rails s -p 3001
