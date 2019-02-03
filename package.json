@@ -1,0 +1,23 @@
+{
+  "name": "any_movie",
+  "version": "1.0.0",
+  "description": "npm file for heroku deployment",
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeuTrix/any_movies.git"
+  },
+  "author": "NeuTrix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeuTrix/any_movies/issues"
+  },
+  "homepage": "https://github.com/NeuTrix/any_movies#readme",
+  "engines": {
+    "node": "6.3.1"
+  }
+}
