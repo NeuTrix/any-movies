@@ -1,1 +1,1 @@
-web: cd app/client yarn start
+web: cd app/client npm start
