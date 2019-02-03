@@ -6,9 +6,9 @@
     "yarn": "1.13.0"
   },
   "scripts": {
-    "build": "cd client yarn install && yarn build",
+    "build": "yarn --cwd client install && yarn --cwd client build",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "cd client yarn build && yarn deploy"
+    "heroku-postbuild": "yarn build && yarn deploy"
   },
   "dependencies": {
     "terser": "^3.16.0"
