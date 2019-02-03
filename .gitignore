@@ -27,4 +27,6 @@
 
 #heroku
 /public
-/node_modules
+
+# node
+node_modules
