@@ -31,6 +31,7 @@ class MovieContainer extends Component {
   
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
+    
     const { curr_movie } = this.state;
     this.setState({ curr_user: this.props.curr_user  });
     this.getMovieData(curr_movie.Title);
@@ -112,6 +113,7 @@ class MovieContainer extends Component {
   getMovieData(searchTerm) {
       this.validateMovieRegistration()
     
+    //  return axios.get(`http://www.omdbapi.com/?i=tt3896198&h=600&apikey=afe096a8`)
      return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
