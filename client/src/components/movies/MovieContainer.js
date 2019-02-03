@@ -109,7 +109,7 @@ class MovieContainer extends Component {
       })
   }
 
-  //   retrieve movie data from OMDB Api
+  //  retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
       this.validateMovieRegistration()
     
