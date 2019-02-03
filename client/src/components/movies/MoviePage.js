@@ -142,10 +142,12 @@ const styles = theme => ({
 
   posterBackground: {
     // adjust poster background based on screen size
+      backgroundAttachment: 'fixed',
+    
     [theme.breakpoints.down("sm")] :{
       backgroundRepeat: 'repeat-y',
       backgroundSize: 'cover',
-      backgroundAttachment: 'fixed'
+      // backgroundAttachment: 'fixed'
     }
   }
 })
