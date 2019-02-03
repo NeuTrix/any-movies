@@ -9,7 +9,6 @@ import CommentableContainer from '../comments/CommentableContainer';
 import MovieDisplay from './MovieDisplay';
 import SearchAppBar from '../tools/SearchAppBar';
 
-
 const propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired, // material UI
   comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
