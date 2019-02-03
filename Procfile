@@ -1,1 +1,1 @@
-web: cd app/client && PORT=3000 yarn start
+web: cd app/client yarn start
