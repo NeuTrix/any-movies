@@ -147,7 +147,6 @@ const styles = theme => ({
     [theme.breakpoints.down("sm")] :{
       backgroundRepeat: 'repeat-y',
       backgroundSize: 'cover',
-      // backgroundAttachment: 'fixed'
     }
   }
 })
