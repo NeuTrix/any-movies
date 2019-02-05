@@ -152,7 +152,10 @@ const styles = theme => ({
 			backgroundSize: 'cover',
 			left: 0,
 			top: 0,
-			zIndex: 10,
+			['-webkit-background-size']: 'cover',
+			['-moz-background-size']: 'cover',
+			['-o-background-size']: 'cover',
+			zIndex: -10,
 		},
 	},
 });
