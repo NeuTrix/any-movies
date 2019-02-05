@@ -1,4 +1,5 @@
-class FavouritesController < ApplicationController
+# general controller for api/favourites
+class Api::FavouritesController < ApplicationController
   before_action :set_favourite, only: [:show, :update, :destroy]
 
   # GET /favourites
@@ -18,7 +19,7 @@ class FavouritesController < ApplicationController
     @favourite = Favourite.new(favourite_params)
 
     if @favourite.save
-      render json: @favourite, status: :created, location: @favourite
+      render json: @favourite, status: :created
     else
       render json: @favourite.errors, status: :unprocessable_entity
     end
