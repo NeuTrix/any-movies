@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favourites
   # resources :movies
   namespace :api do
     post 'user_token' => 'user_token#create'
