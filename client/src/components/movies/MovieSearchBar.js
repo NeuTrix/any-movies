@@ -26,14 +26,16 @@ class MovieSearchBar extends Component {
 	}
 
 	onSubmit(e) {
+		const { getMovieData } = this.props;
 		const { searchTerm } = this.state;
 		e.preventDefault();
 		console.log(e);
-		this.props.getMovieData(searchTerm);
+		getMovieData(searchTerm);
 	}
 
 	render() {
 		const { classes } = this.props;
+		const { searchTerm } = this.state;
 
 		return (
 			<FormControl
@@ -46,10 +48,10 @@ class MovieSearchBar extends Component {
 					fullWidth
 					margin="dense"
 					name="searchTerm"
-					onChange={this.onChange}
 					type="text"
-					value={this.state.searchTerm}
 					variant="outlined"
+					value={searchTerm}
+					onChange={this.onChange}
 				/>
 
 			</FormControl>
@@ -57,9 +59,9 @@ class MovieSearchBar extends Component {
 	}
 }
 
-const styles = theme => ({
+const styles = {
 	main: { },
-});
+};
 
 MovieSearchBar.propTypes = propTypes;
 
