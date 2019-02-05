@@ -10,33 +10,33 @@ const shadeLight = '50'; // set common shadeMain for color palette
 const shadeMain = '500'; // set common shadeMain for color palette
 
 const options = {
-  palette: {
-    primary: {
-      contrastText: grey[shadeLight],
-      light: lightBlue[shadeLight],
-      main: lightBlue[shadeMain],
-    },
+	palette: {
+		primary: {
+			contrastText: grey[shadeLight],
+			light: lightBlue[shadeLight],
+			main: lightBlue[shadeMain],
+		},
 
-    secondary: {
-      main: lightGreen['A400'],
-    },
+		secondary: {
+			main: lightGreen.A400,
+		},
 
-    tertiary: {
-      main: pink[shadeMain],
-    },
-  },
+		tertiary: {
+			main: pink[shadeMain],
+		},
+	},
 
-  sizes: {
-    drawerWidth: 264,
-  },
+	sizes: {
+		drawerWidth: 264,
+	},
 
-  status: {
-    danger: pink,
-  },
+	status: {
+		danger: pink,
+	},
 
-  typography: {
-    useNextVariants: true,
-  },
+	typography: {
+		useNextVariants: true,
+	},
 };
 
 const masterTheme = createMuiTheme(options);

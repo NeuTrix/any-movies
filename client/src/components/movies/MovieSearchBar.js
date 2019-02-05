@@ -12,36 +12,36 @@ const propTypes = {
 class MovieSearchBar extends Component {
 
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
-			searchTerm:''
-		}
-		this.onSubmit = this.onSubmit.bind(this)
-		this.onChange = this.onChange.bind(this)
+			searchTerm: '',
+		};
+		this.onSubmit = this.onSubmit.bind(this);
+		this.onChange = this.onChange.bind(this);
 	}
 
-onChange(e) {
-	this.setState({[e.target.name]: e.target.value})
-}
+	onChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
+	}
 
-onSubmit(e) {
-	const { searchTerm } = this.state;
+	onSubmit(e) {
+		const { searchTerm } = this.state;
 		e.preventDefault();
-		console.log(e)
-		this.props.getMovieData(searchTerm)
+		console.log(e);
+		this.props.getMovieData(searchTerm);
 	}
 
 	render() {
 		const { classes } = this.props;
 
-    return (
+		return (
 			<FormControl
 				className={classes.main}
 				component="form"
 				onSubmit={this.onSubmit}
 			>
 				<TextField
-					label = "enter movie title"
+					label="enter movie title"
 					fullWidth
 					margin="dense"
 					name="searchTerm"
@@ -52,14 +52,14 @@ onSubmit(e) {
 				/>
 
 			</FormControl>
-		)
-  }
+		);
+	}
 }
 
-const styles= theme => ({
-	main: { }
- });
+const styles = theme => ({
+	main: { },
+});
 
 MovieSearchBar.propTypes = propTypes;
 
-export default withStyles(styles)(MovieSearchBar)
+export default withStyles(styles)(MovieSearchBar);

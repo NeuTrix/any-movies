@@ -8,111 +8,119 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const propTypes = {
-  classes: PropTypes.instanceOf(Object).isRequired, // material UI
-  commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-  curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
-  commentsList: PropTypes.instanceOf(Array), // from commentable
-  handleGetComments: PropTypes.func.isRequired, // update comment to the list
-}
+	classes: PropTypes.instanceOf(Object).isRequired, // material UI
+	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
+	curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
+	commentsList: PropTypes.instanceOf(Array), // from commentable
+	handleGetComments: PropTypes.func.isRequired, // update comment to the list
+};
 
 // some commentables may not have comments defined
 const defaultProps = {
-  commentsList: [],
-  curr_user: {username:'mickeyMouse'}
-}
+	commentsList: [],
+	curr_user: { username: 'mickeyMouse' },
+};
 
 class CommentsPage extends Component {
-  constructor(props) {
-    super(props)
+	constructor(props) {
+		super(props);
 
-    this.state = {
+		this.state = {
 
-    }
-    this.handleChange = this.handleChange.bind(this);
-  }
+		};
+		this.handleChange = this.handleChange.bind(this);
+	}
 
-  // to update the sub comments pages and counts
-  componentDidMount() {
-    this.props.handleGetComments()
-  }
-  
-  // update the component if new props recieved
-  componentDidUpdate(prevProps, prevState) {
-    // need better logic=- how to get commentable id?
-    if (prevProps.commentsList.length !== this.props.commentsList.length) {
-      this.props.handleGetComments()
-    }
-  }
+	// to update the sub comments pages and counts
+	componentDidMount() {
+		this.props.handleGetComments();
+	}
 
-  handleChange(event, expanded) {
-    if(expanded) {
-      alert('expanded')
-      this.props.handleGetComments()
-    } else {
-      alert('closed')
-    }
-  }
-  render() {
-    
-    const { 
-      classes, 
-      commentsList, 
-      handleGetComments, 
-    } = this.props
+	// update the component if new props recieved
+	componentDidUpdate(prevProps, prevState) {
+		// need better logic=- how to get commentable id?
+		if (prevProps.commentsList.length !== this.props.commentsList.length) {
+			this.props.handleGetComments();
+		}
+	}
 
-    return (
-      <div className={classes.root}>
-        < ExpansionPanel 
-          className={classes.expansion} 
-        >
+	handleChange(event, expanded) {
+		if (expanded) {
+			alert('expanded');
+			this.props.handleGetComments();
+		} else {
+			alert('closed');
+		}
+	}
 
-          <ExpansionPanelSummary 
-            className={classes.summary}
-            onClick={handleGetComments} 
-            expandIcon={ <ExpandMoreIcon />}
-          >
-            <Typography variant="subtitle"  className={classes.heading} >
-                See Responses... {commentsList.length}
-            </Typography>
+	render() {
+		const {
+			classes,
+			commentsList,
+			handleGetComments,
+		} = this.props;
 
-          </ExpansionPanelSummary>
+		return (
+			<div className={classes.root}>
+				<ExpansionPanel
+					className={classes.expansion}
+				>
 
-          <ExpansionPanelDetails 
-            className={classes.expansion} 
-          >
-            <div className={classes.list} > { commentsList } </div>
-          </ExpansionPanelDetails>
+					<ExpansionPanelSummary
+						className={classes.summary}
+						onClick={handleGetComments}
+						expandIcon={<ExpandMoreIcon />}
+					>
+						<Typography variant="subtitle" className={classes.heading}>
+                See Responses...
 
-        </ExpansionPanel>
-        
-      </div>
-    );
-  }
+
+							{' '}
+							{commentsList.length}
+						</Typography>
+
+					</ExpansionPanelSummary>
+
+					<ExpansionPanelDetails
+						className={classes.expansion}
+					>
+						<div className={classes.list}>
+							{' '}
+							{ commentsList }
+							{' '}
+						</div>
+					</ExpansionPanelDetails>
+
+				</ExpansionPanel>
+
+			</div>
+		);
+	}
 }
 
 const styles = theme => ({
-  
-  root: {
-    textAlign:'left',
-  },
 
-  expansion: {
-    background: 'aliceblue',
-    padding: 0,
-  },
+	root: {
+		textAlign: 'left',
+	},
 
-  heading: {
-    fontWeight: theme.typography.fontWeightRegular,
-  },
+	expansion: {
+		background: 'aliceblue',
+		padding: 0,
+	},
 
-  list: {
-    padding: 'none',
-    margin:'none',
-  }, 
+	heading: {
+		fontWeight: theme.typography.fontWeightRegular,
+	},
 
-  summary: {
-    background: theme.palette.secondary.main,
-  },
+	list: {
+		padding: 'none',
+		margin: 'none',
+	},
+
+	summary: {
+		background: theme.palette.secondary.main,
+	},
 });
 
 CommentsPage.propTypes = propTypes;

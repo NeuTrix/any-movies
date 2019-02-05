@@ -20,7 +20,7 @@
     }
   },
   "rules": {
-    "indent": ["error", "tab"],
+    "indent": [2, "tab"],
     "max-len": ["warn",
       {
         "code": 100
@@ -31,6 +31,7 @@
     "no-underscore-dangle": ["warn", {
       "allow": ["_id"]
     }],
+    "no-tabs": 0,
     "padded-blocks": ["error", {
       "blocks": "never"
     }],
