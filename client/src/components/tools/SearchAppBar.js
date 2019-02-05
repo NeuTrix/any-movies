@@ -84,10 +84,10 @@ class SearchAppBar extends Component {
 									fullWidth
 									margin="dense"
 									name="searchTerm"
-									onChange={this.onChange}
 									type="text"
-									value={this.state.searchTerm}
 									variant="outlined"
+									onChange={this.onChange}
+									value={this.state.searchTerm}
 								/>
 							</FormControl>
 						</div>
