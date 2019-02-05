@@ -90,8 +90,6 @@ class MoviePage extends Component {
 					<div className={classes.toggleComment} style={{ gridArea: 'addComment' }}>
 						<Link color="primary" onClick={this.handleCommentsClick}>
               Comment on this movie?
-
-
 						</Link>
 					</div>
 
@@ -148,6 +146,9 @@ const styles = theme => ({
 	posterBackground: {
 		// adjust poster background based on screen size
 		backgroundAttachment: 'fixed',
+		bottom: 0,
+		left: 0,
+		top: 0,
 
 		[theme.breakpoints.down('sm')]: {
 			backgroundRepeat: 'repeat-y',
