@@ -146,7 +146,6 @@ const styles = theme => ({
 	posterBackground: {
 		// adjust poster background based on screen size
 		backgroundAttachment: 'fixed',
-		bottom: 0,
 		left: 0,
 		top: 0,
 
