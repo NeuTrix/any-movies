@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// material ui
 import AppBar from '@material-ui/core/AppBar';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 // import TextField from '@material-ui/core/TextField';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	getMovieData: PropTypes.instanceOf(Function).isRequired,
-	toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 	isFormDisplayed: PropTypes.instanceOf(Boolean).isRequired,
+	toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
 class SearchAppBar extends Component {
@@ -35,18 +36,20 @@ class SearchAppBar extends Component {
 	}
 
 	onSubmit(e) {
+		const { getMovieData, isFormDisplayed, toggleCommentableForm } = this.props;
 		const { searchTerm } = this.state;
 		e.preventDefault();
-		console.log(e);
 		// close the form if open
-		if (this.props.isFormDisplayed) {
-			this.props.toggleCommentableForm();
+		if (isFormDisplayed) {
+			toggleCommentableForm();
 		}
-		this.props.getMovieData(searchTerm);
+
+		getMovieData(searchTerm);
 	}
 
 	render() {
 		const { classes } = this.props;
+		const { searchTerm } = this.state;
 
 		return (
 			<div className={classes.root}>
@@ -57,12 +60,14 @@ class SearchAppBar extends Component {
 							<MenuIcon />
 						</IconButton>
 
-						<Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Any Movies!
-
-
-						
-</Typography>
+						<Typography
+							className={classes.title}
+							variant="h6"
+							color="inherit"
+							noWrap
+						>
+							{'Any Movies!'}
+						</Typography>
 
 						<div className={classes.grow} />
 
@@ -78,8 +83,8 @@ class SearchAppBar extends Component {
 								<InputBase
 									placeholder="Search…"
 									classes={{
-										root: classes.inputRoot,
 										input: classes.inputInput,
+										root: classes.inputRoot,
 									}}
 									label="enter movie title"
 									fullWidth
@@ -87,8 +92,8 @@ class SearchAppBar extends Component {
 									name="searchTerm"
 									type="text"
 									variant="outlined"
+									value={searchTerm}
 									onChange={this.onChange}
-									value={this.state.searchTerm}
 								/>
 							</FormControl>
 						</div>
@@ -102,30 +107,42 @@ class SearchAppBar extends Component {
 }
 
 const styles = theme => ({
-	root: {
-		width: '100%',
-	},
 	grow: {
 		flexGrow: 1,
+	},
+	inputInput: {
+		paddingBottom: theme.spacing.unit,
+		paddingLeft: theme.spacing.unit * 10,
+		paddingRight: theme.spacing.unit,
+		paddingTop: theme.spacing.unit,
+		transition: theme.transitions.create('width'),
+		width: '100%',
+		[theme.breakpoints.up('sm')]: {
+			'&:focus': {
+				width: 200,
+			},
+			width: 120,
+		},
+	},
+	inputRoot: {
+		color: 'inherit',
+		width: '100%',
 	},
 	menuButton: {
 		marginLeft: -12,
 		marginRight: 20,
 	},
-	title: {
-		display: 'none',
-		[theme.breakpoints.up('sm')]: {
-			display: 'block',
-		},
+	root: {
+		width: '100%',
 	},
 	search: {
-		position: 'relative',
-		borderRadius: theme.shape.borderRadius,
-		backgroundColor: fade(theme.palette.common.white, 0.15),
 		'&:hover': {
 			backgroundColor: fade(theme.palette.common.white, 0.25),
 		},
+		backgroundColor: fade(theme.palette.common.white, 0.15),
+		borderRadius: theme.shape.borderRadius,
 		marginLeft: 0,
+		position: 'relative',
 		width: '100%',
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: theme.spacing.unit,
@@ -133,30 +150,19 @@ const styles = theme => ({
 		},
 	},
 	searchIcon: {
-		width: theme.spacing.unit * 9,
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
 		alignItems: 'center',
+		display: 'flex',
+		height: '100%',
 		justifyContent: 'center',
+		pointerEvents: 'none',
+		position: 'absolute',
+		width: theme.spacing.unit * 9,
 	},
-	inputRoot: {
-		color: 'inherit',
-		width: '100%',
-	},
-	inputInput: {
-		paddingTop: theme.spacing.unit,
-		paddingRight: theme.spacing.unit,
-		paddingBottom: theme.spacing.unit,
-		paddingLeft: theme.spacing.unit * 10,
-		transition: theme.transitions.create('width'),
-		width: '100%',
+
+	title: {
+		display: 'none',
 		[theme.breakpoints.up('sm')]: {
-			width: 120,
-			'&:focus': {
-				width: 200,
-			},
+			display: 'block',
 		},
 	},
 });
