@@ -28,9 +28,6 @@
     ],
     "no-console": "off",
     "no-return-assign": ["error", "except-parens"],
-    "no-tabs": ["error", {
-      "allowIndentationTabs": true
-    }],
     "no-underscore-dangle": ["warn", {
       "allow": ["_id"]
     }],
