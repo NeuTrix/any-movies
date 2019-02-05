@@ -92,7 +92,7 @@ class MoviePage extends Component {
               Comment on this movie?
 
 
-      </Link>
+						</Link>
 					</div>
 
 					<div style={{ gridArea: 'form' }}>

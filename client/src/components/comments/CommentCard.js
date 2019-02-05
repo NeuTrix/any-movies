@@ -150,19 +150,19 @@ class CommentCard extends Component {
             reply
 
 
-     </Button>
+					</Button>
 
 					<Button size="small" onClick={this.handleDelete}>
              delete
 
 
-     </Button>
+					</Button>
 
 					<Button size="small" onClick={this.toggleEditCommentForm}>
              edit
 
 
-     </Button>
+					</Button>
 
 				</CardActions>
 

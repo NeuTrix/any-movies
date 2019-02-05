@@ -61,7 +61,7 @@ class SearchAppBar extends Component {
               Any Movies!
 
 
-      </Typography>
+						</Typography>
 
 						<div className={classes.grow} />
 
