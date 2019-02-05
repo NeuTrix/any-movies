@@ -75,9 +75,9 @@ Rated
 
 
 					<h3>
-						{curr_movie.Rated}
-						{' '}
-</h3>
+	{curr_movie.Rated}
+	{' '}
+					</h3>
 				</div>
 				<div>
 					{' '}
