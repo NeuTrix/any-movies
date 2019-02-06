@@ -122,8 +122,9 @@ class CommentableContainer extends Component {
     return axios.get(url)
       .then(resp => {
         let comments = resp.data;
-        this.setState((state) => {
-          return {...state, comments}
+      
+         this.setState((state) => {
+          return { ...state, comments }
         });
         
         return comments
