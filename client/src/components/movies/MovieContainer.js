@@ -93,7 +93,7 @@ class MovieContainer extends Component {
       favourited_id: curr_movie.imdbID,
     }
 
-    axios.post(`/api/favourites/`, data)
+    axios.post(`/api/favourites`, data)
       .then(resp => {
         if (resp.status === 200) {
           alert(`This film was added to your favorites`)
@@ -103,7 +103,7 @@ class MovieContainer extends Component {
         }
       })
       .catch(err => {
-        console.log(err)
+        console.log('==>',err)
       })
   }
 
