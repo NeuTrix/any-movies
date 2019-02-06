@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
 
+
+
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	curr_movie: PropTypes.instanceOf(Object).isRequired,
@@ -60,63 +62,36 @@ function MovieDisplay(props) {
 			<div className={classes.image}>
 				<img className={classes.poster} src={curr_movie.Poster} alt="curr_movie poster" />
 				<div>
-Released:
-
-
-					
-{curr_movie.Year}
-
+					{`Released...${curr_movie.Year}`}
 				</div>
 				<br />
+
 				<div>
-Rated
-
-
-					<h3>
-	{curr_movie.Rated}
-					</h3>
+					{'Rated'}
+					<h3> { curr_movie.Rated } </h3>
 				</div>
+
 				<div>
-					<h6>
-imdbID:
-
-
-						{ curr_movie.imdbID }
-					</h6>
+					<h6> { `imdbID: ${curr_movie.imdbID}` } </h6>
 				</div>
+
 			</div>
 
 			<div className={classes.info}>
 
 				<div>
-					<h4> Genre: </h4>
-					<div>
--
-
-
-						
-{curr_movie.Genre}
-
-					</div>
+					<h4> {'Genre:'} </h4>
+					<p> {curr_movie.Genre} </p>
 				</div>
 
 				<div>
-					<h4> Director: </h4>
-					<div>
--
-
-
-						
-{curr_movie.Director}
-
-					</div>
+					<h4> { 'Director:' } </h4>
+					<p> {curr_movie.Director} </p>
 				</div>
 
 				<div>
-					<h4> Starring: </h4>
-					<div>
-						{ actors }
-					</div>
+					<h4> {' Starring:' } </h4>
+					<p> { actors } </p>
 				</div>
 
 			</div>
@@ -124,18 +99,14 @@ imdbID:
 			<div className={classes.ratings}>
 				<div>
 					<h4> Critics Ratings: </h4>
-					<div>
-						{ ratings }
-					</div>
+					<p> { ratings } </p>
 					<br />
 				</div>
 			</div>
 
 			<div className={classes.plot}>
 				<h4> Movie Plot: </h4>
-				<div>
-					{curr_movie.Plot}
-				</div>
+				<p> { curr_movie.Plot } </p>
 			</div>
 
 		</div>
@@ -143,6 +114,19 @@ imdbID:
 }
 
 const styles = theme => ({
+
+	image: {
+		borderRight: '1px solid lightgrey',
+		gridArea: 'image',
+		padding: theme.spacing.unit,
+	},
+
+	info: {
+		gridArea: 'info',
+		padding: theme.spacing.unit * 2,
+		textAlign: 'left',
+	},
+
 	main: {
 		border: '1px solid lightgrey',
 		display: 'inline-grid',
@@ -155,33 +139,15 @@ const styles = theme => ({
 		gridTemplateColumns: '2fr 3fr',
 	},
 
-	info: {
-		textAlign: 'left',
-		gridArea: 'info',
-		padding: theme.spacing.unit * 2,
-	},
-
-	image: {
-		gridArea: 'image',
+	plot: {
+		border: '1px solid lightgrey',
+		gridArea: 'plot',
 		padding: theme.spacing.unit,
-		borderRight: '1px solid lightgrey',
+		textAlign: 'left',
 	},
-
+	
 	poster: {
 		maxWidth: 125,
-		padding: theme.spacing.unit,
-	},
-
-	plot: {
-		gridArea: 'plot',
-		border: '1px solid lightgrey',
-		padding: theme.spacing.unit,
-		textAlign: 'left',
-	},
-
-	ratings: {
-		gridArea: 'ratings',
-		textAlign: 'left',
 		padding: theme.spacing.unit,
 	},
 
@@ -193,14 +159,19 @@ const styles = theme => ({
 		gridTemplateColumns: '3rf 1fr',
 	},
 
+	ratings: {
+		gridArea: 'ratings',
+		padding: theme.spacing.unit,
+		textAlign: 'left',
+	},
+
 	title: {
 		backgroundColor: 'lightgrey',
-		fontColor: 'white',
 		borderBottom: '1px solid lightgrey',
+		fontColor: 'white',
 		gridArea: 'title',
 		padding: theme.spacing.unit,
 	},
-
 });
 
 MovieDisplay.propTypes = propTypes;
