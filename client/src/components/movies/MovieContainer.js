@@ -23,6 +23,7 @@ class MovieContainer extends Component {
     }
 
     this.addComment = this.addComment.bind(this);
+    this.favouriteMovie = this.favouriteMovie.bind(this)
     this.getComments = this.getComments.bind(this)
     this.getMovieData = this.getMovieData.bind(this);
     this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
@@ -81,6 +82,19 @@ class MovieContainer extends Component {
         alert (`There was a problem adding your comment. \n ${err}`)
         console.log('ERROR=>',err); 
       })
+  }
+
+  // add a movie to a user's favourites
+  favouriteMovie() {
+    // const { curr_movie, curr_user } = this.state;
+    // const data = {
+    //   user_id: curr_user.id,
+    //   favourited_type: 'Movie',
+    //   favourited_id: curr_movie.imdbID,
+    // }
+
+    // api.post(`/api/favourites`)
+
   }
 
   // used to populate the comments state object
