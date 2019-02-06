@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import CommentableForm from '../comments/CommentableForm';
 import CommentableContainer from '../comments/CommentableContainer';
+import CommentableForm from '../comments/CommentableForm';
 import MovieDisplay from './MovieDisplay';
 import SearchAppBar from '../tools/SearchAppBar';
 
@@ -135,14 +135,6 @@ const styles = theme => ({
 		padding: theme.spacing.unit,
 	},
 
-	toggleComment: {
-		display: 'grid',
-		marginBelow: theme.spacing.unit,
-		padding: theme.spacing.unit,
-		textAlign: 'left',
-	},
-
-
 	posterBackground: {
 		// adjust poster background based on screen size
 		backgroundAttachment: 'fixed',
@@ -154,6 +146,12 @@ const styles = theme => ({
 			top: 0,
 			zIndex: -10,
 		},
+	},
+	toggleComment: {
+		display: 'grid',
+		marginBelow: theme.spacing.unit,
+		padding: theme.spacing.unit,
+		textAlign: 'left',
 	},
 });
 
