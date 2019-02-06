@@ -22,20 +22,14 @@ class FavouriteButton extends Component {
 		this.onClick = this.onClick.bind(this);
 	}
 
-
 	onClick(e) {
 		e.preventDefault();
-		// close the form if open
-		// if (isFormDisplayed) {
-		// 	toggleCommentableForm();
-		// }
+		// this.setState({ :  });
 		console.log('Got it!!')
-
 	}
 
 	render() {
 		const { classes } = this.props;
-		const { searchTerm } = this.state;
 
 		return (
 

@@ -26,7 +26,7 @@ class MovieContainer extends Component {
     this.favouriteMovie = this.favouriteMovie.bind(this)
     this.getComments = this.getComments.bind(this)
     this.getMovieData = this.getMovieData.bind(this);
-    this.validateMovieRegistration = this.validateMovieRegistration.bind(this);
+    this.isMovieRegistered = this.isMovieRegistered.bind(this);
     this.registerMovie = this.registerMovie.bind(this);
   }
   
@@ -36,7 +36,7 @@ class MovieContainer extends Component {
     const { curr_movie } = this.state;
     this.setState({ curr_user: this.props.curr_user  });
     this.getMovieData(curr_movie.Title);
-    this.validateMovieRegistration()
+    this.isMovieRegistered()
     
     if (this.state.movieRegistered)
       // resets comments state of current movie
@@ -56,7 +56,7 @@ class MovieContainer extends Component {
       prevState.comments.length !== this.state.comments.length
     ) {
       this.getComments();
-      this.validateMovieRegistration()
+      this.isMovieRegistered()
     }
   }
 
@@ -145,7 +145,7 @@ class MovieContainer extends Component {
 
   //  retrieve movie data from OMDB Api
   getMovieData(searchTerm) {
-      this.validateMovieRegistration()
+      this.isMovieRegistered()
     
      return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
@@ -157,7 +157,7 @@ class MovieContainer extends Component {
       })
       // .then(data => {
       //   // verify whether movie is in my api
-      //   this.validateMovieRegistration()
+      //   this.isMovieRegistered()
       //   console.log('movie container: validating')
       //   return data
       // })
@@ -205,8 +205,28 @@ class MovieContainer extends Component {
     }
   }
 
+  // checks whether movie is currently in the user's favourites list
+  isMovieFavourited() {
+    const { curr_movie } = this.state;
+
+    axios.get(`/api/movies/${curr_movie.imdbID}`)
+      .then((resp) => {
+        if (resp.status === 200 ) {
+
+          this.setState({
+            movieRegistered: true
+          })
+        }
+      })
+      .catch(err => {
+        this.setState({
+          movieRegistered: false
+        })
+      })
+  }
+  
   // checks whether movie is currently in the app api database
-  validateMovieRegistration() {
+  isMovieRegistered() {
     const { curr_movie } = this.state;
 
     axios.get(`/api/movies/${curr_movie.imdbID}`)
