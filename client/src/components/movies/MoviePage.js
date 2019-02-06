@@ -18,6 +18,7 @@ const propTypes = {
 	// ===> functions
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
 	getMovieData: PropTypes.func.isRequired, // search for curr_movie
+	favouriteMovie: PropTypes.func.isRequired, // add favourite for curr_movie
 	handleMovieRegistration: PropTypes.func.isRequired, // search for curr_movie
 };
 
@@ -53,7 +54,7 @@ class MoviePage extends Component {
 			classes, comments, curr_movie, curr_user,
 		} = this.props;
 		// deconstruct prop functions
-		const { addComment, getMovieData } = this.props;
+		const { addComment, favouriteMovie, getMovieData } = this.props;
 		const { displayingCommentForm } = this.state;
 
 		// generate comment form for current movie
@@ -98,7 +99,11 @@ class MoviePage extends Component {
 					</div>
 
 					<div style={{ gridArea: 'movies' }}>
-						<MovieDisplay curr_movie={curr_movie} posterUrl={curr_movie.Poster} />
+						<MovieDisplay 
+							curr_movie={curr_movie} 
+							posterUrl={curr_movie.Poster} 
+							favouriteMovie={favouriteMovie}
+						/>
 					</div>
 
 					<div className={classes.comments}>

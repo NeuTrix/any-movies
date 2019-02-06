@@ -2,30 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	curr_movie: PropTypes.instanceOf(Object).isRequired,
+	favouriteMovie: PropTypes.func.isRequired, // add to favourites
 };
+
+
 
 function MovieDisplay(props) {
 	const { classes, curr_movie } = props;
+	// add to favourites
+	const onClick = (e) => {
+		e.preventDefault();
+		props.favouriteMovie()
+	}
 
 	// generate list of movie ratings
 	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating, index) => (
 		<div key={index} className={classes.ratingUnit}>
 			<div style={{ gridArea: 'critic' }}>
-				{' '}
 				{rating.Source}
 :
 
-
-				{' '}
 			</div>
 			<div style={{ gridArea: 'grade', textAlign: 'right' }}>
-				{' '}
 				{rating.Value}
-				{' '}
 			</div>
 		</div>
 	));
@@ -33,13 +37,11 @@ function MovieDisplay(props) {
 	// if actors listed, make a list
 	const actors = curr_movie.Actors && curr_movie.Actors.split(',').map((actor, index) => (
 		<div key={index}>
-			{' '}
 -
 
 
 			
 {actor}
-			{' '}
 
 		</div>
 	));
@@ -49,46 +51,38 @@ function MovieDisplay(props) {
 
 			<div className={classes.title}>
 				<Typography variant="h4">
-					{' '}
 					{ curr_movie.Title }
-					{' '}
 				</Typography>
+				<Button onClick={onClick}> Fav </Button> 
+
 			</div>
 
 			<div className={classes.image}>
 				<img className={classes.poster} src={curr_movie.Poster} alt="curr_movie poster" />
 				<div>
-					{' '}
 Released:
 
 
 					
 {curr_movie.Year}
-					{' '}
 
 				</div>
-				{' '}
 				<br />
 				<div>
-					{' '}
 Rated
 
 
 					<h3>
 	{curr_movie.Rated}
-	{' '}
 					</h3>
 				</div>
 				<div>
-					{' '}
 					<h6>
-						{' '}
 imdbID:
 
 
 						{ curr_movie.imdbID }
 					</h6>
-					{' '}
 				</div>
 			</div>
 
@@ -97,13 +91,11 @@ imdbID:
 				<div>
 					<h4> Genre: </h4>
 					<div>
-						{' '}
 -
 
 
 						
 {curr_movie.Genre}
-						{' '}
 
 					</div>
 				</div>
@@ -111,13 +103,11 @@ imdbID:
 				<div>
 					<h4> Director: </h4>
 					<div>
-						{' '}
 -
 
 
 						
 {curr_movie.Director}
-						{' '}
 
 					</div>
 				</div>
@@ -125,9 +115,7 @@ imdbID:
 				<div>
 					<h4> Starring: </h4>
 					<div>
-						{' '}
 						{ actors }
-						{' '}
 					</div>
 				</div>
 
@@ -137,11 +125,8 @@ imdbID:
 				<div>
 					<h4> Critics Ratings: </h4>
 					<div>
-						{' '}
 						{ ratings }
-						{' '}
 					</div>
-					{' '}
 					<br />
 				</div>
 			</div>
@@ -149,9 +134,7 @@ imdbID:
 			<div className={classes.plot}>
 				<h4> Movie Plot: </h4>
 				<div>
-					{' '}
 					{curr_movie.Plot}
-					{' '}
 				</div>
 			</div>
 

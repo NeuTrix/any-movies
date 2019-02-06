@@ -86,15 +86,25 @@ class MovieContainer extends Component {
 
   // add a movie to a user's favourites
   favouriteMovie() {
-    // const { curr_movie, curr_user } = this.state;
-    // const data = {
-    //   user_id: curr_user.id,
-    //   favourited_type: 'Movie',
-    //   favourited_id: curr_movie.imdbID,
-    // }
+    const { curr_movie, curr_user } = this.state;
+    const data = {
+      user_id: curr_user.id,
+      favourited_type: 'Movie',
+      favourited_id: curr_movie.imdbID,
+    }
 
-    // api.post(`/api/favourites`)
-
+    axios.post(`/api/favourites/`, data)
+      .then(resp => {
+        if (resp.status === 200) {
+          alert(`This film was added to your favorites`)
+          console.log(resp.json)
+        } else {
+          alert('what happend?')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   // used to populate the comments state object
@@ -220,6 +230,7 @@ class MovieContainer extends Component {
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
+        favouriteMovie={this.favouriteMovie}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
         handleMovieRegistration={this.registerMovie}
