@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
-
-
+import FavoriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -12,23 +11,20 @@ const propTypes = {
 	favouriteMovie: PropTypes.func.isRequired, // add to favourites
 };
 
-
-
 function MovieDisplay(props) {
 	const { classes, curr_movie } = props;
+
 	// add to favourites
 	const onClick = (e) => {
 		e.preventDefault();
-		props.favouriteMovie()
-	}
+		props.favouriteMovie();
+	};
 
 	// generate list of movie ratings
-	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating, index) => (
-		<div key={index} className={classes.ratingUnit}>
+	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating) => (
+		<div key={curr_movie.imdbID} className={classes.ratingUnit}>
 			<div style={{ gridArea: 'critic' }}>
-				{rating.Source}
-:
-
+				{`${rating.Source} :`}
 			</div>
 			<div style={{ gridArea: 'grade', textAlign: 'right' }}>
 				{rating.Value}
@@ -37,26 +33,18 @@ function MovieDisplay(props) {
 	));
 
 	// if actors listed, make a list
-	const actors = curr_movie.Actors && curr_movie.Actors.split(',').map((actor, index) => (
-		<div key={index}>
--
-
-
-			
-{actor}
-
-		</div>
-	));
+	const actors = curr_movie.Actors && curr_movie.Actors.split(',')
+		.map((actor) => ( <div key={curr_movie.imdbID}> - {actor} </div> )
+	);
 
 	return (
 		<div className={classes.main}>
 
 			<div className={classes.title}>
-				<Typography variant="h4">
-					{ curr_movie.Title }
-				</Typography>
-				<Button onClick={onClick}> Fav </Button> 
-
+				<FavoriteTwoTone onClick={onClick} /> 
+				<span>
+				<Typography variant="h4"> { curr_movie.Title } </Typography>
+				</span>
 			</div>
 
 			<div className={classes.image}>
@@ -145,7 +133,7 @@ const styles = theme => ({
 		padding: theme.spacing.unit,
 		textAlign: 'left',
 	},
-	
+
 	poster: {
 		maxWidth: 125,
 		padding: theme.spacing.unit,
