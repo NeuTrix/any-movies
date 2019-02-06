@@ -39,12 +39,22 @@ function MovieDisplay(props) {
 
 	return (
 		<div className={classes.main}>
+			
+			<div className={classes.titlebar}>
+				<div className={classes.fav}>
+					<Button 
+						variant="fav"
+						onClick={onClick}
+					>
+						<FavoriteTwoTone color="primary" />
+					</Button>
+				</div>
 
-			<div className={classes.title}>
-				<FavoriteTwoTone onClick={onClick} /> 
-				<span>
-				<Typography variant="h4"> { curr_movie.Title } </Typography>
-				</span>
+				<div className={classes.title} >
+					<Typography variant="h4"> 
+						{ curr_movie.Title } 
+					</Typography>
+				</div>
 			</div>
 
 			<div className={classes.image}>
@@ -103,6 +113,13 @@ function MovieDisplay(props) {
 
 const styles = theme => ({
 
+	fav: {
+		display: 'inherit',
+		gridArea: 'fav',
+		padding: theme.spacing.unit,
+		placeContent: 'center',
+	},
+
 	image: {
 		borderRight: '1px solid lightgrey',
 		gridArea: 'image',
@@ -119,7 +136,7 @@ const styles = theme => ({
 		border: '1px solid lightgrey',
 		display: 'inline-grid',
 		gridTemplateAreas: `
-      "title title"
+      "titlebar titlebar"
       "image info"
       "plot plot"
       "ratings ratings"
@@ -154,12 +171,25 @@ const styles = theme => ({
 	},
 
 	title: {
-		backgroundColor: 'lightgrey',
-		borderBottom: '1px solid lightgrey',
 		fontColor: 'white',
 		gridArea: 'title',
 		padding: theme.spacing.unit,
 	},
+
+	titlebar: {
+		display: 'inline-grid',
+		backgroundColor: 'lightgrey',
+		borderBottom: '1px solid lightgrey',
+		fontColor: 'white',
+		gridArea: 'titlebar',
+		gridTemplateAreas: `
+			"fav title"
+		`,
+		gridTemplateColumns: '1fr 9fr',
+		padding: theme.spacing.unit,
+	},
+
+
 });
 
 MovieDisplay.propTypes = propTypes;
