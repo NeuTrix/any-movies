@@ -113,7 +113,6 @@ class MovieContainer extends Component {
   getMovieData(searchTerm) {
       this.validateMovieRegistration()
     
-    //  return axios.get(`https://www.omdbapi.com/?i=tt3896198&h=600&apikey=afe096a8`)
      return axios.get(`${url_movie_data}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
