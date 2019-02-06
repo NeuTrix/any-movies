@@ -86,7 +86,7 @@ class MovieContainer extends Component {
 
   // add a movie to a user's favourites
   favouriteMovie() {
-    const { curr_movie, curr_user } = this.state;
+    const { curr_movie, curr_user, movieRegistered } = this.state;
     const data = {
       user_id: curr_user.id,
       favourited_type: 'Movie',
@@ -95,10 +95,22 @@ class MovieContainer extends Component {
 
     axios.post(`/api/favourites`, data)
       .then(resp => {
+
+        if (resp.status === 422) {
+          alert('Oops! Looks like you may have liked this already')
+        }
+
         if (resp.status === 201) {
-          alert(`This film was added to your favorites`)
-          console.log(resp.json)
+          if (movieRegistered){
+            alert(`This film was added to your favorites`)
+            console.log(resp.json)
+          } else {
+            alert(`Congrats! You're the first to like this movie 
+            \n Add comments or a review below`)
+          }
         } 
+
+        return resp
       })
       .catch(err => {
         console.log('==>',err)
