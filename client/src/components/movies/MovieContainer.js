@@ -112,8 +112,7 @@ class MovieContainer extends Component {
     const { curr_movie } = this.state;
     console.log('getting comments for:', curr_movie.Title, curr_movie.imdbID)
 
-    return axios.get(`/api/movies/tt078748/comments`)
-    // return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
+    return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
       .then(resp => {
         let comments = resp.data;
 
