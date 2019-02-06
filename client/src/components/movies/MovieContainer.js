@@ -95,12 +95,10 @@ class MovieContainer extends Component {
 
     axios.post(`/api/favourites`, data)
       .then(resp => {
-        if (resp.status === 200) {
+        if (resp.status === 201) {
           alert(`This film was added to your favorites`)
           console.log(resp.json)
-        } else {
-          alert('what happend?')
-        }
+        } 
       })
       .catch(err => {
         console.log('==>',err)

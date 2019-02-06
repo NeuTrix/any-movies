@@ -15,7 +15,7 @@ require 'test_helper'
   test "should create favourite" do
     # skip
     assert_difference('Favourite.count') do
-      post api_favourites_url, params: { favourited_id: @favourite.favourited_id, favourited_type: @favourite.favourited_type, user_id: @user.user_id } , as: :json
+      post api_favourites_url, params: { favourited_id: @favourite.favourited_id, favourited_type: @favourite.favourited_type, user_id: @favourite.user_id } , as: :json
     end
 
     assert_response 201
