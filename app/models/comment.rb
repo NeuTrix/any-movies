@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
   # created by users
   belongs_to :user
+  
   belongs_to :commentable, polymorphic: true
   # comments can be commented upon
   has_many :comments, as: :commentable, dependent: :destroy
