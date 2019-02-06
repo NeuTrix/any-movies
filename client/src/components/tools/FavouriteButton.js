@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material ui
 import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
-import { Button } from '@material-ui/core'
+import { Button, IconButton, Typography } from '@material-ui/core'
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -10,7 +10,6 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	addToFavourites: PropTypes.instanceOf(Function).isRequired,
 	movieRegistered: PropTypes.instanceOf(Boolean).isRequired,
-	toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
 class FavouriteButton extends Component {
@@ -18,7 +17,7 @@ class FavouriteButton extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchTerm: '',
+			isFavourited: false,
 		};
 		this.onClick = this.onClick.bind(this);
 	}
@@ -39,31 +38,50 @@ class FavouriteButton extends Component {
 		const { searchTerm } = this.state;
 
 		return (
-			<FavouriteTwoTone
-				className={classes.favourite}
+
+			<IconButton 
+				// disabled		
+				size="large"
 				onClick={this.onClick}
-			/>
+			>
+				{/* <Typography variant="h1" > */}
+					<FavouriteTwoTone 
+						className={classes.favourited} 
+						style={{ color: this.state.isFavourited ? 'orangered' : 'black' }}
+					/>
+				{/* </Typography> */}
+			</IconButton>
 		)
 	}
 }
 
 const styles = theme => ({
 
-	favourite: {
-		'&:hover': {
-			backgroundColor: fade(theme.palette.common.white, 0.25),
-		},
+	favourited: {
 		alignItems: 'center',
 		display: 'flex',
 		height: '100%',
 		justifyContent: 'center',
-		// position: 'absolute',
-		// backgroundColor: fade(theme.palette.common.white, 0.15),
+		position: 'absolute',
 		color: 'orangered',
 		borderRadius: theme.shape.borderRadius,
 		marginLeft: 0,
 		width: '100%',
 	},
+
+	unfavourited: {
+		alignItems: 'center',
+		display: 'flex',
+		height: '100%',
+		justifyContent: 'center',
+		position: 'absolute',
+		color: 'orangered',
+		borderRadius: theme.shape.borderRadius,
+		marginLeft: 0,
+		width: '100%',
+	},
+	
+
 });
 
 FavouriteButton.propTypes = propTypes;
