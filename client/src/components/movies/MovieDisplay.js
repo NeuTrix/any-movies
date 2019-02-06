@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
-import FavoriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
+import FavouriteButton from '../tools/FavouriteButton';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -42,12 +42,9 @@ function MovieDisplay(props) {
 			
 			<div className={classes.titlebar}>
 				<div className={classes.fav}>
-					<Button 
-						variant="fav"
-						onClick={onClick}
-					>
-						<FavoriteTwoTone color="primary" />
-					</Button>
+					
+						<FavouriteButton />
+				
 				</div>
 
 				<div className={classes.title} >
