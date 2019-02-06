@@ -115,8 +115,13 @@ class MoviePage extends Component {
 }
 
 const styles = theme => ({
+	comments: {
+		gridArea: 'comments',
+	},
 	grid: {
+		backgroundColor: 'white',
 		display: 'inline-grid',
+		gridRowGap: '8px',
 		gridTemplateAreas: `
       "title title title "
       "addComment addComment ."
@@ -124,12 +129,10 @@ const styles = theme => ({
       "comments comments comments"
       "movies movies movies"
     `,
-		gridRowGap: '8px',
 		gridTemplateColumns: '1fr 1fr 1fr',
-		padding: theme.spacing.unit,
 		maxWidth: 600,
-		backgroundColor: 'white',
 		opacity: '0.93',
+		padding: theme.spacing.unit,
 	},
 
 	toggleComment: {
@@ -139,9 +142,6 @@ const styles = theme => ({
 		textAlign: 'left',
 	},
 
-	comments: {
-		gridArea: 'comments',
-	},
 
 	posterBackground: {
 		// adjust poster background based on screen size
