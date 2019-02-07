@@ -8,29 +8,32 @@ import FavouriteButton from '../tools/FavouriteButton';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	curr_movie: PropTypes.instanceOf(Object).isRequired,
-	favouriteMovie: PropTypes.func.isRequired, // add to favourites
+	curr_user: PropTypes.instanceOf(Object).isRequired,
+	addFavouriteMovie: PropTypes.func.isRequired, // add to favourites
 };
 
 function MovieDisplay(props) {
-	const { classes, curr_movie } = props;
+	const { classes, curr_movie, curr_user } = props;
 
 	// add to favourites
 	const onClick = (e) => {
 		e.preventDefault();
-		props.favouriteMovie();
+		props.addFavouriteMovie();
 	};
 
 	// generate list of movie ratings
-	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating) => (
-		<div key={curr_movie.imdbID} className={classes.ratingUnit}>
-			<div style={{ gridArea: 'critic' }}>
-				{`${rating.Source} :`}
+	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating) => {
+		return (
+			<div key={curr_movie.imdbID} className={classes.ratingUnit}>
+				<div style={{ gridArea: 'critic' }}>
+					{`${rating.Source} :`}
+				</div>
+				<div style={{ gridArea: 'grade', textAlign: 'right' }}>
+					{rating.Value}
+				</div>
 			</div>
-			<div style={{ gridArea: 'grade', textAlign: 'right' }}>
-				{rating.Value}
-			</div>
-		</div>
-	));
+		)
+	});
 
 	// if actors listed, make a list
 	const actors = curr_movie.Actors && curr_movie.Actors.split(',')
@@ -42,9 +45,11 @@ function MovieDisplay(props) {
 			
 			<div className={classes.titlebar}>
 				<div className={classes.fav}>
-					
-						<FavouriteButton />
-				
+						<FavouriteButton 
+							// addFavouriteMovie={addFavouriteMovie}
+							curr_user={curr_user} 
+							curr_movie={curr_movie} 
+						/>
 				</div>
 
 				<div className={classes.title} >

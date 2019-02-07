@@ -5,7 +5,11 @@ import React, { Component } from 'react';
 // import shortid from 'shortid';
 import { omdb_url } from '../../helpers/api.helper';
 import MoviePage from './MoviePage';
-import { isMovieFavourited } from '../../helpers/movieMethods';
+
+import {
+  // addFavouriteMovie, 
+  isMovieFavourited,
+} from '../../helpers/favouritesFunctions';
 
 const propTypes = { 
   curr_user: PropTypes.instanceOf(Object).isRequired, 
@@ -24,7 +28,7 @@ class MovieContainer extends Component {
     }
 
     this.addComment = this.addComment.bind(this);
-    this.addFavouriteMovie = this.addFavouriteMovie.bind(this)
+    // this.addFavouriteMovie = this.addFavouriteMovie.bind(this)
     this.getComments = this.getComments.bind(this)
     this.getMovieData = this.getMovieData.bind(this);
     this.isMovieRegistered = this.isMovieRegistered.bind(this);
@@ -44,24 +48,17 @@ class MovieContainer extends Component {
       this.setState((state, props) => {
         let curr_user = props.curr_user
         this.getComments();
-        return { ...state,
-          curr_user
-        }
+        return { ...state, curr_user }
     })
   }
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
   const { curr_movie, curr_user } = this.state;
-    // just a little test
-    const data = {
-      user_id: curr_user.id,
-      favourited_id: curr_movie.imdbID
-    }
     
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length) {
-        isMovieFavourited(data);
+        isMovieFavourited({ curr_movie, curr_user });
         this.getComments();
         this.isMovieRegistered()
     }
@@ -88,39 +85,6 @@ class MovieContainer extends Component {
       .catch(err => { 
         alert (`There was a problem adding your comment. \n ${err}`)
         console.log('ERROR=>',err); 
-      })
-  }
-
-  // add a movie to a user's favourites
-  addFavouriteMovie() {
-    const { curr_movie, curr_user, movieRegistered } = this.state;
-    const data = {
-      user_id: curr_user.id,
-      favourited_type: 'Movie',
-      favourited_id: curr_movie.imdbID,
-    }
-
-    axios.post(`/api/favourites`, data)
-      .then(resp => {
-
-        if (resp.status === 422) {
-          alert('Oops! Looks like you may have liked this already')
-        }
-
-        if (resp.status === 201) {
-          if (movieRegistered){
-            alert(`This film was added to your favorites`)
-            console.log(resp.json)
-          } else {
-            alert(`Congrats! You're the first to like this movie 
-            \n Add comments or a review below`)
-          }
-        } 
-
-        return resp
-      })
-      .catch(err => {
-        console.log('==>',err)
       })
   }
 
@@ -162,12 +126,6 @@ class MovieContainer extends Component {
         } 
         return data
       })
-      // .then(data => {
-      //   // verify whether movie is in my api
-      //   this.isMovieRegistered()
-      //   console.log('movie container: validating')
-      //   return data
-      // })
       .then(data => {
         // update the state movie object (with OMDB curr_movie)
         this.setState((state) => { 
@@ -246,7 +204,7 @@ class MovieContainer extends Component {
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
-        favouriteMovie={this.addFavouriteMovie}
+        // addFavouriteMovie={this.addFavouriteMovie}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
         handleMovieRegistration={this.registerMovie}

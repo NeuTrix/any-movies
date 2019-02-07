@@ -6,10 +6,16 @@ import { Button, IconButton, Typography } from '@material-ui/core'
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
+import {
+	addFavouriteMovie,
+	isMovieFavourited,
+} from '../../helpers/favouritesFunctions';
+
+
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	addToFavourites: PropTypes.instanceOf(Function).isRequired,
-	movieRegistered: PropTypes.instanceOf(Boolean).isRequired,
+	curr_movie: PropTypes.instanceOf(Object).isRequired,
+	curr_user: PropTypes.instanceOf(Object).isRequired,
 };
 
 class FavouriteButton extends Component {
@@ -22,9 +28,22 @@ class FavouriteButton extends Component {
 		this.onClick = this.onClick.bind(this);
 	}
 
+	componentDidUpdate(prevProps) {
+		const { curr_movie, curr_user } = this.props;
+		if (prevProps.curr_movie.imdbID !== curr_movie.imdbID ) {
+			const data = { curr_movie, curr_user }
+
+			this.setState({ isFavourited: isMovieFavourited(data) });
+		}
+	}
+
 	onClick(e) {
 		e.preventDefault();
-		// this.setState({ :  });
+		const { curr_movie, curr_user } = this.props
+			addFavouriteMovie({ curr_movie, curr_user
+			})
+			this.setState({ isFavourited: isMovieFavourited({ curr_movie, curr_user }) });
+		
 		console.log('Got it!!')
 	}
 
