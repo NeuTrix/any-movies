@@ -3,8 +3,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 // import shortid from 'shortid';
-import { url_movie_data } from '../../helpers/api.helper';
+import { omdb_url } from '../../helpers/api.helper';
 import MoviePage from './MoviePage';
+import { isMovieFavourited } from '../../helpers/movieMethods';
 
 const propTypes = { 
   curr_user: PropTypes.instanceOf(Object).isRequired, 
@@ -32,8 +33,8 @@ class MovieContainer extends Component {
   
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
-    
-    const { curr_movie } = this.state;
+    const { curr_movie, curr_user } = this.state;
+
     this.setState({ curr_user: this.props.curr_user  });
     this.getMovieData(curr_movie.Title);
     this.isMovieRegistered()
@@ -51,6 +52,13 @@ class MovieContainer extends Component {
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
+const { curr_movie, curr_user } = this.state;
+    // just a little test
+    const data = {
+      user_id: curr_user.id,
+      favourited_id: curr_movie.imdbID
+    }
+    isMovieFavourited(data)
 
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length
@@ -147,7 +155,7 @@ class MovieContainer extends Component {
   getMovieData(searchTerm) {
       this.isMovieRegistered()
     
-     return axios.get(`${url_movie_data}&t=${searchTerm}`)
+     return axios.get(`${omdb_url}&t=${searchTerm}`)
       .then(resp => {
         const data = resp.data
        if (data.Error) {
@@ -207,7 +215,7 @@ class MovieContainer extends Component {
 
   // checks whether movie is currently in the user's favourites list
   isMovieFavourited() {
-    const { curr_movie } = this.state;
+    const { curr_movie, curr_user } = this.state;
 
     axios.get(`/api/movies/${curr_movie.imdbID}`)
       .then((resp) => {
@@ -224,7 +232,7 @@ class MovieContainer extends Component {
         })
       })
   }
-  
+
   // checks whether movie is currently in the app api database
   isMovieRegistered() {
     const { curr_movie } = this.state;
