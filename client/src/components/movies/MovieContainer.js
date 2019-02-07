@@ -24,7 +24,7 @@ class MovieContainer extends Component {
     }
 
     this.addComment = this.addComment.bind(this);
-    this.favouriteMovie = this.favouriteMovie.bind(this)
+    this.addFavouriteMovie = this.addFavouriteMovie.bind(this)
     this.getComments = this.getComments.bind(this)
     this.getMovieData = this.getMovieData.bind(this);
     this.isMovieRegistered = this.isMovieRegistered.bind(this);
@@ -52,19 +52,18 @@ class MovieContainer extends Component {
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
-const { curr_movie, curr_user } = this.state;
+  const { curr_movie, curr_user } = this.state;
     // just a little test
     const data = {
       user_id: curr_user.id,
       favourited_id: curr_movie.imdbID
     }
-    isMovieFavourited(data)
-
+    
     if (prevProps.commentable_id !== this.props.commentable_id ||
-      prevState.comments.length !== this.state.comments.length
-    ) {
-      this.getComments();
-      this.isMovieRegistered()
+      prevState.comments.length !== this.state.comments.length) {
+        isMovieFavourited(data);
+        this.getComments();
+        this.isMovieRegistered()
     }
   }
 
@@ -93,7 +92,7 @@ const { curr_movie, curr_user } = this.state;
   }
 
   // add a movie to a user's favourites
-  favouriteMovie() {
+  addFavouriteMovie() {
     const { curr_movie, curr_user, movieRegistered } = this.state;
     const data = {
       user_id: curr_user.id,
@@ -213,26 +212,6 @@ const { curr_movie, curr_user } = this.state;
     }
   }
 
-  // checks whether movie is currently in the user's favourites list
-  isMovieFavourited() {
-    const { curr_movie, curr_user } = this.state;
-
-    axios.get(`/api/movies/${curr_movie.imdbID}`)
-      .then((resp) => {
-        if (resp.status === 200 ) {
-
-          this.setState({
-            movieRegistered: true
-          })
-        }
-      })
-      .catch(err => {
-        this.setState({
-          movieRegistered: false
-        })
-      })
-  }
-
   // checks whether movie is currently in the app api database
   isMovieRegistered() {
     const { curr_movie } = this.state;
@@ -267,7 +246,7 @@ const { curr_movie, curr_user } = this.state;
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
-        favouriteMovie={this.favouriteMovie}
+        favouriteMovie={this.addFavouriteMovie}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
         handleMovieRegistration={this.registerMovie}
