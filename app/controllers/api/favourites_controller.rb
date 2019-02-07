@@ -4,7 +4,7 @@ class Api::FavouritesController < ApplicationController
 
   # GET /favourites
   def index
-    @favourites = Favourite.all
+    @favourites = Favourite.verify(favourite_params)
 
     render json: @favourites
   end
@@ -47,6 +47,7 @@ class Api::FavouritesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def favourite_params
+      # fav param is a bool to validate movie status for a user
       params.permit(:user_id, :favourited_id, :favourited_type)
     end
 end
