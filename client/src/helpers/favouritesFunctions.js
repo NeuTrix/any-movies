@@ -20,9 +20,17 @@ export function addFavouriteMovie({ curr_movie, curr_user }) {
     })
 }
 
+export function getFavouriteMovies(curr_user) {
+  const user_id = curr_user.id;
 
-export function getFavouriteMovies({curr_user}) {
-  
+  return axios.get(`api/users/${user_id}/favourites`)
+    .then(resp => {
+      console.log(`Favourites for user: ${user_id} retrieved`, resp.data)
+      return resp.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 // verify faouorited status for user/movie
 export function isMovieFavourited({ curr_movie, curr_user }) {

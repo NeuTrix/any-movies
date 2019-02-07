@@ -8,6 +8,7 @@ import MoviePage from './MoviePage';
 
 import {
   // addFavouriteMovie, 
+  getFavouriteMovies,
   isMovieFavourited,
 } from '../../helpers/favouritesFunctions';
 
@@ -39,23 +40,27 @@ class MovieContainer extends Component {
   componentDidMount() {
     const { curr_movie, curr_user } = this.state;
 
-    this.setState({ curr_user: this.props.curr_user  });
+    this.setState({ curr_user: this.props.curr_user });
     this.getMovieData(curr_movie.Title);
     this.isMovieRegistered()
+    // test =>
+    getFavouriteMovies(this.props.curr_user)
+    
     
     if (this.state.movieRegistered)
       // resets comments state of current movie
       this.setState((state, props) => {
         let curr_user = props.curr_user
         this.getComments();
+        
         return { ...state, curr_user }
     })
   }
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
-  const { curr_movie, curr_user } = this.state;
     
+  const { curr_movie, curr_user } = this.state;
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length) {
         isMovieFavourited({ curr_movie, curr_user });
