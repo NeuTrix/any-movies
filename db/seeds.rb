@@ -120,12 +120,12 @@
 # )
 # @fav01.save
 
-@fav02 = @user.favourites.build(
-  favourited_id: 'tt0076759',
-  favourited_type: 'Movie'
-)
+# @fav02 = @user.favourites.build(
+#   favourited_id: 'tt0076759',
+#   favourited_type: 'Movie'
+# )
 
-@fav02.save
+# @fav02.save
 
 # @fav03 = @user.favourites.build(
 #   favourited_id: 5,
