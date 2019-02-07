@@ -8,14 +8,11 @@ class Favourite < ApplicationRecord
     message: "You've already favourited this film!" 
   }
 
-  def initialize
-    errors = ActiveModel::Errors.new(self)
-  end
   # allows validation of existing favourite via #index/get
-  def self.search(search)
+  def self.verify(verify)
 
-    @uid = search[:user_id]
-    @fid = search[:favourited_id]
+    @uid = verify[:user_id]
+    @fid = verify[:favourited_id]
 
     # not passing a :search symbol so need to check search values are present
     # if at least one argument is present, validate the favourite
