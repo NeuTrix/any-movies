@@ -33,7 +33,8 @@ class FavouriteButton extends Component {
 			user_id: currUserId,
 		};
 		isFavourited(data).then((resp) => {
-			this.setState({ data, isFavourited: resp.data });
+			console.log('nnnnnnn===>',resp)
+			// this.setState({ data, isFavourited: resp.data });
 		});
 	}
 

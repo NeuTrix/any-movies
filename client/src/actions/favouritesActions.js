@@ -20,6 +20,11 @@ export function addFavourite({ userId, favType, favId }) {
 		});
 }
 
+export function findFavourite(data) {
+  
+}
+
+// return an index of all favourites for this user
 export function getFavourites(userId) {
 	return axios.get(`api/users/${userId}/favourites`)
 		.then((resp) => {
@@ -45,7 +50,8 @@ export function isFavourited(data) {
 		},
 	})
 		.then((resp) => {
-			if (typeof (resp.data) === 'boolean') {
+			// if (typeof (resp.data) === 'boolean') {
+        if (resp) {
 				console.log('isMovieFavourited status is:', resp.data);
 				return resp;
 			}

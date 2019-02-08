@@ -15,22 +15,31 @@ class Favourite < ApplicationRecord
     @fid = verify[:favourited_id]
     @fit = verify[:favourited_type]
 
-    # not passing a :search symbol so need to check search values are present
-    # if at least one argument is present, validate the favourite
-    if @uid || @fid
-      # if only one argument is present, notify the issue
-      if !@uid || !@fid
-        "missing an argument (user_id or favourited_id)"
-      else
-        # returns a boolean value
-        self.exists?( 
-          user_id: @uid, 
-          favourited_id: @fid, 
-          favourited_type: @fit 
-        )
+    # not passing a :symbol so need to verify this is a search vs index action
+    if @uid && @fid && @fit
+
+      existance = self.exists?( 
+        user_id: @uid, 
+        favourited_id: @fid, 
+        favourited_type: @fit 
+      )
+
+      if exists?
+        data = {
+          favourite: self.where(
+            user_id: @uid,
+            favourited_id: @fid,
+            favourited_type: @fit
+          )[0], # return the object vs the array
+
+          exists: exists?
+        }
+
+        data
       end
-    # if no search request submitted, return full #index, as normal
+      
     else
+      # if no search request submitted, return full #index, as normal
       self.all
     end
 
