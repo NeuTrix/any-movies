@@ -35,7 +35,7 @@ export function removeFavourite() {
 
 }
 
-// verify faouorited status for user/movie
+// Returns a Promise to verify favuorited status for user/movie
 export function isFavourited(data) {
 	return axios.get('api/favourites', {
 		params: {
@@ -45,8 +45,12 @@ export function isFavourited(data) {
 		},
 	})
 		.then((resp) => {
-			console.log('isMovieFavourited stats...', resp.data);
-			return resp;
+			if (typeof (resp.data) === 'boolean') {
+				console.log('isMovieFavourited status is:', resp.data);
+				return resp;
+			}
+			alert('Something is wrong with the submitted data.  \n See the logs.');
+			console.log('data: ', data, 'resp.data: ', resp.data);
 		})
 		.catch((err) => {
 			console.log(err);
