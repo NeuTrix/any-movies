@@ -17,12 +17,10 @@ require 'test_helper'
     # assert_difference('Favourite.count') do
       post api_favourites_url,
       params:  {
-        favourite: { 
-          favourited_id: "tt0078748",
-          # favourited_id: @favourite.favourited_id,
-          favourited_type: "Movie",
-          user_id: @user.id
-        }
+        favourited_id: "tt0078748",
+        # favourited_id: @favourite.favourited_id,
+        favourited_type: "Movie",
+        user_id: @user.id
       } , as: :json
     # end
 
