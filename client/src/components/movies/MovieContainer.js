@@ -7,9 +7,9 @@ import { omdb_url } from '../../helpers/api.helper';
 import MoviePage from './MoviePage';
 
 import {
-  // addFavouriteMovie, 
-  getFavouriteMovies,
-  isMovieFavourited,
+  // addFavourite, 
+  getFavourites,
+  isFavourited,
 } from '../../helpers/favouriteActions';
 
 const propTypes = { 
@@ -29,7 +29,7 @@ class MovieContainer extends Component {
     }
 
     this.addComment = this.addComment.bind(this);
-    // this.addFavouriteMovie = this.addFavouriteMovie.bind(this)
+    // this.addFavourite = this.addFavourite.bind(this)
     this.getComments = this.getComments.bind(this)
     this.getMovieData = this.getMovieData.bind(this);
     this.isMovieRegistered = this.isMovieRegistered.bind(this);
@@ -44,7 +44,7 @@ class MovieContainer extends Component {
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     // test =>
-    getFavouriteMovies(this.props.currUser)
+    getFavourites(this.props.currUser)
     
     
     if (this.state.movieRegistered)
@@ -63,7 +63,7 @@ class MovieContainer extends Component {
   const { currMovie, currUser } = this.state;
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length) {
-        isMovieFavourited({ currMovie, currUser });
+        isFavourited({ currMovie, currUser });
         this.getComments();
         this.isMovieRegistered()
     }
@@ -209,7 +209,7 @@ class MovieContainer extends Component {
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
-        // addFavouriteMovie={this.addFavouriteMovie}
+        // addFavourite={this.addFavourite}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
         handleMovieRegistration={this.registerMovie}

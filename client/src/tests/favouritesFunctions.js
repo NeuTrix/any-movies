@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import {isMovieFavourited } from '../helpers/favouriteActions';
+import {isFavourited } from '../helpers/favouriteActions';
 
 chai.use(chaiHttp);
 
@@ -13,7 +13,7 @@ describe('The favouriteActions helpers', () => {
   }
   
   it('..verifies an existing favourite', () => {
-   const  ans = isMovieFavourited(data)
+   const  ans = isFavourited(data)
     console.log(ans)
     // console.log(ans)  
     expect(ans).to.eql('')

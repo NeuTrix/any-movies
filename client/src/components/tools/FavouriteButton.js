@@ -7,13 +7,13 @@ import { IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
-	addFavouriteMovie,
-	isMovieFavourited,
+	addFavourite,
+	isFavourited,
 } from '../../helpers/favouriteActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	// consider taking an action as a prop e.g. addFavouriteMovie
+	// consider taking an action as a prop e.g. addFavourite
 	// would allow the button to function more purely or generically
 	currMovie: PropTypes.instanceOf(Object).isRequired,
 	currUser: PropTypes.instanceOf(Object).isRequired,
@@ -34,15 +34,15 @@ class FavouriteButton extends Component {
 		if (prevProps.currMovie.imdbID !== currMovie.imdbID ) {
 			const data = { currMovie, currUser }
 
-			this.setState({ isFavourited: isMovieFavourited(data) });
+			this.setState({ isFavourited: isFavourited(data) });
 		}
 	}
 
 	onClick(e) {
 		e.preventDefault();
 		const { currMovie, currUser } = this.props
-		addFavouriteMovie({ currMovie, currUser })
-		this.setState({ isFavourited: isMovieFavourited({ currMovie, currUser })() });
+		addFavourite({ currMovie, currUser })
+		this.setState({ isFavourited: isFavourited({ currMovie, currUser })() });
 		console.log('Got it!!')
 	}
 

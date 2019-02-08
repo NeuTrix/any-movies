@@ -9,7 +9,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	currMovie: PropTypes.instanceOf(Object).isRequired,
 	currUser: PropTypes.instanceOf(Object).isRequired,
-	// addFavouriteMovie: PropTypes.func.isRequired, // add to favourites
+	// addFavourite: PropTypes.func.isRequired, // add to favourites
 };
 
 function MovieDisplay(props) {
@@ -22,7 +22,7 @@ function MovieDisplay(props) {
 
 	// const onClick = (e) => {
 	// 	e.preventDefault();
-	// 	props.addFavouriteMovie();
+	// 	props.addFavourite();
 	// };
 
 	// generate list of movie ratings
@@ -50,7 +50,7 @@ function MovieDisplay(props) {
 			<div className={classes.titlebar}>
 				<div className={classes.fav}>
 						<FavouriteButton 
-							// addFavouriteMovie={addFavouriteMovie}
+							// addFavourite={addFavourite}
 							currUser={currUser} 
 							currMovie={currMovie} 
 						/>

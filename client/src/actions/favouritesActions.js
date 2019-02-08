@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 // add a movie to a user's favourites
-export function addFavouriteMovie({ currMovie, currUser }) {
+export function addFavourite({ userId, favType, favId }) {
   const data = {
-    user_id: currUser.id,
-    favourited_type: 'Movie',
-    favourited_id: currMovie.imdbID,
+    user_id: userId,
+    favourited_type: favType,
+    favourited_id: favId,
   }
   // boolean response, validating user/movie/favourited
   axios.post(`/api/favourites`, data)
@@ -20,25 +20,30 @@ export function addFavouriteMovie({ currMovie, currUser }) {
     })
 }
 
-export function getFavouriteMovies(currUser) {
-  const user_id = currUser.id;
+export function getFavourites(userId) {
 
-  return axios.get(`api/users/${user_id}/favourites`)
+  return axios.get(`api/users/${userId}/favourites`)
     .then(resp => {
-      console.log(`Favourites for user: ${user_id} retrieved`, resp.data)
+      console.log(`Favourites for user: ${userId} retrieved`, resp.data)
       return resp.data
     })
     .catch(err => {
       console.log(err)
     })
 }
+
+export function removeFavourite() {
+
+}
+
   // verify faouorited status for user/movie
-export function isMovieFavourited({ currMovie, currUser }) {
+export function isFavourited({ favId, favType, userId }) {
 
   return axios.get('api/favourites', {
     params: {
-      user_id: currUser.id,
-      favourited_id: currMovie.imdbID,
+      user_id: userId,
+      favourited_id: favId,
+      favourited_type: favType,
     }  
   })
     .then(resp => {
