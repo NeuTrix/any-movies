@@ -42,7 +42,7 @@ class FavouriteButton extends Component {
 		e.preventDefault();
 		const { currMovie, currUser } = this.props
 		addFavourite({ currMovie, currUser })
-		this.setState({ isFavourited: isFavourited({ currMovie, currUser })() });
+		this.setState({ isFavourited: isFavourited({ currMovie, currUser }) });
 		console.log('Got it!!')
 	}
 

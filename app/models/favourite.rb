@@ -13,6 +13,7 @@ class Favourite < ApplicationRecord
 
     @uid = verify[:user_id]
     @fid = verify[:favourited_id]
+    @fit = verify[:favourited_type]
 
     # not passing a :search symbol so need to check search values are present
     # if at least one argument is present, validate the favourite
@@ -22,7 +23,11 @@ class Favourite < ApplicationRecord
         "missing an argument (user_id or favourited_id)"
       else
         # returns a boolean value
-        self.exists?( user_id: @uid, favourited_id: @fid )
+        self.exists?( 
+          user_id: @uid, 
+          favourited_id: @fid, 
+          favourited_type: @fit 
+        )
       end
     # if no search request submitted, return full #index, as normal
     else
