@@ -25,20 +25,29 @@ class FavouriteButton extends Component {
 		this.onClick = this.onClick.bind(this);
 	}
 
-	// componentDidMount
+	componentDidMount() {
+		const { currItemId, currItemType, currUserId } = this.props;
+		const	data = {
+			favourited_id: currItemId,
+			favourited_type: currItemType,
+			user_id: currUserId,
+		};
+
+		this.setState({ data, isFavourited: isFavourited(data) });
+	}
 
 	componentDidMount() {
 	// componentDidUpdate(prevProps) {
 		const { currItemId, currItemType, currUserId } = this.props;
 		console.log('++++++>', currUserId)
 		// if (prevProps.currItemId !== currItemId) {
-			const	data = {
-				favourited_id: currItemId,
-				favourited_type: currItemType,
-				user_id: currUserId,
-			};
+		const	data = {
+			favourited_id: currItemId,
+			favourited_type: currItemType,
+			user_id: currUserId,
+		};
 
-			this.setState({ data: data, isFavourited: isFavourited(data) });
+		this.setState({ data: data, isFavourited: isFavourited(data) });
 		// }
 	}
 
@@ -62,10 +71,10 @@ class FavouriteButton extends Component {
 				onClick={this.onClick}
 			>
 				{/* <Typography variant="h1" > */}
-					<FavouriteTwoTone 
-						className={classes.favourited} 
-						style={{ color: this.state.isFavourited ? 'orangered' : 'black' }}
-					/>
+				<FavouriteTwoTone 
+					className={classes.favourited} 
+					style={{ color: this.state.isFavourited ? 'orangered' : 'black' }}
+				/>
 				{/* </Typography> */}
 			</IconButton>
 		)

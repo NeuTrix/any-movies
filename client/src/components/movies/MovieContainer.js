@@ -210,7 +210,6 @@ class MovieContainer extends Component {
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
-        // addFavourite={this.addFavourite}
         getComments={this.getComments}
         getMovieData={this.getMovieData}
         handleMovieRegistration={this.registerMovie}
