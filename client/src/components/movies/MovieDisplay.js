@@ -40,9 +40,9 @@ function MovieDisplay(props) {
 	});
 
 	// if actors listed, make a list
-	const actors = curr_movie.Actors && curr_movie.Actors.split(',')
-		.map((actor) => ( <div key={curr_movie.imdbID}> - {actor} </div> )
-	);
+	// const actors = curr_movie.Actors && curr_movie.Actors.split(',')
+	// 	.map((actor) => ( <div key={curr_movie.imdbID}> - {actor} </div> )
+	// );
 
 	return (
 		<div className={classes.main}>
@@ -95,7 +95,8 @@ function MovieDisplay(props) {
 
 				<div>
 					<h4> {' Starring:' } </h4>
-					<p> { actors } </p>
+					<p> { curr_movie.Actors } </p>
+					{/* <p> { actors } </p> */}
 				</div>
 
 			</div>
