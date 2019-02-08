@@ -37,17 +37,17 @@ export function removeFavourite() {
 }
 
   // verify faouorited status for user/movie
-export function isFavourited({ favId, favType, userId }) {
+export function isFavourited({ favourited_id, favourited_type, user_id}) {
 
   return axios.get('api/favourites', {
     params: {
-        favourited_id: favId,
-        favourited_type: favType,
-        user_id: userId,
+        favourited_id,
+        favourited_type,
+        user_id,
     }  
   })
     .then(resp => {
-      console.log("isMovieFavourtied stats...", resp)
+      console.log("isMovieFavourited stats...", resp)
       return resp
     })
     .catch(err => {

@@ -39,21 +39,21 @@ class MovieContainer extends Component {
   // immutably set state with currUser props, movie data, and comments
   componentDidMount() {
     const { currMovie } = this.state;
+    const { currUser } = this.props
 
-    this.setState({ currUser: this.props.currUser });
+    this.setState({ currUser: currUser });
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     // test =>
-    getFavourites(this.props.currUser)
+    getFavourites(currUser)
     
     
     if (this.state.movieRegistered)
       // resets comments state of current movie
       this.setState((state, props) => {
-        let currUser = props.currUser
         this.getComments();
         
-        return { ...state, currUser }
+        return { ...state }
     })
   }
 
@@ -197,7 +197,8 @@ class MovieContainer extends Component {
   
   render() {
     // deconstruct state objects
-    const { currMovie, currUser, comments } = this.state
+    const { currMovie, comments } = this.state
+    const { currUser } = this.props
 
     return (
       <MoviePage 

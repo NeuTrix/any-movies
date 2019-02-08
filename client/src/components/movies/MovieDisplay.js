@@ -50,9 +50,9 @@ function MovieDisplay(props) {
 			<div className={classes.titlebar}>
 				<div className={classes.fav}>
 						<FavouriteButton 
-							// addFavourite={addFavourite}
-							currUser={currUser} 
-							currMovie={currMovie} 
+							currUserId={currUser.id} 
+							currItemId={currMovie.imdbID} 
+							currItemType={"Movie"} 
 						/>
 				</div>
 

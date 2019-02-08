@@ -3,20 +3,15 @@ import PropTypes from 'prop-types';
 // material ui
 import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
 import { IconButton } from '@material-ui/core';
-// import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-
-import {
-	addFavourite,
-	isFavourited,
-} from '../../actions/favouritesActions';
+// custom
+import { addFavourite, isFavourited, } from '../../actions/favouritesActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	// consider taking an action as a prop e.g. addFavourite
-	// would allow the button to function more purely or generically
-	currMovie: PropTypes.instanceOf(Object).isRequired,
-	currUser: PropTypes.instanceOf(Object).isRequired,
+	currItemId: PropTypes.string.isRequired,
+	currItemType: PropTypes.string.isRequired,
+	currUserId: PropTypes.number.isRequired,
 };
 
 class FavouriteButton extends Component {
@@ -24,26 +19,36 @@ class FavouriteButton extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			data: {},
 			isFavourited: false,
 		};
 		this.onClick = this.onClick.bind(this);
 	}
 
-	componentDidUpdate(prevProps) {
-		const { currMovie, currUser } = this.props;
-		if (prevProps.currMovie.imdbID !== currMovie.imdbID ) {
-			const data = { currMovie, currUser }
+	// componentDidMount
 
-			this.setState({ isFavourited: isFavourited(data) });
-		}
+	componentDidMount() {
+	// componentDidUpdate(prevProps) {
+		const { currItemId, currItemType, currUserId } = this.props;
+		console.log('++++++>', currUserId)
+		// if (prevProps.currItemId !== currItemId) {
+			const	data = {
+				favourited_id: currItemId,
+				favourited_type: currItemType,
+				user_id: currUserId,
+			};
+
+			this.setState({ data: data, isFavourited: isFavourited(data) });
+		// }
 	}
 
 	onClick(e) {
 		e.preventDefault();
-		const { currMovie, currUser } = this.props
-		addFavourite({ currMovie, currUser })
-		this.setState({ isFavourited: isFavourited({ currMovie, currUser }) });
-		console.log('Got it!!')
+		const { data } = this.state;
+		// const { currItemId, currItemType, currUserId } = this.props;
+		// addFavourite(data)
+		// this.setState({ isFavourited: isFavourited(data) });
+		console.log('Adding Favs button processing...', data)
 	}
 
 	render() {
