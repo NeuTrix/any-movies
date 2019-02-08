@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import FavouriteButton from '../tools/FavouriteButton';
 
 const propTypes = {
@@ -16,10 +16,14 @@ function MovieDisplay(props) {
 	const { classes, curr_movie, curr_user } = props;
 
 	// add to favourites
-	const onClick = (e) => {
-		e.preventDefault();
-		props.addFavouriteMovie();
-	};
+	// --> moved this to the fav's button.  
+// consider having the favs button jsut take a generic action as a prop
+
+
+	// const onClick = (e) => {
+	// 	e.preventDefault();
+	// 	props.addFavouriteMovie();
+	// };
 
 	// generate list of movie ratings
 	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating) => {

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material ui
 import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
-import { Button, IconButton, Typography } from '@material-ui/core'
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { IconButton } from '@material-ui/core'
+// import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
@@ -14,6 +14,8 @@ import {
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
+	// consider taking an action as a prop e.g. addFavouriteMovie
+	// would allow the button to function more purely or generically
 	curr_movie: PropTypes.instanceOf(Object).isRequired,
 	curr_user: PropTypes.instanceOf(Object).isRequired,
 };
