@@ -26,11 +26,11 @@ class Favourite < ApplicationRecord
 
       if exists?
         data = {
-          favourite: self.where(
+          id: self.where(
             user_id: @uid,
             favourited_id: @fid,
             favourited_type: @fit
-          )[0], # return the object vs the array
+          ).ids[0], # return the object vs the array
 
           exists: exists?
         }

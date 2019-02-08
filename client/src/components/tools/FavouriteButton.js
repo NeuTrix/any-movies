@@ -21,6 +21,7 @@ class FavouriteButton extends Component {
 		this.state = {
 			data: {},
 			isFavourited: false,
+			favourite_id: '',
 		};
 		this.onClick = this.onClick.bind(this);
 	}
@@ -33,8 +34,8 @@ class FavouriteButton extends Component {
 			user_id: currUserId,
 		};
 		isFavourited(data).then((resp) => {
-			console.log('nnnnnnn===>',resp)
-			// this.setState({ data, isFavourited: resp.data });
+			console.log('nnnnnnn===>', resp)
+			this.setState({ data, favourite_id: resp.data.id, isFavourited: resp.data.exists });
 		});
 	}
 
@@ -48,7 +49,7 @@ class FavouriteButton extends Component {
 
 		if (prevProps.currItemId !== currItemId) {
 			isFavourited(data).then((resp) => {
-				this.setState({ data, isFavourited: resp.data });
+				this.setState({ data, isFavourited: resp.data.exists });
 			});
 		}
 	}
@@ -58,7 +59,7 @@ class FavouriteButton extends Component {
 		const { data } = this.state;
 		addFavourite(data)
 		isFavourited(data).then((resp) => {
-			this.setState({ isFavourited: resp.data });
+			this.setState({ isFavourited: resp.data.exists });
 		});
 		console.log('Adding Favs button processing...', data);
 	}
