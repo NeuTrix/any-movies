@@ -34,9 +34,8 @@ class FavouriteButton extends Component {
 		};
 		isFavourited(data).then((resp) => {
 			this.setState({ data, isFavourited: resp.data });
-		})
+		});
 	}
-
 
 	componentDidUpdate(prevProps) {
 		const { currItemId, currItemType, currUserId } = this.props;
