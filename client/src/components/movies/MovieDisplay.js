@@ -8,12 +8,12 @@ import FavouriteButton from '../tools/FavouriteButton';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	currMovie: PropTypes.instanceOf(Object).isRequired,
-	curr_user: PropTypes.instanceOf(Object).isRequired,
+	currUser: PropTypes.instanceOf(Object).isRequired,
 	// addFavouriteMovie: PropTypes.func.isRequired, // add to favourites
 };
 
 function MovieDisplay(props) {
-	const { classes, currMovie, curr_user } = props;
+	const { classes, currMovie, currUser } = props;
 
 	// add to favourites
 	// --> moved this to the fav's button.  
@@ -51,7 +51,7 @@ function MovieDisplay(props) {
 				<div className={classes.fav}>
 						<FavouriteButton 
 							// addFavouriteMovie={addFavouriteMovie}
-							curr_user={curr_user} 
+							currUser={currUser} 
 							currMovie={currMovie} 
 						/>
 				</div>

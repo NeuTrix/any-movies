@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	// commentable: PropTypes.instanceOf(Object).isRequired, 
-	curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
+	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
 	commentsList: PropTypes.instanceOf(Array), // from commentable
 	handleGetComments: PropTypes.func.isRequired, // update comment to the list
 };
@@ -18,7 +18,7 @@ const propTypes = {
 // some commentables may not have comments defined
 const defaultProps = {
 	commentsList: [],
-	curr_user: { username: 'mickeyMouse' },
+	currUser: { username: 'mickeyMouse' },
 };
 
 class CommentsPage extends Component {

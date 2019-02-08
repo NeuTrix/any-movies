@@ -13,7 +13,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
-	curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
+	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
 	movieIsRegistered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -51,7 +51,7 @@ class MoviePage extends Component {
 	render() {
 		// deconstruct prop objects
 		const {
-			classes, comments, currMovie, curr_user,
+			classes, comments, currMovie, currUser,
 		} = this.props;
 		// deconstruct prop functions
 		const { addComment, getMovieData } = this.props;
@@ -63,7 +63,7 @@ class MoviePage extends Component {
 				// using OMDB obj vs api so need to define commentable_id/type
 				commentable_id={currMovie.imdbID}
 				commentable_type="Movie"
-				curr_user={curr_user}
+				currUser={currUser}
 				submitAction={addComment}
 				toggleForm={this.toggleCommentableForm}
 			/>
@@ -101,7 +101,7 @@ class MoviePage extends Component {
 					<div style={{ gridArea: 'movies' }}>
 						<MovieDisplay 
 							currMovie={currMovie} 
-							curr_user={curr_user} 
+							currUser={currUser} 
 						/>
 					</div>
 
@@ -109,7 +109,7 @@ class MoviePage extends Component {
 						<CommentableContainer
 							comments={comments}
 							commentable={currMovie}
-							curr_user={curr_user}
+							currUser={currUser}
 						/>
 					</div>
 				</div>

@@ -8,7 +8,7 @@ import CommentCard from './CommentCard';
 const propTypes = {
   comments: PropTypes.instanceOf(Object), // a possible list of curr comments
   commentable: PropTypes.instanceOf(Object).isRequired, // comment belongs to...
-  curr_user: PropTypes.instanceOf(Object).isRequired,
+  currUser: PropTypes.instanceOf(Object).isRequired,
 }
 
 const defaultProps ={
@@ -142,7 +142,7 @@ class CommentableContainer extends Component {
 
   render() {
     //  dconstruct props
-    const { curr_user } = this.props;
+    const { currUser } = this.props;
     // build comment cards
     const commentsList = this.state.comments.map(comment => {
       // should consider spreading props from the parent instead
@@ -152,7 +152,7 @@ class CommentableContainer extends Component {
             commentable={comment} 
             commentable_id={comment.commentable_id} 
             commentable_type={comment.commentable_type} 
-            curr_user={curr_user}
+            currUser={currUser}
             addComment={this.addComment}
             deleteComment={this.deleteComment}
             editComment={this.editComment}
@@ -164,7 +164,7 @@ class CommentableContainer extends Component {
     return (
       <CommentsPage 
         commentsList={commentsList} 
-        curr_user={curr_user} 
+        currUser={currUser} 
         handleGetComments={this.getComments} // get items for this commentable
       />
     )

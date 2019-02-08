@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // add a movie to a user's favourites
-export function addFavouriteMovie({ currMovie, curr_user }) {
+export function addFavouriteMovie({ currMovie, currUser }) {
   const data = {
-    user_id: curr_user.id,
+    user_id: currUser.id,
     favourited_type: 'Movie',
     favourited_id: currMovie.imdbID,
   }
@@ -20,8 +20,8 @@ export function addFavouriteMovie({ currMovie, curr_user }) {
     })
 }
 
-export function getFavouriteMovies(curr_user) {
-  const user_id = curr_user.id;
+export function getFavouriteMovies(currUser) {
+  const user_id = currUser.id;
 
   return axios.get(`api/users/${user_id}/favourites`)
     .then(resp => {
@@ -33,11 +33,11 @@ export function getFavouriteMovies(curr_user) {
     })
 }
   // verify faouorited status for user/movie
-export function isMovieFavourited({ currMovie, curr_user }) {
+export function isMovieFavourited({ currMovie, currUser }) {
 
   return axios.get('api/favourites', {
     params: {
-      user_id: curr_user.id,
+      user_id: currUser.id,
       favourited_id: currMovie.imdbID,
     }  
   })

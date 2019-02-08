@@ -13,7 +13,7 @@ import {
 } from '../../helpers/favouritesFunctions';
 
 const propTypes = { 
-  curr_user: PropTypes.instanceOf(Object).isRequired, 
+  currUser: PropTypes.instanceOf(Object).isRequired, 
 }
 
 class MovieContainer extends Component {
@@ -24,7 +24,7 @@ class MovieContainer extends Component {
     this.state = {
       comments: [], // all (unfiltered) comments in the current app state
       currMovie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
-      curr_user: {}, // mock, recieved from props
+      currUser: {}, // mock, recieved from props
       movieRegistered: false, // is movie in our current app db as well
     }
 
@@ -36,34 +36,34 @@ class MovieContainer extends Component {
     this.registerMovie = this.registerMovie.bind(this);
   }
   
-  // immutably set state with curr_user props, movie data, and comments
+  // immutably set state with currUser props, movie data, and comments
   componentDidMount() {
     const { currMovie } = this.state;
 
-    this.setState({ curr_user: this.props.curr_user });
+    this.setState({ currUser: this.props.currUser });
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     // test =>
-    getFavouriteMovies(this.props.curr_user)
+    getFavouriteMovies(this.props.currUser)
     
     
     if (this.state.movieRegistered)
       // resets comments state of current movie
       this.setState((state, props) => {
-        let curr_user = props.curr_user
+        let currUser = props.currUser
         this.getComments();
         
-        return { ...state, curr_user }
+        return { ...state, currUser }
     })
   }
 
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
     
-  const { currMovie, curr_user } = this.state;
+  const { currMovie, currUser } = this.state;
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length) {
-        isMovieFavourited({ currMovie, curr_user });
+        isMovieFavourited({ currMovie, currUser });
         this.getComments();
         this.isMovieRegistered()
     }
@@ -197,14 +197,14 @@ class MovieContainer extends Component {
   
   render() {
     // deconstruct state objects
-    const { currMovie, curr_user, comments } = this.state
+    const { currMovie, currUser, comments } = this.state
 
     return (
       <MoviePage 
       // consider renamng as CommentsList?
         comments={comments}
         currMovie={currMovie}
-        curr_user={curr_user}
+        currUser={currUser}
         movieIsRegistered={this.state.movieRegistered}
         // functions
         // rename as 'handlexxx'

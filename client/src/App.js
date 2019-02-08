@@ -7,7 +7,7 @@ import MovieContainer from './components/movies/MovieContainer';
 import masterTheme from './helpers/masterTheme';
 
 // mock a current user session
-const curr_user = {
+const currUser = {
 	username: 'Dantastic3339',
 	id: 1,
 };
@@ -18,7 +18,7 @@ class App extends Component {
 			<MuiThemeProvider theme={masterTheme}>
 				<div className="App">
 					<MovieContainer
-						curr_user={curr_user}
+						currUser={currUser}
 					/>
 				</div>
 			</MuiThemeProvider>

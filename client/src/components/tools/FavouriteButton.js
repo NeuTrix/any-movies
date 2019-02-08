@@ -16,7 +16,7 @@ const propTypes = {
 	// consider taking an action as a prop e.g. addFavouriteMovie
 	// would allow the button to function more purely or generically
 	currMovie: PropTypes.instanceOf(Object).isRequired,
-	curr_user: PropTypes.instanceOf(Object).isRequired,
+	currUser: PropTypes.instanceOf(Object).isRequired,
 };
 
 class FavouriteButton extends Component {
@@ -30,9 +30,9 @@ class FavouriteButton extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { currMovie, curr_user } = this.props;
+		const { currMovie, currUser } = this.props;
 		if (prevProps.currMovie.imdbID !== currMovie.imdbID ) {
-			const data = { currMovie, curr_user }
+			const data = { currMovie, currUser }
 
 			this.setState({ isFavourited: isMovieFavourited(data) });
 		}
@@ -40,10 +40,10 @@ class FavouriteButton extends Component {
 
 	onClick(e) {
 		e.preventDefault();
-		const { currMovie, curr_user } = this.props
-			addFavouriteMovie({ currMovie, curr_user
+		const { currMovie, currUser } = this.props
+			addFavouriteMovie({ currMovie, currUser
 			})
-			this.setState({ isFavourited: isMovieFavourited({ currMovie, curr_user }) });
+			this.setState({ isFavourited: isMovieFavourited({ currMovie, currUser }) });
 		
 		console.log('Got it!!')
 	}

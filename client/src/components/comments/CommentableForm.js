@@ -15,7 +15,7 @@ const propTypes = {
 	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentable_id: PropTypes.string.isRequired, 
 	commentable_type: PropTypes.string.isRequired, 
-	curr_user: PropTypes.instanceOf(Object).isRequired, // material UI
+	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
 	editMode: PropTypes.bool, // new or edit form 
 	submitAction: PropTypes.func.isRequired, // create or edit commentable
@@ -47,9 +47,9 @@ class CommentableForm extends Component {
 	// post the review to the rails API
 	componentDidMount() {
 		this.setState((state, props) => {
-			const { commentable, commentable_id, commentable_type, curr_user, editMode } = props
-			let author = curr_user.username;
-			let user_id = curr_user.id;
+			const { commentable, commentable_id, commentable_type, currUser, editMode } = props
+			let author = currUser.username;
+			let user_id = currUser.id;
 			// prepopulate if this is an editing item
 			let body, title
 			if (editMode) {
@@ -77,7 +77,7 @@ class CommentableForm extends Component {
 			setTimeout(() => { this.props.toggleForm(); }, 250) 
 	}
 	render() {
-		const { classes, curr_user } = this.props;
+		const { classes, currUser } = this.props;
 
 		return (
 			<FormControl
@@ -92,7 +92,7 @@ class CommentableForm extends Component {
 					name="author"
 					readOnly
 					type="text"
-					value={curr_user.username}
+					value={currUser.username}
 					variant="outlined"
 					onChange={this.onChange}
 				/>
