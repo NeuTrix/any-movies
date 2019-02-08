@@ -41,9 +41,9 @@ export function isFavourited({ favId, favType, userId }) {
 
   return axios.get('api/favourites', {
     params: {
-      user_id: userId,
       favourited_id: favId,
       favourited_type: favType,
+      user_id: userId,
     }  
   })
     .then(resp => {

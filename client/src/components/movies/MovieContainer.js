@@ -10,7 +10,7 @@ import {
   // addFavourite, 
   getFavourites,
   isFavourited,
-} from '../../helpers/favouriteActions';
+} from '../../actions/favouritesActions';
 
 const propTypes = { 
   currUser: PropTypes.instanceOf(Object).isRequired, 

@@ -1,11 +1,11 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import {isFavourited } from '../helpers/favouriteActions';
+import {isFavourited } from '../helpers/favouritesActions';
 
 chai.use(chaiHttp);
 
 // not clear how to best test axios methods (thunks?)
-describe('The favouriteActions helpers', () => {
+describe('The favouritesActions helpers', () => {
   // need to mock from seed
   const data = {
     user_id: 1,

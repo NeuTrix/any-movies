@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
 	addFavourite,
 	isFavourited,
-} from '../../helpers/favouriteActions';
+} from '../../actions/favouritesActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
