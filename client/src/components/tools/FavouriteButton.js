@@ -55,12 +55,11 @@ class FavouriteButton extends Component {
 	onClick(e) {
 		e.preventDefault();
 		const { data } = this.state;
-		// const { currItemId, currItemType, currUserId } = this.props;
-		// addFavourite(data)
+		addFavourite(data)
 		isFavourited(data).then((resp) => {
 			this.setState({ isFavourited: resp.data });
 		});
-		// console.log('Adding Favs button processing...', data);
+		console.log('Adding Favs button processing...', data);
 	}
 
 	render() {
