@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material ui
 import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
-import { IconButton } from '@material-ui/core'
+import { IconButton } from '@material-ui/core';
 // import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -10,7 +10,6 @@ import {
 	addFavouriteMovie,
 	isMovieFavourited,
 } from '../../helpers/favouritesFunctions';
-
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -74,28 +73,27 @@ const styles = theme => ({
 
 	favourited: {
 		alignItems: 'center',
+		borderRadius: theme.shape.borderRadius,
+		color: 'orangered',
 		display: 'flex',
 		height: '100%',
 		justifyContent: 'center',
-		position: 'absolute',
-		color: 'orangered',
-		borderRadius: theme.shape.borderRadius,
 		marginLeft: 0,
+		position: 'absolute',
 		width: '100%',
 	},
 
 	unfavourited: {
 		alignItems: 'center',
+		borderRadius: theme.shape.borderRadius,
+		color: 'orangered',
 		display: 'flex',
 		height: '100%',
 		justifyContent: 'center',
-		position: 'absolute',
-		color: 'orangered',
-		borderRadius: theme.shape.borderRadius,
 		marginLeft: 0,
+		position: 'absolute',
 		width: '100%',
 	},
-	
 
 });
 
