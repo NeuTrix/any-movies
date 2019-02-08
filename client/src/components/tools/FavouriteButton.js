@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
 	addFavouriteMovie,
 	isMovieFavourited,
-} from '../../helpers/favouritesFunctions';
+} from '../../helpers/favouriteActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -41,10 +41,8 @@ class FavouriteButton extends Component {
 	onClick(e) {
 		e.preventDefault();
 		const { currMovie, currUser } = this.props
-			addFavouriteMovie({ currMovie, currUser
-			})
-			this.setState({ isFavourited: isMovieFavourited({ currMovie, currUser })() });
-		
+		addFavouriteMovie({ currMovie, currUser })
+		this.setState({ isFavourited: isMovieFavourited({ currMovie, currUser })() });
 		console.log('Got it!!')
 	}
 

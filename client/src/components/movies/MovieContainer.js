@@ -10,7 +10,7 @@ import {
   // addFavouriteMovie, 
   getFavouriteMovies,
   isMovieFavourited,
-} from '../../helpers/favouritesFunctions';
+} from '../../helpers/favouriteActions';
 
 const propTypes = { 
   currUser: PropTypes.instanceOf(Object).isRequired, 
