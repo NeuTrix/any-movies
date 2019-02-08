@@ -32,33 +32,36 @@ class FavouriteButton extends Component {
 			favourited_type: currItemType,
 			user_id: currUserId,
 		};
-
-		this.setState({ data, isFavourited: isFavourited(data) });
+		isFavourited(data).then((resp) => {
+			this.setState({ data, isFavourited: resp.data });
+		})
 	}
 
 
-	// componentDidUpdate(prevProps) {
-	// 	const { currItemId, currItemType, currUserId } = this.props;
-	// 	console.log('++++++>', currUserId)
-	// 	// if (prevProps.currItemId !== currItemId) {
-	// 	const	data = {
-	// 		favourited_id: currItemId,
-	// 		favourited_type: currItemType,
-	// 		user_id: currUserId,
-	// 	};
+	componentDidUpdate(prevProps) {
+		const { currItemId, currItemType, currUserId } = this.props;
+		const	data = {
+			favourited_id: currItemId,
+			favourited_type: currItemType,
+			user_id: currUserId,
+		};
 
-	// 	// this.setState({ data: data, isFavourited: isFavourited(data) });
-	// 	// }
-	// }
+		if (prevProps.currItemId !== currItemId) {
+			isFavourited(data).then((resp) => {
+				this.setState({ data, isFavourited: resp.data });
+			});
+		}
+	}
 
 	onClick(e) {
 		e.preventDefault();
 		const { data } = this.state;
 		// const { currItemId, currItemType, currUserId } = this.props;
 		// addFavourite(data)
-		// this.setState({ isFavourited: isFavourited(data) });
-		alert(isFavourited(data))
-		console.log('Adding Favs button processing...', data)
+		isFavourited(data).then((resp) => {
+			this.setState({ isFavourited: resp.data });
+		});
+		// console.log('Adding Favs button processing...', data);
 	}
 
 	render() {

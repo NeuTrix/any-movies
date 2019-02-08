@@ -40,8 +40,8 @@ export function removeFavourite() {
 export function isFavourited(data) {
 // export function isFavourited({ favourited_id, favourited_type, user_id}) {
 console.log('////=>', data);
-
-axios.get('api/favourites', {
+let ans = 'test'
+return axios.get('api/favourites', {
 		params: {
 			favourited_id: data.favourited_id,
 			favourited_type: data.favourited_type,
@@ -54,6 +54,8 @@ axios.get('api/favourites', {
 		})
 		.catch(err => {
 			console.log(err)
-  	})
+    })
+    
+return ans
 }
   
