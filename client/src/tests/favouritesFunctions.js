@@ -5,7 +5,7 @@ import {isMovieFavourited } from '../helpers/favouritesFunctions';
 chai.use(chaiHttp);
 
 // not clear how to best test axios methods (thunks?)
-xdescribe('The favouritesFunctions helpers', () => {
+describe('The favouritesFunctions helpers', () => {
   // need to mock from seed
   const data = {
     user_id: 1,

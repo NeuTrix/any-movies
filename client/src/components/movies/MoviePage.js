@@ -18,7 +18,7 @@ const propTypes = {
 	// ===> functions
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
 	getMovieData: PropTypes.func.isRequired, // search for curr_movie
-	addFavouriteMovie: PropTypes.func.isRequired, // add favourite for curr_movie
+	// addFavouriteMovie: PropTypes.func.isRequired, // add favourite for curr_movie
 	handleMovieRegistration: PropTypes.func.isRequired, // search for curr_movie
 };
 

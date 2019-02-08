@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
+	// commentable: PropTypes.instanceOf(Object).isRequired, 
 	curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
 	commentsList: PropTypes.instanceOf(Array), // from commentable
 	handleGetComments: PropTypes.func.isRequired, // update comment to the list
@@ -71,11 +71,8 @@ class CommentsPage extends Component {
 						onClick={handleGetComments}
 						expandIcon={<ExpandMoreIcon />}
 					>
-						<Typography variant="subtitle" className={classes.heading}>
+						<Typography variant="subtitle1" className={classes.heading}>
                 See Responses...
-
-
-							{' '}
 							{commentsList.length}
 						</Typography>
 

@@ -24,7 +24,7 @@ class MovieContainer extends Component {
     this.state = {
       comments: [], // all (unfiltered) comments in the current app state
       curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
-      curr_user: '', // mock, recieved from props
+      curr_user: {}, // mock, recieved from props
       movieRegistered: false, // is movie in our current app db as well
     }
 

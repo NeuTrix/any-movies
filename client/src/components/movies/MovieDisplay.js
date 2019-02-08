@@ -9,7 +9,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	curr_movie: PropTypes.instanceOf(Object).isRequired,
 	curr_user: PropTypes.instanceOf(Object).isRequired,
-	addFavouriteMovie: PropTypes.func.isRequired, // add to favourites
+	// addFavouriteMovie: PropTypes.func.isRequired, // add to favourites
 };
 
 function MovieDisplay(props) {

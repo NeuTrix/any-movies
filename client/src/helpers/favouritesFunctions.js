@@ -32,7 +32,7 @@ export function getFavouriteMovies(curr_user) {
       console.log(err)
     })
 }
-// verify faouorited status for user/movie
+  // verify faouorited status for user/movie
 export function isMovieFavourited({ curr_movie, curr_user }) {
 
   return axios.get('api/favourites', {
@@ -49,3 +49,4 @@ export function isMovieFavourited({ curr_movie, curr_user }) {
       console.log(err)
     })
 }
+  
