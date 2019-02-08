@@ -12,6 +12,7 @@ const propTypes = {
 }
 
 const defaultProps ={
+  commentable: {},
   comments: [],
 }
 
@@ -141,11 +142,7 @@ class CommentableContainer extends Component {
 
   render() {
     //  dconstruct props
-    const { 
-      commentable, 
-      curr_user 
-    } = this.props;
- 
+    const { curr_user } = this.props;
     // build comment cards
     const commentsList = this.state.comments.map(comment => {
       // should consider spreading props from the parent instead

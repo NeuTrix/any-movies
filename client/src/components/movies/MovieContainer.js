@@ -38,7 +38,7 @@ class MovieContainer extends Component {
   
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
-    const { curr_movie, curr_user } = this.state;
+    const { curr_movie } = this.state;
 
     this.setState({ curr_user: this.props.curr_user });
     this.getMovieData(curr_movie.Title);
