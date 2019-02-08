@@ -7,13 +7,13 @@ import FavouriteButton from '../tools/FavouriteButton';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	curr_movie: PropTypes.instanceOf(Object).isRequired,
+	currMovie: PropTypes.instanceOf(Object).isRequired,
 	curr_user: PropTypes.instanceOf(Object).isRequired,
 	// addFavouriteMovie: PropTypes.func.isRequired, // add to favourites
 };
 
 function MovieDisplay(props) {
-	const { classes, curr_movie, curr_user } = props;
+	const { classes, currMovie, curr_user } = props;
 
 	// add to favourites
 	// --> moved this to the fav's button.  
@@ -26,9 +26,9 @@ function MovieDisplay(props) {
 	// };
 
 	// generate list of movie ratings
-	const ratings = curr_movie.Ratings && curr_movie.Ratings.map((rating) => {
+	const ratings = currMovie.Ratings && currMovie.Ratings.map((rating) => {
 		return (
-			<div key={curr_movie.imdbID} className={classes.ratingUnit}>
+			<div key={currMovie.imdbID} className={classes.ratingUnit}>
 				<div style={{ gridArea: 'critic' }}>
 					{`${rating.Source} :`}
 				</div>
@@ -40,8 +40,8 @@ function MovieDisplay(props) {
 	});
 
 	// if actors listed, make a list
-	// const actors = curr_movie.Actors && curr_movie.Actors.split(',')
-	// 	.map((actor) => ( <div key={curr_movie.imdbID}> - {actor} </div> )
+	// const actors = currMovie.Actors && currMovie.Actors.split(',')
+	// 	.map((actor) => ( <div key={currMovie.imdbID}> - {actor} </div> )
 	// );
 
 	return (
@@ -52,31 +52,31 @@ function MovieDisplay(props) {
 						<FavouriteButton 
 							// addFavouriteMovie={addFavouriteMovie}
 							curr_user={curr_user} 
-							curr_movie={curr_movie} 
+							currMovie={currMovie} 
 						/>
 				</div>
 
 				<div className={classes.title} >
 					<Typography variant="h4"> 
-						{ curr_movie.Title } 
+						{ currMovie.Title } 
 					</Typography>
 				</div>
 			</div>
 
 			<div className={classes.image}>
-				<img className={classes.poster} src={curr_movie.Poster} alt="curr_movie poster" />
+				<img className={classes.poster} src={currMovie.Poster} alt="currMovie poster" />
 				<div>
-					{`Released...${curr_movie.Year}`}
+					{`Released...${currMovie.Year}`}
 				</div>
 				<br />
 
 				<div>
 					{'Rated'}
-					<h3> { curr_movie.Rated } </h3>
+					<h3> { currMovie.Rated } </h3>
 				</div>
 
 				<div>
-					<h6> { `imdbID: ${curr_movie.imdbID}` } </h6>
+					<h6> { `imdbID: ${currMovie.imdbID}` } </h6>
 				</div>
 
 			</div>
@@ -85,17 +85,17 @@ function MovieDisplay(props) {
 
 				<div>
 					<h4> {'Genre:'} </h4>
-					<p> {curr_movie.Genre} </p>
+					<p> {currMovie.Genre} </p>
 				</div>
 
 				<div>
 					<h4> { 'Director:' } </h4>
-					<p> {curr_movie.Director} </p>
+					<p> {currMovie.Director} </p>
 				</div>
 
 				<div>
 					<h4> {' Starring:' } </h4>
-					<p> { curr_movie.Actors } </p>
+					<p> { currMovie.Actors } </p>
 					{/* <p> { actors } </p> */}
 				</div>
 
@@ -111,7 +111,7 @@ function MovieDisplay(props) {
 
 			<div className={classes.plot}>
 				<h4> Movie Plot: </h4>
-				<p> { curr_movie.Plot } </p>
+				<p> { currMovie.Plot } </p>
 			</div>
 
 		</div>

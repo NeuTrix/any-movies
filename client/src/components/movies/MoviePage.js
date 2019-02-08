@@ -12,14 +12,14 @@ import SearchAppBar from '../tools/SearchAppBar';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
-	curr_movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
+	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	curr_user: PropTypes.instanceOf(Object).isRequired, // mocked
 	movieIsRegistered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
-	getMovieData: PropTypes.func.isRequired, // search for curr_movie
-	// addFavouriteMovie: PropTypes.func.isRequired, // add favourite for curr_movie
-	handleMovieRegistration: PropTypes.func.isRequired, // search for curr_movie
+	getMovieData: PropTypes.func.isRequired, // search for currMovie
+	// addFavouriteMovie: PropTypes.func.isRequired, // add favourite for currMovie
+	handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
 class MoviePage extends Component {
@@ -51,7 +51,7 @@ class MoviePage extends Component {
 	render() {
 		// deconstruct prop objects
 		const {
-			classes, comments, curr_movie, curr_user,
+			classes, comments, currMovie, curr_user,
 		} = this.props;
 		// deconstruct prop functions
 		const { addComment, getMovieData } = this.props;
@@ -61,7 +61,7 @@ class MoviePage extends Component {
 		const newCommentForm = (
 			<CommentableForm
 				// using OMDB obj vs api so need to define commentable_id/type
-				commentable_id={curr_movie.imdbID}
+				commentable_id={currMovie.imdbID}
 				commentable_type="Movie"
 				curr_user={curr_user}
 				submitAction={addComment}
@@ -73,7 +73,7 @@ class MoviePage extends Component {
 		// set style for poset her.  need to access url variable
 			<div
 				className={classes.posterBackground}
-				style={{ backgroundImage: `url(${curr_movie.Poster})` }}
+				style={{ backgroundImage: `url(${currMovie.Poster})` }}
 			>
 				{/* fake opacity */}
 				<div className={classes.grid}>
@@ -100,7 +100,7 @@ class MoviePage extends Component {
 
 					<div style={{ gridArea: 'movies' }}>
 						<MovieDisplay 
-							curr_movie={curr_movie} 
+							currMovie={currMovie} 
 							curr_user={curr_user} 
 						/>
 					</div>
@@ -108,7 +108,7 @@ class MoviePage extends Component {
 					<div className={classes.comments}>
 						<CommentableContainer
 							comments={comments}
-							commentable={curr_movie}
+							commentable={currMovie}
 							curr_user={curr_user}
 						/>
 					</div>

@@ -23,7 +23,7 @@ class MovieContainer extends Component {
     // set intial state for the application
     this.state = {
       comments: [], // all (unfiltered) comments in the current app state
-      curr_movie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
+      currMovie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       curr_user: {}, // mock, recieved from props
       movieRegistered: false, // is movie in our current app db as well
     }
@@ -38,10 +38,10 @@ class MovieContainer extends Component {
   
   // immutably set state with curr_user props, movie data, and comments
   componentDidMount() {
-    const { curr_movie } = this.state;
+    const { currMovie } = this.state;
 
     this.setState({ curr_user: this.props.curr_user });
-    this.getMovieData(curr_movie.Title);
+    this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     // test =>
     getFavouriteMovies(this.props.curr_user)
@@ -60,10 +60,10 @@ class MovieContainer extends Component {
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
     
-  const { curr_movie, curr_user } = this.state;
+  const { currMovie, curr_user } = this.state;
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length) {
-        isMovieFavourited({ curr_movie, curr_user });
+        isMovieFavourited({ currMovie, curr_user });
         this.getComments();
         this.isMovieRegistered()
     }
@@ -71,9 +71,9 @@ class MovieContainer extends Component {
 
   // adds a new review for the currently displayed Movie
   addComment({data, commentable}) {
-    const { curr_movie } = this.state;
+    const { currMovie } = this.state;
 
-    return axios.post(`/api/movies/${curr_movie.imdbID}/comments`, data)
+    return axios.post(`/api/movies/${currMovie.imdbID}/comments`, data)
       .then(resp => {
         if (resp.status === 201) {
           alert(`Your comment was added! \n comment_id: ${resp.data.id}`)
@@ -95,10 +95,10 @@ class MovieContainer extends Component {
 
   // used to populate the comments state object
   getComments() {
-    const { curr_movie } = this.state;
-    console.log('getting comments for:', curr_movie.Title, curr_movie.imdbID)
+    const { currMovie } = this.state;
+    console.log('getting comments for:', currMovie.Title, currMovie.imdbID)
 
-    return axios.get(`/api/movies/${curr_movie.imdbID}/comments`)
+    return axios.get(`/api/movies/${currMovie.imdbID}/comments`)
       .then(resp => {
         let comments = resp.data;
 
@@ -132,10 +132,10 @@ class MovieContainer extends Component {
         return data
       })
       .then(data => {
-        // update the state movie object (with OMDB curr_movie)
+        // update the state movie object (with OMDB currMovie)
         this.setState((state) => { 
-          let curr_movie = data
-          return { ...state, curr_movie }
+          let currMovie = data
+          return { ...state, currMovie }
         })
         console.log('movie container: resetting movie state')
         return data
@@ -154,11 +154,11 @@ class MovieContainer extends Component {
 
   // adds a new movie to the internal app database
   registerMovie() {
-    const { curr_movie, movieRegistered } = this.state;
+    const { currMovie, movieRegistered } = this.state;
     if (!movieRegistered) {
 
       // create the data object
-      let data = { title: curr_movie.Title, imdb_id: curr_movie.imdbID, };
+      let data = { title: currMovie.Title, imdb_id: currMovie.imdbID, };
 
       // make the post call
       axios.post(`/api/movies`, data)
@@ -177,9 +177,9 @@ class MovieContainer extends Component {
 
   // checks whether movie is currently in the app api database
   isMovieRegistered() {
-    const { curr_movie } = this.state;
+    const { currMovie } = this.state;
 
-    axios.get(`/api/movies/${curr_movie.imdbID}`)
+    axios.get(`/api/movies/${currMovie.imdbID}`)
       .then((resp) => {
         if (resp.status === 200 ) {
 
@@ -197,13 +197,13 @@ class MovieContainer extends Component {
   
   render() {
     // deconstruct state objects
-    const { curr_movie, curr_user, comments } = this.state
+    const { currMovie, curr_user, comments } = this.state
 
     return (
       <MoviePage 
       // consider renamng as CommentsList?
         comments={comments}
-        curr_movie={curr_movie}
+        currMovie={currMovie}
         curr_user={curr_user}
         movieIsRegistered={this.state.movieRegistered}
         // functions

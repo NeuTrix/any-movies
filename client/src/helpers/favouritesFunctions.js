@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 // add a movie to a user's favourites
-export function addFavouriteMovie({ curr_movie, curr_user }) {
+export function addFavouriteMovie({ currMovie, curr_user }) {
   const data = {
     user_id: curr_user.id,
     favourited_type: 'Movie',
-    favourited_id: curr_movie.imdbID,
+    favourited_id: currMovie.imdbID,
   }
   // boolean response, validating user/movie/favourited
   axios.post(`/api/favourites`, data)
@@ -33,12 +33,12 @@ export function getFavouriteMovies(curr_user) {
     })
 }
   // verify faouorited status for user/movie
-export function isMovieFavourited({ curr_movie, curr_user }) {
+export function isMovieFavourited({ currMovie, curr_user }) {
 
   return axios.get('api/favourites', {
     params: {
       user_id: curr_user.id,
-      favourited_id: curr_movie.imdbID,
+      favourited_id: currMovie.imdbID,
     }  
   })
     .then(resp => {
