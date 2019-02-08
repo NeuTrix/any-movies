@@ -43,7 +43,7 @@ class FavouriteButton extends Component {
 		const { currMovie, currUser } = this.props
 			addFavouriteMovie({ currMovie, currUser
 			})
-			this.setState({ isFavourited: isMovieFavourited({ currMovie, currUser }) });
+			this.setState({ isFavourited: isMovieFavourited({ currMovie, currUser })() });
 		
 		console.log('Got it!!')
 	}
