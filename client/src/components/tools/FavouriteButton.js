@@ -36,20 +36,20 @@ class FavouriteButton extends Component {
 		this.setState({ data, isFavourited: isFavourited(data) });
 	}
 
-	componentDidMount() {
-	// componentDidUpdate(prevProps) {
-		const { currItemId, currItemType, currUserId } = this.props;
-		console.log('++++++>', currUserId)
-		// if (prevProps.currItemId !== currItemId) {
-		const	data = {
-			favourited_id: currItemId,
-			favourited_type: currItemType,
-			user_id: currUserId,
-		};
 
-		this.setState({ data: data, isFavourited: isFavourited(data) });
-		// }
-	}
+	// componentDidUpdate(prevProps) {
+	// 	const { currItemId, currItemType, currUserId } = this.props;
+	// 	console.log('++++++>', currUserId)
+	// 	// if (prevProps.currItemId !== currItemId) {
+	// 	const	data = {
+	// 		favourited_id: currItemId,
+	// 		favourited_type: currItemType,
+	// 		user_id: currUserId,
+	// 	};
+
+	// 	// this.setState({ data: data, isFavourited: isFavourited(data) });
+	// 	// }
+	// }
 
 	onClick(e) {
 		e.preventDefault();
@@ -57,6 +57,7 @@ class FavouriteButton extends Component {
 		// const { currItemId, currItemType, currUserId } = this.props;
 		// addFavourite(data)
 		// this.setState({ isFavourited: isFavourited(data) });
+		alert(isFavourited(data))
 		console.log('Adding Favs button processing...', data)
 	}
 
