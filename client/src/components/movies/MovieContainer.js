@@ -44,9 +44,6 @@ class MovieContainer extends Component {
     this.setState({ currUser: currUser });
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
-    // test =>
-    getFavourites(currUser)
-    
     
     if (this.state.movieRegistered)
       // resets comments state of current movie
@@ -60,12 +57,18 @@ class MovieContainer extends Component {
   // update the component if new props recieved
   componentDidUpdate(prevProps, prevState) {
     
-  const { currMovie, currUser } = this.state;
+    const { currMovie, currUser } = this.state;
+
     if (prevProps.commentable_id !== this.props.commentable_id ||
       prevState.comments.length !== this.state.comments.length) {
-        isFavourited({ currMovie, currUser });
-        this.getComments();
-        this.isMovieRegistered()
+      let data = {
+        favourited_id: currMovie.imdbID,
+        favourited_type: "Movie",
+        user_id: currUser.id,
+      }
+      isFavourited(data);
+      this.getComments();
+      this.isMovieRegistered()
     }
   }
 
