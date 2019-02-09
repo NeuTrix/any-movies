@@ -35,7 +35,11 @@ class FavouriteButton extends Component {
 		};
 		isFavourited(data).then((resp) => {
 			console.log('from favbutton===>', resp.data)
-			this.setState({ data, favourite_id: resp.data.id, isFavourited: resp.data.exists });
+			this.setState({
+				data,
+				favourite_id: resp.data.id, 
+				isFavourited: resp.data.exists,
+			});
 		});
 	}
 
@@ -49,7 +53,12 @@ class FavouriteButton extends Component {
 
 		if (prevProps.currItemId !== currItemId) {
 			isFavourited(data).then((resp) => {
-				this.setState({ data, isFavourited: resp.data.exists });
+				console.log('from favbutton===>', resp.data)
+				this.setState({
+					data,
+					favourite_id: resp.data.id,
+					isFavourited: resp.data.exists,
+				});
 			});
 		}
 	}
