@@ -1,22 +1,14 @@
 import axios from 'axios';
 
 // add a movie to a user's favourites
-export function addFavourite({ userId, favType, favId }) {
-	const data = {
-		user_id: userId,
-		favourited_type: favType,
-		favourited_id: favId,
-	};
-	// boolean response, validating user/movie/favourited
+export function addFavourite(data) {
 	axios.post('/api/favourites', data)
 		.then((resp) => {
-			if (resp.status === 422) {
-				alert('Oops! Looks like you may have liked this already');
-			}
+      console.log('#addFavourites ==>', resp.data)
 			return resp;
 		})
 		.catch((err) => {
-			console.log('==>', err);
+			console.log('addFavourites ==>', err);
 		});
 }
 
@@ -40,9 +32,9 @@ export function removeFavourite(data) {
       user_id: data.user_id,
     },
   })
-  .then( resp => {
+  .then(resp => {
     const favId = resp.data.id
-    console.log('visual ----', favId)
+    console.log('removed the favourite', favId)
     return axios.delete(`api/favourites/${favId}`);
   })
   .catch(err => {
