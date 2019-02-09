@@ -34,7 +34,7 @@ class FavouriteButton extends Component {
 			user_id: currUserId,
 		};
 		isFavourited(data).then((resp) => {
-			console.log('nnnnnnn===>', resp)
+			console.log('from favbutton===>', resp.data)
 			this.setState({ data, favourite_id: resp.data.id, isFavourited: resp.data.exists });
 		});
 	}

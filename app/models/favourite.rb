@@ -9,40 +9,38 @@ class Favourite < ApplicationRecord
   }
 
   # allows validation of existing favourite via #index/get
-  def self.verify(verify)
+  def self.verify(data)
 
-    @uid = verify[:user_id]
-    @fid = verify[:favourited_id]
-    @fit = verify[:favourited_type]
+    @uid = data[:user_id]
+    @fid = data[:favourited_id]
+    @fit = data[:favourited_type]
 
     # not passing a :symbol so need to verify this is a search vs index action
     if @uid && @fid && @fit
 
-      existance = self.exists?( 
+      exists = self.exists?( 
         user_id: @uid, 
         favourited_id: @fid, 
         favourited_type: @fit 
       )
-
-      if exists?
-        data = {
+      
+      if exists
+        {
           id: self.where(
             user_id: @uid,
             favourited_id: @fid,
             favourited_type: @fit
           ).ids[0], # return the object vs the array
 
-          exists: exists?
+          exists: exists
         }
 
-        data
+      else
+        { id: 'null',  exists: exists }
       end
-      
     else
       # if no search request submitted, return full #index, as normal
       self.all
     end
-
   end
-
 end

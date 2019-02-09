@@ -51,12 +51,14 @@ export function isFavourited(data) {
 	})
 		.then((resp) => {
 			// if (typeof (resp.data) === 'boolean') {
-        if (resp) {
+      if (resp.id !== 'null') {
 				console.log('isMovieFavourited status is:', resp.data);
 				return resp;
-			}
-			alert('Something is wrong with the submitted data.  \n See the logs.');
-			console.log('data: ', data, 'resp.data: ', resp.data);
+			} else  {
+
+        console.log('Something is wrong with the submitted data.  \n See the logs.');
+        console.log('data: ', data, 'resp.data: ', resp.data);
+      }
 		})
 		.catch((err) => {
 			console.log(err);
