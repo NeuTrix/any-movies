@@ -5,7 +5,11 @@ import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
 import { IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 // custom
-import { addFavourite, isFavourited, } from '../../actions/favouritesActions';
+import {
+	addFavourite,
+	isFavourited,
+	removeFavourite,
+} from '../../actions/favouritesActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -65,12 +69,26 @@ class FavouriteButton extends Component {
 
 	onClick(e) {
 		e.preventDefault();
+
 		const { data } = this.state;
-		addFavourite(data)
+		// check to see if favourited in the api db
 		isFavourited(data).then((resp) => {
-			this.setState({ isFavourited: resp.data.exists });
+
+			if (resp.data.exists) {
+				// remove a favourited item
+				removeFavourite(data);
+				// reset the status for false
+				this.setState({ isFavourited: false });
+				console.log('test from butn==>', this.state);
+			} else {
+				addFavourite(data);
+				this.setState({ isFavourited: resp.data.exists });
+				console.log('test from butn==>', this.state);
+			}
+
 		});
-		console.log('Adding Favs button processing...', data);
+
+		console.log('Favs button is processing...', data);
 	}
 
 	render() {

@@ -20,10 +20,6 @@ export function addFavourite({ userId, favType, favId }) {
 		});
 }
 
-export function findFavourite(data) {
-  
-}
-
 // return an index of all favourites for this user
 export function getFavourites(userId) {
 	return axios.get(`api/users/${userId}/favourites`)
@@ -36,11 +32,28 @@ export function getFavourites(userId) {
 		});
 }
 
-export function removeFavourite() {
+export function removeFavourite(data) {
+  return axios.get('api/favourites', {
+    params: {
+      favourited_id: data.favourited_id,
+      favourited_type: data.favourited_type,
+      user_id: data.user_id,
+    },
+  })
+  .then( resp => {
+    const favId = resp.data.id
+    console.log('visual ----', favId)
+    return axios.delete(`api/favourites/${favId}`);
+  })
+  .catch(err => {
+    console.log('in #removeFavourites ==>', err)
+  })
+
 
 }
 
 // Returns a Promise to verify favuorited status for user/movie
+// data object has the favourite_id and boolean regarding exists?
 export function isFavourited(data) {
 	return axios.get('api/favourites', {
 		params: {
@@ -50,15 +63,12 @@ export function isFavourited(data) {
 		},
 	})
 		.then((resp) => {
-			// if (typeof (resp.data) === 'boolean') {
-      if (resp.id !== 'null') {
+			if (resp.id !== 'null') {
 				console.log('isMovieFavourited status is:', resp.data);
 				return resp;
-			} else  {
-
-        console.log('Something is wrong with the submitted data.  \n See the logs.');
-        console.log('data: ', data, 'resp.data: ', resp.data);
-      }
+			} 
+      console.log(`Something's wrong with the data.\n See the logs.`);
+      console.log('data: ', data, 'resp.data: ', resp.data);
 		})
 		.catch((err) => {
 			console.log(err);
