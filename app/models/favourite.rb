@@ -8,40 +8,44 @@ class Favourite < ApplicationRecord
     message: "You've already favourited this film!" 
   }
 
-  # allows validation of existing favourite via #index/get
+  # allows validation of existing favourite via #index, without knowing id
+  # works from the OMDB api movie id vs internal api search
   def self.verify(data)
 
-    @uid = data[:user_id]
     @fid = data[:favourited_id]
     @fit = data[:favourited_type]
+    @uid = data[:user_id]
 
-    # not passing a :symbol so need to verify this is a search vs index action
-    if @uid && @fid && @fit
+    # distinguish whether this is an index vs verification action
+      if @fid || @fit || @uid
+        "there's data"
+    #   # confirm whether this item is currently favoured
+    #   exists = self.exists?( 
+    #     favourited_id: @fid, 
+    #     favourited_type: @fit, 
+    #     user_id: @uid
+    #   )
+      # # if it is favoured already, then retrieve it
+      # if exists
+      #   {
+      #     # retrutn id of the favoured instance and a boolean confirmation
+      #     id: self.where(
+      #       favourited_id: @fid,
+      #       favourited_type: @fit,
+      #       user_id: @uid
+      #     ).ids[0], # return only one object vs the array (should only be one)
+          
+      #     exists: exists
+      #   }
 
-      exists = self.exists?( 
-        user_id: @uid, 
-        favourited_id: @fid, 
-        favourited_type: @fit 
-      )
-      
-      if exists
-        {
-          id: self.where(
-            user_id: @uid,
-            favourited_id: @fid,
-            favourited_type: @fit
-          ).ids[0], # return the object vs the array
-
-          exists: exists
-        }
-
-      else
-        @movie = Movie.find(@fid)
-        { id: 'null', exists: exists, item: @movie }
-      end
+      # else
+      #   # if the favoured item does not exist, return a null object
+      #   { id: 'null', exists: exists}
+      # end
     else
       # if no search request submitted, return full #index, as normal
-      self.all
+      # self.all
+      "no data- get index"
     end
   end
 end
