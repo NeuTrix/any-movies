@@ -36,7 +36,8 @@ class Favourite < ApplicationRecord
         }
 
       else
-        { id: 'null',  exists: exists }
+        @movie = Movie.find(@fid)
+        { id: 'null', exists: exists, item: @movie }
       end
     else
       # if no search request submitted, return full #index, as normal

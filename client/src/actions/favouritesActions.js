@@ -14,10 +14,11 @@ export function addFavourite(data) {
 
 // return an index of all favourites for this user
 export function getFavourites(userId) {
+
 	return axios.get(`api/users/${userId}/favourites`)
 		.then((resp) => {
 			console.log(`getting favourites for user: ${userId}:`, resp.data);
-			return resp.data;
+		return resp.data
 		})
 		.catch((err) => {
 			console.log('Err: #getFavouites', err);
