@@ -2,28 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-// import { Button } from '@material-ui/core';
 import FavouriteButton from '../tools/FavouriteButton';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	currMovie: PropTypes.instanceOf(Object).isRequired,
 	currUser: PropTypes.instanceOf(Object).isRequired,
-	// addFavourite: PropTypes.func.isRequired, // add to favourites
 };
 
 function MovieDisplay(props) {
 	const { classes, currMovie, currUser } = props;
-
-	// add to favourites
-	// --> moved this to the fav's button.  
-// consider having the favs button jsut take a generic action as a prop
-
-
-	// const onClick = (e) => {
-	// 	e.preventDefault();
-	// 	props.addFavourite();
-	// };
 
 	// generate list of movie ratings
 	const ratings = currMovie.Ratings && currMovie.Ratings.map((rating) => {
@@ -36,13 +24,8 @@ function MovieDisplay(props) {
 					{rating.Value}
 				</div>
 			</div>
-		)
+		);
 	});
-
-	// if actors listed, make a list
-	// const actors = currMovie.Actors && currMovie.Actors.split(',')
-	// 	.map((actor) => ( <div key={currMovie.imdbID}> - {actor} </div> )
-	// );
 
 	return (
 		<div className={classes.main}>
@@ -51,8 +34,7 @@ function MovieDisplay(props) {
 				<div className={classes.fav}>
 						<FavouriteButton 
 							currUserId={currUser.id} 
-							currItemId={currMovie.imdbID} 
-							currItemType={"Movie"} 
+							currItem={currMovie} 
 						/>
 				</div>
 
@@ -64,7 +46,11 @@ function MovieDisplay(props) {
 			</div>
 
 			<div className={classes.image}>
-				<img className={classes.poster} src={currMovie.Poster} alt="currMovie poster" />
+				<img 
+					className={classes.poster} 
+					src={currMovie.Poster} 
+					alt="currMovie poster" 
+				/>
 				<div>
 					{`Released...${currMovie.Year}`}
 				</div>
@@ -195,8 +181,6 @@ const styles = theme => ({
 		gridTemplateColumns: '1fr 9fr',
 		padding: theme.spacing.unit,
 	},
-
-
 });
 
 MovieDisplay.propTypes = propTypes;
