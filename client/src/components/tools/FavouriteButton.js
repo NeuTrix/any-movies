@@ -13,8 +13,7 @@ import {
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	currItemId: PropTypes.string.isRequired,
-	currItemType: PropTypes.string.isRequired,
+	currMovie: PropTypes.instanceOf(Object).isRequired,
 	currUserId: PropTypes.number.isRequired,
 };
 
@@ -30,37 +29,45 @@ class FavouriteButton extends Component {
 	}
 
 	componentDidMount() {
-		const { currItemId, currItemType, currUserId } = this.props;
+		const { currMovie, currUserId } = this.props;
 		const	data = {
-			favourited_id: currItemId,
-			favourited_type: currItemType,
+			favourited_id: currMovie.imdbID,
+			favourited_title: currMovie.Title,
+			favourited_type: "Movie",
 			user_id: currUserId,
 		};
 		isFavourited(data)
 			.then((resp) => {
-				this.setState({
-					data,
-					favoured: resp.data.exists,
-				});
-			});
+				if (resp.data) {
+					return this.setState({
+						data,
+						favoured: resp.data.exists, // set favoured status for the button
+					});
+				}
+			})
+			.catch(err => console.log('Err: isFavourited()/FavButton', err));
 	}
 
 	componentDidUpdate(prevProps) {
-		const { currItemId, currItemType, currUserId } = this.props;
-		const	data = {
-			favourited_id: currItemId,
-			favourited_type: currItemType,
+		const { currMovie, currUserId } = this.props;
+		const data = {
+			favourited_id: currMovie.imdbID,
+			favourited_title: currMovie.Title,
+			favourited_type: "Movie",
 			user_id: currUserId,
 		};
 
-		if (prevProps.currItemId !== currItemId) {
+		if (prevProps.currMovie.imdbID !== currMovie.imdbID) {
 			isFavourited(data)
 				.then((resp) => {
-					this.setState({
-						data,
-						favoured: resp.data.exists,
-					});
-				});
+					if (resp.data) {
+						return this.setState({
+							data,
+							favoured: resp.data.exists, // set favoured status for the button
+						});
+					}
+				})
+				.catch(err => console.log('Err: isFavourited()/FavButton', err));
 		}
 	}
 

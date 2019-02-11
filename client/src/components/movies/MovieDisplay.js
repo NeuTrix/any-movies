@@ -34,7 +34,7 @@ function MovieDisplay(props) {
 				<div className={classes.fav}>
 						<FavouriteButton 
 							currUserId={currUser.id} 
-							currItem={currMovie} 
+							currMovie={currMovie} 
 						/>
 				</div>
 

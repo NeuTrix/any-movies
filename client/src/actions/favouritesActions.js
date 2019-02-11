@@ -4,7 +4,7 @@ import axios from 'axios';
 export function addFavourite(data) {
 	axios.post('/api/favourites', data)
 		.then((resp) => {
-      console.log('adding the favourite ==>', resp.data)
+    	console.log('adding the favourite ==>', resp.data)
 			return resp;
 		})
 		.catch((err) => {
@@ -18,7 +18,7 @@ export function getFavourites(userId) {
 	return axios.get(`api/users/${userId}/favourites`)
 		.then((resp) => {
 			console.log(`getting favourites for user: ${userId}:`, resp.data);
-		return resp.data
+		return resp
 		})
 		.catch((err) => {
 			console.log('Err: #getFavouites', err);
@@ -49,6 +49,7 @@ export function isFavourited(data) {
 	return axios.get('api/favourites', {
 		params: {
 			favourited_id: data.favourited_id,
+			favourited_title: data.favourited_title,
 			favourited_type: data.favourited_type,
 			user_id: data.user_id,
 		},
