@@ -24,8 +24,8 @@ class FavouriteButton extends Component {
 		super(props);
 		this.state = {
 			data: {},
-			isFavourited: false,
-			favourite_id: '', // id of the favourite instance (not favouriteD)
+			// isFavourited: false,
+			favoured: false, // id of the favourite instance (not favouriteD)
 		};
 		this.onClick = this.onClick.bind(this);
 	}
@@ -37,13 +37,14 @@ class FavouriteButton extends Component {
 			favourited_type: currItemType,
 			user_id: currUserId,
 		};
-		isFavourited(data).then((resp) => {
-			console.log('from favbutton===>', resp.data);
-			this.setState({
-				data,
-				favourite_id: resp.data.id,
-				isFavourited: resp.data.exists,
-			});
+		isFavourited(data)
+			.then((resp) => {
+				console.log('DidMount from favbutton===>', resp.data);
+				this.setState({
+					data,
+					// favoured: resp.data.id,
+					favoured: resp.data.exists,
+				});
 		});
 	}
 
@@ -56,41 +57,51 @@ class FavouriteButton extends Component {
 		};
 
 		if (prevProps.currItemId !== currItemId) {
-			isFavourited(data).then((resp) => {
-				console.log('from favbutton===>', resp.data);
-				this.setState({
-					data,
-					favourite_id: resp.data.id,
-					isFavourited: resp.data.exists,
+			isFavourited(data)
+				.then((resp) => {
+					console.log('from favbutton===>', resp.data);
+					this.setState({
+						data,
+						// favoured: resp.data.id,
+						favoured: resp.data.exists,
+					});
 				});
-			});
 		}
 	}
 
 	onClick(e) {
-		e.preventDefault();
 
-		const { data } = this.state;
+		e.preventDefault();
+		const { data, favoured } = this.state;
+
 		// check to see if favourited in the api db
 		isFavourited(data)
 			.then((resp) => {
-				if (resp.data.exists) {
-					removeFavourite(data); // remove a favourited item
-				} else {
-					addFavourite(data); // add to the faves list
-				}
+				console.log('UPDATE from favbutton ==>', resp.data);
+				this.setState({
+					// favoured: resp.data.id,
+					favoured: resp.data.exists,
+				});
+				return resp;
 			})
 			.then((resp) => {
-				const { data } = this.state; // Refresh the data set
-				isFavourited(data).then((resp) => {
-					console.log('UPDATE from favbutton===>', resp.data);
-					this.setState({
-						favourite_id: resp.data.id,
-						isFavourited: resp.data.exists,
-					});
-				});
-			});
-		// console.log('Favs button is processing...', data);
+				if (favoured) {
+					removeFavourite(data); // remove a favourited item
+					this.setState({ favoured: false });
+				} else {
+					addFavourite(data); // add to the faves list
+					this.setState({ favoured: true });
+				}
+			})
+			.then(resp => {
+				this.setState({
+					// favoured: resp.data.id,
+					favoured: resp.data.exists,
+				})
+			})
+			.catch(err => {
+				console.log('FavouriteButton', err)
+			})
 	}
 
 	render() {
@@ -106,7 +117,7 @@ class FavouriteButton extends Component {
 				{/* <Typography variant="h1" > */}
 				<FavouriteTwoTone
 					className={classes.favourited}
-					style={{ color: this.state.isFavourited ? 'orangered' : 'black' }}
+					style={{ color: this.state.favoured ? 'orangered' : 'black' }}
 				/>
 				{/* </Typography> */}
 			</IconButton>
