@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_222155) do
     t.string "favourited_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
+    t.string "favourited_title"
     t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited_type_and_favourited_id"
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end
