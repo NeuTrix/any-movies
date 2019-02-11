@@ -4,11 +4,11 @@ import axios from 'axios';
 export function addFavourite(data) {
 	axios.post('/api/favourites', data)
 		.then((resp) => {
-      console.log('#addFavourites ==>', resp.data)
+      console.log('adding the favourite ==>', resp.data)
 			return resp;
 		})
 		.catch((err) => {
-			console.log('addFavourites ==>', err);
+			console.log('Err: #addFavourites ==>', err);
 		});
 }
 
@@ -16,11 +16,11 @@ export function addFavourite(data) {
 export function getFavourites(userId) {
 	return axios.get(`api/users/${userId}/favourites`)
 		.then((resp) => {
-			console.log(`Favourites for user: ${userId} retrieved`, resp.data);
+			console.log(`getting favourites for user: ${userId}:`, resp.data);
 			return resp.data;
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log('Err: #getFavouites', err);
 		});
 }
 
@@ -34,14 +34,12 @@ export function removeFavourite(data) {
   })
   .then(resp => {
     const favId = resp.data.id
-    console.log('removed the favourite', favId)
+    console.log('removing favourite: ', favId)
     return axios.delete(`api/favourites/${favId}`);
   })
   .catch(err => {
-    console.log('in #removeFavourites ==>', err)
+    console.log('Err: #removeFavourites ==>', err)
   })
-
-
 }
 
 // Returns a Promise to verify favuorited status for user/movie
@@ -56,13 +54,13 @@ export function isFavourited(data) {
 	})
 		.then((resp) => {
 			if (resp.id !== 'null') {
-				console.log('isMovieFavourited status is:', resp.data);
+				console.log('current isFavourited status is:', resp.data);
 				return resp;
 			} 
       console.log(`Something's wrong with the data.\n See the logs.`);
       console.log('data: ', data, 'resp.data: ', resp.data);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log('Err: #isFavourited', err);
 		});
 }

@@ -24,7 +24,6 @@ class FavouriteButton extends Component {
 		super(props);
 		this.state = {
 			data: {},
-			// isFavourited: false,
 			favoured: false, // id of the favourite instance (not favouriteD)
 		};
 		this.onClick = this.onClick.bind(this);
@@ -39,13 +38,11 @@ class FavouriteButton extends Component {
 		};
 		isFavourited(data)
 			.then((resp) => {
-				console.log('DidMount from favbutton===>', resp.data);
 				this.setState({
 					data,
-					// favoured: resp.data.id,
 					favoured: resp.data.exists,
 				});
-		});
+			});
 	}
 
 	componentDidUpdate(prevProps) {
@@ -59,10 +56,8 @@ class FavouriteButton extends Component {
 		if (prevProps.currItemId !== currItemId) {
 			isFavourited(data)
 				.then((resp) => {
-					console.log('from favbutton===>', resp.data);
 					this.setState({
 						data,
-						// favoured: resp.data.id,
 						favoured: resp.data.exists,
 					});
 				});
@@ -70,20 +65,10 @@ class FavouriteButton extends Component {
 	}
 
 	onClick(e) {
-
 		e.preventDefault();
 		const { data, favoured } = this.state;
-
 		// check to see if favourited in the api db
 		isFavourited(data)
-			.then((resp) => {
-				console.log('UPDATE from favbutton ==>', resp.data);
-				this.setState({
-					// favoured: resp.data.id,
-					favoured: resp.data.exists,
-				});
-				return resp;
-			})
 			.then((resp) => {
 				if (favoured) {
 					removeFavourite(data); // remove a favourited item
@@ -93,15 +78,9 @@ class FavouriteButton extends Component {
 					this.setState({ favoured: true });
 				}
 			})
-			.then(resp => {
-				this.setState({
-					// favoured: resp.data.id,
-					favoured: resp.data.exists,
-				})
-			})
-			.catch(err => {
-				console.log('FavouriteButton', err)
-			})
+			.catch((err) => {
+				console.log('FavouriteButton', err);
+			});
 	}
 
 	render() {
@@ -110,16 +89,13 @@ class FavouriteButton extends Component {
 		return (
 
 			<IconButton
-				// disabled
 				size="large"
 				onClick={this.onClick}
 			>
-				{/* <Typography variant="h1" > */}
 				<FavouriteTwoTone
 					className={classes.favourited}
 					style={{ color: this.state.favoured ? 'orangered' : 'black' }}
 				/>
-				{/* </Typography> */}
 			</IconButton>
 		);
 	}
