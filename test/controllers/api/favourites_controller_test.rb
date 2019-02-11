@@ -12,13 +12,22 @@ require 'test_helper'
     assert_response :success
   end
 
+  test "shoud not verify if not favourited" do
+    get api_favourites_url, params: {
+      favourited_id: "tt0112431", # Babe
+      favourited_type: "Movie",
+      user_id: @user_id
+    }, as: :json
+
+      assert_response :resp.data.exists
+  end
+
   test "should create favourite" do
     # skip
     # assert_difference('Favourite.count') do
       post api_favourites_url,
       params:  {
         favourited_id: "tt0078748",
-        # favourited_id: @favourite.favourited_id,
         favourited_type: "Movie",
         user_id: @user.id
       } , as: :json
