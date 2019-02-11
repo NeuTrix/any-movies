@@ -127,8 +127,9 @@
 
 @fav02.save
 
-@fav03 = @user.favourites.build(
-  favourited_id: 5,
-  favourited_type: 'Comment'
-)
-@fav03.save
+# favorite a comment
+# @fav03 = @user.favourites.build(
+#   favourited_id: 5,
+#   favourited_type: 'Comment'
+# )
+# @fav03.save
