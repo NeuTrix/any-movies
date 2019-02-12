@@ -25,7 +25,7 @@ class MovieContainer extends Component {
       comments: [], // all (unfiltered) comments in the current app state
       currMovie: { imdbID: 'tt0078748', Title: 'Alien', }, // from OMDB api
       currUser: {}, // mock, recieved from props
-      movieRegistered: false, // is movie in our current app db as well
+      movieIsRegistered: false, // is movie in our current app db as well
     }
 
     this.addComment = this.addComment.bind(this);
@@ -45,7 +45,7 @@ class MovieContainer extends Component {
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     
-    if (this.state.movieRegistered)
+    if (this.state.movieIsRegistered) 
       // resets comments state of current movie
       this.setState((state, props) => {
         this.getComments();
@@ -143,7 +143,7 @@ class MovieContainer extends Component {
       })
       .then(data => {
         // reset the comments state
-        if (this.state.movieRegistered) {
+        if (this.state.movieIsRegistered) {
           this.getComments();
           console.log('movie container: updating comments');
         }
@@ -155,8 +155,8 @@ class MovieContainer extends Component {
 
   // adds a new movie to the internal app database
   registerMovie() {
-    const { currMovie, movieRegistered } = this.state;
-    if (!movieRegistered) {
+    const { currMovie, movieIsRegistered } = this.state;
+    if (!movieIsRegistered) {
 
       // create the data object
       let data = { title: currMovie.Title, imdb_id: currMovie.imdbID, };
@@ -185,13 +185,13 @@ class MovieContainer extends Component {
         if (resp.status === 200 ) {
 
           this.setState({
-            movieRegistered: true
+            movieIsRegistered: true
           })
         }
       })
       .catch(err => {
         this.setState({
-          movieRegistered: false
+          movieIsRegistered: false
         })
       })
   }
@@ -207,7 +207,7 @@ class MovieContainer extends Component {
         comments={comments}
         currMovie={currMovie}
         currUser={currUser}
-        movieIsRegistered={this.state.movieRegistered}
+        movieIsRegistered={this.state.movieIsRegistered}
         // functions
         // rename as 'handlexxx'
         addComment={this.addComment}
