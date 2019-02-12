@@ -40,8 +40,16 @@ class MovieContainer extends Component {
   componentDidMount() {
     const { currMovie } = this.state;
     const { currUser } = this.props
-
-    this.setState({ currUser: currUser });
+    let data = {
+      title: currMovie.Title,
+      imdb_id: currMovie.imdbID,
+    };
+    
+    this.setState({ 
+      currUser: currUser, 
+      data,
+    });
+    // console.log('Mounted')
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     
@@ -154,27 +162,27 @@ class MovieContainer extends Component {
   }
 
   // adds a new movie to the internal app database
-  registerMovie() {
-    const { currMovie, movieIsRegistered } = this.state;
-    if (!movieIsRegistered) {
+  // registerMovie() {
+  //   const { currMovie, movieIsRegistered } = this.state;
+  //   if (!movieIsRegistered) {
 
-      // create the data object
-      let data = { title: currMovie.Title, imdb_id: currMovie.imdbID, };
+  //     // create the data object
+  //     let data = { title: currMovie.Title, imdb_id: currMovie.imdbID, };
 
-      // make the post call
-      axios.post(`/api/movies`, data)
-      .then(resp => {
-        resp.status === 201
-          ? alert(`Congratulations.  \n You'll be the first one to comment on this film! \n Added ${data.title} to db with id: ${data.imdb_id}`)
-          : alert(`Oops! There was a problem. See the logs for more info`)
-          // console.log(resp.data)
-          return  resp.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    }
-  }
+  //     // make the post call
+  //     axios.post(`/api/movies`, data)
+  //     .then(resp => {
+  //       resp.status === 201
+  //         ? alert(`Congratulations.  \n You'll be the first one to comment on this film! \n Added ${data.title} to db with id: ${data.imdb_id}`)
+  //         : alert(`Oops! There was a problem. See the logs for more info`)
+  //         // console.log(resp.data)
+  //         return  resp.data
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  //   }
+  // }
 
   // checks whether movie is currently in the app api database
   isMovieRegistered() {
@@ -195,6 +203,21 @@ class MovieContainer extends Component {
         })
       })
   }
+  // // // adds a new movie to the internal app database
+  registerMovie(data) {
+    // console.log('#registerMovie: the data is', data)
+     return axios.post(`/api/movies`, data)
+      .then(resp => {
+        // resp.status === 201
+        return console.log('pppp==>', resp)
+        // return resp.data
+
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   
   render() {
     // deconstruct state objects

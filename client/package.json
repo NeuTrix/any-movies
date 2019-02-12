@@ -42,6 +42,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "axios-mock-adapter": "^1.16.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "jest-cli": "20.0.4",
     "terser": "^3.14.1"
   },
   "resolutions": {
