@@ -104,16 +104,14 @@ class MovieContainer extends Component {
     return axios.get(`/api/movies/${currMovie.imdbID}/comments`)
       .then(resp => {
         let comments = resp.data;
-
-        this.setState((state) => {
-          return {...state, comments}
-        });
-        
-        return comments
+        if (comments) {
+          this.setState((state) => { return {...state, comments} });
+          return comments
+        } 
+        return console.log('No comments for this movie yet')
       })
       .catch(err => {
-        console.log('ERROR=>', err);
-
+        console.log('Err: #getComments=>', err);
         // reset the comments for an unregistered movie
         this.setState((state) => {
           let comments = [];
