@@ -49,7 +49,6 @@ export function isFavourited(data) {
 	return axios.get('api/favourites', {
 		params: {
 			favourited_id: data.favourited_id,
-			favourited_title: data.favourited_title,
 			favourited_type: data.favourited_type,
 			user_id: data.user_id,
 		},

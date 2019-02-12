@@ -16,36 +16,44 @@ class Favourite < ApplicationRecord
     @fit = data[:favourited_type]
     @uid = data[:user_id]
 
-    # distinguish whether this is an index vs verification action
-      if @fid || @fit || @uid
-        "there's data"
-    #   # confirm whether this item is currently favoured
-    #   exists = self.exists?( 
-    #     favourited_id: @fid, 
-    #     favourited_type: @fit, 
-    #     user_id: @uid
-    #   )
-      # # if it is favoured already, then retrieve it
-      # if exists
-      #   {
-      #     # retrutn id of the favoured instance and a boolean confirmation
-      #     id: self.where(
-      #       favourited_id: @fid,
-      #       favourited_type: @fit,
-      #       user_id: @uid
-      #     ).ids[0], # return only one object vs the array (should only be one)
-          
-      #     exists: exists
-      #   }
+    # distinguish whether this is an index vs verify action
+    # not passing a symbol so must validate with logic
+    if @fid || @fit || @uid
+      #  verify that all required args are passed to #verify action
+      if @fid && @fit && @uid
+        
+        # confirm whether item is currently favoured
+        exists = self.exists?(
+          favourited_id: @fid,
+          favourited_type: @fit,
+          user_id: @uid
+          )
+        puts 'all the data args are there'
+        # if it is favoured already, then retrieve it
+        if exists
+          # retrutn id of the favoured instance and a boolean confirmation
+          {
+            id: self.where(
+              favourited_id: @fid,
+              favourited_type: @fit,
+              user_id: @uid
+            ).ids[0], # return only one object vs the array (should only be one)
+            exists: exists
+          }
+        else
+          # if the favoured item does not exist, return a null object
+          { id: 'null', exists: exists}
+        end
 
-      # else
-      #   # if the favoured item does not exist, return a null object
-      #   { id: 'null', exists: exists}
-      # end
+      else
+        puts 'Some arguments are missing'
+        error
+      end
+      
     else
       # if no search request submitted, return full #index, as normal
-      # self.all
-      "no data- get index"
+      puts 'Completed an #index search'
+      self.all
     end
   end
 end
