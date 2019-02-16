@@ -1,3 +1,4 @@
 export { moviesReducer } from './moviesReducer';
 export { addMovie } from './moviesActions';
-export { ADD_MOVIE } from './moviesConstants';
+// constants from strings to ensure against typos
+export { UPDATE_MOVIE } from './moviesConstants';

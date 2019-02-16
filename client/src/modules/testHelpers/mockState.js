@@ -12,7 +12,8 @@ const mockstate = {
     id: 20,
 		username: 'mickey333',
 	},
-  favourites: {},
+	favourites: {},
+
 };
 
 export default mockstate;
