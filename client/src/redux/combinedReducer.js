@@ -1,7 +1,7 @@
-import { combineReducer } from 'redux';
+import { combineReducers } from 'redux';
 import { currMovieReducer } from '../modules/movies/redux';
 
-const combinedReducers = combineReducer({
+const combinedReducers = combineReducers({
 	currMovie: currMovieReducer,
 });
 
