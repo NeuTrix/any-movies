@@ -9,7 +9,7 @@ import {
 	addFavourite,
 	isFavourited,
 	removeFavourite,
-} from './favouritesActions';
+} from './redux/favouritesActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
