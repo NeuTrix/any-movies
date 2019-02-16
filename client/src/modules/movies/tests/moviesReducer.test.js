@@ -1,6 +1,7 @@
 import chai, { expect } from 'chai';
 import { moviesReducer } from '../redux';
 import { mockstate } from '../../testHelpers';
+import { ADD_MOVIE } from '../redux';
 
 describe('The Movies Reducer', () => {
   
@@ -8,6 +9,10 @@ describe('The Movies Reducer', () => {
     let test = moviesReducer(mockstate)
 
     expect(test).to.eql(mockstate)
+  });
+
+  it('...can process an ADD_ACTION ', () => {
+    
   });
 
 });
