@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
+import combinedReducer from './combinedReducer';
 
-const defaultState = {
+export const defaultState = {
   favourites: {},
   user: { 
     username: "mickey333",
@@ -12,6 +13,4 @@ const defaultState = {
   },
 }
 
-const store = createStore((state = defaultState)) => {
-  return state;
-});
+export const store = createStore(combinedReducer) 
