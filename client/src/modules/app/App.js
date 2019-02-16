@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // pass in state to the MovieReveiwPage via Redux
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { MovieContainer } from '../movies';

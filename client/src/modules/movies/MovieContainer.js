@@ -8,7 +8,7 @@ import MoviePage from './MoviePage';
 
 import {
   // addFavourite, 
-  getFavourites,
+  // getFavourites,
   isFavourited,
 } from '../favourites';
 
