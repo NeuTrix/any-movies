@@ -39,7 +39,7 @@ function MovieDisplay(props) {
 
 				<div className={classes.title} >
 					<Typography variant="h4"> 
-						{ currMovie.Title } 
+						{ currMovie.Title }
 					</Typography>
 				</div>
 			</div>
