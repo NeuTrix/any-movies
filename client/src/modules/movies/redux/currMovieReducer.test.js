@@ -1,37 +1,33 @@
 import chai, { expect } from 'chai';
-import { currMovieReducer } from '../redux';
+import { currMovieReducer } from "./";
 import { mockstate } from '../../testHelpers';
-import { UPDATE_MOVIE } from '../redux';
+import { UPDATE_MOVIE } from "./";
+// deepfreeze // add to test for immutability
 
 describe('The Movies Reducer', () => {
-	let reducer, state;
+	const reducer = currMovieReducer; // short cut for the reducer
+	let state = {}; // initial state object for testing
 
 	const newMovie = {
 		imdb_id: 'tt0112431',
 		ratings: {
 			metacritic: 100,
 			tomatoes: 95,
-    },
+		},
 		title: 'Babe',
 	};
 
 	beforeEach(() => {
 		state = mockstate;
-		reducer = currMovieReducer;
 	});
 
 	it('...undefined action returns default state', () => {
 		expect(reducer(state)).to.eql(state);
 	});
 
-	it.only('...UPDATE_MOVIE can update the current movie ', () => {
-		const action = {
-			type: UPDATE_MOVIE,
-			value: newMovie,
-		};
+	it('...UPDATE_MOVIE can update the current movie ', () => {
+		const action = { type: UPDATE_MOVIE, value: newMovie };
 		const newState = reducer(state.currMovie, action);
-    console.log('xx', newState);
-    console.log(state)
-		// expect(newState.currMovie).to.eql(newMovie);
+		expect(newState).to.eql(newMovie);
 	});
 });

@@ -1,9 +1,14 @@
 // reducer for movies actions
-export const currMovieReducer = (state={}, action={}) => {
-	switch (action.type) {
+// add defaults to prevent errors for missing args
+export const currMovieReducer = (state = {}, action = {}) => {
+	// deconstruct the action item
+	const { type, value } = action;
+
+	switch (type) {
     case 'UPDATE_MOVIE':
-      let update = action.value
-      return { ...state, update }  
+      // replace the current state object
+      return value;
+      // return default value in case args invalid or null
     default:
       return state;
 	}
