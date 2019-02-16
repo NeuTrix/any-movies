@@ -17,5 +17,5 @@ import axios from 'axios';
   // }
 
 export const addMovie = () => {
-  
+
 }

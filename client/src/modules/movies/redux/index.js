@@ -1,2 +1,2 @@
-export { default as moviesReducer } from './moviesReducer';
-export { default as moviesActions } from './moviesActions';
+export { moviesReducer } from './moviesReducer';
+export { addMovie } from './moviesActions';
