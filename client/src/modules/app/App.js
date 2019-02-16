@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { MovieContainer } from '../movies';
 // import { MovieContainer} from './modules/movies/MovieContainer';
-import FavouritesContainer from '../favourites/FavouritesContainer';
+import { FavouritesContainer } from '../favourites';
 // add @material UI theme provider
 import masterTheme from './masterTheme';
 

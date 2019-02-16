@@ -9,7 +9,7 @@ import {
 	addFavourite,
 	isFavourited,
 	removeFavourite,
-} from '../../actions/favouritesActions';
+} from './favouritesActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,

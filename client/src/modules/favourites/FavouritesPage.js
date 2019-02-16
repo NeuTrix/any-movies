@@ -10,7 +10,7 @@
 // 	favsArray: PropTypes.instanceOf(Array).isRequired,
 // };
 
-// class FavouritesContainer extends Component {
+// class FavouritesPage extends Component {
 	
 // 	constructor(props) {
 // 		super(props);
@@ -23,7 +23,7 @@
 // 		const { currUser } = this.props;
 // 		getFavourites(currUser.id)
 // 			.then(resp => this.setState({ favourites: resp }))
-// 			.catch(err => console.log('Err: FavouritesContainer', err));
+// 			.catch(err => console.log('Err: FavouritesPage', err));
 // 	}
 
 // 	render() {
@@ -56,6 +56,6 @@
 
 // });
 
-// FavouritesContainer.propTypes = propTypes;
+// FavouritesPage.propTypes = propTypes;
 
-// export default withStyles(styles)(FavouritesContainer);
+// export default withStyles(styles)(FavouritesPage);

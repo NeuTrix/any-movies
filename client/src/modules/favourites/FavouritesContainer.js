@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // import FavouritesPage from './FavouritesPage';
-import { getFavourites } from '../../actions/favouritesActions';
+import { getFavourites } from '../favourites';
 import { omdb_url } from '../../helpers/api.helper'; // movie data
 
 import { omdb_poster_url } from '../../helpers/api.helper'; // movie posters

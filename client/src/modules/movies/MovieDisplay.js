@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import FavouriteButton from '../tools/FavouriteButton';
+import { FavouriteButton } from '../favourites';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
