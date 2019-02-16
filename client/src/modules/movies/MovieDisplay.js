@@ -29,13 +29,12 @@ function MovieDisplay(props) {
 
 	return (
 		<div className={classes.main}>
-			
 			<div className={classes.titlebar}>
 				<div className={classes.fav}>
-						<FavouriteButton 
-							currUserId={currUser.id} 
-							currMovie={currMovie} 
-						/>
+					<FavouriteButton 
+						currUserId={currUser.id} 
+						currMovie={currMovie} 
+					/>
 				</div>
 
 				<div className={classes.title} >
@@ -46,10 +45,10 @@ function MovieDisplay(props) {
 			</div>
 
 			<div className={classes.image}>
-				<img 
-					className={classes.poster} 
-					src={currMovie.Poster} 
-					alt="currMovie poster" 
+				<img
+					className={classes.poster}
+					src={currMovie.Poster}
+					alt="currMovie poster"
 				/>
 				<div>
 					{`Released...${currMovie.Year}`}
