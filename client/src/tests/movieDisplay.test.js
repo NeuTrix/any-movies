@@ -4,7 +4,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { shallow } from 'enzyme';
 import { isFavourited } from '../actions/favouritesActions';
-import MovieContainer from '../components/movies/MovieContainer';
+import MovieContainer from '../modules/movies';
 
 describe('The registerMovie function', () => {
 
