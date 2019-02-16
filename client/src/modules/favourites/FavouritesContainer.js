@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 // import FavouritesPage from './FavouritesPage';
 import { getFavourites } from '../../actions/favouritesActions';
 import { omdb_url } from '../../helpers/api.helper'; // movie data
-import { omdb_poster_url } from '../../helpers/api.helper'; // movie posters
 
+import { omdb_poster_url } from '../../helpers/api.helper'; // movie posters
 const propTypes = {
 	currUser: PropTypes.instanceOf(Object).isRequired,
 };
