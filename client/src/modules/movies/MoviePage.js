@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CommentableContainer from '../comments/CommentableContainer';
 import CommentableForm from '../comments/CommentableForm';
 import MovieDisplay from './MovieDisplay';
-import SearchAppBar from '../tools/SearchAppBar';
+import { SearchAppBar } from '../app';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
