@@ -15,3 +15,7 @@ import axios from 'axios';
     //     console.log(err)
     //   })
   // }
+
+export const addMovie = () => {
+  
+}

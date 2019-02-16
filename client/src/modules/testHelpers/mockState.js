@@ -1,5 +1,5 @@
 // present a mock state object for testing
-const mockState = {
+const mockstate = {
 	currMovie: {
 		imdb_id: 'tt0078748',
 		ratings: [{
@@ -15,4 +15,4 @@ const mockState = {
   favourites: {},
 };
 
-export default mockState;
+export default mockstate;

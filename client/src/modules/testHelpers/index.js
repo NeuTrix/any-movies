@@ -1,1 +1,1 @@
-export { default as mockState } from './mockState';
+export { default as mockstate } from './mockstate';

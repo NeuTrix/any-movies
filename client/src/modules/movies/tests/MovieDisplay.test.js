@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mockState } from '../../testHelpers';
+import { mockstate } from '../../testHelpers';
 import MovieDisplay from '../MovieDisplay';
 
 describe('The MovieDispaly component', () => {
-	const { currMovie, currUser } = mockState;
+	const { currMovie, currUser } = mockstate;
 	const props = { currMovie, currUser };
 
 	it('renders without crashing', () => {
