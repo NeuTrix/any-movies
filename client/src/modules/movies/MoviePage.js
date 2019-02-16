@@ -142,6 +142,7 @@ const styles = theme => ({
 	posterBackground: {
 		// adjust poster background based on screen size
 		backgroundAttachment: 'fixed',
+		textAlign: 'center',
 
 		[theme.breakpoints.down('sm')]: {
 			backgroundRepeat: 'repeat-y',
