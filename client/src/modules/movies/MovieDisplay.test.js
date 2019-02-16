@@ -20,9 +20,9 @@ describe('The MovieDisplay component', () => {
 		const component = renderer.create(
 			<MovieDisplay { ...props } />
 		);
+		
 		let tree = component.toJSON()
 		expect(tree).toMatchSnapshot()
-
 	});
 
 });
