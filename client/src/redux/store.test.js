@@ -3,6 +3,6 @@ import { store, defaultState } from './store';
 
 test('', () => {
   // console.log(store.getState(defaultState))  
-  console.log('The  current state is: ', store.getState())
+  console.log('The x current state is: ', store.getState())
   
 });

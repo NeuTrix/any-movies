@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import combinedReducer from './combinedReducer';
 
-export const defaultState = {
+export const initialState = {
   favourites: {},
   user: { 
     username: "mickey333",
@@ -15,8 +15,5 @@ export const defaultState = {
 
 export const store = createStore(combinedReducer) 
 
-store.getState(defaultState);
+store.getState(initialState);
 
-store.subscribe(() => {
-  console.log('The  current state is: ', store.getState())
-})
