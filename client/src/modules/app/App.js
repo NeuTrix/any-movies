@@ -1,9 +1,9 @@
 import React from 'react';
 // pass in state to the MovieReveiwPage via Redux
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { MovieContainer } from '../movies';
 import { FavouritesContainer } from '../favourites';
 import masterTheme from './masterTheme';
+import { MovieContainer } from '../movies';
 
 const currUser = {
 	username: 'Dantastic3339',
