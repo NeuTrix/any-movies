@@ -1,7 +1,7 @@
-import chai, { expect } from 'chai';
-import { currMovieReducer } from "./";
+import { expect } from 'chai';
+import { currMovieReducer } from ".";
 import { mockstate } from '../../testHelpers';
-import { UPDATE_MOVIE } from "./";
+import { UPDATE_MOVIE } from '../redux';
 // deepfreeze // add to test for immutability
 
 describe('The Movies Reducer', () => {
