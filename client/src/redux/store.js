@@ -14,3 +14,9 @@ export const defaultState = {
 }
 
 export const store = createStore(combinedReducer) 
+
+store.getState(defaultState);
+
+store.subscribe(() => {
+  console.log('The  current state is: ', store.getState())
+})
