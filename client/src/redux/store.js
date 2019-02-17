@@ -11,6 +11,23 @@ const reducers = combineReducers({
 	users: usersReducer,
 });
 
-const store = createStore(reducers);
+const defaultState = {
+  movies: {
+    isFavourited: false,
+    currMovie: {
+      imdbID: 'tt0078748',
+      Title: 'Alien',
+    },
+  },
+  users: {  
+    currUser: {
+      username: 'Mickey333',
+      id: 1,
+    },
+  }
+
+}
+
+const store = createStore(reducers, defaultState);
 
 export default store;

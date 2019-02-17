@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { mockstate } from '../../testHelpers';
+import renderer from 'react-test-renderer';
 import { mockstate } from '../testHelpers';
 import MovieDisplay from './MovieDisplay';
-import renderer from 'react-test-renderer';
 
 describe('The MovieDisplay component', () => {
 	const { currMovie, currUser } = mockstate;

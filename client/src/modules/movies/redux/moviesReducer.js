@@ -1,12 +1,6 @@
 // reducer for movies actions
-const initialState = {
-  isFavourited: false,
-  currMovie: {
-    imdbID: 'tt0078748',
-    Title: 'Alien',
-  },
-}
-export default function moviesReducer(state = initialState, action = {}) {
+
+export default function moviesReducer(state = {}, action = {}) {
 	// deconstruct the action item
 	const { type, value } = action;
 
