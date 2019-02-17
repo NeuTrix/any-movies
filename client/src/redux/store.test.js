@@ -16,8 +16,8 @@ describe('The store object', () => {
 		expect(state).to.have.property('currMovie');
 	});
 
-	it.only('...has a default prop currUser', () => {
-		console.log(state)
+	it('...has a default prop currUser', () => {
+		console.log(state.currMovie)
 		expect(state).to.have.property('currUser');
 	});
 
