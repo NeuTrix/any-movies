@@ -1,0 +1,1 @@
+export { default as commentsReducer } from './redux/commentsReducer';
