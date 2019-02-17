@@ -53,13 +53,13 @@ class MovieContainer extends Component {
     this.getMovieData(currMovie.Title);
     this.isMovieRegistered()
     
-    if (this.state.movieIsRegistered) 
+    if (this.state.movieIsRegistered) {
       // resets comments state of current movie
       this.setState((state, props) => {
         this.getComments();
-        
-        return { ...state }
-    })
+        return state 
+      })
+    }
   }
 
   // update the component if new props recieved
@@ -113,7 +113,9 @@ class MovieContainer extends Component {
       .then(resp => {
         let comments = resp.data;
         if (comments) {
-          this.setState((state) => { return {...state, comments} });
+          this.setState((state) => { 
+            return { ...state, comments} 
+          });
           return comments
         } 
         return console.log('No comments for this movie yet')
