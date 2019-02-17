@@ -5,6 +5,7 @@ describe('The store object', () => {
 	
 	const state = store.getState();
 	it('...is defined', () => {
+		console.log(state)
 		expect(state).not.to.eql('undfined');
 	});
 
@@ -17,7 +18,6 @@ describe('The store object', () => {
 	});
 
 	it('...has a default prop currUser', () => {
-		console.log(state.currMovie)
 		expect(state).to.have.property('currUser');
 	});
 
