@@ -1,5 +1,8 @@
 // set immutable constants for movie actions
+
+// async actions
+export const FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE';
+export const FETCH_MOVIE_REQUEST = 'FETCH_MOVIE_REQUEST';
+export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCFUL';
+
 export const UPDATE_CURRENT_MOVIE = 'UPDATE_CURRENT_MOVIE';
-export const FETCH_MOVIE_REQUESTED = 'FETCH_MOVIE_REQUESTED';
-export const FETCH_MOVIE_SUCCESSFUL = 'FETCH_MOVIE_SUCCESSFUL';
-export const FETCH_MOVIE_FAILE = 'FETCH_MOVIE_FAILED';
