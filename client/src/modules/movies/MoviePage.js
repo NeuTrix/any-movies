@@ -14,6 +14,7 @@ const propTypes = {
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
+	isFormDisplayed: PropTypes.bool.isRequired, // is this currently in api db?
 	isMovieRegistered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -52,7 +53,11 @@ class MoviePage extends Component {
 	render() {
 		// deconstruct prop objects
 		const {
-			classes, comments, currMovie, currUser,
+			classes, 
+			comments, 
+			currMovie, 
+			currUser, 
+			isFormDisplayed,
 		} = this.props;
 		// deconstruct prop functions
 		// const { addComment, getMovieData } = this.props;
@@ -82,7 +87,7 @@ class MoviePage extends Component {
 					<h1 style={{ background: 'aliceblue', gridArea: 'title' }}>
 
 						<SearchAppBar
-							isFormDisplayed={this.state.displayingCommentForm}
+							isFormDisplayed={isFormDisplayed}
 							toggleCommentableForm={this.toggleCommentableForm}
 							// getMovieData={getMovieData}
 						/>

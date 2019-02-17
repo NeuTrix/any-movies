@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	// getMovieData: PropTypes.instanceOf(Function).isRequired,
-	// isFormDisplayed: PropTypes.bool.isRequired,
+	isFormDisplayed: PropTypes.bool.isRequired,
 	toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
@@ -37,7 +37,7 @@ class SearchAppBar extends Component {
 	}
 
 	onSubmit(e) {
-		// const { getMovieData, isFormDisplayed, toggleCommentableForm } = this.props;
+		const { isFormDisplayed, toggleCommentableForm } = this.props;
 		const { searchTerm } = this.state;
 		e.preventDefault();
 		// close the form if open
