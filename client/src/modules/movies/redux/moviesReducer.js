@@ -2,13 +2,13 @@
 
 export default function moviesReducer(state = {}, action = {}) {
 	// deconstruct the action item
-	const { type, value } = action;
+	const { type, payload } = action;
 
 	switch (type) {
     case 'UPDATE_CURRENT_MOVIE':
       // replace the entire current state object
-      return value;
-      // return default value in case args invalid or null
+      return Object.assign({}, state, { currMovie: payload });
+      // return default payload in case args invalid or null
     default:
       return state;
 	}

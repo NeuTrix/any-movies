@@ -1,9 +1,17 @@
 import { expect } from 'chai';
-import { mockstate } from '../../testHelpers';
-import { moviesReducer } from './moviesReducer';
+import {
+	FETCH_MOVIE_FAILURE,
+	FETCH_MOVIE_REQUEST,
+	FETCH_MOVIE_SUCCESS,
+	UPDATE_CURRENT_MOVIE,
+} from './moviesConstants';
+
+// import { mockstate } from '../../testHelpers';
+import moviesReducer from './moviesReducer';
+
 // deepfreeze // add to test for immutability
 
-xdescribe('The Movies Reducer', () => {
+describe('The Movies Reducer', () => {
 	const reducer = moviesReducer; // short cut for the reducer
 	let state = {}; // initial state object for testing
 
@@ -17,7 +25,7 @@ xdescribe('The Movies Reducer', () => {
 	};
 
 	beforeEach(() => {
-		state = mockstate;
+		state = { };
 	});
 
 	it('...undefined action returns default state', () => {
@@ -25,8 +33,20 @@ xdescribe('The Movies Reducer', () => {
 	});
 
 	it('...UPDATE_CURRENT_MOVIE can update the current movie ', () => {
-		const action = { type: UPDATE_CURRENT_MOVIE, value: newMovie };
-		const newState = reducer(state.currMovie, action);
-		expect(newState).to.eql(newMovie);
+		const action = { type: UPDATE_CURRENT_MOVIE, payload: newMovie };
+		const newState = reducer(state, action);
+		expect(newState.currMovie).to.eql(newMovie);
 	});
+
+	describe('MoviesReducer Async Actions', () => {
+		
+		it('... can FETCH_MOVIE_REQUEST', () => {
+			const action = {
+				type: FETCH_MOVIE_REQUEST,
+				movieID: 'tt0112431'
+			}
+			const newState = reducer
+		});
+	});
+
 });
