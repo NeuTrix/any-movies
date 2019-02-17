@@ -6,9 +6,9 @@ import { usersReducer } from '../modules/users';
 
 const reducers = combineReducers({
 	comments: commentsReducer,
-	currMovie: moviesReducer,
-	currUser: usersReducer,
 	favourites: favouritesReducer,
+	movies: moviesReducer,
+	users: usersReducer,
 });
 
 const store = createStore(reducers);

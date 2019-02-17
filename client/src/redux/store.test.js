@@ -12,12 +12,12 @@ describe('The store object', () => {
 		expect(state).to.be.an('object');
 	});
 
-	it('...has a default prop currMovie', () => {
-		expect(state).to.have.property('currMovie');
+	it('...has a default prop movies', () => {
+		expect(state).to.have.property('movies');
 	});
 
-	it('...has a default prop currUser', () => {
-		expect(state).to.have.property('currUser');
+	it('...has a default prop users', () => {
+		expect(state).to.have.property('users');
 	});
 
 	it('...has a default prop favourites', () => {
