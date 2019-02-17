@@ -1,10 +1,12 @@
 import { expect } from 'chai';
+import deepfreeze from 'deep-freeze';
 import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
 	UPDATE_CURRENT_MOVIE,
 } from './moviesConstants';
+
 
 // import { mockstate } from '../../testHelpers';
 import moviesReducer from './moviesReducer';
@@ -24,6 +26,7 @@ xdescribe('The Movies Reducer', () => {
 
 	beforeEach(() => {
 		state = { };
+		deepfreeze(state)
 	});
 
 	it('...undefined action returns default state', () => {
@@ -46,19 +49,20 @@ describe('MoviesReducer Async Actions', () => {
 			requestsToOMBD: {
 				isFetching: false,
 				status: 'pending',
-			}
-		}
+			},
+		};
+		deepfreeze(state)
 	});
-	
+
 	describe('=> FETCH_MOVIE_REQUEST', () => {
 		const action = {
 			type: FETCH_MOVIE_REQUEST,
 			movieID: 'tt0112431',
-		}
+		};
 		const newState = moviesReducer(state, action);
-		
+
 		it('..sets `isFetching` to `true`', () => {
-			expect(newState.requestsToOMBD.isFetching).to.eql(true)
+			expect(newState.requestsToOMBD.isFetching).to.eql(true);
 		});
 	});
 });
