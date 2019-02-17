@@ -1,16 +1,16 @@
 import { combineReducers, createStore } from 'redux';
 import { commentsReducer } from '../modules/comments';
-import { movieReducer } from '../modules/movies';
 import { favouritesReducer } from '../modules/favourites';
-import userReducer from '../modules/movies/redux';
+import { movieReducer } from '../modules/movies';
+import { usersReducer } from '../modules/users';
 
 const reducers = combineReducers({
-  comments: commentsReducer,
+	comments: commentsReducer,
 	currMovie: movieReducer,
+	currUser: usersReducer,
 	favourites: favouritesReducer,
-  currUser: userReducer,
 });
 
-const store = createStore(reducers); 
+const store = createStore(reducers);
 
 export default store;

@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import store, { defaultState } from './store';
 
 describe('The store object', () => {
+	
 	const state = store.getState();
-
-	it.only('...is defined', () => {
-		expect(state).not.to.eql('undefined');
+	it('...is defined', () => {
+		expect(state).not.to.eql('undfined');
 	});
 
 	it('...has a default state object', () => {
@@ -16,7 +16,8 @@ describe('The store object', () => {
 		expect(state).to.have.property('currMovie');
 	});
 
-	it('...has a default prop currUser', () => {
+	it.only('...has a default prop currUser', () => {
+		console.log(state)
 		expect(state).to.have.property('currUser');
 	});
 
