@@ -60,17 +60,18 @@ describe('MoviesReducer Async Actions', () => {
 	});
 	
 	describe('=> FETCH_MOVIE_REQUEST', () => {
-		const action = fetchMovieRequest('tt0112431');
+		const action = fetchMovieRequest('Babe');
 		const newState = moviesReducer(state, action);
 
-		it('..sets `requestsToOMBD.isFetching` to `true`', () => {
+		it.only('..sets `requestsToOMBD.isFetching` to `true`', () => {
 			expect(newState.requestsToOMBD.isFetching).to.eql(true);
+			expect(newState.requestsToOMBD.movieTitle).to.eql('Babe');
 			expect(newState.requestsToOMBD.status).to.eql('requested');
 		});
 	});
 
 	describe('=> FETCH_MOVIE_SUCCESS', () => {
-		const action = fetchMovieSuccess('tt0112431');
+		const action = fetchMovieSuccess('Babe');
 		const newState = moviesReducer(state, action);
 
 		it('..sets is`requestsToOMBD.status` to `successful`', () => {
@@ -79,7 +80,7 @@ describe('MoviesReducer Async Actions', () => {
 	});
 
 	describe('=> FETCH_MOVIE_FAILURE', () => {
-		const action = fetchMovieFailure('tt0112431');
+		const action = fetchMovieFailure('Babe');
 		const newState = moviesReducer(state, action);
 
 		it('..sets is`requestsToOMBD.status` to `errored`', () => {

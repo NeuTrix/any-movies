@@ -7,16 +7,17 @@ import {
 } from './moviesConstants';
 
 
-export function fetchMovieRequest(movieId) {
+export function fetchMovieRequest(movieTitle) {
 	return {
 		type: FETCH_MOVIE_REQUEST,
 		payload: {
+			movieTitle,
 			status: 'requested',
 		},
 	};
 }
 
-export function fetchMovieSuccess(movieId, data) {
+export function fetchMovieSuccess(data) {
 	return {
 		type: FETCH_MOVIE_SUCCESS,
 		payload: {
@@ -26,7 +27,7 @@ export function fetchMovieSuccess(movieId, data) {
 	};
 }
 
-export function fetchMovieFailure(movieId, error) {
+export function fetchMovieFailure(error) {
 	return {
 		type: FETCH_MOVIE_FAILURE,
 		payload: {
@@ -42,9 +43,10 @@ export function getMovie(movieTitle) {
     dispatch(fetchMovieRequest(movieTitle))
 
       // return the axios promise with the data/status 
-      return axios.get(`${omdb_url}`,  () => {
+			return axios.get(`${omdb_url}&t=${movieTitle}`)
+				.then(resp => data = resp.json)
+				// .then(data => )
 
-      })
   }
 
 }
