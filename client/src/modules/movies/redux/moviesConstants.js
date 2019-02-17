@@ -1,1 +1,5 @@
+// set immutable constants for movie actions
 export const UPDATE_CURRENT_MOVIE = 'UPDATE_CURRENT_MOVIE';
+export const FETCH_MOVIE_REQUESTED = 'FETCH_MOVIE_REQUESTED';
+export const FETCH_MOVIE_SUCCESSFUL = 'FETCH_MOVIE_SUCCESSFUL';
+export const FETCH_MOVIE_FAILE = 'FETCH_MOVIE_FAILED';
