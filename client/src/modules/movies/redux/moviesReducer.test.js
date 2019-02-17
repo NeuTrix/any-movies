@@ -6,6 +6,10 @@ import {
 	FETCH_MOVIE_SUCCESS,
 	UPDATE_CURRENT_MOVIE,
 } from './moviesConstants';
+import {
+	fetchMovieRequest,
+	fetchMovieSuccess,
+} from './moviesActions'
 
 
 // import { mockstate } from '../../testHelpers';
@@ -54,15 +58,30 @@ describe('MoviesReducer Async Actions', () => {
 		deepfreeze(state)
 	});
 
-	describe('=> FETCH_MOVIE_REQUEST', () => {
+	describe.only('=> FETCH_MOVIE_REQUEST', () => {
+		const action = fetchMovieRequest('tt0112431');
+		const newState = moviesReducer(state, action);
+
+		it('..sets `requestsToOMBD.isFetching` to `true`', () => {
+			expect(state.requestsToOMBD.isFetching).to.eql(false);
+			expect(state.requestsToOMBD.status).to.eql('pending');
+			expect(newState.requestsToOMBD.isFetching).to.eql(true);
+			expect(newState.requestsToOMBD.status).to.eql('requested');
+		});
+	});
+
+	xdescribe('=> FETCH_MOVIE_SUCCESS', () => {
 		const action = {
-			type: FETCH_MOVIE_REQUEST,
+			type: FETCH_MOVIE_SUCCESS,
 			movieID: 'tt0112431',
 		};
 		const newState = moviesReducer(state, action);
 
-		it('..sets `isFetching` to `true`', () => {
-			expect(newState.requestsToOMBD.isFetching).to.eql(true);
+		it('..sets is`requestsToOMBD.status` to `true`', () => {
+			expect(state.requestsToOMBD.status).to.eql(false);
+			expect(newState.requestsToOMBD.status).to.eql(true);
 		});
 	});
+
+
 });

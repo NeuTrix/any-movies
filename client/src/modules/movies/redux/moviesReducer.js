@@ -14,10 +14,14 @@ export default function moviesReducer(state = {}, action = {}) {
 
     // request to the OMBD api
     case FETCH_MOVIE_REQUEST:
+    console.log('==>',payload)
       return Object.assign({}, state, { 
-        requestsToOMBD: {
-          isFetching: true,
-        }
+        requestsToOMBD: { isFetching: true, status: payload.status }
+      });
+
+    case FETCH_MOVIE_SUCCESS:
+      return Object.assign({}, state, { 
+        requestsToOMBD: { success: true }
       });
 
     case UPDATE_CURRENT_MOVIE:
