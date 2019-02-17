@@ -17,7 +17,7 @@ const propTypes = {
 	currUserId: PropTypes.number.isRequired,
 };
 
-class FavouriteButton extends Component {
+class FavouritesButton extends Component {
 
 	constructor(props) {
 		super(props);
@@ -86,7 +86,7 @@ class FavouriteButton extends Component {
 				}
 			})
 			.catch((err) => {
-				console.log('FavouriteButton', err);
+				console.log('FavouritesButton', err);
 			});
 	}
 
@@ -136,6 +136,6 @@ const styles = theme => ({
 
 });
 
-FavouriteButton.propTypes = propTypes;
+FavouritesButton.propTypes = propTypes;
 
-export default withStyles(styles)(FavouriteButton);
+export default withStyles(styles)(FavouritesButton);
