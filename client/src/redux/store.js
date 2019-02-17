@@ -1,8 +1,11 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk'; // handle async actions
+// import createLogger from 'redux-logger'
 import { commentsReducer } from '../modules/comments';
 import { favouritesReducer } from '../modules/favourites';
 import { moviesReducer } from '../modules/movies';
 import { usersReducer } from '../modules/users';
+
 
 const reducers = combineReducers({
 	comments: commentsReducer,
@@ -33,6 +36,12 @@ const defaultState = {
 
 }
 
-const store = createStore(reducers, defaultState);
+const store = createStore(
+  reducers, 
+  defaultState,
+  applyMiddleware(
+    thunkMiddleware
+  )
+);
 
 export default store;
