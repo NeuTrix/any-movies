@@ -14,13 +14,14 @@ const propTypes = {
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
-	movieIsRegistered: PropTypes.bool.isRequired, // is this currently in api db?
+	isMovieRegistered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
-	addComment: PropTypes.func.isRequired, // adds a new review instance to api
-	getMovieData: PropTypes.func.isRequired, // search for currMovie
+	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
+	// getMovieData: PropTypes.func.isRequired, // search for currMovie
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
-	handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
+	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
+
 
 class MoviePage extends Component {
 
@@ -42,8 +43,8 @@ class MoviePage extends Component {
 	handleCommentsClick(e) {
 		e.preventDefault();
 		// register the movie if not validated
-		if (!this.props.movieIsRegistered) {
-			this.props.handleMovieRegistration();
+		if (!this.props.isMovieRegistered) {
+			// this.props.handleMovieRegistration();
 		}
 		this.toggleCommentableForm();
 	}
@@ -54,7 +55,7 @@ class MoviePage extends Component {
 			classes, comments, currMovie, currUser,
 		} = this.props;
 		// deconstruct prop functions
-		const { addComment, getMovieData } = this.props;
+		// const { addComment, getMovieData } = this.props;
 		const { displayingCommentForm } = this.state;
 
 		// generate comment form for current movie
@@ -64,7 +65,7 @@ class MoviePage extends Component {
 				commentable_id={currMovie.imdbID}
 				commentable_type="Movie"
 				currUser={currUser}
-				submitAction={addComment}
+				// submitAction={addComment}
 				toggleForm={this.toggleCommentableForm}
 			/>
 		);
@@ -83,7 +84,7 @@ class MoviePage extends Component {
 						<SearchAppBar
 							isFormDisplayed={this.state.displayingCommentForm}
 							toggleCommentableForm={this.toggleCommentableForm}
-							getMovieData={getMovieData}
+							// getMovieData={getMovieData}
 						/>
 
 					</h1>

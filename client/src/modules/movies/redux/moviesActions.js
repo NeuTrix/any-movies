@@ -76,7 +76,7 @@
 //     })
 //     .then(data => {
 //       // reset the comments state
-//       if (this.state.movieIsRegistered) {
+//       if (this.state.isMovieRegistered) {
 //         this.getComments();
 //         console.log('movie container: updating comments');
 //       }
@@ -88,8 +88,8 @@
 
 // // adds a new movie to the internal app database
 // // registerMovie() {
-// //   const { currMovie, movieIsRegistered } = this.state;
-// //   if (!movieIsRegistered) {
+// //   const { currMovie, isMovieRegistered } = this.state;
+// //   if (!isMovieRegistered) {
 
 // //     // create the data object
 // //     let data = { title: currMovie.Title, imdb_id: currMovie.imdbID, };
@@ -120,13 +120,13 @@
 //       if (resp.status === 200) {
 
 //         this.setState({
-//           movieIsRegistered: true
+//           isMovieRegistered: true
 //         })
 //       }
 //     })
 //     .catch(err => {
 //       this.setState({
-//         movieIsRegistered: false
+//         isMovieRegistered: false
 //       })
 //     })
 // }

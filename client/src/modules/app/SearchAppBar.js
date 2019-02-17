@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 // material ui
 import AppBar from '@material-ui/core/AppBar';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,8 +16,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	getMovieData: PropTypes.instanceOf(Function).isRequired,
-	isFormDisplayed: PropTypes.bool.isRequired,
+	// getMovieData: PropTypes.instanceOf(Function).isRequired,
+	// isFormDisplayed: PropTypes.bool.isRequired,
 	toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
@@ -36,7 +37,7 @@ class SearchAppBar extends Component {
 	}
 
 	onSubmit(e) {
-		const { getMovieData, isFormDisplayed, toggleCommentableForm } = this.props;
+		// const { getMovieData, isFormDisplayed, toggleCommentableForm } = this.props;
 		const { searchTerm } = this.state;
 		e.preventDefault();
 		// close the form if open
@@ -44,7 +45,7 @@ class SearchAppBar extends Component {
 			toggleCommentableForm();
 		}
 
-		getMovieData(searchTerm);
+		// getMovieData(searchTerm);
 	}
 
 	render() {

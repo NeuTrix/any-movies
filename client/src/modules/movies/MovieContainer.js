@@ -8,106 +8,66 @@ import { omdb_url } from '../../helpers/api.helper';
 import MoviePage from './MoviePage';
 
 import {
-  // addFavourite, 
-  // getFavourites,
-  isFavourited,
+	// addFavourite,
+	// getFavourites,
+	isFavourited,
 } from '../favourites';
 
-const propTypes = { 
-  currUser: PropTypes.instanceOf(Object).isRequired, 
-}
+const propTypes = {
+	comments: PropTypes.instanceOf(Array).isRequired, // commentsfor current movie
+	currMovie: PropTypes.instanceOf(Object).isRequired, // movie under review
+	currUser: PropTypes.instanceOf(Object).isRequired, // current session user
+	isFormDisplayed: PropTypes.bool.isRequired, // status of comments form
+	isMovieRegistered: PropTypes.bool.isRequired, // movie registered in api db status
+};
 
 class MovieContainer extends Component {
 
-  constructor(props) {
-    super(props)
-    // set intial state for the application
-    this.state = {
-      // comments: [], // all (unfiltered) comments in the current app state
-      // currMovie: { imdbID: 'tt0078748', Title: 'Alien' }, // from OMDB api
-      // currUser: {}, // mock, recieved from props
-      // movieIsRegistered: false, // is movie in our current app db as well
-    }
+	constructor(props) {
+		super(props);
+		// set intial state for the application
+		this.state = {
+		};
+	}
 
-    // this.addComment = this.addComment.bind(this);
-    // // this.addFavourite = this.addFavourite.bind(this)
-    // this.getComments = this.getComments.bind(this)
-    // this.getMovieData = this.getMovieData.bind(this);
-    // this.isMovieRegistered = this.isMovieRegistered.bind(this);
-    // this.registerMovie = this.registerMovie.bind(this);
-  }
-  
-  // immutably set state with currUser props, movie data, and comments
-  componentDidMount() {
-    // const {  } = this.state;
-    // const { currUser, currMovie } = this.props
-    // let data = {
-    //   title: currMovie.Title,
-    //   imdb_id: currMovie.imdbID,
-    // };
-    
-    // currUser: currUser, 
-    //   this.setState({ 
-    //   data,
-    // });
-    // // console.log('Mounted')
-    // this.getMovieData(currMovie.Title);
-    // this.isMovieRegistered()
-    
-    // if (this.state.movieIsRegistered) {
-    //   // resets comments state of current movie
-    //   this.setState((state, props) => {
-    //     this.getComments();
-    //     return state 
-    //   })
-    // }
-  }
+	// immutably set state with currUser props, movie data, and comments
+	componentDidMount() {
+	}
 
-  // update the component if new props recieved
-  componentDidUpdate(prevProps, prevState) {
-    // const { currMovie, currUser } = this.state;
+	// update the component if new props recieved
+	componentDidUpdate(prevProps, prevState) {
+	}
 
-    // if (prevProps.commentable_id !== this.props.commentable_id ||
-    //   prevState.comments.length !== this.state.comments.length) {
-    //   let data = {
-    //     favourited_id: currMovie.imdbID,
-    //     favourited_type: "Movie",
-    //     user_id: currUser.id,
-    //   }
-    //   isFavourited(data);
-    //   this.getComments();
-    //   this.isMovieRegistered()
-    // }
-  }
+	render() {
+		// deconstruct state objects
+		const {
+			comments,
+			currMovie,
+			currUser,
+			isFormDisplayed,
+			isMovieRegistered,
+		} = this.props;
 
-  render() {
-    // deconstruct state objects
-    const { currUser, currMovie, comments, registered  } = this.props
-
-    return (
-      <MoviePage 
-        comments={comments}
-        currMovie={currMovie}
-        currUser={currUser}
-        movieIsRegistered={registered}
-        // functions
-        // rename as 'handlexxx'
-        // addComment={this.addComment}
-        // getComments={this.getComments}
-        // getMovieData={this.getMovieData}
-        // handleMovieRegistration={this.registerMovie}
-      />
-    )
-  }
+		return (
+			<MoviePage
+		comments={comments}
+				currMovie={currMovie}
+				currUser={currUser}
+		isMovieRegistered={isMovieRegistered}
+		isFormDisplayed={isFormDisplayed}
+	/>
+		);
+	}
 }
 
 MovieContainer.propTypes = propTypes;
 
-const mapStateToProps = (state) => ({
-  comments: state.comments,
-  currMovie: state.movies.currMovie,
-  currUser: state.users.currUser,
-  registered: state.movies.movieIsRegistered,
+const mapStateToProps = state => ({
+	comments: state.comments.comments,
+	currMovie: state.movies.currMovie,
+	currUser: state.users.currUser,
+	isFormDisplayed: state.comments.isFormDisplayed,
+	isMovieRegistered: state.movies.isMovieRegistered,
 });
 
-export default connect(mapStateToProps)(MovieContainer)
+export default connect(mapStateToProps)(MovieContainer);
