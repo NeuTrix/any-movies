@@ -1,7 +1,7 @@
 // export core component
-export { default as FavouritesContainer } from './FavouritesContainer'
-export { default as FavouriteButton } from './FavouriteButton';
-
+export { default as FavouritesButton } from './FavouritesButton';
+export { default as FavouritesContainer } from './FavouritesContainer';
+export { default as favouritesReducer } from './redux/favouritesReducer';
 // export Redux
 export {
   addFavourite,

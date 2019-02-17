@@ -1,20 +1,17 @@
-import { createStore } from 'redux';
-import combinedReducer from './combinedReducer';
+import { combineReducers, createStore } from 'redux';
+import {movieReducer} from '../modules/movies/redux';
+import commentsReducer from '../modules/comments/redux';
+import favouritesReducer from '../modules/favourites';
+// import { favouritesReducer } from '../modules/favourites';
+import userReducer from '../modules/movies/redux';
 
-export const initialState = {
-  favourites: {},
-  user: { 
-    username: "mickey333",
-    id: 2,
-  },
-  currMovie: {
-    title: 'Alien',
-    imdb_id: 'tt0078748',
-  },
-}
+const reducers = combineReducers({
+  comments: commentsReducer,
+	currMovie: movieReducer,
+	favourites: favouritesReducer,
+  user: userReducer,
+});
 
-const store = createStore(combinedReducer) 
-
-store.getState(initialState);
+const store = createStore(reducers); 
 
 export default store;
