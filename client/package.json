@@ -9,7 +9,7 @@
     "babel-eslint": "9.x",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
-    "deepfreeze": "^2.0.0",
+    "deep-freeze": "^0.0.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-react-app": "^3.0.5",
     "eslint-plugin-flowtype": "2.x",
