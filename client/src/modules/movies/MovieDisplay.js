@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { FavouriteButton } from '../favourites';
+import { FavouritesButton } from '../favourites';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -31,7 +31,7 @@ function MovieDisplay(props) {
 		<div className={classes.main}>
 			<div className={classes.titlebar}>
 				<div className={classes.fav}>
-					<FavouriteButton 
+					<FavouritesButton 
 						currUserId={currUser.id} 
 						currMovie={currMovie} 
 					/>

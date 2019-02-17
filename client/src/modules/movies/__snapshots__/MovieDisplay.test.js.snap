@@ -34,7 +34,7 @@ exports[` 1`] = `
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-22 FavouriteButton-favourited-11"
+            className="MuiSvgIcon-root-22 FavouritesButton-favourited-11"
             focusable="false"
             role="presentation"
             style={
