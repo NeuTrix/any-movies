@@ -15,6 +15,6 @@ export const initialState = {
 
 const store = createStore(combinedReducer) 
 
-// store.getState(initialState);
+store.getState(initialState);
 
 export default store;
