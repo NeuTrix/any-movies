@@ -15,33 +15,37 @@ const reducers = combineReducers({
 });
 
 const defaultState = {
-  comments: {
-    comments: [],
-    isFormDisplayed: false,
-  },
-  movies: {
-    isFavourited: false,
-    isMovieRegistered: false,
-    currMovie: {
-      imdbID: 'tt0078748',
-      Title: 'Alien',
-    },
-  },
-  users: {  
-    currUser: {
-      username: 'Mickey333',
-      id: 1,
-    },
-  }
+	comments: {
+		comments: [],
+		isFormDisplayed: false,
+	},
+	movies: {
+		isFavourited: false,
+		isMovieRegistered: false,
+		currMovie: {
+			imdbID: 'tt0078748',
+			Title: 'Alien',
+		},
+		requestsToOMBD: {
+			isFetching: false,
+			status: 'pending',
+		},
+	},
+	users: {
+		currUser: {
+			username: 'Mickey333',
+			id: 1,
+		},
+	},
 
-}
+};
 
 const store = createStore(
-  reducers, 
-  defaultState,
-  applyMiddleware(
-    thunkMiddleware
-  )
+	reducers,
+	defaultState,
+	applyMiddleware(
+		thunkMiddleware,
+	),
 );
 
 export default store;

@@ -6,12 +6,10 @@ import {
 
 import axios from 'axios';
 
-
 export function fetchMovieRequest(movieId) {
   return {
     type: FETCH_MOVIE_REQUEST,
     payload: {
-      movieId,
       status: 'requested',
     }
   }
@@ -22,8 +20,7 @@ export function fetchMovieSuccess(movieId, data) {
     type: FETCH_MOVIE_SUCCESS,
     payload: {
       data,
-      movieId,
-      status: 'succeeded',
+      status: 'successful',
     }
   }
 }
@@ -32,7 +29,6 @@ export function fetchMovieFailure(movieId, error) {
   return {
     type: FETCH_MOVIE_FAILURE,
     payload: {
-      movieId,
       status: 'errored',
     }
   }

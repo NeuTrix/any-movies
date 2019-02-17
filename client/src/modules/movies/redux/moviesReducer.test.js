@@ -9,6 +9,7 @@ import {
 import {
 	fetchMovieRequest,
 	fetchMovieSuccess,
+	fetchMovieFailure,
 } from './moviesActions'
 
 
@@ -25,7 +26,7 @@ const newMovie = {
 	title: 'Babe',
 };
 
-xdescribe('The Movies Reducer', () => {
+describe('The Movies Reducer', () => {
 	let state; // initial state object for testing
 
 	beforeEach(() => {
@@ -57,31 +58,33 @@ describe('MoviesReducer Async Actions', () => {
 		};
 		deepfreeze(state)
 	});
-
-	describe.only('=> FETCH_MOVIE_REQUEST', () => {
+	
+	describe('=> FETCH_MOVIE_REQUEST', () => {
 		const action = fetchMovieRequest('tt0112431');
 		const newState = moviesReducer(state, action);
 
 		it('..sets `requestsToOMBD.isFetching` to `true`', () => {
-			expect(state.requestsToOMBD.isFetching).to.eql(false);
-			expect(state.requestsToOMBD.status).to.eql('pending');
 			expect(newState.requestsToOMBD.isFetching).to.eql(true);
 			expect(newState.requestsToOMBD.status).to.eql('requested');
 		});
 	});
 
-	xdescribe('=> FETCH_MOVIE_SUCCESS', () => {
-		const action = {
-			type: FETCH_MOVIE_SUCCESS,
-			movieID: 'tt0112431',
-		};
+	describe('=> FETCH_MOVIE_SUCCESS', () => {
+		const action = fetchMovieSuccess('tt0112431');
 		const newState = moviesReducer(state, action);
 
-		it('..sets is`requestsToOMBD.status` to `true`', () => {
-			expect(state.requestsToOMBD.status).to.eql(false);
-			expect(newState.requestsToOMBD.status).to.eql(true);
+		it('..sets is`requestsToOMBD.status` to `successful`', () => {
+			expect(newState.requestsToOMBD.status).to.eql('successful');
 		});
 	});
 
+	describe('=> FETCH_MOVIE_FAILURE', () => {
+		const action = fetchMovieFailure('tt0112431');
+		const newState = moviesReducer(state, action);
+
+		it('..sets is`requestsToOMBD.status` to `errored`', () => {
+			expect(newState.requestsToOMBD.status).to.eql('errored');
+		});
+	});
 
 });
