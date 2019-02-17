@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { mockstate } from '../../testHelpers';
-import { movieReducer, UPDATE_MOVIE } from '.';
+import { moviesReducer, UPDATE_MOVIE } from '.';
 // import {  } from '.';
 // deepfreeze // add to test for immutability
 
 xdescribe('The Movies Reducer', () => {
-	const reducer = movieReducer; // short cut for the reducer
+	const reducer = moviesReducer; // short cut for the reducer
 	let state = {}; // initial state object for testing
 
 	const newMovie = {

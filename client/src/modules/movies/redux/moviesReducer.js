@@ -1,6 +1,9 @@
 // reducer for movies actions
 // add defaults to prevent errors for missing args
-export const movieReducer = (state = {}, action = {}) => {
+const initialState = {
+  isFavourited: false,
+}
+export default function moviesReducer(state = {}, action = {}) {
 	// deconstruct the action item
 	const { type, value } = action;
 

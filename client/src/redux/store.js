@@ -1,12 +1,12 @@
 import { combineReducers, createStore } from 'redux';
 import { commentsReducer } from '../modules/comments';
 import { favouritesReducer } from '../modules/favourites';
-import { movieReducer } from '../modules/movies';
+import { moviesReducer } from '../modules/movies';
 import { usersReducer } from '../modules/users';
 
 const reducers = combineReducers({
 	comments: commentsReducer,
-	currMovie: movieReducer,
+	currMovie: moviesReducer,
 	currUser: usersReducer,
 	favourites: favouritesReducer,
 });
