@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import shortid from 'shortid';
 import { omdb_url } from '../../helpers/api.helper';
-import MoviePage from './MoviePage';
+import MoviePage from './MoviePage'
 
 import {
 	// addFavourite,
@@ -50,12 +50,12 @@ class MovieContainer extends Component {
 
 		return (
 			<MoviePage
-		comments={comments}
-				currMovie={currMovie}
-				currUser={currUser}
-		isMovieRegistered={isMovieRegistered}
-		isFormDisplayed={isFormDisplayed}
-	/>
+        comments={comments}
+        currMovie={currMovie}
+        currUser={currUser}
+        isMovieRegistered={isMovieRegistered}
+        isFormDisplayed={isFormDisplayed}
+      />
 		);
 	}
 }
