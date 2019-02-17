@@ -2,10 +2,9 @@ import { expect } from 'chai';
 import store, { defaultState } from './store';
 
 describe('The store object', () => {
-	
 	const state = store.getState();
 	it('...is defined', () => {
-		console.log(state)
+		console.log(state);
 		expect(state).not.to.eql('undfined');
 	});
 

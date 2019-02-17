@@ -6,4 +6,4 @@ export { default as MovieSearchBar } from './MovieSearchBar';
 export { default as moviesReducer } from './redux/moviesReducer';
 export { addMovie } from './redux/moviesActions';
 // constants from strings to ensure against typos
-export { UPDATE_MOVIE } from './redux/moviesConstants';
+export { UPDATE_CURRENT_MOVIE } from './redux/moviesConstants';

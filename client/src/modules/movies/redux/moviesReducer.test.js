@@ -24,8 +24,8 @@ xdescribe('The Movies Reducer', () => {
 		expect(reducer(state)).to.eql(state);
 	});
 
-	it('...UPDATE_MOVIE can update the current movie ', () => {
-		const action = { type: UPDATE_MOVIE, value: newMovie };
+	it('...UPDATE_CURRENT_MOVIE can update the current movie ', () => {
+		const action = { type: UPDATE_CURRENT_MOVIE, value: newMovie };
 		const newState = reducer(state.currMovie, action);
 		expect(newState).to.eql(newMovie);
 	});
