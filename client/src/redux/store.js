@@ -12,8 +12,11 @@ const reducers = combineReducers({
 });
 
 const defaultState = {
+  comments: {
+  },
   movies: {
     isFavourited: false,
+    isRegistered: false,
     currMovie: {
       imdbID: 'tt0078748',
       Title: 'Alien',

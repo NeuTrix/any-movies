@@ -7,10 +7,10 @@ import { FavouritesContainer } from '../favourites';
 import masterTheme from './masterTheme';
 import { MovieContainer } from '../movies';
 
-const currUser = {
-	username: 'Dantastic3339',
-	id: 1,
-};
+// const currUser = {
+// 	username: 'Dantastic3339',
+// 	id: 1,
+// };
 
 class App extends Component {
 	render() {
@@ -18,8 +18,8 @@ class App extends Component {
 			<Provider store={store} >
 				<MuiThemeProvider theme={masterTheme}>
 					<div className="App">
-						<FavouritesContainer currUser={currUser} />
-						<MovieContainer currUser={currUser} />
+						<FavouritesContainer />
+						<MovieContainer />
 					</div>
 				</MuiThemeProvider>
 			</Provider>

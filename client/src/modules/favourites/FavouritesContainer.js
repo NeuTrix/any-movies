@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // import FavouritesPage from './FavouritesPage';
 import { getFavourites } from '../favourites';
@@ -61,4 +62,9 @@ class FavouritesContainer extends Component {
 
 FavouritesContainer.propTypes = propTypes;
 
-export default FavouritesContainer;
+const mapStateToProps = (state) => ({
+	currUser: state.users.currUser,
+	currMovie: state.movies.currMovie,
+});
+
+export default connect(mapStateToProps)(FavouritesContainer)
