@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from '../../redux/store';
 // pass in state to the MovieReveiwPage via Redux
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { FavouritesContainer } from '../favourites';
@@ -13,12 +15,14 @@ const currUser = {
 class App extends Component {
 	render() {
 		return (
-			<MuiThemeProvider theme={masterTheme}>
-				<div className="App">
-					<FavouritesContainer currUser={currUser} />
-					<MovieContainer currUser={currUser} />
-				</div>
-			</MuiThemeProvider>
+			<Provider store={store} >
+				<MuiThemeProvider theme={masterTheme}>
+					<div className="App">
+						<FavouritesContainer currUser={currUser} />
+						<MovieContainer currUser={currUser} />
+					</div>
+				</MuiThemeProvider>
+			</Provider>
 		);
 	}
 }
