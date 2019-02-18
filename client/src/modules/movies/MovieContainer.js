@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import shortid from 'shortid';
-import { omdb_url } from '../../helpers/api.helper';
+import { omdbUrl } from '../../helpers/api.helper';
 import MoviePage from './MoviePage'
 
 import {

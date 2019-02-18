@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { omdb_url } from '../../../helpers/api.helper';
+import { omdbUrl } from '../../../helpers/api.helper';
 import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
@@ -37,24 +37,15 @@ export function fetchMovieFailure(error) {
 
 export function getMovie(movieTitle) {
 	// using thunk middleware allows action to return a fn
-	return function (dispatch) {
+	return function thunk(dispatch) {
 		// alert state of request action
 		dispatch(fetchMovieRequest(movieTitle));
 
 		// return the axios promise with the data/status
-		return axios.get(`${omdb_url}&t=${movieTitle}`)
-			.then(resp => {
-				console.log('in the axios call')
-				console.log(resp);
-				return resp.data;
-			})
-			.then((data) => {
-				dispatch(fetchMovieSuccess(data));
-				console.log('suc data', data);
-				console.log('in the success area')
-			})
-			.catch(err => dispatch(fetchMovieFailure(err)));
-
+		return axios.get(`${omdbUrl}&t=${movieTitle}`)
+			.then(resp => resp.data)
+			.then((data) => dispatch(fetchMovieSuccess(data)))
+			.catch(err => dispatch(fetchMovieFailure(err)))
 	}; // dispatch
 
 } // getMovie
