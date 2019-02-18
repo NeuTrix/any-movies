@@ -6,13 +6,13 @@ import {
 	FETCH_COMMENTS_SUCCESS,
 } from './commentsConstants';
 
-export function fetchCommentsRequest(commentableId, commentableType) {
+export function fetchCommentsRequest(comId, comClass) {
 	return {
 		type: FETCH_COMMENTS_REQUEST,
 		payload: {
 			requestToApi: {
 				isFetching: true,
-				message: `getting comments for movie with id: ${commentableId}`,
+				message: `getting comments for ${comClass} with id: ${comId}`,
 				status: 'requesting',
 			},
 		},
