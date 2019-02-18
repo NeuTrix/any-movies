@@ -36,15 +36,15 @@ class MenuBar extends Component {
 	}
 
 	onSubmit(e) {
-		const { isFormDisplayed, toggleCommentableForm } = this.props;
+		const {  getMovieData, isFormDisplayed, toggleCommentableForm } = this.props;
 		const { searchTerm } = this.state;
 		e.preventDefault();
 		// close the form if open
-		if (isFormDisplayed) {
-			toggleCommentableForm();
-		}
+		// if (isFormDisplayed) {
+		// 	toggleCommentableForm();
+		// }
 
-		// getMovieData(searchTerm);
+		getMovieData(searchTerm);
 	}
 
 	render() {

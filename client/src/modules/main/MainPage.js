@@ -8,7 +8,8 @@ import { withStyles } from '@material-ui/core/styles';
 // import CommentableContainer from '../comments/CommentableContainer';
 // import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
-// import { MenuBar } from '../app';
+import { MenuBarContainer } from '../main';
+
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -31,23 +32,23 @@ function MainPage({classes, comments, currMovie, currUser}) {
 		<div className={classes.grid}> 
 
 			<div style={{gridArea: 'menu'}} >
-				<h1> MenuBar </h1>
+				<MenuBarContainer />
 			</div>
 
 			<div style={{gridArea: 'addComment'}} >
-				<h1> Add Comment </h1>
+				<h4> Add Comment </h4>
 			</div>
 
 			<div style={{gridArea: 'form'}} >
-				<h1> New Comment Form </h1>
+				<h4> New Comment Form </h4>
 			</div>
 
 			<div style={{gridArea: 'comments'}} >
-				<h1> Comments Bar </h1>
+				<h4> Comments Bar </h4>
 			</div>
 
 			<div style={{gridArea: 'favours'}} >
-				<h1> Favourites </h1>
+				<h4> Favourites </h4>
 			</div>
 
 			<div style={{gridArea: 'movies'}} >
@@ -159,7 +160,7 @@ export default withStyles(styles)(MainPage);
 // 				{/* fake opacity */}
 // 				<div className={classes.grid}>
 
-// 					<h1 style={{ background: 'aliceblue', gridArea: 'title' }}>
+// 					<h4 style={{ background: 'aliceblue', gridArea: 'title' }}>
 
 // 						<MenuBar
 // 							isFormDisplayed={isFormDisplayed}
@@ -167,7 +168,7 @@ export default withStyles(styles)(MainPage);
 // 							// getMovieDataDataDataData={getMovieDataDataDataData}
 // 						/>
 
-// 					</h1>
+// 					</h4>
 
 // 					<div className={classes.toggleComment} style={{ gridArea: 'addComment' }}>
 // 						<Link color="primary" onClick={this.handleCommentsClick}>
