@@ -67,7 +67,7 @@ const styles = theme => ({
 		gridRowGap: '8px',
 		gridTemplateAreas: `
       "menu menu menu "
-      "addComment addComment ."
+      "addComment addComment addComment"
 			"form form form"
 			"favours favours favours"
       "comments comments comments"
