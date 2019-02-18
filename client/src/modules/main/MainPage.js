@@ -63,7 +63,7 @@ const styles = theme => ({
 		gridArea: 'comments',
 	},
 	grid: {
-		backgroundColor: 'orange',
+		backgroundColor: 'whitesmoke',
 		display: 'inline-grid',
 		gridRowGap: '8px',
 		gridTemplateAreas: `
@@ -77,7 +77,7 @@ const styles = theme => ({
 		minHeight:600,
 		maxWidth: 600,
 		minWidth: 400,
-		opacity: '0.93',
+		opacity: '0.90',
 		padding: theme.spacing.unit,
 	},
 
