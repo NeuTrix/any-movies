@@ -69,7 +69,10 @@ exports[` 1`] = `
     >
       <h4
         className="MuiTypography-root-31 MuiTypography-h4-46"
-      />
+      >
+         
+         
+      </h4>
     </div>
   </div>
   <div
@@ -80,73 +83,94 @@ exports[` 1`] = `
       className="MoviePage-poster-6"
     />
     <div>
+       
       Released...undefined
+       
     </div>
+     
     <br />
     <div>
+       
       Rated
+       
       <h3>
          
          
       </h3>
+       
     </div>
     <div>
+       
       <h6>
          
         imdbID: undefined
          
       </h6>
+       
     </div>
   </div>
   <div
     className="MoviePage-info-3"
   >
     <div>
+       
       <h4>
          
         Genre:
          
       </h4>
+       
       <p>
          
          
       </p>
+       
     </div>
     <div>
+       
       <h4>
          
         Director:
          
       </h4>
+       
       <p>
          
          
       </p>
+       
     </div>
     <div>
+       
       <h4>
          
          Starring:
          
       </h4>
+       
       <p>
          
          
       </p>
+       
     </div>
   </div>
   <div
     className="MoviePage-ratings-8"
   >
     <div>
+       
       <h4>
          Critics Ratings: 
       </h4>
+       
       <p>
          
          
       </p>
+       
       <br />
+       
     </div>
   </div>
   <div

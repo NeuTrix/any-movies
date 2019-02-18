@@ -16,7 +16,7 @@ const reducers = combineReducers({
 
 const defaultState = {
 	comments: {
-		comments: [],
+		currComments: [],
 		isFormDisplayed: false,
 	},
 	users: {
