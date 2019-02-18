@@ -1,10 +1,10 @@
 // container to gather movie logic
 import { connect } from 'react-redux';
-import MoviePage from './MoviePage'
+import MoviePage from './MoviePage';
 // import actions to dispatch to props as needed
 
 const mapStateToProps = state => ({
-	comments: state.comments.comments,
+	comments: state.comments.comments, // simplify this
 	currMovie: state.movies.currMovie,
 	currUser: state.users.currUser,
 	isFormDisplayed: state.comments.isFormDisplayed,
@@ -13,4 +13,4 @@ const mapStateToProps = state => ({
 
 const MovieContainer = connect(mapStateToProps)(MoviePage);
 
-export default MovieContainer
+export default MovieContainer;
