@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 // material ui
 import AppBar from '@material-ui/core/AppBar';
 import FormControl from '@material-ui/core/FormControl';
@@ -16,7 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	// getMovieData: PropTypes.instanceOf(Function).isRequired,
+	getMovieData: PropTypes.instanceOf(Function).isRequired,
 	// isFormDisplayed: PropTypes.bool.isRequired,
 	// toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };

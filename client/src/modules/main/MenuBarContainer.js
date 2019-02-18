@@ -1,18 +1,21 @@
 // container logic for comments
 import { connect } from 'react-redux';
-import MainPage from './MainPage';
+import MenuBar from './MenuBar';
+import { getMovieData } from '../movies/redux/moviesActions';
 
 const mapStateToProps = state => ({
-  // comments
-  comments: state.comments.currComments,
-  showingCommentForm: state.comments.showingCommentForm,
-  // movies
+	showingCommentForm: state.comments.showingCommentForm,
+	// movies
 	currMovie: state.movies.currMovie,
-  isMovieRegistered: state.movies.isMovieRegistered,
-  // users
+	// isMovieRegistered: state.movies.isMovieRegistered,
+	// users
 	currUser: state.users.currUser,
-})
+});
 
-const MainPageContainer = connect(mapStateToProps)(MainPage);
+const mapDispatchToProps = dispatch => ({
+	getMovieData: (title) => { dispatch(getMovieData(title)); },
+});
 
-export default MainPageContainer;
+const MenuBarContainer = connect(mapStateToProps, mapDispatchToProps)(MenuBar);
+
+export default MenuBarContainer;

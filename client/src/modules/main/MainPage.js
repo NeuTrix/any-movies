@@ -135,7 +135,7 @@ export default withStyles(styles)(MainPage);
 // 	}
 
 // 	render({ classes, comments, currMovie, currUser, isFormDisplayed }) {
-// 		// const { addComment, getMovieData } = this.props;
+// 		// const { addComment, getMovieDataDataDataData } = this.props;
 // 		const { showingCommentForm } = this.state;
 
 // 		// generate comment form for current movie
@@ -164,7 +164,7 @@ export default withStyles(styles)(MainPage);
 // 						<SearchAppBar
 // 							isFormDisplayed={isFormDisplayed}
 // 							toggleCommentableForm={this.toggleCommentableForm}
-// 							// getMovieData={getMovieData}
+// 							// getMovieDataDataDataData={getMovieDataDataDataData}
 // 						/>
 
 // 					</h1>

@@ -34,7 +34,7 @@ export function fetchMovieFailure(error) {
 	};
 }
 
-export function getMovie(movieTitle) {
+export function getMovieData(movieTitle) {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
@@ -46,7 +46,7 @@ export function getMovie(movieTitle) {
 			.then(data => dispatch(fetchMovieSuccess(data)))
 			.catch((err) => {
 				dispatch(fetchMovieFailure(err));
-				console.log('--getMovie-->', err);
+				console.log('--getMovieData-->', err);
 			});
 	};
 }
