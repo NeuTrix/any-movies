@@ -17,8 +17,8 @@ import { withStyles } from '@material-ui/core/styles';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	// getMovieData: PropTypes.instanceOf(Function).isRequired,
-	isFormDisplayed: PropTypes.bool.isRequired,
-	toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
+	// isFormDisplayed: PropTypes.bool.isRequired,
+	// toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
 class SearchAppBar extends Component {

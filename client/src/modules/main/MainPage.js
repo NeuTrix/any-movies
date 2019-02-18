@@ -1,13 +1,14 @@
 // container to gather movie logic
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@material-ui/core';
+
+// import { Link } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import CommentableContainer from '../comments/CommentableContainer';
-import CommentableForm from '../comments/CommentableForm';
+// import CommentableContainer from '../comments/CommentableContainer';
+// import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
-import { SearchAppBar } from '../app';
+// import { SearchAppBar } from '../app';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI

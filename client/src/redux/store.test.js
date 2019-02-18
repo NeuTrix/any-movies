@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import store, { defaultState } from './store';
 
-describe('The store object', () => {
+xdescribe('The store object', () => {
 	const state = store.getState();
 	it('...is defined', () => {
 		expect(state).not.to.eql('undfined');
