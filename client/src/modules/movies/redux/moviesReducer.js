@@ -31,16 +31,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 		});
 
   case FETCH_MOVIE_SUCCESS:
-    let update = {
-      requestToOmdbApi: {
-        isFetching: true,
-        status: payload.status,
-      }
-    }
-		return Object.assign({}, state, {
-      currMovie: payload.data,
-			requestToOmdbApi: { status: 'successful'},
-		});
+		return Object.assign({}, state, payload);
 
 	case UPDATE_CURRENT_MOVIE:
 		// replace the entire current state object

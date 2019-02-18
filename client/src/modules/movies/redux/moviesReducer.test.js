@@ -88,22 +88,14 @@ describe('MoviesReducer Async Actions', () => {
 			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
 		});
 
-		xit('... sets `requestToOmdbApi.status` to `requesting`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('requesting');
-		});
-		
-		xit('..sets is`requestToOmdbApi.status` to `successful`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('successful');
+		xit('... sets `requestToOmdbApi.status` to `success`', () => {
+			expect(newState.requestToOmdbApi.status).to.eql('success');
 		});
 
 		xit('...updates the currMovie object', () => {
-			console.log(newState)
 			expect(newState.currMovie).to.eql(newMovie)
 		});
 
-		xit('... resets `isFetching` to false', () => {
-			
-		});
 	});
 
 	describe('=> FETCH_MOVIE_FAILURE', () => {

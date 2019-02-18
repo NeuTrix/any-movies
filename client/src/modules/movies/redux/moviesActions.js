@@ -23,8 +23,11 @@ export function fetchMovieSuccess(data) {
 	return {
 		type: FETCH_MOVIE_SUCCESS,
 		payload: {
-			data,
-			status: 'successful',
+			currMovie: data,
+			requestToOmdbApi: {
+				isFetching: false,
+				status: 'requesting',
+			},
 		},
 	};
 }
