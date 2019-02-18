@@ -10,7 +10,6 @@ const propTypes = {
 };
 
 function MoviePage({ classes, currMovie }) {
-
 	// generate list of movie ratings
 	const ratings = currMovie.Ratings && currMovie.Ratings.map((rating) => {
 		return (
