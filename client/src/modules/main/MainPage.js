@@ -75,9 +75,7 @@ const styles = theme => ({
       "movies movies movies"
     `,
 		gridTemplateColumns: '1fr 1fr 1fr',
-		minHeight:600,
 		maxWidth: 600,
-		minWidth: 400,
 		opacity: '0.90',
 		padding: theme.spacing.unit,
 	},
