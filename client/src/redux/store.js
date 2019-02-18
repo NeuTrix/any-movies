@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk'; // handle async actions
 // import createLogger from 'redux-logger'
 import { commentsReducer } from '../modules/comments';
@@ -26,18 +26,19 @@ const defaultState = {
 			id: 1,
 		},
 	},
-
 };
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
 	reducers,
 	defaultState,
-	applyMiddleware(
-		thunkMiddleware,
-	),
+	composeEnhancers(
+		applyMiddleware(thunkMiddleware)
+	)
 );
 
-store.subscribe(() => console.log('Current state ==> ',store.getState()))
+store.subscribe(() => console.log('Current state ==> ', store.getState()))
 // holding to hydrate default movie
 store.dispatch(getMovie('Babe'))
 
