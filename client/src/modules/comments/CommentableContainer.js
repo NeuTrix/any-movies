@@ -53,7 +53,7 @@ class CommentableContainer extends Component {
       })
       .then(() => {
         // update the subcomments object
-        this.setState({ displayingCommentForm: false });
+        this.setState({ showingCommentForm: false });
       })
       .catch(err => { 
         alert (
@@ -69,7 +69,7 @@ class CommentableContainer extends Component {
 
     return axios.put(`/api/comments/${commentable.id}`, data)
       .then(resp => {
-        this.setState({ displayingCommentForm: false }); 
+        this.setState({ showingCommentForm: false }); 
         if (resp.status === 200) {
           alert(`Your comment was EDITED! \n Status code: ${resp.status} \n commentable_id: ${resp.data.id}`)
         } else {
@@ -79,7 +79,7 @@ class CommentableContainer extends Component {
       })
       .then(() => {
         // update the subcomments object
-        this.setState({ displayingCommentForm: false });
+        this.setState({ showingCommentForm: false });
         this.getComments();
       })
       .catch(err => {
@@ -92,7 +92,7 @@ class CommentableContainer extends Component {
 
     return axios.delete(`/api/comments/${id}`)
       .then(resp => {
-        this.setState({ displayingCommentForm: false });
+        this.setState({ showingCommentForm: false });
         // -> make another .then to reply upon confirmatio or status vs alert
         if (resp.status === 204) {
           alert(`Your comment was deleted! \n Status code: ${resp.status} \n commentable_id: ${resp.data.id}`)

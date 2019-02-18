@@ -5,7 +5,7 @@ import store from '../../redux/store';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { FavouritesContainer } from '../favourites';
 import masterTheme from './masterTheme';
-import { MovieContainer } from '../movies';
+import { MoviePageContainer } from '../movies';
 
 // const currUser = {
 // 	username: 'Dantastic3339',
@@ -19,7 +19,7 @@ class App extends Component {
 				<MuiThemeProvider theme={masterTheme}>
 					<div className="App">
 						<FavouritesContainer />
-						<MovieContainer />
+						<MoviePageContainer />
 					</div>
 				</MuiThemeProvider>
 			</Provider>

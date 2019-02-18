@@ -14,22 +14,24 @@ const propTypes = {
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
+	showingCommentForm: PropTypes.bool.isRequired,
+	// delete this duplicate indicator =>
 	isFormDisplayed: PropTypes.bool.isRequired, // is this currently in api db?
 	isMovieRegistered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
-	// getMovieData: PropTypes.func.isRequired, // search for currMovie
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
 
-class MoviePage extends Component {
+
+class oldMoviePage extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			displayingCommentForm: false,
+			showingCommentForm: false,
 		};
 
 		this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
@@ -38,7 +40,7 @@ class MoviePage extends Component {
 
 	// allows the addComment form to toggle on and off
 	toggleCommentableForm() {
-		this.setState({ displayingCommentForm: !this.state.displayingCommentForm });
+		this.setState({ showingCommentForm: !this.state.showingCommentForm });
 	}
 
 	handleCommentsClick(e) {
@@ -61,7 +63,7 @@ class MoviePage extends Component {
 		} = this.props;
 		// deconstruct prop functions
 		// const { addComment, getMovieData } = this.props;
-		const { displayingCommentForm } = this.state;
+		const { showingCommentForm } = this.state;
 
 		// generate comment form for current movie
 		const newCommentForm = (
@@ -101,7 +103,7 @@ class MoviePage extends Component {
 					</div>
 
 					<div style={{ gridArea: 'form' }}>
-						{ displayingCommentForm && newCommentForm }
+						{ showingCommentForm && newCommentForm }
 					</div>
 
 					<div style={{ gridArea: 'movies' }}>
@@ -166,6 +168,6 @@ const styles = theme => ({
 	},
 });
 
-MoviePage.propTypes = propTypes;
+oldMoviePage.propTypes = propTypes;
 
-export default withStyles(styles)(MoviePage);
+export default withStyles(styles)(oldMoviePage);

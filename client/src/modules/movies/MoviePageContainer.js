@@ -1,6 +1,7 @@
 // container to gather movie logic
 import { connect } from 'react-redux';
-import MoviePage from './MoviePage';
+import MovieDisplay from './MovieDisplay';
+// import oldMoviePage from './oldMoviePage';
 // import actions to dispatch to props as needed
 
 const mapStateToProps = state => ({
@@ -9,8 +10,9 @@ const mapStateToProps = state => ({
 	currUser: state.users.currUser,
 	isFormDisplayed: state.comments.isFormDisplayed,
 	isMovieRegistered: state.movies.isMovieRegistered,
+	showingCommentForm: false, // placeholder
 });
 
-const MovieContainer = connect(mapStateToProps)(MoviePage);
+const MoviePageContainer = connect(mapStateToProps)(MovieDisplay);
 
-export default MovieContainer;
+export default MoviePageContainer;

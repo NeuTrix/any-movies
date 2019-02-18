@@ -1,6 +1,6 @@
-export { default as MovieContainer } from './MovieContainer';
+export { default as MoviePageContainer } from './MoviePageContainer';
 export { default as MovieDisplay } from './MovieDisplay';
-export { default as MoviePage } from './MoviePage';
+export { default as oldMoviePage } from './oldMoviePage';
 export { default as MovieSearchBar } from './MovieSearchBar';
 // redux exports
 export { default as moviesReducer } from './redux/moviesReducer';
