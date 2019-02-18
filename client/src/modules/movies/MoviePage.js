@@ -137,9 +137,9 @@ const styles = theme => ({
 	},
 
 	titlebar: {
-		display: 'inline-grid',
 		backgroundColor: 'lightgrey',
 		borderBottom: '1px solid lightgrey',
+		display: 'inline-grid',
 		fontColor: 'white',
 		gridArea: 'titlebar',
 		gridTemplateAreas: `
