@@ -45,7 +45,7 @@ export function getMovie(movieTitle) {
 			.then(resp => resp.data)
 			.then(data => dispatch(fetchMovieSuccess(data)))
 			.catch((err) => {
-				dispatch(fetchCommentsFailure(err))
+				dispatch(fetchMovieFailure(err))
 				console.log('--getMovie-->', err)
 			});
 	};
