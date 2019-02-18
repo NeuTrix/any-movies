@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { MoviePageContainer } from '../movies';
 import { MenuBarContainer } from '../main';
 
-
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
@@ -18,7 +17,6 @@ const propTypes = {
 	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
 	// showingCommentForm: PropTypes.bool.isRequired,
 	// delete this duplicate indicator =>
-	// isFormDisplayed: PropTypes.bool.isRequired, // is this currently in api db?
 	// isMovieRegistered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -29,32 +27,37 @@ const propTypes = {
 function MainPage({classes, comments, currMovie, currUser}) {
 
 	return (
-		<div className={classes.grid}> 
+		<div
+			className={classes.posterBackground}
+			style={{ backgroundImage: `url(${currMovie.Poster})` }}
+		>
+			<div className={classes.grid}> 
 
-			<div style={{gridArea: 'menu'}} >
-				<MenuBarContainer />
+				<div style={{gridArea: 'menu'}} >
+					<MenuBarContainer />
+				</div>
+
+				<div style={{gridArea: 'addComment'}} >
+					<h4> Add Comment </h4>
+				</div>
+
+				<div style={{gridArea: 'form'}} >
+					<h4> New Comment Form </h4>
+				</div>
+
+				<div style={{gridArea: 'comments'}} >
+					<h4> Comments Bar </h4>
+				</div>
+
+				<div style={{gridArea: 'favours'}} >
+					<h4> Favourites </h4>
+				</div>
+
+				<div style={{gridArea: 'movies'}} >
+					<MoviePageContainer />
+				</div>
+
 			</div>
-
-			<div style={{gridArea: 'addComment'}} >
-				<h4> Add Comment </h4>
-			</div>
-
-			<div style={{gridArea: 'form'}} >
-				<h4> New Comment Form </h4>
-			</div>
-
-			<div style={{gridArea: 'comments'}} >
-				<h4> Comments Bar </h4>
-			</div>
-
-			<div style={{gridArea: 'favours'}} >
-				<h4> Favourites </h4>
-			</div>
-
-			<div style={{gridArea: 'movies'}} >
-				<MoviePageContainer />
-			</div>
-
 		</div>
 	)
 }
