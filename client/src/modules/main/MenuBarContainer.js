@@ -1,7 +1,7 @@
 // container logic for comments
 import { connect } from 'react-redux';
-import MenuBar from './MenuBar';
 import { getMovieData } from '../movies/redux/moviesActions';
+import MenuBar from './MenuBar';
 
 const mapStateToProps = state => ({
 	showingCommentForm: state.comments.showingCommentForm,
