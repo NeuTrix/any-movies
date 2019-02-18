@@ -6,7 +6,6 @@ import {
 	FETCH_MOVIE_SUCCESS,
 } from './moviesConstants';
 
-
 export function fetchMovieRequest(movieTitle) {
 	return {
 		type: FETCH_MOVIE_REQUEST,

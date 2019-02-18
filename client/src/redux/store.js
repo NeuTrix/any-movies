@@ -7,7 +7,6 @@ import { moviesReducer } from '../modules/movies';
 import { usersReducer } from '../modules/users';
 import { getMovie } from '../modules/movies/redux/moviesActions';
 
-
 const reducers = combineReducers({
 	comments: commentsReducer,
 	favourites: favouritesReducer,
@@ -28,6 +27,7 @@ const defaultState = {
 	},
 };
 
+// trigger Redux devtools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
@@ -37,8 +37,6 @@ const store = createStore(
 		applyMiddleware(thunkMiddleware)
 	)
 );
-
-// store.subscribe(() => console.log('Current state ==> ', store.getState()))
 
 // hydrate default movie
 store.dispatch(getMovie('Babe'))
