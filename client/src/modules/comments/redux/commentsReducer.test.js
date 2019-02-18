@@ -82,15 +82,15 @@ describe('Comments Reducer Async Actions', () => {
 		const action = fetchCommentsSuccess(comment);
 		const nextState = commentsReducer(prevState, action);
 
-		xit('... requestToApi.isFetching` to be `false`', () => {
-			expect(nextState.isFetching).to.eql(false);
+		it('... requestToApi.isFetching` to be `false`', () => {
+			expect(nextState.requestToApi.isFetching).to.eql(false);
 		});
 
-		xit('... requestToApi.status` to be `success`', () => {
-			expect(nextState.status).to.eql('success');
+		it('... requestToApi.status` to be `success`', () => {
+			expect(nextState.requestToApi.status).to.eql('success');
 		});
 
-		xit('...updates the currComments object', () => {
+		it('...updates the currComments object', () => {
 			expect(nextState.currComments).to.eql(comment);
 		});
 	});
@@ -100,16 +100,16 @@ describe('Comments Reducer Async Actions', () => {
 		const action = fetchCommentsFailure(error);
 		const nextState = commentsReducer(prevState, action);
 
-		xit('... requestToApi.isFetching` to be`false`', () => {
-			expect(nextState.isFetching).to.eql(false);
+		it('... requestToApi.isFetching` to be`false`', () => {
+			expect(nextState.requestToApi.isFetching).to.eql(false);
 		});
 
-		xit('... requestToApi.status` to be`error`', () => {
-			expect(nextState.status).to.eql('error');
+		it('... requestToApi.status` to be`error`', () => {
+			expect(nextState.requestToApi.status).to.eql('error');
 		});
 
-		xit('...updates the isFetching message with error data', () => {
-			expect(nextState.message).to.eql(error);
+		it('...updates the isFetching message with error data', () => {
+			expect(nextState.requestToApi.message).to.eql(error);
 		});
 	});
 });
