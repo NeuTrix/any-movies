@@ -2,13 +2,13 @@
 
 exports[` 1`] = `
 <div
-  className="MovieDisplay-main-4"
+  className="MoviePage-main-4"
 >
   <div
-    className="MovieDisplay-titlebar-10"
+    className="MoviePage-titlebar-10"
   >
     <div
-      className="MovieDisplay-fav-1"
+      className="MoviePage-fav-1"
     >
       <button
         className="MuiButtonBase-root-19 MuiIconButton-root-13"
@@ -65,7 +65,7 @@ exports[` 1`] = `
       </button>
     </div>
     <div
-      className="MovieDisplay-title-9"
+      className="MoviePage-title-9"
     >
       <h4
         className="MuiTypography-root-31 MuiTypography-h4-46"
@@ -73,11 +73,11 @@ exports[` 1`] = `
     </div>
   </div>
   <div
-    className="MovieDisplay-image-2"
+    className="MoviePage-image-2"
   >
     <img
       alt="currMovie poster"
-      className="MovieDisplay-poster-6"
+      className="MoviePage-poster-6"
     />
     <div>
       Released...undefined
@@ -99,7 +99,7 @@ exports[` 1`] = `
     </div>
   </div>
   <div
-    className="MovieDisplay-info-3"
+    className="MoviePage-info-3"
   >
     <div>
       <h4>
@@ -136,7 +136,7 @@ exports[` 1`] = `
     </div>
   </div>
   <div
-    className="MovieDisplay-ratings-8"
+    className="MoviePage-ratings-8"
   >
     <div>
       <h4>
@@ -150,7 +150,7 @@ exports[` 1`] = `
     </div>
   </div>
   <div
-    className="MovieDisplay-plot-5"
+    className="MoviePage-plot-5"
   >
     <h4>
        Movie Plot: 

@@ -10,7 +10,7 @@ const propTypes = {
 	currUser: PropTypes.instanceOf(Object).isRequired,
 };
 
-function MovieDisplay(props) {
+function MoviePage(props) {
 	const { classes, currMovie, currUser } = props;
 
 	// generate list of movie ratings
@@ -182,6 +182,6 @@ const styles = theme => ({
 	},
 });
 
-MovieDisplay.propTypes = propTypes;
+MoviePage.propTypes = propTypes;
 
-export default withStyles(styles)(MovieDisplay);
+export default withStyles(styles)(MoviePage);

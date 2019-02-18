@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import CommentableContainer from '../comments/CommentableContainer';
 import CommentableForm from '../comments/CommentableForm';
-import MovieDisplay from './MovieDisplay';
+import MoviePage from './MoviePage';
 import { SearchAppBar } from '../app';
 
 const propTypes = {
@@ -107,7 +107,7 @@ class oldMoviePage extends Component {
 					</div>
 
 					<div style={{ gridArea: 'movies' }}>
-						<MovieDisplay 
+						<MoviePage 
 							currMovie={currMovie} 
 							currUser={currUser} 
 						/>

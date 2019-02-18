@@ -1,6 +1,6 @@
 // container to gather movie logic
 import { connect } from 'react-redux';
-import MovieDisplay from './MovieDisplay';
+import MoviePage from './MoviePage';
 // import oldMoviePage from './oldMoviePage';
 // import actions to dispatch to props as needed
 
@@ -13,6 +13,6 @@ const mapStateToProps = state => ({
 	showingCommentForm: false, // placeholder
 });
 
-const MoviePageContainer = connect(mapStateToProps)(MovieDisplay);
+const MoviePageContainer = connect(mapStateToProps)(MoviePage);
 
 export default MoviePageContainer;
