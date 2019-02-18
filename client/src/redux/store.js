@@ -5,6 +5,7 @@ import { commentsReducer } from '../modules/comments';
 import { favouritesReducer } from '../modules/favourites';
 import { moviesReducer } from '../modules/movies';
 import { usersReducer } from '../modules/users';
+import { getMovie } from '../modules/movies/redux/moviesActions';
 
 
 const reducers = combineReducers({
@@ -19,18 +20,19 @@ const defaultState = {
 		comments: [],
 		isFormDisplayed: false,
 	},
-	movies: {
-		isFavourited: false,
-		isMovieRegistered: false,
-		currMovie: {
-			imdbID: 'tt0078748',
-			Title: 'Alien',
-		},
-		requestsToOMBD: {
-			isFetching: false,
-			status: 'pending',
-		},
-	},
+	movies:{},
+	// movies: {
+	// 	isFavourited: false,
+	// 	isMovieRegistered: false,
+	// 	currMovie: {
+	// 		imdbID: 'tt0078748',
+	// 		Title: 'Alien',
+	// 	},
+	// 	requestToOmdbApi: {
+	// 		isFetching: false,
+	// 		status: 'pending',
+	// 	},
+	// },
 	users: {
 		currUser: {
 			username: 'Mickey333',
@@ -47,5 +49,9 @@ const store = createStore(
 		thunkMiddleware,
 	),
 );
+
+store.subscribe(() => console.log('Current state ==> ',store.getState()))
+// holding to hydrate default movie
+store.dispatch(getMovie('Babe'))
 
 export default store;

@@ -6,30 +6,40 @@ import {
 	UPDATE_CURRENT_MOVIE,
 } from './moviesConstants';
 
-export default function moviesReducer(state = {}, action = {}) {
+const initialState = {
+    currMovie: { },
+    isFavourited: false, // change name to isMovieFavourited...
+	  isMovieRegistered: false,
+	  requestToOmdbApi: {
+			isFetching: false,
+	    status: 'pending',
+	  },
+};
+
+export default function moviesReducer(state = initialState, action = {}) {
 	// deconstruct the action item
 	const { type, payload } = action;
 
 	switch (type) {
-
 	// request to the OMBD api
-	case FETCH_MOVIE_REQUEST:
-		return Object.assign({}, state, {
-			requestsToOMBD: {
-        isFetching: true,
-        movieTitle: payload.movieTitle,
-        status: payload.status,
-      },
-		});
+    case FETCH_MOVIE_REQUEST: {}
+      return Object.assign({}, state, payload);
 
 	case FETCH_MOVIE_FAILURE:
 		return Object.assign({}, state, {
-			requestsToOMBD: { status: 'errored' },
-    });
-    
-	case FETCH_MOVIE_SUCCESS:
+			requestToOmdbApi: { status: 'errored' },
+		});
+
+  case FETCH_MOVIE_SUCCESS:
+    let update = {
+      requestToOmdbApi: {
+        isFetching: true,
+        status: payload.status,
+      }
+    }
 		return Object.assign({}, state, {
-			requestsToOMBD: { status: 'successful' },
+      currMovie: payload.data,
+			requestToOmdbApi: { status: 'successful'},
 		});
 
 	case UPDATE_CURRENT_MOVIE:
