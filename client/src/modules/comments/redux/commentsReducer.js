@@ -7,13 +7,14 @@ import {
 } from './commentsConstants';
 
 const initialState = {
-		comments: [],
-		isFavourited: false, // change name to isMovieFavourited...
-	  requestToApi: {
-			isFetching: false,
-      status: '',
-      message: '',
-	  },
+	currComments: [],
+	isFavourited: false, // change name to isMovieFavourited...
+	requestToApi: {
+		isFetching: false,
+		message: '',
+		status: '',
+	},
+	showCommentsForm: false,
 };
 
 export default function commentsReducer(state = initialState, action = {}) {

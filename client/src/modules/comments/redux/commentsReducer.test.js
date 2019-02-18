@@ -9,9 +9,9 @@ import {
 } from './commentsConstants';
 
 import {
+	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
-	fetchCommentsFailure,
 } from './commentsActions';
 
 import commentsReducer from './commentsReducer';
@@ -44,11 +44,13 @@ describe('Comments Reducer Async Actions', () => {
 	beforeEach(() => {
 		prevState = {
 			currComments: [],
+			isFavourited: false, // change name to isMovieFavourited...
 			requestToApi: {
 				isFetching: false,
 				message: '',
-				status: 'pending',
+				status: '',
 			},
+			showCommentsForm: false,
 		};
 
 		deepfreeze(prevState);
@@ -57,58 +59,57 @@ describe('Comments Reducer Async Actions', () => {
 	describe('=> FETCH_COMMENTS_REQUEST', () => {
 		const movieTitle = 'Babe';
 		const action = fetchCommentsRequest(movieTitle);
-		const newState = commentsReducer(prevState, action);
+		const nextState = commentsReducer(prevState, action);
 
-		xit('... set.isFetching` to be `true`', () => {
-			expect(newSta.isFetching).to.eql(true);
+		it('... requestToApi.isFetching` to be `true`', () => {
+			expect(nextState.requestToApi.isFetching).to.eql(true);
 		});
 
-		xit('... set.status` to be `requesting`', () => {
-			expect(newSta.status).to.eql('requesting');
+		it('... requestToApi.status` to be `requesting`', () => {
+			expect(nextState.requestToApi.status).to.eql('requesting');
 		});
 
-		xit('... prevState had a `currComments` prop', () => {
-			expect(prevState).to.have.property('currComments')
+		it('... prevState had a `currComments` prop', () => {
+			expect(prevState).to.have.property('currComments');
 		});
 
-		xit('... newState to have `currComments` prop', () => {
-			expect(newState).to.have.property('currComments')
+		it('... nextState to have `currComments` prop', () => {
+			expect(nextState).to.have.property('currComments');
 		});
 	});
 
 	describe('=> FETCH_COMMENTS_SUCCESS', () => {
 		const action = fetchCommentsSuccess(comment);
-		const newState = commentsReducer(prevState, action);
+		const nextState = commentsReducer(prevState, action);
 
-		xit('... set.isFetching` to be `false`', () => {
-			expect(newSta.isFetching).to.eql(false);
+		xit('... requestToApi.isFetching` to be `false`', () => {
+			expect(nextState.isFetching).to.eql(false);
 		});
 
-		xit('... set.status` to be `success`', () => {
-			expect(newSta.status).to.eql('success');
+		xit('... requestToApi.status` to be `success`', () => {
+			expect(nextState.status).to.eql('success');
 		});
 
 		xit('...updates the currComments object', () => {
-			expect(newState.currComments).to.eql(comment)
+			expect(nextState.currComments).to.eql(comment);
 		});
 	});
 
 	describe('=> FETCH_COMMENTS_FAILURE', () => {
 		const error = 'A mock error message';
 		const action = fetchCommentsFailure(error);
-		const newState = commentsReducer(prevState, action);
+		const nextState = commentsReducer(prevState, action);
 
-		xit('... set.isFetching` to be`false`', () => {
-			expect(newSta.isFetching).to.eql(false);
+		xit('... requestToApi.isFetching` to be`false`', () => {
+			expect(nextState.isFetching).to.eql(false);
 		});
 
-		xit('... set.status` to be`error`', () => {
-			expect(newSta.status).to.eql('error');
+		xit('... requestToApi.status` to be`error`', () => {
+			expect(nextState.status).to.eql('error');
 		});
 
 		xit('...updates the isFetching message with error data', () => {
-			expect(newSta.message).to.eql(error);
+			expect(nextState.message).to.eql(error);
 		});
 	});
-
 });
