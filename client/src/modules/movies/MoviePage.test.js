@@ -15,13 +15,9 @@ describe('The MoviePage component', () => {
 	});
 
 	describe('The MoviePage snapshot', () => {
+		const component = renderer.create(<MoviePage {...props} />);
+		const tree = component.toJSON();
 
-		const component = renderer.create(
-			<MoviePage { ...props } />
-		);
-		
-		let tree = component.toJSON()
-		expect(tree).toMatchSnapshot()
+		expect(tree).toMatchSnapshot();
 	});
-
 });
