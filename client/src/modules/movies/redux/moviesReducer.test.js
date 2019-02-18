@@ -90,7 +90,6 @@ describe('MoviesReducer Async Actions', () => {
 		it('...updates the currMovie object', () => {
 			expect(newState.currMovie).to.eql(newMovie)
 		});
-
 	});
 
 	describe('=> FETCH_MOVIE_FAILURE', () => {
