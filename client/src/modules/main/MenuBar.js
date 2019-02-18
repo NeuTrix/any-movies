@@ -97,8 +97,6 @@ class MenuBar extends Component {
 								/>
 							</FormControl>
 						</div>
-
-
 					</Toolbar>
 				</AppBar>
 			</div>
@@ -133,7 +131,13 @@ const styles = theme => ({
 		marginRight: 20,
 	},
 	root: {
+		// ? how to change the background color
+		// backgroundColor: 'slategray'
+		left: 0,
+		position: 'fixed',
+		top: 0,
 		width: '100%',
+		zIndex: 3000,
 	},
 	search: {
 		'&:hover': {
@@ -159,7 +163,7 @@ const styles = theme => ({
 		width: theme.spacing.unit * 9,
 	},
 
-	title: {
+	title: {		
 		display: 'none',
 		[theme.breakpoints.up('sm')]: {
 			display: 'block',

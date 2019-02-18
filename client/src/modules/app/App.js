@@ -7,12 +7,14 @@ import store from '../../redux/store';
 import masterTheme from './masterTheme';
 // import { MoviePageContainer } from '../movies';
 import { MainPageContainer } from '../main';
+import { MenuBarContainer } from '../main'
 
 function App() {
 	return (
 		<Provider store={store}>
 			<MuiThemeProvider theme={masterTheme}>
 				<div className="App">
+					<MenuBarContainer />
 					<MainPageContainer />
 				</div>
 			</MuiThemeProvider>

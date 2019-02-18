@@ -33,24 +33,20 @@ function MainPage({classes, comments, currMovie, currUser}) {
 		>
 			<div className={classes.grid}> 
 
-				<div style={{gridArea: 'menu'}} >
-					<MenuBarContainer />
-				</div>
-
 				<div style={{gridArea: 'addComment'}} >
-					<h4> Add Comment </h4>
+					<p> Add Comment </p>
 				</div>
 
 				<div style={{gridArea: 'form'}} >
-					<h4> New Comment Form </h4>
+					<p> New Comment Form </p>
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
-					<h4> Comments Bar </h4>
+					<p> Comments Bar </p>
 				</div>
 
 				<div style={{gridArea: 'favours'}} >
-					<h4> Favourites </h4>
+					<p> Favourites </p>
 				</div>
 
 				<div style={{gridArea: 'movies'}} >
@@ -71,7 +67,6 @@ const styles = theme => ({
 		display: 'inline-grid',
 		gridRowGap: '8px',
 		gridTemplateAreas: `
-      "menu menu menu "
       "addComment addComment addComment"
 			"form form form"
 			"favours favours favours"
@@ -163,7 +158,7 @@ export default withStyles(styles)(MainPage);
 // 				{/* fake opacity */}
 // 				<div className={classes.grid}>
 
-// 					<h4 style={{ background: 'aliceblue', gridArea: 'title' }}>
+// 					<p style={{ background: 'aliceblue', gridArea: 'title' }}>
 
 // 						<MenuBar
 // 							isFormDisplayed={isFormDisplayed}
@@ -171,7 +166,7 @@ export default withStyles(styles)(MainPage);
 // 							// getMovieDataDataDataData={getMovieDataDataDataData}
 // 						/>
 
-// 					</h4>
+// 					</p>
 
 // 					<div className={classes.toggleComment} style={{ gridArea: 'addComment' }}>
 // 						<Link color="primary" onClick={this.handleCommentsClick}>
