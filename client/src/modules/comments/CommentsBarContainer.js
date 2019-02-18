@@ -7,7 +7,7 @@ import { getComments } from './redux/commentsActions';
 const makeComments = (comments) => {
 	const list = comments.map(comm => (
 		<div key={comm.id}>
-		{comm.title}
+      {comm.title}
 		</div>
 	));
 
@@ -18,11 +18,10 @@ const makeComments = (comments) => {
 const mapStateToProps = state => ({
   commentsList: makeComments(state.comments.currComments),
   currUser: state.users.currUser,
-
 });
 
 const mapDispatchToProps = dispatch => ({
-	handleGetComments: (comId, comClass) => {
+  handleGetComments: (comId, comClass) => {
     dispatch(getComments(comId, comClass));
   },
 });
