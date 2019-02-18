@@ -2,31 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material ui
 import AppBar from '@material-ui/core/AppBar';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
-// import TextField from '@material-ui/core/TextField';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	getMovieData: PropTypes.instanceOf(Function).isRequired,
-	// isFormDisplayed: PropTypes.bool.isRequired,
-	// toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
 class MenuBar extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			searchTerm: '',
-		};
+		this.state = { searchTerm: '' };
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange = this.onChange.bind(this);
 	}
@@ -36,14 +31,9 @@ class MenuBar extends Component {
 	}
 
 	onSubmit(e) {
-		const {  getMovieData, isFormDisplayed, toggleCommentableForm } = this.props;
+		const { getMovieData } = this.props;
 		const { searchTerm } = this.state;
 		e.preventDefault();
-		// close the form if open
-		// if (isFormDisplayed) {
-		// 	toggleCommentableForm();
-		// }
-
 		getMovieData(searchTerm);
 	}
 
