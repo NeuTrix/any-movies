@@ -27,8 +27,32 @@ const propTypes = {
 function MainPage({classes}) {
 
 	return (
-		<div className={classes.grid} > 
-			Main Page 
+		<div className={classes.grid}> 
+
+			<div style={{gridArea: 'menu'}} >
+				<h1> MenuBar </h1>
+			</div>
+
+			<div style={{gridArea: 'addComment'}} >
+				<h1> Add Comment </h1>
+			</div>
+
+			<div style={{gridArea: 'form'}} >
+				<h1> New Comment Form </h1>
+			</div>
+
+			<div style={{gridArea: 'comments'}} >
+				<h1> Comments Bar </h1>
+			</div>
+
+			<div style={{gridArea: 'favours'}} >
+				<h1> Favourites </h1>
+			</div>
+
+			<div style={{gridArea: 'movies'}} >
+				<MoviePageContainer />
+			</div>
+
 		</div>
 	)
 }
@@ -42,14 +66,17 @@ const styles = theme => ({
 		display: 'inline-grid',
 		gridRowGap: '8px',
 		gridTemplateAreas: `
-      "title title title "
+      "menu menu menu "
       "addComment addComment ."
-      "form form form"
+			"form form form"
+			"favours favours favours"
       "comments comments comments"
       "movies movies movies"
     `,
 		gridTemplateColumns: '1fr 1fr 1fr',
+		minHeight:600,
 		maxWidth: 600,
+		minWidth: 400,
 		opacity: '0.93',
 		padding: theme.spacing.unit,
 	},
