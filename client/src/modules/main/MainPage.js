@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import CommentableContainer from '../comments/CommentableContainer';
 // import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
-// import { SearchAppBar } from '../app';
+// import { MenuBar } from '../app';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -161,7 +161,7 @@ export default withStyles(styles)(MainPage);
 
 // 					<h1 style={{ background: 'aliceblue', gridArea: 'title' }}>
 
-// 						<SearchAppBar
+// 						<MenuBar
 // 							isFormDisplayed={isFormDisplayed}
 // 							toggleCommentableForm={this.toggleCommentableForm}
 // 							// getMovieDataDataDataData={getMovieDataDataDataData}

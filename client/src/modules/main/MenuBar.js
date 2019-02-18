@@ -20,7 +20,7 @@ const propTypes = {
 	// toggleCommentableForm: PropTypes.instanceOf(Function).isRequired,
 };
 
-class SearchAppBar extends Component {
+class MenuBar extends Component {
 
 	constructor(props) {
 		super(props);
@@ -167,6 +167,6 @@ const styles = theme => ({
 	},
 });
 
-SearchAppBar.propTypes = propTypes;
+MenuBar.propTypes = propTypes;
 
-export default withStyles(styles)(SearchAppBar);
+export default withStyles(styles)(MenuBar);
