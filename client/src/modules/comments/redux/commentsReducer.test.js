@@ -33,10 +33,9 @@ describe('The Comments Reducer', () => {
 		deepfreeze(prevState);
 	});
 
-	xit('...undefined action returns default prevState', () => {
+	it('...undefined action returns default prevState', () => {
 		expect(commentsReducer(prevState)).to.eql(prevState);
 	});
-	
 });
 
 describe('Comments Reducer Async Actions', () => {
