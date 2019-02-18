@@ -44,6 +44,9 @@ export function getMovie(movieTitle) {
 		return axios.get(`${omdbUrl}&t=${movieTitle}`)
 			.then(resp => resp.data)
 			.then(data => dispatch(fetchMovieSuccess(data)))
-			.catch(err => dispatch(fetchMovieFailure(err)));
+			.catch((err) => {
+				dispatch(fetchCommentsFailure(err))
+				console.log('--getMovie-->', err)
+			});
 	};
 }
