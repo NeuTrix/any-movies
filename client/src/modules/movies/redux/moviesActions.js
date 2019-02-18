@@ -28,7 +28,7 @@ export function fetchMovieSuccess(data) {
 export function fetchMovieFailure(error) {
 	return {
 		type: FETCH_MOVIE_FAILURE,
-		payload: { 
+		payload: {
 			requestToOmdbApi: { isFetching: false, message: error, status: 'error' },
 		},
 	};
@@ -45,8 +45,8 @@ export function getMovie(movieTitle) {
 			.then(resp => resp.data)
 			.then(data => dispatch(fetchMovieSuccess(data)))
 			.catch((err) => {
-				dispatch(fetchMovieFailure(err))
-				console.log('--getMovie-->', err)
+				dispatch(fetchMovieFailure(err));
+				console.log('--getMovie-->', err);
 			});
 	};
 }

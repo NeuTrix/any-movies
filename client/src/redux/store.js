@@ -1,11 +1,18 @@
-import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
+import {
+ applyMiddleware, 
+ combineReducers, 
+ compose, 
+ createStore 
+} from 'redux';
+
 import thunkMiddleware from 'redux-thunk'; // handle async actions
 // import createLogger from 'redux-logger'
 import { commentsReducer } from '../modules/comments';
 import { favouritesReducer } from '../modules/favourites';
+import { getComments } from '../modules/comments/redux/commentsActions';
+import { getMovie } from '../modules/movies/redux/moviesActions';
 import { moviesReducer } from '../modules/movies';
 import { usersReducer } from '../modules/users';
-import { getMovie } from '../modules/movies/redux/moviesActions';
 
 const reducers = combineReducers({
 	comments: commentsReducer,
@@ -30,11 +37,12 @@ const store = createStore(
 	reducers,
 	defaultState,
 	composeEnhancers(
-		applyMiddleware(thunkMiddleware)
-	)
+		applyMiddleware(thunkMiddleware),
+	),
 );
 
 // hydrate default movie
-store.dispatch(getMovie('Babe'))
+store.dispatch(getMovie('Alien'));
+store.dispatch(getComments('tt0078748','movies'));
 
 export default store;
