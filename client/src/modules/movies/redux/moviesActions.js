@@ -12,8 +12,8 @@ export function fetchMovieRequest(movieTitle) {
 		type: FETCH_MOVIE_REQUEST,
 		payload: {
 			requestToOmdbApi: { isFetching: true, status: 'requesting' },
-		}
-	}
+		},
+	};
 }
 
 export function fetchMovieSuccess(data) {
@@ -29,8 +29,8 @@ export function fetchMovieSuccess(data) {
 export function fetchMovieFailure(error) {
 	return {
 		type: FETCH_MOVIE_FAILURE,
-		payload: {
-			requestToOmdbApi: { isFetching: false, status: 'errored', message: error },
+		payload: { 
+			requestToOmdbApi: { isFetching: false, message: error, status: 'error' },
 		},
 	};
 }
@@ -44,12 +44,17 @@ export function getMovie(movieTitle) {
 		// return the axios promise with the data/status
 		return axios.get(`${omdb_url}&t=${movieTitle}`)
 			.then(resp => {
+				console.log('in the axios call')
 				console.log(resp);
 				return resp.data;
 			})
-			.then(data => {
-				console.log('suc data', data)
-				fetchMovieSuccess(data)})
-			.catch(err => fetchMovieFailure(err));
-	};
-}
+			.then((data) => {
+				dispatch(fetchMovieSuccess(data));
+				console.log('suc data', data);
+				console.log('in the success area')
+			})
+			.catch(err => dispatch(fetchMovieFailure(err)));
+
+	}; // dispatch
+
+} // getMovie

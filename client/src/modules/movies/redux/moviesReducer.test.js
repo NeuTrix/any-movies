@@ -35,11 +35,7 @@ describe('The Movies Reducer', () => {
 		expect(moviesReducer(prevState)).to.eql(prevState);
 	});
 
-	it('...UPDATE_CURRENT_MOVIE can update the current movie ', () => {
-		const action = { type: UPDATE_CURRENT_MOVIE, payload: newMovie };
-		const newState = moviesReducer(prevState, action);
-		expect(newState.currMovie).to.eql(newMovie);
-	});
+	
 });
 
 describe('MoviesReducer Async Actions', () => {
@@ -97,7 +93,7 @@ describe('MoviesReducer Async Actions', () => {
 
 	});
 
-	describe.only('=> FETCH_MOVIE_FAILURE', () => {
+	describe('=> FETCH_MOVIE_FAILURE', () => {
 		const error = 'A mock error message';
 		const action = fetchMovieFailure(error);
 		const newState = moviesReducer(prevState, action);
@@ -106,8 +102,8 @@ describe('MoviesReducer Async Actions', () => {
 			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
 		});
 
-		it('... sets `requestToOmdbApi.status` to be`errored`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('errored');
+		it('... sets `requestToOmdbApi.status` to be`error`', () => {
+			expect(newState.requestToOmdbApi.status).to.eql('error');
 		});
 
 		it('...updates the isFetching message with error data', () => {

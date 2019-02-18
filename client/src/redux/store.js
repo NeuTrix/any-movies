@@ -38,8 +38,9 @@ const store = createStore(
 	)
 );
 
-store.subscribe(() => console.log('Current state ==> ', store.getState()))
-// holding to hydrate default movie
+// store.subscribe(() => console.log('Current state ==> ', store.getState()))
+
+// hydrate default movie
 store.dispatch(getMovie('Babe'))
 
 export default store;
