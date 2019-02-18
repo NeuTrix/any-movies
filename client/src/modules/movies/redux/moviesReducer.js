@@ -12,7 +12,8 @@ const initialState = {
 	  isMovieRegistered: false,
 	  requestToOmdbApi: {
 			isFetching: false,
-	    status: 'pending',
+      status: '',
+      message: '',
 	  },
 };
 
@@ -22,21 +23,18 @@ export default function moviesReducer(state = initialState, action = {}) {
 
 	switch (type) {
 	// request to the OMBD api
-    case FETCH_MOVIE_REQUEST: {}
-      return Object.assign({}, state, payload);
+  case FETCH_MOVIE_REQUEST:
+    return Object.assign({}, state, payload);
 
 	case FETCH_MOVIE_FAILURE:
-		return Object.assign({}, state, {
-			requestToOmdbApi: { status: 'errored' },
-		});
+		return Object.assign({}, state, payload);
 
   case FETCH_MOVIE_SUCCESS:
 		return Object.assign({}, state, payload);
 
 	case UPDATE_CURRENT_MOVIE:
-		// replace the entire current state object
-		return Object.assign({}, state, { currMovie: payload });
-		// return default payload in case args invalid or null
+    return Object.assign({}, state, payload);
+
 	default:
 		return state;
 	}

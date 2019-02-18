@@ -11,10 +11,7 @@ export function fetchMovieRequest(movieTitle) {
 	return {
 		type: FETCH_MOVIE_REQUEST,
 		payload: {
-			requestToOmdbApi: {
-				isFetching: true,
-				status: 'requesting',
-			},
+			requestToOmdbApi: { isFetching: true, status: 'requesting' },
 		}
 	}
 }
@@ -24,10 +21,7 @@ export function fetchMovieSuccess(data) {
 		type: FETCH_MOVIE_SUCCESS,
 		payload: {
 			currMovie: data,
-			requestToOmdbApi: {
-				isFetching: false,
-				status: 'requesting',
-			},
+			requestToOmdbApi: { isFetching: false, status: 'success' },
 		},
 	};
 }
@@ -36,7 +30,7 @@ export function fetchMovieFailure(error) {
 	return {
 		type: FETCH_MOVIE_FAILURE,
 		payload: {
-			status: 'errored',
+			requestToOmdbApi: { isFetching: false, status: 'errored', message: error },
 		},
 	};
 }

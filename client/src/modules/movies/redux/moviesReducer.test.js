@@ -1,28 +1,23 @@
 import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
+
 import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
 	UPDATE_CURRENT_MOVIE,
 } from './moviesConstants';
+
 import {
 	fetchMovieRequest,
 	fetchMovieSuccess,
 	fetchMovieFailure,
 } from './moviesActions'
-
-
-// import { mockstate } from '../../testHelpers';
 import moviesReducer from './moviesReducer';
 
-// deepfreeze // add to test for immutability
 const newMovie = {
 	imdb_id: 'tt0112431',
-	ratings: {
-		metacritic: 100,
-		tomatoes: 95,
-	},
+	ratings: { metacritic: 100, tomatoes: 95 },
 	title: 'Babe',
 };
 
@@ -31,7 +26,8 @@ describe('The Movies Reducer', () => {
 
 	beforeEach(() => {
 		prevState = { };
-		deepfreeze(prevState)
+		// deepfreeze // add to test for immutability
+		deepfreeze(prevState);
 	});
 
 	it('...undefined action returns default prevState', () => {
@@ -53,21 +49,23 @@ describe('MoviesReducer Async Actions', () => {
 			currMovie: {},
 			requestToOmdbApi: {
 				isFetching: false,
+				message: '',
 				status: 'pending',
 			},
 		};
-		deepfreeze(prevState)
+		deepfreeze(prevState);
 	});
-	
+
 	describe('=> FETCH_MOVIE_REQUEST', () => {
-		const action = fetchMovieRequest('Babe');
+		const movieTitle = 'Babe';
+		const action = fetchMovieRequest(movieTitle);
 		const newState = moviesReducer(prevState, action);
 
-		it('... sets `requestToOmdbApi.isFetching` to `true`', () => {
+		it('... sets `requestToOmdbApi.isFetching` to be `true`', () => {
 			expect(newState.requestToOmdbApi.isFetching).to.eql(true);
 		});
 
-		it('... sets `requestToOmdbApi.status` to `requesting`', () => {
+		it('... sets `requestToOmdbApi.status` to be `requesting`', () => {
 			expect(newState.requestToOmdbApi.status).to.eql('requesting');
 		});
 
@@ -84,26 +82,35 @@ describe('MoviesReducer Async Actions', () => {
 		const action = fetchMovieSuccess(newMovie);
 		const newState = moviesReducer(prevState, action);
 
-		it('... sets `requestToOmdbApi.isFetching` to `false`', () => {
+		it('... sets `requestToOmdbApi.isFetching` to be `false`', () => {
 			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
 		});
 
-		xit('... sets `requestToOmdbApi.status` to `success`', () => {
+		it('... sets `requestToOmdbApi.status` to be `success`', () => {
 			expect(newState.requestToOmdbApi.status).to.eql('success');
 		});
 
-		xit('...updates the currMovie object', () => {
+		it('...updates the currMovie object', () => {
 			expect(newState.currMovie).to.eql(newMovie)
 		});
 
 	});
 
-	describe('=> FETCH_MOVIE_FAILURE', () => {
-		const action = fetchMovieFailure('Babe');
+	describe.only('=> FETCH_MOVIE_FAILURE', () => {
+		const error = 'A mock error message';
+		const action = fetchMovieFailure(error);
 		const newState = moviesReducer(prevState, action);
 
-		xit('..sets is`requestToOmdbApi.status` to `errored`', () => {
+		it('... sets `requestToOmdbApi.isFetching` to be`false`', () => {
+			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
+		});
+
+		it('... sets `requestToOmdbApi.status` to be`errored`', () => {
 			expect(newState.requestToOmdbApi.status).to.eql('errored');
+		});
+
+		it('...updates the isFetching message with error data', () => {
+			expect(newState.requestToOmdbApi.message).to.eql(error);
 		});
 	});
 
