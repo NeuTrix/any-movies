@@ -12,7 +12,8 @@ import {
 	fetchMovieRequest,
 	fetchMovieSuccess,
 	fetchMovieFailure,
-} from './moviesActions'
+} from './moviesActions';
+
 import moviesReducer from './moviesReducer';
 
 const newMovie = {
