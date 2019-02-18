@@ -25,7 +25,7 @@ const propTypes = {
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
-function MainPage({classes}) {
+function MainPage({classes, comments, currMovie, currUser}) {
 
 	return (
 		<div className={classes.grid}> 

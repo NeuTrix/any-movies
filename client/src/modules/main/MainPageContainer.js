@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import MainPage from './MainPage';
 
 const mapStateToProps = state => ({
-  comments: state.comments.currComments,
+  // comments
+  comments: state.comments.currComments, 
+	showingCommentForm: state.comments.showingCommentForm,
+	// movies
 	currMovie: state.movies.currMovie,
-	currUser: state.movies.currUser,
-  showingCommentForm: state.comments.showingCommentForm,
-  isMovieRegistered: state.movies.isMovieRegistered,
-})
+	isMovieRegistered: state.movies.isMovieRegistered,
+	// users
+	currUser: state.users.currUser,
+});
 
 const MainPageContainer = connect(mapStateToProps)(MainPage);
 
