@@ -43,13 +43,14 @@ describe('Comments Reducer Async Actions', () => {
 
 	beforeEach(() => {
 		prevState = {
-			currComments: {},
-			requestToOmdbApi: {
+			currComments: [],
+			requestToApi: {
 				isFetching: false,
 				message: '',
 				status: 'pending',
 			},
 		};
+
 		deepfreeze(prevState);
 	});
 
@@ -58,12 +59,12 @@ describe('Comments Reducer Async Actions', () => {
 		const action = fetchCommentsRequest(movieTitle);
 		const newState = commentsReducer(prevState, action);
 
-		xit('... sets `requestToOmdbApi.isFetching` to be `true`', () => {
-			expect(newState.requestToOmdbApi.isFetching).to.eql(true);
+		xit('... set.isFetching` to be `true`', () => {
+			expect(newSta.isFetching).to.eql(true);
 		});
 
-		xit('... sets `requestToOmdbApi.status` to be `requesting`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('requesting');
+		xit('... set.status` to be `requesting`', () => {
+			expect(newSta.status).to.eql('requesting');
 		});
 
 		xit('... prevState had a `currComments` prop', () => {
@@ -79,12 +80,12 @@ describe('Comments Reducer Async Actions', () => {
 		const action = fetchCommentsSuccess(comment);
 		const newState = commentsReducer(prevState, action);
 
-		xit('... sets `requestToOmdbApi.isFetching` to be `false`', () => {
-			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
+		xit('... set.isFetching` to be `false`', () => {
+			expect(newSta.isFetching).to.eql(false);
 		});
 
-		xit('... sets `requestToOmdbApi.status` to be `success`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('success');
+		xit('... set.status` to be `success`', () => {
+			expect(newSta.status).to.eql('success');
 		});
 
 		xit('...updates the currComments object', () => {
@@ -97,16 +98,16 @@ describe('Comments Reducer Async Actions', () => {
 		const action = fetchCommentsFailure(error);
 		const newState = commentsReducer(prevState, action);
 
-		xit('... sets `requestToOmdbApi.isFetching` to be`false`', () => {
-			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
+		xit('... set.isFetching` to be`false`', () => {
+			expect(newSta.isFetching).to.eql(false);
 		});
 
-		xit('... sets `requestToOmdbApi.status` to be`error`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('error');
+		xit('... set.status` to be`error`', () => {
+			expect(newSta.status).to.eql('error');
 		});
 
 		xit('...updates the isFetching message with error data', () => {
-			expect(newState.requestToOmdbApi.message).to.eql(error);
+			expect(newSta.message).to.eql(error);
 		});
 	});
 

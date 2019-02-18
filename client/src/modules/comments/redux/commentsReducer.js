@@ -7,13 +7,9 @@ import {
 } from './commentsConstants';
 
 const initialState = {
-    currMovie: {
-      imdbID: 'tt0078748',
-      Title: 'Alien',
-    },
-    isFavourited: false, // change name to isMovieFavourited...
-	  isMovieRegistered: false,
-	  requestToOmdbApi: {
+		comments: [],
+		isFavourited: false, // change name to isMovieFavourited...
+	  requestToApi: {
 			isFetching: false,
       status: '',
       message: '',
