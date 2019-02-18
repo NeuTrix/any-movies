@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { omdbUrl } from '../../../helpers/api.helper';
+
 import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
@@ -12,8 +12,8 @@ export function fetchCommentsRequest(commentableId, commentableType) {
 		payload: {
 			requestToApi: {
 				isFetching: true,
-				status: 'requesting',
 				message: `getting comments for movie with id: ${commentableId}`,
+				status: 'requesting',
 			},
 		},
 	};
