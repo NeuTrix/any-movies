@@ -43,6 +43,7 @@ export function getComments(comment) {
 		// return the axios promise with the data/status
 		return axios.get(`${omdbUrl}&t=${comment}`)
 			.then(resp => resp.data)
+			.then(data => console.log('--comments-->', data))
 			.then(data => dispatch(fetchCommentsSuccess(data)))
 			.catch(err => dispatch(fetchCommentsFailure(err)));
 	};

@@ -39,7 +39,7 @@ class FavouritesContainer extends Component {
 						</a>
 					)
 				})
-				console.log('xxxx=>', urls)
+				// console.log('xxxx=>', urls)
 
 				return urls
 			})
