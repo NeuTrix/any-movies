@@ -36,16 +36,15 @@ export function fetchMovieFailure(error) {
 }
 
 export function getMovie(movieTitle) {
-	// using thunk middleware allows action to return a fn
+	// using thunk middleware to return a fn from an action
+	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
 		// alert state of request action
 		dispatch(fetchMovieRequest(movieTitle));
-
 		// return the axios promise with the data/status
 		return axios.get(`${omdbUrl}&t=${movieTitle}`)
 			.then(resp => resp.data)
-			.then((data) => dispatch(fetchMovieSuccess(data)))
-			.catch(err => dispatch(fetchMovieFailure(err)))
-	}; // dispatch
-
-} // getMovie
+			.then(data => dispatch(fetchMovieSuccess(data)))
+			.catch(err => dispatch(fetchMovieFailure(err)));
+	};
+}
