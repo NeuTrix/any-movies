@@ -3,7 +3,8 @@ import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
-	UPDATE_CURRENT_MOVIE,
+  UPDATE_CURRENT_MOVIE,
+  // CHECK_MOVIE_REGISTRATION // See if its registered in the api
 } from './moviesConstants';
 
 const initialState = {

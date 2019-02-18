@@ -6,11 +6,8 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { FavouritesContainer } from '../favourites';
 import masterTheme from './masterTheme';
 import { MoviePageContainer } from '../movies';
+import MainPage from './MainPage';
 
-// const currUser = {
-// 	username: 'Dantastic3339',
-// 	id: 1,
-// };
 
 class App extends Component {
 	render() {
@@ -18,6 +15,7 @@ class App extends Component {
 			<Provider store={store} >
 				<MuiThemeProvider theme={masterTheme}>
 					<div className="App">
+						<MainPage/>
 						<FavouritesContainer />
 						<MoviePageContainer />
 					</div>
