@@ -77,7 +77,7 @@ describe('Comments Reducer Async Actions', () => {
 	});
 
 	describe('=> FETCH_COMMENTS_SUCCESS', () => {
-		const action = fetchCommentsSuccess(newComments);
+		const action = fetchCommentsSuccess(comment);
 		const newState = commentsReducer(prevState, action);
 
 		xit('... sets `requestToOmdbApi.isFetching` to be `false`', () => {
@@ -89,7 +89,7 @@ describe('Comments Reducer Async Actions', () => {
 		});
 
 		xit('...updates the currComments object', () => {
-			expect(newState.currComments).to.eql(newComments)
+			expect(newState.currComments).to.eql(comment)
 		});
 	});
 
