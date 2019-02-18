@@ -20,19 +20,6 @@ const defaultState = {
 		comments: [],
 		isFormDisplayed: false,
 	},
-	movies:{},
-	// movies: {
-	// 	isFavourited: false,
-	// 	isMovieRegistered: false,
-	// 	currMovie: {
-	// 		imdbID: 'tt0078748',
-	// 		Title: 'Alien',
-	// 	},
-	// 	requestToOmdbApi: {
-	// 		isFetching: false,
-	// 		status: 'pending',
-	// 	},
-	// },
 	users: {
 		currUser: {
 			username: 'Mickey333',

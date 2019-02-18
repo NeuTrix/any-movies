@@ -7,7 +7,10 @@ import {
 } from './moviesConstants';
 
 const initialState = {
-    currMovie: { },
+    currMovie: {
+      imdbID: 'tt0078748',
+      Title: 'Alien',
+    },
     isFavourited: false, // change name to isMovieFavourited...
 	  isMovieRegistered: false,
 	  requestToOmdbApi: {
