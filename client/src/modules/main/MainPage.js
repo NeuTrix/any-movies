@@ -1,5 +1,5 @@
 // container to gather movie logic
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // import { Link } from '@material-ui/core';
@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
 import { MenuBarContainer } from '../main';
+import { CommentsBarContainer } from '../comments';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -42,7 +43,7 @@ function MainPage({classes, comments, currMovie, currUser}) {
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
-					<p> Comments Bar </p>
+					<CommentsBarContainer />
 				</div>
 
 				<div style={{gridArea: 'favours'}} >
