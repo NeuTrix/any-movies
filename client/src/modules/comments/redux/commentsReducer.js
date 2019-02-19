@@ -8,7 +8,7 @@ import {
 
 const initialState = {
 	// comments: [],
-	requestToApi: {
+	apiRequest: {
 		isFetching: false,
 		message: '',
 		status: '',
