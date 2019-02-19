@@ -22,6 +22,14 @@ xdescribe('The store object', () => {
 	it('...has a default prop favourites', () => {
 		expect(state).to.have.property('favourites');
 	});
+	
+	it('...has a default prop isFavourited', () => {
+		expect(state).to.have.property('isFavourited');
+	});
+
+	it('...has a default prop showCommentsForm', () => {
+		expect(state).to.have.property('showCommentsForm');
+	});
 
 	it('...has a default prop comments', () => {
 		expect(state).to.have.property('comments');

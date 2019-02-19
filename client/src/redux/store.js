@@ -22,8 +22,6 @@ const reducers = combineReducers({
 });
 
 const defaultState = {
-	isFavourited: false, // change name to isMovieFavourited...
-	showCommentsForm: false,
 	users: {
 		currUser: {
 			username: 'Mickey333',
@@ -44,5 +42,7 @@ const store = createStore(
 // hydrate default movie
 store.dispatch(getMovieData('Alien'));
 store.dispatch(getComments('tt0078748','movies'));
+store.dispatch(getComments('tt0076759', 'movies'));
+
 
 export default store;
