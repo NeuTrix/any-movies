@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -9,15 +9,16 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentableId: PropTypes.string.isRequired,
+	commentableID: PropTypes.string.isRequired,
 	commentableType: PropTypes.string.isRequired,
 	commentsList: PropTypes.instanceOf(Array), // from commentable
-	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
-	// handleGetComments: PropTypes.func.isRequired, // update comment to the list
 };
 
+const defaultProps = {
+	commentsList:[],
+}
 
-function CommentsBar({classes, commentsList, currUser}) {
+function CommentsBar({classes, commentsList, commentableID, commentableType}) {
 
 	return (
 		<div className={classes.root}>
@@ -29,12 +30,8 @@ function CommentsBar({classes, commentsList, currUser}) {
 					// onClick={handleGetComments}
 					expandIcon={<ExpandMoreIcon />}
 				>
-					<Typography variant="subtitle1" className={classes.heading}>
-							See Responses...{
-								commentsList 
-								? commentsList.length 
-								: 0
-							}
+					<Typography variant="body2" className={classes.heading}>
+						{ `${commentableType} comments: ${commentsList.length}` }
 					</Typography>
 
 				</ExpansionPanelSummary>
@@ -42,7 +39,9 @@ function CommentsBar({classes, commentsList, currUser}) {
 				<ExpansionPanelDetails
 					className={classes.expansion}
 				>
-					<div className={classes.list}> { commentsList } </div>
+					<div className={classes.list}>
+						{ commentsList }
+					</div>
 				</ExpansionPanelDetails>
 
 			</ExpansionPanel>
@@ -76,5 +75,6 @@ const styles = theme => ({
 });
 
 CommentsBar.propTypes = propTypes;
+CommentsBar.defaultProps = defaultProps;
 
 export default withStyles(styles)(CommentsBar);
