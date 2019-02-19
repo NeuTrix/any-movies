@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
 import { MenuBarContainer } from '../main';
-import { MovieCommentsContainer } from '../comments';
+import { MovieCommentsContainer } from '../movies';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
