@@ -16,6 +16,7 @@ const propTypes = {
 	// handleGetComments: PropTypes.func.isRequired, // update comment to the list
 };
 
+
 function CommentsBar({classes, commentsList, currUser}) {
 
 	return (
@@ -29,7 +30,11 @@ function CommentsBar({classes, commentsList, currUser}) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="subtitle1" className={classes.heading}>
-							See Responses... {commentsList.length}
+							See Responses...{
+								commentsList 
+								? commentsList.length 
+								: 0
+							}
 					</Typography>
 
 				</ExpansionPanelSummary>
