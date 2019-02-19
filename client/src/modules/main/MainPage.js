@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
 import { MenuBarContainer } from '../main';
-import { CommentsBarContainer } from '../comments';
+import { MovieCommentsContainer } from '../comments';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -43,7 +43,7 @@ function MainPage({classes, comments, currMovie, currUser}) {
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
-					<CommentsBarContainer />
+					<MovieCommentsContainer />
 				</div>
 
 				<div style={{gridArea: 'favours'}} >
