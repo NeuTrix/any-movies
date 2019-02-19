@@ -22,6 +22,8 @@ const reducers = combineReducers({
 });
 
 const defaultState = {
+	isFavourited: false, // change name to isMovieFavourited...
+	showCommentsForm: false,
 	users: {
 		currUser: {
 			username: 'Mickey333',

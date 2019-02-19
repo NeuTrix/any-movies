@@ -7,14 +7,12 @@ import {
 } from './commentsConstants';
 
 const initialState = {
-	currComments: [],
-	isFavourited: false, // change name to isMovieFavourited...
+	// comments: [],
 	requestToApi: {
 		isFetching: false,
 		message: '',
 		status: '',
 	},
-	showCommentsForm: false,
 };
 
 export default function commentsReducer(state = initialState, action = {}) {
@@ -30,7 +28,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return Object.assign({}, state, payload);
 
   case FETCH_COMMENTS_SUCCESS:
-		return Object.assign({}, state, payload);
+		return Object.assign({}, state, payload.data.entities.comments);
 
 	case UPDATE_CURRENT_COMMENTS:
     return Object.assign({}, state, payload);
