@@ -12,6 +12,8 @@ const propTypes = {
 	commentableID: PropTypes.string.isRequired,
 	commentableType: PropTypes.string.isRequired,
 	commentsList: PropTypes.instanceOf(Array), // from commentable
+	// functions
+	// handleGetComments:
 };
 
 const defaultProps = {
