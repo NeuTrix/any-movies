@@ -8,26 +8,24 @@ import {
 } from './commentsConstants';
 
 // normalize data
-const comments = new schema.Entity('comments');
+const comment = new schema.Entity('comments');
 // const requests = new schema.Entity('requests');
-const commentsSchema = ([comments]);
+// shorthand for new schema.Array...
+const commentsListSchema = [comment];
 
 export function fetchCommentsRequest() {
 	return {
 		type: FETCH_COMMENTS_REQUEST,
-		payload: {
-			message: 'Requesting comments',
-		},
 	};
 }
 
 export function fetchCommentsSuccess(data) {
+	const dictionary = normalize(data, commentsListSchema).entities;
+	// .entities
+	console.log('fetcCOmSxx', dictionary);
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
-		data,
-		payload: {
-			message: 'Successfully recieved comments',
-		},
+		payload: dictionary,
 	};
 }
 
@@ -55,11 +53,11 @@ export function getComments(commentableID, path) {
 		// return the axios promise with the data/status
 		return axios.get(`/api/${path}/${commentableID}/comments`)
 			// normalize the response data
-			.then(resp => normalize(resp.data, commentsSchema))
+			// .then(resp => normalize(resp.data, commentsSchema))
 			// inspect the normalized data
-			.then((data) => {
-				console.log('--#getComments data-->', data);
-				return data;
+			.then((resp) => {
+				console.log('--#getComments data-->', resp.data);
+				return resp.data;
 			})
 			.then(data => dispatch(fetchCommentsSuccess(data)))
 			.catch((err) => {

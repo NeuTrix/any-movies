@@ -7,8 +7,8 @@ import {
 } from './commentsConstants';
 
 export const initialState = {
-	dictionary: [],
-	commentable: [],
+	dictionary: {}, // a lookup object of all comments by id/key
+	commentable: [], // array of comment ids for the current commentable
 	isFavourited: false, // change name to isMovieFavourited...
 	apiRequest: {
 		isFetching: false,
@@ -31,7 +31,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 			...{ 
 				apiRequest: { 
 					isFetching: true,
-					message: payload.message,
+					message: 'Requesting comments',
 					status: 'requesting',
 				},
 			}
@@ -44,9 +44,10 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
+				dictionary: payload,
 				apiRequest: {
 					isFetching: false,
-					message: payload.message,
+					message: 'Successfully recieved comments',
 					status: 'success',
 				},
 			}

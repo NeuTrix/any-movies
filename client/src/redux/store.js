@@ -42,7 +42,7 @@ const store = createStore(
 // hydrate default movie
 store.dispatch(getMovieData('Alien'));
 store.dispatch(getComments('tt0078748','movies'));
-store.dispatch(getComments('tt0076759', 'movies'));
+// store.dispatch(getComments('tt0076759', 'movies'));
 
 
 export default store;

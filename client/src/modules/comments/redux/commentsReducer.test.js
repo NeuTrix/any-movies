@@ -16,13 +16,14 @@ import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
 import commentsReducer, { initialState } from './commentsReducer';
 
-const commentable = {
-	body: '',
-	commentable_id: '',
-	commentable_type: '',
-	title: '',
-	user_id: '',
-};
+const commentable = [{
+	id: 900,
+	body: 'Something to test out',
+	commentable_id: 100,
+	commentable_type: 'Comment',
+	title: 'Test Comment',
+	user_id: 'Well#1001',
+}];
 
 const commentableID = commentable.commentable_id;
 const commentableType = commentable.commentable_type;
@@ -52,7 +53,6 @@ describe('The Comments Reducer', () => {
 			const nextState = commentsReducer(prevState, action);
 
 			it('... apiRequest.isFetching` to be `true`', () => {
-				console.log(nextState.apiRequest.isFetching)
 				expect(nextState.apiRequest.isFetching).to.eql(true);
 			});
 
@@ -76,21 +76,31 @@ describe('The Comments Reducer', () => {
 				it('... apiRequest.status` to be `success`', () => {
 					expect(nextState.apiRequest.status).to.eql('success');
 				});
-
-				it('...updates the dictionary object', () => {
-					expect(nextState.dictionary[0]).to.eql(commentable);
-				});
 			});
 
-			xdescribe('The next state properties', () => {
-				xit('... previous state had a `currComments` prop', () => {
-					expect(prevState).to.have.property('currComments');
+			describe('The next state properties', () => {
+				it('...has a `dictionary` prop', () => {
+					expect(nextState).to.have.property('dictionary')
+						.to.be.an('object')
 				});
 
-				xit('... ', () => {});
+				it.only('...updated the dictionary', () => {
+					console.log(nextState.dictionary)
+					// expect(nextState.dictionary[100]).to.eql('dictionary')
+				});
 
-				xit('... nextState to have `currComments` prop', () => {
-					expect(nextState).to.have.property('currComments');
+				it('...has a `commentable` prop', () => {
+					expect(nextState).to.have.property('commentable')
+						.to.be.an('array')
+				});
+
+				xit('...commentable was updated', () => {
+					expect(nextState.commentable.length).to.eql(1);
+				});
+
+				it('... nextState to have `apiRequest` prop', () => {
+					expect(nextState).to.have.property('apiRequest')
+						.to.be.an('object')
 				});
 			});
 		});
