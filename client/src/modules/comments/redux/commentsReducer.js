@@ -6,7 +6,7 @@ import {
 	UPDATE_CURRENT_COMMENTS,
 } from './commentsConstants';
 
-const initialState = {
+export const initialState = {
 	dictionary: [],
 	commentable: [],
 	isFavourited: false, // change name to isMovieFavourited...
@@ -25,7 +25,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 	switch (type) {
 	// request to the OMBD api
   case FETCH_COMMENTS_REQUEST:
-    return Object.assign({}, state, payload);
+		// return Object.assign({}, state, payload.api);
+		return { ...state, ...payload}
 
 	case FETCH_COMMENTS_FAILURE:
 		return Object.assign({}, state, payload);

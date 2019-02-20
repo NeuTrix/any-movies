@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-import deepfreeze from 'deep-freeze';
 
 import {
 	FETCH_COMMENTS_FAILURE,
@@ -14,7 +12,9 @@ import {
 	fetchCommentsSuccess,
 } from './commentsActions';
 
-import commentsReducer from './commentsReducer';
+import { expect } from 'chai';
+import deepfreeze from 'deep-freeze';
+import commentsReducer, { initialState } from './commentsReducer';
 
 const commentable = {
 	body: '',
@@ -24,45 +24,40 @@ const commentable = {
 	user_id: '',
 };
 
+const commentableID = commentable.commentable_id;
+const commentableType = commentable.commentable_type;
+
 describe('The Comments Reducer', () => {
 	let prevState; // initial previous state object for testing
-	let comments; // the reducer target object
+	let dictionary; // the reducer target object
 
 	beforeEach(() => {
 		// previous state
-		prevState = {
-			comments: {
-				dictionary: [],
-				commentable: [],
-				isFavourited: false, // change name to isMovieFavourited...
-				apiRequest: {
-					isFetching: false,
-					message: '',
-					status: '',
-				},
-				showCommentsForm: false,
-			},
-		};
+		prevState = initialState;
 		// deepfreeze // add to test for immutability
 		deepfreeze(prevState);
-		comments = prevState.comments;
+		dictionary = prevState.dictionary;
 	});
 
-	describe.only('Comments reducer core actions', () => {
-		it('...undefined action returns default previous state', () => {
-			console.log(comments);
-			expect(commentsReducer(comments)).to.eql(comments);
+	describe('Comments reducer core actions', () => {
+		it.only('...undefined action returns default previous state', () => {
+			expect(commentsReducer(prevState)).to.eql(prevState);
 		});
 	});
 
+	describe('Comments Reducer Async Actions', () => {
 
-	xdescribe('Comments Reducer Async Actions', () => {
-		xdescribe('=> FETCH_COMMENTS_REQUEST', () => {
-			const movieTitle = 'Babe';
-			const action = fetchCommentsRequest(movieTitle);
-			const nextState = commentsReducer(comments, action);
+		describe('=> FETCH_COMMENTS_REQUEST', () => {
+			let action = fetchCommentsRequest(commentableID, commentableType);
+			let nextState = commentsReducer(comments, action);
+			
+			it('... api does not update if no valid action given', () => {
+				action = '';
+				nextState = commentsReducer(comments, action);
+				expect(nextState.apiRequest.isFetching).to.eql(false);
+			});
 
-			xit('... apiRequest.isFetching` to be `true`', () => {
+			it('... apiRequest.isFetching` to be `true`', () => {
 				expect(nextState.apiRequest.isFetching).to.eql(true);
 			});
 

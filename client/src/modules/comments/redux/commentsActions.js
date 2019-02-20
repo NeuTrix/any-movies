@@ -9,6 +9,7 @@ import {
 
 // normalize data
 const comments = new schema.Entity('comments');
+// const requests = new schema.Entity('requests');
 const commentsSchema = ([comments]);
 
 export function fetchCommentsRequest(commentableID, path) {
@@ -50,7 +51,7 @@ export function fetchCommentsFailure(error, commentableID, path) {
 	};
 }
 
-// `commentableID` maps to commentable_id and `path` to `classses` or `movies` paths
+// `commentableID` maps to commentable_id and `commentableType` to `classses` or `movies` paths
 export function getComments(commentableID, path) {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
