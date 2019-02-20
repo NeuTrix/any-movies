@@ -46,11 +46,6 @@ const data2 = [
 	}
 ];
 
-const commentableID = data1.commentable_id;
-// const commentableID2 = data2.commentable_id;
-// const commentableID3 = newCommentList3.commentable_id;
-const commentableType = data1.commentable_type;
-
 describe('The Comments Reducer', () => {
 	let prevState; // initial previous state object for testing
 	let dictionary; // the reducer target object
@@ -69,9 +64,9 @@ describe('The Comments Reducer', () => {
 		});
 
 		it('... sequential actions increment the dictionary', () => {
+			const action1 = fetchCommentsSuccess(data1)
+			const action2 = fetchCommentsSuccess(data2)
 			console.log('-->', commentableID)
-			// const action = fetchCommentsRequest(commentableID, commentableType);
-			// const nextState = 	commentsReducer(prevState, )
 		});
 	});
 
