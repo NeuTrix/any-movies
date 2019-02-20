@@ -21,12 +21,12 @@ export function fetchCommentsRequest() {
 
 export function fetchCommentsSuccess(data) {
 	const normed = normalize(data, commentsListSchema);
-
+	// console.log('===>', normed.entities.comments)
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
 		payload: {
-			commentableComments: normed.result,
-			dictionary: normed.entities.comments,
+			commentableComments: normed.result, // an array of indices
+			dictionary: normed.entities.comments, // an object map
 		}
 	};
 }

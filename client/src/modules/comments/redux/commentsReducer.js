@@ -28,31 +28,42 @@ export default function commentsReducer(state = initialState, action = {}) {
 		// return Object.assign({}, state, payload.api);
 		return { 
 			...state, 
-			...{ 
-				apiRequest: { 
-					isFetching: true,
-					message: 'Requesting comments',
-					status: 'requesting',
-				},
-			}
+			// ...{ 
+			// 	apiRequest: { 
+			// 		isFetching: true,
+			// 		message: 'Requesting comments',
+			// 		status: 'requesting',
+			// 	},
+			// }
 		}
 
 	case FETCH_COMMENTS_FAILURE:
 		return Object.assign({}, state, payload);
 
-  case FETCH_COMMENTS_SUCCESS:
-		return {
-			...state,
-			...{
-				dictionary: payload.dictionary,
-				commentableComments: payload.commentableComments,
-				apiRequest: {
-					isFetching: false,
-					message: 'Successfully recieved comments',
-					status: 'success',
-				},
-			}
-		}
+	case FETCH_COMMENTS_SUCCESS:
+		const dict = payload.dictionary
+		const stat = state.dictionary
+
+		console.log('++1++', stat)
+		console.log('dict==1==>', payload.dictionary)
+		const newDict = { ...state.dictionary, ...payload.dictionary }
+		console.log('dict==2==>', newDict)
+		const newState =  { ...state, ...{ dictionary: newDict} }
+		console.log('++2++', newState)
+		return newState
+
+		// return {
+		// 	...state,
+		// 	...{
+		// 		dictionary: payload.dictionary,
+		// 		commentableComments: payload.commentableComments,
+		// 		apiRequest: {
+		// 			isFetching: false,
+		// 			message: 'Successfully recieved comments',
+		// 			status: 'success',
+		// 		},
+		// 	}
+		// }
 
 	case UPDATE_CURRENT_COMMENTS:
     return Object.assign({}, state, payload);
