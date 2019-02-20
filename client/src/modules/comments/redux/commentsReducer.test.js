@@ -40,7 +40,7 @@ describe('The Comments Reducer', () => {
 	});
 
 	describe('Comments reducer core actions', () => {
-		it.only('...undefined action returns default previous state', () => {
+		it('...undefined action returns default previous state', () => {
 			expect(commentsReducer(prevState)).to.eql(prevState);
 		});
 	});
@@ -49,26 +49,27 @@ describe('The Comments Reducer', () => {
 
 		describe('=> FETCH_COMMENTS_REQUEST', () => {
 			let action = fetchCommentsRequest(commentableID, commentableType);
-			let nextState = commentsReducer(comments, action);
-			
+			let nextState = commentsReducer(prevState, action);
+
 			it('... api does not update if no valid action given', () => {
 				action = '';
-				nextState = commentsReducer(comments, action);
+				let	nextState = commentsReducer(prevState, action);
 				expect(nextState.apiRequest.isFetching).to.eql(false);
 			});
 
 			it('... apiRequest.isFetching` to be `true`', () => {
+				console.log(nextState.apiRequest.isFetching)
 				expect(nextState.apiRequest.isFetching).to.eql(true);
 			});
 
-			xit('... apiRequest.status` to be `requesting`', () => {
+			it('... apiRequest.status` to be `requesting`', () => {
 				expect(nextState.apiRequest.status).to.eql('requesting');
 			});
 		});
 
-		xdescribe('=> FETCH_COMMENTS_SUCCESS', () => {
+		describe('=> FETCH_COMMENTS_SUCCESS', () => {
 			const action = fetchCommentsSuccess(commentable);
-			const nextState = commentsReducer(comments, action);
+			const nextState = commentsReducer(prevState, action);
 
 			xdescribe('The api actions...', () => {
 				xit('... apiRequest.isFetching` to be `false`', () => {
@@ -86,7 +87,7 @@ describe('The Comments Reducer', () => {
 
 			xdescribe('The next state properties', () => {
 				xit('... previous state had a `currComments` prop', () => {
-					expect(comments).to.have.property('currComments');
+					expect(prevState).to.have.property('currComments');
 				});
 
 				xit('... ', () => {});
@@ -100,7 +101,7 @@ describe('The Comments Reducer', () => {
 		xdescribe('=> FETCH_COMMENTS_FAILURE', () => {
 			const error = 'A mock error message';
 			const action = fetchCommentsFailure(error);
-			const nextState = commentsReducer(comments, action);
+			const nextState = commentsReducer(prevState, action);
 
 			xit('... apiRequest.isFetching` to be`false`', () => {
 				expect(nextState.apiRequest.isFetching).to.eql(false);

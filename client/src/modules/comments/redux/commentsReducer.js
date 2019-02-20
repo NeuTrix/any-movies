@@ -26,13 +26,22 @@ export default function commentsReducer(state = initialState, action = {}) {
 	// request to the OMBD api
   case FETCH_COMMENTS_REQUEST:
 		// return Object.assign({}, state, payload.api);
-		return { ...state, ...payload}
+		return { 
+			...state, 
+			...{ 
+				apiRequest: { 
+					isFetching: true,
+					message: payload.message,
+					status: 'requesting',
+				},
+			}
+		}
 
 	case FETCH_COMMENTS_FAILURE:
 		return Object.assign({}, state, payload);
 
   case FETCH_COMMENTS_SUCCESS:
-		return Object.assign({}, state, payload.data.entities.comments);
+		return Object.assign({}, state, payload);
 
 	case UPDATE_CURRENT_COMMENTS:
     return Object.assign({}, state, payload);

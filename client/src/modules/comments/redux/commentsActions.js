@@ -16,11 +16,7 @@ export function fetchCommentsRequest(commentableID, path) {
 	return {
 		type: FETCH_COMMENTS_REQUEST,
 		payload: {
-			apiRequest: {
-				isFetching: true,
-				message: `requesting comments for ${path} with id: ${commentableID}`,
-				status: 'requesting',
-			},
+			message: `requesting comments for ${path} with id: ${commentableID}`,
 		},
 	};
 }
@@ -28,13 +24,9 @@ export function fetchCommentsRequest(commentableID, path) {
 export function fetchCommentsSuccess(data, commentableID, path) {
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
+		data,
 		payload: {
-			data,
-			apiRequest: {
-				isFetching: false,
-				message: `recieved comments for ${path} with id: ${commentableID}`,
-				status: 'success',
-			},
+			message: `recieved comments for ${path} with id: ${commentableID}`,
 		},
 	};
 }
@@ -42,6 +34,7 @@ export function fetchCommentsSuccess(data, commentableID, path) {
 export function fetchCommentsFailure(error, commentableID, path) {
 	return {
 		type: FETCH_COMMENTS_FAILURE,
+		error,
 		payload: { 
 			apiRequest: {
 				isFetching: false, 
