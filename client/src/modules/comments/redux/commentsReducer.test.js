@@ -16,7 +16,7 @@ import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
 import commentsReducer, { initialState } from './commentsReducer';
 
-const commentable = [{
+const newCommentList = [{
 	id: 900,
 	body: 'Something to test out',
 	commentable_id: 100,
@@ -25,8 +25,8 @@ const commentable = [{
 	user_id: 'Well#1001',
 }];
 
-const commentableID = commentable.commentable_id;
-const commentableType = commentable.commentable_type;
+const commentableID = newCommentList.commentable_id;
+const commentableType = newCommentList.commentable_type;
 
 describe('The Comments Reducer', () => {
 	let prevState; // initial previous state object for testing
@@ -63,8 +63,8 @@ describe('The Comments Reducer', () => {
 
 		describe('=> FETCH_COMMENTS_SUCCESS', () => {
 			const action = fetchCommentsSuccess(
-				commentable, 
-				commentable.commentable_id,
+				newCommentList, 
+				newCommentList.commentable_id,
 			);
 			const nextState = commentsReducer(prevState, action);
 
@@ -85,7 +85,12 @@ describe('The Comments Reducer', () => {
 				});
 
 				it('...updated the dictionary', () => {
-					expect(nextState.dictionary[900].title).to.eql(commentable[0].title)
+					expect(nextState.dictionary[900].title).to.eql(newCommentList[0].title)
+				});
+				
+				it('...dictionary was updated', () => {
+					expect(Object.keys(prevState.dictionary).length).to.eql(0);
+					expect(Object.keys(nextState.dictionary).length).to.eql(1);
 				});
 
 				it('...has a `commentable` prop', () => {
@@ -94,7 +99,8 @@ describe('The Comments Reducer', () => {
 				});
 
 				it('...commentable was updated', () => {
-					expect(Object.keys(nextState.dictionary).length).to.eql(1);
+					expect(prevState.commentable.length).to.eql(0);
+					expect(nextState.commentable.length).to.eql(1);
 				});
 
 				it('... nextState to have `apiRequest` prop', () => {
