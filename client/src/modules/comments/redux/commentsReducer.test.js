@@ -16,17 +16,40 @@ import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
 import commentsReducer, { initialState } from './commentsReducer';
 
-const newCommentList = [{
-	id: 900,
-	body: 'Something to test out',
-	commentable_id: 100,
-	commentable_type: 'Comment',
-	title: 'Test Comment',
-	user_id: 'Well#1001',
-}];
+const data1 = [
+	{
+		id: 900,
+		body: 'Something to test out',
+		commentable_id: 100,
+		commentable_type: 'Comment',
+		title: 'Test Comment',
+		user_id: 'Well#1001',
+	}
+];
 
-const commentableID = newCommentList.commentable_id;
-const commentableType = newCommentList.commentable_type;
+const data2 = [
+	{
+		id: 700,
+		body: 'The next addition',
+		commentable_id: 200,
+		commentable_type: 'Comment',
+		title: 'Test Comment',
+		user_id: 'Well#1001',
+	},
+	{
+		id: 800,
+		body: 'Final test',
+		commentable_id: 200,
+		commentable_type: 'Comment',
+		title: 'Test Comment',
+		user_id: 'Well#1001',
+	}
+];
+
+const commentableID = data1.commentable_id;
+// const commentableID2 = data2.commentable_id;
+// const commentableID3 = newCommentList3.commentable_id;
+const commentableType = data1.commentable_type;
 
 describe('The Comments Reducer', () => {
 	let prevState; // initial previous state object for testing
@@ -44,12 +67,18 @@ describe('The Comments Reducer', () => {
 		it('...undefined action returns default previous state', () => {
 			expect(commentsReducer(prevState)).to.eql(prevState);
 		});
+
+		it('... sequential actions increment the dictionary', () => {
+			console.log('-->', commentableID)
+			// const action = fetchCommentsRequest(commentableID, commentableType);
+			// const nextState = 	commentsReducer(prevState, )
+		});
 	});
 
 	describe('Comments Reducer Async Actions', () => {
 
 		describe('=> FETCH_COMMENTS_REQUEST', () => {
-			const action = fetchCommentsRequest(commentableID, commentableType);
+			const action = fetchCommentsRequest();
 			const nextState = commentsReducer(prevState, action);
 
 			it('... apiRequest.isFetching` to be `true`', () => {
@@ -63,8 +92,8 @@ describe('The Comments Reducer', () => {
 
 		describe('=> FETCH_COMMENTS_SUCCESS', () => {
 			const action = fetchCommentsSuccess(
-				newCommentList, 
-				newCommentList.commentable_id,
+				data1, 
+				data1.commentable_id,
 			);
 			const nextState = commentsReducer(prevState, action);
 
@@ -78,21 +107,18 @@ describe('The Comments Reducer', () => {
 				});
 			});
 
-			describe('The next state properties', () => {
+			describe('The nextState properties', () => {
 				it('...has a `dictionary` prop', () => {
 					expect(nextState).to.have.property('dictionary')
 						.to.be.an('object')
 				});
 
-				it('...updated the dictionary', () => {
-					expect(nextState.dictionary[900].title).to.eql(newCommentList[0].title)
-				});
-				
-				it('...dictionary was updated', () => {
+				it('...updated the dictionary contents', () => {
+					expect(nextState.dictionary[900].title).to.eql(data1[0].title)
 					expect(Object.keys(prevState.dictionary).length).to.eql(0);
 					expect(Object.keys(nextState.dictionary).length).to.eql(1);
 				});
-
+				
 				it('...has a `commentableComments` prop', () => {
 					expect(nextState).to.have.property('commentableComments')
 						.to.be.an('array');
