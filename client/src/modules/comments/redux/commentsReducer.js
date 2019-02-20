@@ -8,7 +8,7 @@ import {
 
 export const initialState = {
 	dictionary: {}, // a lookup object of all comments by id/key
-	commentable: [], // array of comment ids for the current commentable
+	commentableComments: [], // array of comment ids for the current commentable
 	isFavourited: false, // change name to isMovieFavourited...
 	apiRequest: {
 		isFetching: false,
@@ -44,7 +44,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				dictionary: payload,
+				dictionary: payload.dictionary,
+				commentableComments: payload.commentableComments,
 				apiRequest: {
 					isFetching: false,
 					message: 'Successfully recieved comments',

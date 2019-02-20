@@ -20,10 +20,14 @@ export function fetchCommentsRequest() {
 }
 
 export function fetchCommentsSuccess(data) {
-	const dictionary = normalize(data, commentsListSchema);
+	const normed = normalize(data, commentsListSchema);
+
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
-		payload: dictionary.entities.comments,
+		payload: {
+			commentableComments: normed.result,
+			dictionary: normed.entities.comments,
+		}
 	};
 }
 

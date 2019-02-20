@@ -93,14 +93,14 @@ describe('The Comments Reducer', () => {
 					expect(Object.keys(nextState.dictionary).length).to.eql(1);
 				});
 
-				it('...has a `commentable` prop', () => {
-					expect(nextState).to.have.property('commentable')
+				it('...has a `commentableComments` prop', () => {
+					expect(nextState).to.have.property('commentableComments')
 						.to.be.an('array');
 				});
 
-				it('...commentable was updated', () => {
-					expect(prevState.commentable.length).to.eql(0);
-					expect(nextState.commentable.length).to.eql(1);
+				it('...commentableComments was updated', () => {
+					expect(prevState.commentableComments.length).to.eql(0);
+					expect(nextState.commentableComments.length).to.eql(1);
 				});
 
 				it('... nextState to have `apiRequest` prop', () => {
