@@ -41,7 +41,16 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return Object.assign({}, state, payload);
 
   case FETCH_COMMENTS_SUCCESS:
-		return Object.assign({}, state, payload);
+		return {
+			...state,
+			...{
+				apiRequest: {
+					isFetching: false,
+					message: payload.message,
+					status: 'success',
+				},
+			}
+		}
 
 	case UPDATE_CURRENT_COMMENTS:
     return Object.assign({}, state, payload);

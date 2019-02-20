@@ -48,14 +48,8 @@ describe('The Comments Reducer', () => {
 	describe('Comments Reducer Async Actions', () => {
 
 		describe('=> FETCH_COMMENTS_REQUEST', () => {
-			let action = fetchCommentsRequest(commentableID, commentableType);
-			let nextState = commentsReducer(prevState, action);
-
-			it('... api does not update if no valid action given', () => {
-				action = '';
-				let	nextState = commentsReducer(prevState, action);
-				expect(nextState.apiRequest.isFetching).to.eql(false);
-			});
+			const action = fetchCommentsRequest(commentableID, commentableType);
+			const nextState = commentsReducer(prevState, action);
 
 			it('... apiRequest.isFetching` to be `true`', () => {
 				console.log(nextState.apiRequest.isFetching)
@@ -68,20 +62,23 @@ describe('The Comments Reducer', () => {
 		});
 
 		describe('=> FETCH_COMMENTS_SUCCESS', () => {
-			const action = fetchCommentsSuccess(commentable);
+			const action = fetchCommentsSuccess(
+				commentable, 
+				commentable.commentable_id,
+			);
 			const nextState = commentsReducer(prevState, action);
 
-			xdescribe('The api actions...', () => {
-				xit('... apiRequest.isFetching` to be `false`', () => {
+			describe('The api actions...', () => {
+				it('... apiRequest.isFetching` to be `false`', () => {
 					expect(nextState.apiRequest.isFetching).to.eql(false);
 				});
 
-				xit('... apiRequest.status` to be `success`', () => {
+				it('... apiRequest.status` to be `success`', () => {
 					expect(nextState.apiRequest.status).to.eql('success');
 				});
 
-				xit('...updates the currComments object', () => {
-					expect(nextState.currComments).to.eql(commentable);
+				it('...updates the dictionary object', () => {
+					expect(nextState.dictionary[0]).to.eql(commentable);
 				});
 			});
 

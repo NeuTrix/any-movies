@@ -12,34 +12,35 @@ const comments = new schema.Entity('comments');
 // const requests = new schema.Entity('requests');
 const commentsSchema = ([comments]);
 
-export function fetchCommentsRequest(commentableID, path) {
+export function fetchCommentsRequest() {
 	return {
 		type: FETCH_COMMENTS_REQUEST,
 		payload: {
-			message: `requesting comments for ${path} with id: ${commentableID}`,
+			message: 'Requesting comments',
 		},
 	};
 }
 
-export function fetchCommentsSuccess(data, commentableID, path) {
+export function fetchCommentsSuccess(data) {
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
 		data,
 		payload: {
-			message: `recieved comments for ${path} with id: ${commentableID}`,
+			message: 'Successfully recieved comments',
 		},
 	};
 }
 
-export function fetchCommentsFailure(error, commentableID, path) {
+export function fetchCommentsFailure(error) {
 	return {
 		type: FETCH_COMMENTS_FAILURE,
 		error,
 		payload: { 
 			apiRequest: {
-				isFetching: false, 
-				message: `Error getting comments for ${path} with id: ${commentableID} \n ${error}`,
-				status: 'error' },
+				isFetching: false,
+				message: `Error getting comments: \n ${error}`,
+				status: 'error'
+			},
 		},
 	};
 }
@@ -50,20 +51,20 @@ export function getComments(commentableID, path) {
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
 		// alert state of request action
-		dispatch(fetchCommentsRequest(commentableID, path));
+		dispatch(fetchCommentsRequest());
 		// return the axios promise with the data/status
 		return axios.get(`/api/${path}/${commentableID}/comments`)
 			// normalize the response data
 			.then(resp => normalize(resp.data, commentsSchema))
 			// inspect the normalized data
 			.then((data) => {
-				console.log('--comments-->', data);
+				console.log('--#getComments data-->', data);
 				return data;
 			})
-			.then(data => dispatch(fetchCommentsSuccess(data, commentableID, path)))
+			.then(data => dispatch(fetchCommentsSuccess(data)))
 			.catch((err) => {
-				dispatch(fetchCommentsFailure(err, commentableID, path));
-				console.log('---getComments--->', err);
+				dispatch(fetchCommentsFailure(err));
+				console.log('---#getComments err--->', err);
 			});
 	};
 }
