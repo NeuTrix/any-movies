@@ -1,5 +1,6 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
+	SET_CURRENT_COMMENT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -13,6 +14,8 @@ export const initialState = {
 		status: '',
 	}, // status of the api request
 	comments: [], // array of comment ids for the current comment
+	commentableID: '', // set from the current item
+	commentableType: '', // set from the current item
 	current: {}, // the current comment (in focus)
 	dictionary: {}, // a lookup object of all comments by id/key
 	favourited: false, // favourited?
@@ -33,12 +36,26 @@ export function dictionaryReducer(state = {}, action = {}) {
 			return state;
 	}
 };
- 
+
 export default function commentsReducer(state = initialState, action = {}) {
 	const { type, payload } = action;
-
+	
 	switch (type) {
-  case FETCH_COMMENTS_REQUEST:
+		// handle api failures
+	case FETCH_COMMENTS_FAILURE:
+		return {
+			...state,
+			...{
+				apiRequest: {
+					isFetching: false,
+					message: `Error getting comments: \n ${payload.error}`,
+					status: 'error'
+				},
+			},
+		}
+
+	// Handle API actions
+	case FETCH_COMMENTS_REQUEST:
 		return { 
 			...state, 
 			...{ 
@@ -67,17 +84,15 @@ export default function commentsReducer(state = initialState, action = {}) {
 			}
 		}
 
-	case FETCH_COMMENTS_FAILURE:
-		return {
-			...state,
-			...{
-				apiRequest: {
-					isFetching: false,
-					message: `Error getting comments: \n ${payload.error}`,
-					status: 'error'
-				},
-			},
-		}
+		case SET_CURRENT_COMMENT:
+			return {
+				...state,
+				...{
+					current: payload.current,
+					commentableID: payload.id,
+					commentableType: payload.type,
+				}
+			}
 
 	default:
 		return state;

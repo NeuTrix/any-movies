@@ -12,6 +12,7 @@ import {
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
+	setCurrentComment,
 } from './commentsActions';
 
 import commentsReducer, { initialState } from './commentsReducer';
@@ -19,9 +20,9 @@ import commentsReducer, { initialState } from './commentsReducer';
 // export to a faker or factory helper file
 const data1 = [
 	{
-		id: 900,
+		id: '900',
 		body: 'Something to test out',
-		commentable_id: 100,
+		commentable_id: '100',
 		commentable_type: 'Comment',
 		title: 'Test Comment',
 		user_id: 'Well#1001',
@@ -30,17 +31,17 @@ const data1 = [
 
 const data2 = [
 	{
-		id: 1000,
+		id: '1000',
 		body: 'The next addition',
-		commentable_id: 200,
+		commentable_id: '200',
 		commentable_type: 'Comment',
 		title: 'Test Comment',
 		user_id: 'Well#1001',
 	},
 	{
-		id: 800,
+		id: '800',
 		body: 'Final test',
-		commentable_id: 200,
+		commentable_id: '200',
 		commentable_type: 'Comment',
 		title: 'Test Comment',
 		user_id: 'Well#1001',
@@ -79,6 +80,16 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		it('--> nextState has a comments (array) prop', () => {
 			expect(nextState).to.have.property('comments')
 				.to.be.an('array');
+		});
+
+		it('--> nextState has a commentableID (string) prop', () => {
+			expect(nextState).to.have.property('commentableID')
+				.to.be.an('string');
+		});
+
+		xit('--> nextState has a commentableType (string) prop', () => {
+			expect(nextState).to.have.property('commentableType')
+				.to.be.an('string');
 		});
 
 		it('...comments array has the correct value', () => {
@@ -137,7 +148,7 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 	});
 });
 
-describe('=> FETCH_COMMENTS_REQUEST', () => {
+describe('The FETCH_COMMENTS_REQUEST', () => {
 	const action = fetchCommentsRequest();
 	const nextState = commentsReducer(prevState, action);
 
@@ -177,5 +188,27 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('error');
 		});
+	});
+});
+describe.only('The SET_CURRENT_COMMENT action', () => {
+	const action = setCurrentComment(data1[0], data1[0].id, 'Comment');
+	const nextState = commentsReducer(prevState, action);
+
+	it('...has an updated commentableID prop', () => {
+		expect(nextState).to.have.property('commentableID')
+			.to.be.a('string')
+			.to.eql(data1[0].id);
+	});
+
+	it('...has an updated current prop', () => {
+		expect(nextState).to.have.property('current')
+			.to.be.an('object')
+			.to.eql(data1[0]);
+	});
+
+	it('...has an updated commentableType prop', () => {
+		expect(nextState).to.have.property('commentableType')
+			.to.be.a('string')
+			.to.eql('Comment');
 	});
 });

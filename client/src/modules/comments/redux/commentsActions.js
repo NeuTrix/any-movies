@@ -5,17 +5,20 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
+	SET_CURRENT_COMMENT,
 } from './commentsConstants';
 
 const comment = new schema.Entity('comments'); // normalize data
 const commentsListSchema = [comment]; // shorthand for new schema.Array...
 
+// update the api request property
 export function fetchCommentsRequest() {
 	return {
 		type: FETCH_COMMENTS_REQUEST,
 	};
 }
 
+// manage the data returned from comments GET call api
 export function fetchCommentsSuccess(data) {
 	const normed = normalize(data, commentsListSchema);
 	return {
@@ -27,6 +30,7 @@ export function fetchCommentsSuccess(data) {
 	};
 }
 
+// captures the error messages on fail
 export function fetchCommentsFailure(error) {
 	return {
 		type: FETCH_COMMENTS_FAILURE,
@@ -34,6 +38,19 @@ export function fetchCommentsFailure(error) {
 	};
 }
 
+// set the current comment and commentable type/id
+export function setCurrentComment(current, id, type) {
+	return {
+		type: SET_CURRENT_COMMENT,
+		payload: {
+			current,
+			id,
+			type,
+		},
+	};
+}
+
+// retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, path) {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
