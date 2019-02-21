@@ -43,7 +43,7 @@ export function setCurrentComment(current, id, type) {
 	return {
 		type: SET_CURRENT_COMMENT,
 		payload: {
-			current,
+			current, // create fn to get the current commentable object?
 			id,
 			type,
 		},
