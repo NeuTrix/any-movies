@@ -17,7 +17,7 @@ import { usersReducer } from '../modules/users';
 const reducers = combineReducers({
 	comments: commentsReducer,
 	// dictionaries: dictionaries.Reducer,
-	favourites: favouritesReducer,
+	favourites: favouritesReducer,dd
 	movies: moviesReducer,
 	users: usersReducer,
 	// myname: { first:'Michael', last: 'Walker'},
@@ -43,7 +43,7 @@ const store = createStore(
 
 // hydrate default movie
 store.dispatch(getMovieData('Alien'));
-store.dispatch(getComments('tt0078748','movies'));
-store.dispatch(getComments('tt0076759', 'movies'));
+store.dispatch(getComments('tt0078748','Movie'));
+store.dispatch(getComments('tt0076759', 'Movie'));
 
 export default store;
