@@ -47,6 +47,7 @@ const data2 = [
 		user_id: 'Well#1001',
 	},
 ];
+
 // ensure an immutable previous state object for tests
 const prevState = initialState;
 deepfreeze(prevState);
@@ -63,13 +64,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 	const action2 = fetchCommentsSuccess(data2);
 	const nextState2 = commentsReducer(nextState, action2);
 
-	it('... apiRequest.isFetching` to be `false`', () => {
-		expect(nextState.apiRequest.isFetching).to.eql(false);
-	});
-
-	it('... apiRequest.status` to be `success`', () => {
-		expect(nextState.apiRequest.status).to.eql('success');
-	});
 
 	describe('The nextState properties', () => {
 		it('--> nextState has `apiRequest` prop', () => {
@@ -87,7 +81,7 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 				.to.be.an('string');
 		});
 
-		xit('--> nextState has a commentableType (string) prop', () => {
+		it('--> nextState has a commentableType (string) prop', () => {
 			expect(nextState).to.have.property('commentableType')
 				.to.be.an('string');
 		});
@@ -115,21 +109,21 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 			expect(nextState).to.have.property('showForm')
 				.to.be.an('boolean');
 		});
+	});
 
-		describe('... the apiRequest object', () => {
-			it('... has an updated apiRequest.isFetching prop', () => {
-				expect(nextState.apiRequest).to.have.property('isFetching')
-					.to.eql(false);
-			});
+	describe('The apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
+			expect(nextState.apiRequest).to.have.property('isFetching')
+				.to.eql(false);
+		});
 
-			it('... has an apiRequest.message prop', () => {
-				expect(nextState.apiRequest).to.have.property('message');
-			});
+		it('... has an apiRequest.message prop', () => {
+			expect(nextState.apiRequest).to.have.property('message');
+		});
 
-			it('... has an updated apiRequest.status', () => {
-				expect(nextState.apiRequest).to.have.property('status')
-					.to.eql('success');
-			});
+		it('... has an updated apiRequest.status', () => {
+			expect(nextState.apiRequest).to.have.property('status')
+				.to.eql('success');
 		});
 	});
 
@@ -190,7 +184,8 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 		});
 	});
 });
-describe.only('The SET_CURRENT_COMMENT action', () => {
+
+describe('The SET_CURRENT_COMMENT action', () => {
 	const action = setCurrentComment(data1[0], data1[0].id, 'Comment');
 	const nextState = commentsReducer(prevState, action);
 
