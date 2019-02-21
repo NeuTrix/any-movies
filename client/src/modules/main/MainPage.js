@@ -15,7 +15,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
-	currUser: PropTypes.instanceOf(Object).isRequired, // mocked
+	// currUser: PropTypes.instanceOf(Object).isRequired, // mocked
 	// showingCommentForm: PropTypes.bool.isRequired,
 	// delete this duplicate indicator =>
 	// isMovieRegistered: PropTypes.bool.isRequired, // is this currently in api db?
@@ -25,7 +25,7 @@ const propTypes = {
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
-function MainPage({classes, comments, currMovie, currUser}) {
+function MainPage({ classes, currMovie }) {
 
 	return (
 		<div

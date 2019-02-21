@@ -12,13 +12,13 @@ export function filterComments(indexArray, dictionary) {
 
 const mapStateToProps = state => ({
 	// comments
-	comments: state.comments.currComments,
-	showingCommentForm: state.comments.showingCommentForm,
+	comments: filterComments(state.comments.comments, state.comments.dictionary),
+	showForm: state.comments.showForm,
 	// movies
 	currMovie: state.movies.currMovie,
 	isMovieRegistered: state.movies.isMovieRegistered,
 	// users
-	currUser: state.users.currUser,
+	currUser: state.users.current,
 });
 
 const MainPageContainer = connect(mapStateToProps)(MainPage);
