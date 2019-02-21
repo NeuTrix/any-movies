@@ -6,35 +6,36 @@ import {
 	UPDATE_CURRENT_COMMENTS,
 } from './commentsConstants';
 
+// shape of comments state object
 export const initialState = {
-	dictionary: {}, // a lookup object of all comments by id/key
-	comments: [], // array of comment ids for the current commentable
-	isFavourited: false, // change name to isMovieFavourited...
-	apiRequest: {
+	apiRequest: { 
 		isFetching: false,
 		message: '',
 		status: '',
-	},
-	showCommentsForm: false,
+	}, // status of the api request
+	comments: [], // array of comment ids for the current comment
+	current: {}, // the current comment (in focus)
+	dictionary: {}, // a lookup object of all comments by id/key
+	isFavourited: false, // favourited?
+	showForm: false, // showing new/edit form ?
 };
 
 // reducer to handle nested dictionary state
-
 export function dictionaryReducer( state = {}, action = {}) {
 	const { type, payload } = action;
 
 	switch (type) {
 		case FETCH_COMMENTS_SUCCESS:
-			return { ...state, ...payload.dictionary }
-
+			return {
+				...state, 
+				...payload.dictionary 
+			}
 		default: 
-			return state
+			return state;
 	}
-
 };
  
 export default function commentsReducer(state = initialState, action = {}) {
-	// deconstruct the action item
 	const { type, payload } = action;
 
 	switch (type) {
@@ -55,12 +56,11 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return Object.assign({}, state, payload);
 
 	case FETCH_COMMENTS_SUCCESS:
-		console.log(dictionaryReducer(state.dictionary, action))
 		return {
 			...state,
 			...{
 				dictionary: dictionaryReducer(state.dictionary, action),
-				commentableComments: payload.commentableComments,
+				comments: payload.comments,
 				apiRequest: {
 					isFetching: false,
 					message: 'Successfully recieved comments',

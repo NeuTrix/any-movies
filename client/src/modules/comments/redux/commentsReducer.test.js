@@ -16,6 +16,7 @@ import {
 import deepfreeze from 'deep-freeze';
 import commentsReducer, { initialState } from './commentsReducer';
 
+// export to a faker or factory helper file
 const data1 = [
 	{
 		id: 900,
@@ -46,7 +47,7 @@ const data2 = [
 	},
 ];
 
-describe.only('It can increment the dictionary length', () => {
+describe('It can increment the dictionary length', () => {
 	const prevState = initialState;
 	// deepfreeze // add to test for immutability
 	deepfreeze(prevState);
@@ -69,7 +70,6 @@ describe.only('It can increment the dictionary length', () => {
 
 	it('...has nextState 2 dictionary of length 3', () => {
 		const n2keys = Object.keys(nextState2.dictionary);
-		// console.log(nextState2);
 		expect(n2keys.length).to.eql(3);
 	});
 });
