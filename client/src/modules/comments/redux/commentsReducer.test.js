@@ -125,18 +125,22 @@ describe('=> FETCH_COMMENTS_REQUEST', () => {
 	const action = fetchCommentsRequest();
 	const nextState = commentsReducer(prevState, action);
 
-	it('... apiRequest.isFetching` to be `true`', () => {
-		expect(nextState.apiRequest.isFetching).to.eql(true);
+	it('... has an updated apiRequest.isFetching prop', () => {
+		expect(nextState.apiRequest).to.have.property('isFetching')
+			.to.eql(true);
 	});
 
-	it('... apiRequest.status` to be `requesting`', () => {
-		expect(nextState.apiRequest.status).to.eql('requesting');
+	it('... has an apiRequest.message prop', () => {
+		expect(nextState.apiRequest).to.have.property('message')
+	});
+
+	it('... has an updated apiRequest.status', () => {
+		expect(nextState.apiRequest).to.have.property('status')
+			.to.eql('requesting');
 	});
 });
 
-
-
-xdescribe('=> FETCH_COMMENTS_FAILURE', () => {
+xdescribe('The FETCH_COMMENTS_FAILURE action', () => {
 	const error = 'A mock error message';
 	const action = fetchCommentsFailure(error);
 	const nextState = commentsReducer(prevState, action);
