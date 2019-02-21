@@ -1,9 +1,8 @@
-// reducer for comments actions
+// reducer for comments actions with a sub reducer for dictionary
 import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	UPDATE_CURRENT_COMMENTS,
 } from './commentsConstants';
 
 // shape of comments state object
@@ -35,12 +34,10 @@ export function dictionaryReducer(state = {}, action = {}) {
 	}
 };
  
-// comments reducer
 export default function commentsReducer(state = initialState, action = {}) {
 	const { type, payload } = action;
 
 	switch (type) {
-	// request to the OMBD api
   case FETCH_COMMENTS_REQUEST:
 		return { 
 			...state, 
@@ -53,12 +50,14 @@ export default function commentsReducer(state = initialState, action = {}) {
 			}
 		}
 
-
 	case FETCH_COMMENTS_SUCCESS:
 		return {
 			...state,
 			...{
+				// allow dictionary object ot accumulate objects vs
+				// replacing the shole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
+				// comments for the current commentable (movie or comment)
 				comments: payload.comments,
 				apiRequest: {
 					isFetching: false,
@@ -79,9 +78,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			},
 		}
-
-	// case UPDATE_CURRENT_COMMENTS:
-  //   return Object.assign({}, state, payload);
 
 	default:
 		return state;

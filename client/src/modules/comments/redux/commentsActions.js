@@ -7,11 +7,8 @@ import {
 	FETCH_COMMENTS_SUCCESS,
 } from './commentsConstants';
 
-// normalize data
-const comment = new schema.Entity('comments');
-// const requests = new schema.Entity('requests');
-// shorthand for new schema.Array...
-const commentsListSchema = [comment];
+const comment = new schema.Entity('comments'); // normalize data
+const commentsListSchema = [comment]; // shorthand for new schema.Array...
 
 export function fetchCommentsRequest() {
 	return {
@@ -26,7 +23,7 @@ export function fetchCommentsSuccess(data) {
 		payload: {
 			comments: normed.result, // an array of indices
 			dictionary: normed.entities.comments, // an object map
-		}
+		},
 	};
 }
 
@@ -37,7 +34,6 @@ export function fetchCommentsFailure(error) {
 	};
 }
 
-// `commentableID` maps to commentable_id and `commentableType` to `classses` or `movies` paths
 export function getComments(commentableID, path) {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
@@ -47,8 +43,6 @@ export function getComments(commentableID, path) {
 		// return the axios promise with the data/status
 		return axios.get(`/api/${path}/${commentableID}/comments`)
 			// normalize the response data
-			// .then(resp => normalize(resp.data, commentsSchema))
-			// inspect the normalized data
 			.then((resp) => {
 				console.log('--#getComments data-->', resp.data);
 				return resp.data;
