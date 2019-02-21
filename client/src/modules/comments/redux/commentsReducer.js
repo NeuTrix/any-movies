@@ -41,29 +41,21 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return Object.assign({}, state, payload);
 
 	case FETCH_COMMENTS_SUCCESS:
-		const dict = payload.dictionary
-		const stat = state.dictionary
+		const updatedDictionary = { ...state.dictionary, ...payload.dictionary }
+		// return { ...state, ...{ dictionary: updatedDictionary} }
 
-		console.log('++1++', stat)
-		console.log('dict==1==>', payload.dictionary)
-		const newDict = { ...state.dictionary, ...payload.dictionary }
-		console.log('dict==2==>', newDict)
-		const newState =  { ...state, ...{ dictionary: newDict} }
-		console.log('++2++', newState)
-		return newState
-
-		// return {
-		// 	...state,
-		// 	...{
-		// 		dictionary: payload.dictionary,
-		// 		commentableComments: payload.commentableComments,
-		// 		apiRequest: {
-		// 			isFetching: false,
-		// 			message: 'Successfully recieved comments',
-		// 			status: 'success',
-		// 		},
-		// 	}
-		// }
+		return {
+			...state,
+			...{
+				dictionary: updatedDictionary,
+				commentableComments: payload.commentableComments,
+				apiRequest: {
+					isFetching: false,
+					message: 'Successfully recieved comments',
+					status: 'success',
+				},
+			}
+		}
 
 	case UPDATE_CURRENT_COMMENTS:
     return Object.assign({}, state, payload);
