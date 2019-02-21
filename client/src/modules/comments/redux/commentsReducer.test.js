@@ -29,7 +29,7 @@ const data1 = [
 
 const data2 = [
 	{
-		id: 700,
+		id: 1000,
 		body: 'The next addition',
 		commentable_id: 200,
 		commentable_type: 'Comment',
@@ -69,7 +69,7 @@ describe.only('It can increment the dictionary length', () => {
 
 	it('...has nextState 2 dictionary of length 3', () => {
 		const n2keys = Object.keys(nextState2.dictionary);
-		console.log(nextState2);
+		// console.log(nextState2);
 		expect(n2keys.length).to.eql(3);
 	});
 });

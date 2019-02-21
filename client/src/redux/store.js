@@ -16,9 +16,11 @@ import { usersReducer } from '../modules/users';
 
 const reducers = combineReducers({
 	comments: commentsReducer,
+	// dictionaries: dictionaries.Reducer,
 	favourites: favouritesReducer,
 	movies: moviesReducer,
 	users: usersReducer,
+	// myname: { first:'Michael', last: 'Walker'},
 });
 
 const defaultState = {
@@ -43,6 +45,5 @@ const store = createStore(
 store.dispatch(getMovieData('Alien'));
 store.dispatch(getComments('tt0078748','movies'));
 store.dispatch(getComments('tt0076759', 'movies'));
-
 
 export default store;

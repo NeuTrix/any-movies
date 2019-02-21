@@ -8,7 +8,7 @@ import {
 
 export const initialState = {
 	dictionary: {}, // a lookup object of all comments by id/key
-	commentableComments: [], // array of comment ids for the current commentable
+	comments: [], // array of comment ids for the current commentable
 	isFavourited: false, // change name to isMovieFavourited...
 	apiRequest: {
 		isFetching: false,
@@ -18,6 +18,21 @@ export const initialState = {
 	showCommentsForm: false,
 };
 
+// reducer to handle nested dictionary state
+
+export function dictionaryReducer( state = {}, action = {}) {
+	const { type, payload } = action;
+
+	switch (type) {
+		case FETCH_COMMENTS_SUCCESS:
+			return { ...state, ...payload.dictionary }
+
+		default: 
+			return state
+	}
+
+};
+ 
 export default function commentsReducer(state = initialState, action = {}) {
 	// deconstruct the action item
 	const { type, payload } = action;
@@ -25,29 +40,26 @@ export default function commentsReducer(state = initialState, action = {}) {
 	switch (type) {
 	// request to the OMBD api
   case FETCH_COMMENTS_REQUEST:
-		// return Object.assign({}, state, payload.api);
 		return { 
 			...state, 
-			// ...{ 
-			// 	apiRequest: { 
-			// 		isFetching: true,
-			// 		message: 'Requesting comments',
-			// 		status: 'requesting',
-			// 	},
-			// }
+			...{ 
+				apiRequest: { 
+					isFetching: true,
+					message: 'Requesting comments',
+					status: 'requesting',
+				},
+			}
 		}
 
 	case FETCH_COMMENTS_FAILURE:
 		return Object.assign({}, state, payload);
 
 	case FETCH_COMMENTS_SUCCESS:
-		const updatedDictionary = { ...state.dictionary, ...payload.dictionary }
-		// return { ...state, ...{ dictionary: updatedDictionary} }
-
+		console.log(dictionaryReducer(state.dictionary, action))
 		return {
 			...state,
 			...{
-				dictionary: updatedDictionary,
+				dictionary: dictionaryReducer(state.dictionary, action),
 				commentableComments: payload.commentableComments,
 				apiRequest: {
 					isFetching: false,
