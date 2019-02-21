@@ -50,8 +50,6 @@ const data2 = [
 const prevState = initialState;
 deepfreeze(prevState);
 
-
-
 describe('Comments reducer core actions', () => {
 	it('...undefined action returns default previous state', () => {
 		expect(commentsReducer(prevState)).to.eql(prevState);
@@ -72,6 +70,24 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		expect(nextState.apiRequest.status).to.eql('success');
 	});
 
+	describe('The nextState properties', () => {
+		it('...has a comments (array) prop', () => {
+			expect(nextState).to.have.property('comments')
+				.to.be.an('array');
+			expect(nextState.comments[0]).to.eql(data1[0].id);
+		});
+
+		xit('...commentableComments was updated', () => {
+			expect(prevState.commentableComments.length).to.eql(0);
+			expect(nextState.commentableComments.length).to.eql(1);
+		});
+
+		xit('... nextState to have `apiRequest` prop', () => {
+			expect(nextState).to.have.property('apiRequest')
+				.to.be.an('object');
+		});
+	});
+
 	describe('The dictionary sub reducer', () => {
 		it('...has initial dictionary of length 0', () => {
 			expect(Object.keys(prevState.dictionary).length).to.eql(0);
@@ -85,6 +101,8 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
 		});
 	});
+
+	
 });
 
 describe('=> FETCH_COMMENTS_REQUEST', () => {
@@ -101,33 +119,6 @@ describe('=> FETCH_COMMENTS_REQUEST', () => {
 });
 
 
-xdescribe('The nextState properties', () => {
-	it('...has a `dictionary` prop', () => {
-		expect(nextState).to.have.property('dictionary')
-			.to.be.an('object')
-	});
-
-	it('...updated the dictionary contents', () => {
-		expect(nextState.dictionary[900].title).to.eql(data1[0].title)
-		expect(Object.keys(prevState.dictionary).length).to.eql(0);
-		expect(Object.keys(nextState.dictionary).length).to.eql(2);
-	});
-
-	it('...has a `commentableComments` prop', () => {
-		expect(nextState).to.have.property('commentableComments')
-			.to.be.an('array');
-	});
-
-	it('...commentableComments was updated', () => {
-		expect(prevState.commentableComments.length).to.eql(0);
-		expect(nextState.commentableComments.length).to.eql(1);
-	});
-
-	it('... nextState to have `apiRequest` prop', () => {
-		expect(nextState).to.have.property('apiRequest')
-			.to.be.an('object')
-	});
-});
 
 xdescribe('=> FETCH_COMMENTS_FAILURE', () => {
 	const error = 'A mock error message';

@@ -25,7 +25,7 @@ export function fetchCommentsSuccess(data) {
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
 		payload: {
-			commentableComments: normed.result, // an array of indices
+			comments: normed.result, // an array of indices
 			dictionary: normed.entities.comments, // an object map
 		}
 	};
