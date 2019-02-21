@@ -71,24 +71,42 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 	});
 
 	describe('The nextState properties', () => {
-		it('...has a comments (array) prop', () => {
-			expect(nextState).to.have.property('comments')
-				.to.be.an('array');
-			expect(nextState.comments[0]).to.eql(data1[0].id);
-		});
-
-		xit('...commentableComments was updated', () => {
-			expect(prevState.commentableComments.length).to.eql(0);
-			expect(nextState.commentableComments.length).to.eql(1);
-		});
-
-		xit('... nextState to have `apiRequest` prop', () => {
+		it('--> nextState has `apiRequest` prop', () => {
 			expect(nextState).to.have.property('apiRequest')
 				.to.be.an('object');
 		});
+
+		it('--> nextState has a comments (array) prop', () => {
+			expect(nextState).to.have.property('comments')
+				.to.be.an('array');				
+		});
+
+		it('...comments array has the correct value', () => {
+			expect(nextState.comments[0]).to.eql(data1[0].id);
+		});
+
+		it('...comments array length incremented properly', () => {
+			expect(prevState.comments.length).to.eql(0);
+			expect(nextState.comments.length).to.eql(1);
+		});
+
+		it('--> nextState has a `current` prop', () => {
+			expect(nextState).to.have.property('current')
+				.to.be.an('object');
+		});
+
+		it('...nextState has `favourited` prop', () => {
+			expect(nextState).to.have.property('favourited')
+				.to.be.an('boolean');
+		});
+
+		it('...nextState has `showForm` prop', () => {
+			expect(nextState).to.have.property('showForm')
+				.to.be.an('boolean');
+		});
 	});
 
-	describe('The dictionary sub reducer', () => {
+	describe('The dictionary prop | sub reducer', () => {
 		it('...has initial dictionary of length 0', () => {
 			expect(Object.keys(prevState.dictionary).length).to.eql(0);
 		});
@@ -101,8 +119,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
 		});
 	});
-
-	
 });
 
 describe('=> FETCH_COMMENTS_REQUEST', () => {

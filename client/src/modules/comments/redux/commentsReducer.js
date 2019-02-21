@@ -16,7 +16,7 @@ export const initialState = {
 	comments: [], // array of comment ids for the current comment
 	current: {}, // the current comment (in focus)
 	dictionary: {}, // a lookup object of all comments by id/key
-	isFavourited: false, // favourited?
+	favourited: false, // favourited?
 	showForm: false, // showing new/edit form ?
 };
 
