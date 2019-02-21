@@ -1,5 +1,6 @@
 
 import { expect } from 'chai';
+import deepfreeze from 'deep-freeze';
 import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
@@ -13,7 +14,6 @@ import {
 	fetchCommentsSuccess,
 } from './commentsActions';
 
-import deepfreeze from 'deep-freeze';
 import commentsReducer, { initialState } from './commentsReducer';
 
 // export to a faker or factory helper file
@@ -78,7 +78,7 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 
 		it('--> nextState has a comments (array) prop', () => {
 			expect(nextState).to.have.property('comments')
-				.to.be.an('array');				
+				.to.be.an('array');
 		});
 
 		it('...comments array has the correct value', () => {
@@ -104,6 +104,22 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 			expect(nextState).to.have.property('showForm')
 				.to.be.an('boolean');
 		});
+
+		describe('... the apiRequest object', () => {
+			it('... has an updated apiRequest.isFetching prop', () => {
+				expect(nextState.apiRequest).to.have.property('isFetching')
+					.to.eql(false);
+			});
+
+			it('... has an apiRequest.message prop', () => {
+				expect(nextState.apiRequest).to.have.property('message');
+			});
+
+			it('... has an updated apiRequest.status', () => {
+				expect(nextState.apiRequest).to.have.property('status')
+					.to.eql('success');
+			});
+		});
 	});
 
 	describe('The dictionary prop | sub reducer', () => {
@@ -125,35 +141,41 @@ describe('=> FETCH_COMMENTS_REQUEST', () => {
 	const action = fetchCommentsRequest();
 	const nextState = commentsReducer(prevState, action);
 
-	it('... has an updated apiRequest.isFetching prop', () => {
-		expect(nextState.apiRequest).to.have.property('isFetching')
-			.to.eql(true);
-	});
+	describe('... the apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
+			expect(nextState.apiRequest).to.have.property('isFetching')
+				.to.eql(true);
+		});
 
-	it('... has an apiRequest.message prop', () => {
-		expect(nextState.apiRequest).to.have.property('message')
-	});
+		it('... has an apiRequest.message prop', () => {
+			expect(nextState.apiRequest).to.have.property('message');
+		});
 
-	it('... has an updated apiRequest.status', () => {
-		expect(nextState.apiRequest).to.have.property('status')
-			.to.eql('requesting');
+		it('... has an updated apiRequest.status', () => {
+			expect(nextState.apiRequest).to.have.property('status')
+				.to.eql('requesting');
+		});
 	});
 });
 
-xdescribe('The FETCH_COMMENTS_FAILURE action', () => {
+describe('The FETCH_COMMENTS_FAILURE action', () => {
 	const error = 'A mock error message';
 	const action = fetchCommentsFailure(error);
 	const nextState = commentsReducer(prevState, action);
 
-	xit('... apiRequest.isFetching` to be`false`', () => {
-		expect(nextState.apiRequest.isFetching).to.eql(false);
-	});
+	describe('... the apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
+			expect(nextState.apiRequest).to.have.property('isFetching')
+				.to.eql(false);
+		});
 
-	xit('... apiRequest.status` to be`error`', () => {
-		expect(nextState.apiRequest.status).to.eql('error');
-	});
+		it('... has an apiRequest.message prop', () => {
+			expect(nextState.apiRequest).to.have.property('message');
+		});
 
-	xit('...updates the isFetching message with error data', () => {
-		expect(nextState.apiRequest.message).to.eql(error);
+		it('... has an updated apiRequest.status', () => {
+			expect(nextState.apiRequest).to.have.property('status')
+				.to.eql('error');
+		});
 	});
 });

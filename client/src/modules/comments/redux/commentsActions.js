@@ -21,7 +21,6 @@ export function fetchCommentsRequest() {
 
 export function fetchCommentsSuccess(data) {
 	const normed = normalize(data, commentsListSchema);
-	// console.log('===>', normed.entities.comments)
 	return {
 		type: FETCH_COMMENTS_SUCCESS,
 		payload: {
@@ -34,14 +33,7 @@ export function fetchCommentsSuccess(data) {
 export function fetchCommentsFailure(error) {
 	return {
 		type: FETCH_COMMENTS_FAILURE,
-		error,
-		payload: { 
-			apiRequest: {
-				isFetching: false,
-				message: `Error getting comments: \n ${error}`,
-				status: 'error'
-			},
-		},
+		payload: { error },
 	};
 }
 
