@@ -17,7 +17,7 @@ import { usersReducer } from '../modules/users';
 const reducers = combineReducers({
 	comments: commentsReducer,
 	// dictionaries: dictionaries.Reducer,
-	favourites: favouritesReducer,dd
+	favourites: favouritesReducer,
 	movies: moviesReducer,
 	users: usersReducer,
 	// myname: { first:'Michael', last: 'Walker'},

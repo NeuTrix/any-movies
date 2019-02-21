@@ -52,7 +52,7 @@ export function setCurrentComment(current, id, type) {
 
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {
-	path = commentableType === 'Comment' ? 'comments' : 'movies'
+	const path = commentableType === 'Comment' ? 'comments' : 'movies'
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {

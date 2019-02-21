@@ -2,9 +2,17 @@
 import { connect } from 'react-redux';
 import MainPage from './MainPage';
 
+export function filterComments(indexArray, dictionary) {
+	const list = [];
+	indexArray.forEach((index) => {
+		list.push(dictionary[index]);
+	});
+	return list;
+}
+
 const mapStateToProps = state => ({
-  // comments
-  comments: state.comments.currComments, 
+	// comments
+	comments: state.comments.currComments,
 	showingCommentForm: state.comments.showingCommentForm,
 	// movies
 	currMovie: state.movies.currMovie,
