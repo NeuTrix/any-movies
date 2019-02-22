@@ -177,7 +177,6 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 });
 
 describe('The SET_CURRENT_COMMENT action', () => {
-	console.log(data1[0].id);
 	const action = setCurrentComment(data1[0].id);
 	const nextState = commentsReducer(prevState, action);
 
