@@ -65,14 +65,13 @@ export function getComments(commentableID, commentableType) {
 				return resp.data;
 			})
 			.then(data => dispatch(fetchCommentsSuccess(data)))
-			.then(() => {
-				if (commentableType === 'Comment') {
-					dispatch(setCurrentComment(commentableID));
-				}
-			})
+			.then(() => 
+				commentableType === 'Comment' 
+				&& dispatch(setCurrentComment(commentableID)
+			)
 			.catch((err) => {
 				dispatch(fetchCommentsFailure(err));
 				console.log('---#getComments err--->', err);
-			});
+			})
 	};
 }
