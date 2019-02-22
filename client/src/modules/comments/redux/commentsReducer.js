@@ -88,9 +88,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 			return {
 				...state,
 				...{
-					current: payload.current,
-					commentableID: payload.id,
-					commentableType: payload.type,
+					commentableID: payload.commentableID,
+					commentableType: payload.commentableType,
 				}
 			}
 

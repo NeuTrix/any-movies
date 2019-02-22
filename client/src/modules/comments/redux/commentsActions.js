@@ -39,13 +39,12 @@ export function fetchCommentsFailure(error) {
 }
 
 // set the current comment and commentable type/id
-export function setCurrentComment(current, id, type) {
+export function setCurrentComment(commentableID, commentableType) {
 	return {
 		type: SET_CURRENT_COMMENT,
 		payload: {
-			current, // create fn to get the current commentable object?
-			id,
-			type,
+			commentableID,
+			commentableType,
 		},
 	};
 }

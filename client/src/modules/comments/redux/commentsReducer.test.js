@@ -186,7 +186,7 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 });
 
 describe('The SET_CURRENT_COMMENT action', () => {
-	const action = setCurrentComment(data1[0], data1[0].id, 'Comment');
+	const action = setCurrentComment(data1[0].id, 'Comment');
 	const nextState = commentsReducer(prevState, action);
 
 	it('...has an updated commentableID prop', () => {
@@ -195,11 +195,11 @@ describe('The SET_CURRENT_COMMENT action', () => {
 			.to.eql(data1[0].id);
 	});
 
-	it('...has an updated current prop', () => {
-		expect(nextState).to.have.property('current')
-			.to.be.an('object')
-			.to.eql(data1[0]);
-	});
+	// it('...has an updated current prop', () => {
+	// 	expect(nextState).to.have.property('current')
+	// 		.to.be.an('object')
+	// 		.to.eql(data1[0]);
+	// });
 
 	it('...has an updated commentableType prop', () => {
 		expect(nextState).to.have.property('commentableType')
