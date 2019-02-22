@@ -39,19 +39,19 @@ export function fetchCommentsFailure(error) {
 }
 
 // set the current comment and commentable type/id
-export function setCurrentComment(commentableID, commentableType) {
+export function setCurrentComment(commentableID) {
 	return {
 		type: SET_CURRENT_COMMENT,
 		payload: {
 			commentableID,
-			commentableType,
 		},
 	};
 }
 
+
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {
-	const path = commentableType === 'Comment' ? 'comments' : 'movies'
+	const path = commentableType === 'Comment' ? 'comments' : 'movies';
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
@@ -65,6 +65,11 @@ export function getComments(commentableID, commentableType) {
 				return resp.data;
 			})
 			.then(data => dispatch(fetchCommentsSuccess(data)))
+			.then(() => {
+				if (commentableType === 'Comment') {
+					dispatch(setCurrentComment(commentableID));
+				}
+			})
 			.catch((err) => {
 				dispatch(fetchCommentsFailure(err));
 				console.log('---#getComments err--->', err);

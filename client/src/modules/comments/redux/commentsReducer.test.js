@@ -13,6 +13,7 @@ import {
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
 	setCurrentComment,
+	setCurrentMovie,
 } from './commentsActions';
 
 import commentsReducer, { initialState } from './commentsReducer';
@@ -76,16 +77,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 				.to.be.an('array');
 		});
 
-		it('--> nextState has a commentableID (string) prop', () => {
-			expect(nextState).to.have.property('commentableID')
-				.to.be.an('string');
-		});
-
-		it('--> nextState has a commentableType (string) prop', () => {
-			expect(nextState).to.have.property('commentableType')
-				.to.be.an('string');
-		});
-
 		it('...comments array has the correct value', () => {
 			expect(nextState.comments[0]).to.eql(data1[0].id);
 		});
@@ -97,9 +88,9 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 
 		it('--> nextState has a `current` prop', () => {
 			expect(nextState).to.have.property('current')
-				.to.be.an('object');
+			.to.be.an('string');
 		});
-
+		
 		it('...nextState has `favourited` prop', () => {
 			expect(nextState).to.have.property('favourited')
 				.to.be.an('boolean');
@@ -186,24 +177,16 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 });
 
 describe('The SET_CURRENT_COMMENT action', () => {
-	const action = setCurrentComment(data1[0].id, 'Comment');
+	console.log(data1[0].id);
+	const action = setCurrentComment(data1[0].id);
 	const nextState = commentsReducer(prevState, action);
 
-	it('...has an updated commentableID prop', () => {
-		expect(nextState).to.have.property('commentableID')
-			.to.be.a('string')
-			.to.eql(data1[0].id);
+	it('...has an updated current prop', () => {
+		expect(nextState).to.have.property('current')
+			.to.be.an('string');
 	});
 
-	// it('...has an updated current prop', () => {
-	// 	expect(nextState).to.have.property('current')
-	// 		.to.be.an('object')
-	// 		.to.eql(data1[0]);
-	// });
-
-	it('...has an updated commentableType prop', () => {
-		expect(nextState).to.have.property('commentableType')
-			.to.be.a('string')
-			.to.eql('Comment');
+	it('...has the expected value', () => {
+		expect(nextState.current).to.eql(data1[0].id);
 	});
 });

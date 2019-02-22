@@ -45,5 +45,6 @@ const store = createStore(
 store.dispatch(getMovieData('Alien'));
 store.dispatch(getComments('tt0078748','Movie'));
 store.dispatch(getComments('tt0076759', 'Movie'));
+store.dispatch(getComments('1', 'Comment'));
 
 export default store;
