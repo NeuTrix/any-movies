@@ -44,7 +44,7 @@ describe('The makeActionCreator function', () => {
 	});
 
 
-	describe.only('--> The payload object', () => {
+	describe('--> The payload object', () => {
 		const { payload } = action;
 
 		it('...has the correct number of additional args', () => {
