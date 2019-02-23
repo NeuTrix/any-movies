@@ -124,7 +124,7 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		});
 	});
 
-	describe.only('The dictionary prop | sub reducer', () => {
+	describe('The dictionary prop | sub reducer', () => {
 		it('...has initial dictionary of length 0', () => {
 			expect(Object.keys(prevState.dictionary).length).to.eql(0);
 		});
