@@ -31,7 +31,7 @@ const data1 = [
 // normalized
 const normed1 = normalize(data1, commentsListSchema);
 const comments1 = normed1.result;
-const dictionary1 = normed1.entities;
+const dictionary1 = normed1.entities.comments;
 
 const data2 = [
 	{
@@ -52,9 +52,9 @@ const data2 = [
 	},
 ];
 // normalized
-const normed2 = normalize(data1, commentsListSchema);
+const normed2 = normalize(data2, commentsListSchema);
 const comments2 = normed2.result;
-const dictionary2 = normed2.entities;
+const dictionary2 = normed2.entities.comments;
 
 // ensure an immutable previous state object for tests
 const prevState = initialState;
@@ -94,9 +94,9 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 
 		it('--> nextState has a `current` prop', () => {
 			expect(nextState).to.have.property('current')
-			.to.be.an('string');
+				.to.be.an('string');
 		});
-		
+	
 		it('...nextState has `favourited` prop', () => {
 			expect(nextState).to.have.property('favourited')
 				.to.be.an('boolean');
@@ -109,31 +109,32 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 	});
 
 	describe('The apiRequest object', () => {
-		xit('... has an updated apiRequest.isFetching prop', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
 			expect(nextState.apiRequest).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		xit('... has an apiRequest.message prop', () => {
+		it('... has an apiRequest.message prop', () => {
 			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		xit('... has an updated apiRequest.status', () => {
+		it('... has an updated apiRequest.status', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('success');
 		});
 	});
 
-	describe('The dictionary prop | sub reducer', () => {
-		xit('...has initial dictionary of length 0', () => {
+	describe.only('The dictionary prop | sub reducer', () => {
+		it('...has initial dictionary of length 0', () => {
 			expect(Object.keys(prevState.dictionary).length).to.eql(0);
 		});
 
-		xit('...has nextState 1 dictionary of length 1', () => {
+		it('...has nextState 1 dictionary of length 1', () => {
 			expect(Object.keys(nextState.dictionary).length).to.eql(1);
 		});
 
-		xit('...has nextState 2 dictionary of length 3', () => {
+		it('...has nextState 2 dictionary of length 3', () => {
+			console.log(22, '==>', nextState2.dictionary);
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
 		});
 	});
@@ -144,16 +145,16 @@ describe('The FETCH_COMMENTS_REQUEST', () => {
 	const nextState = commentsReducer(prevState, action);
 
 	describe('... the apiRequest object', () => {
-		xit('... has an updated apiRequest.isFetching prop', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
 			expect(nextState.apiRequest).to.have.property('isFetching')
 				.to.eql(true);
 		});
 
-		xit('... has an apiRequest.message prop', () => {
+		it('... has an apiRequest.message prop', () => {
 			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		xit('... has an updated apiRequest.status', () => {
+		it('... has an updated apiRequest.status', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('requesting');
 		});
@@ -166,16 +167,16 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 	const nextState = commentsReducer(prevState, action);
 
 	describe('... the apiRequest object', () => {
-		xit('... has an updated apiRequest.isFetching prop', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
 			expect(nextState.apiRequest).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		xit('... has an apiRequest.message prop', () => {
+		it('... has an apiRequest.message prop', () => {
 			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		xit('... has an updated apiRequest.status', () => {
+		it('... has an updated apiRequest.status', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('error');
 		});
@@ -186,12 +187,12 @@ describe('The SET_COMMENTABLE_ID action', () => {
 	const action = setCurrentComment(data1[0].id);
 	const nextState = commentsReducer(prevState, action);
 
-	xit('...has an updated current prop', () => {
+	it('...has an updated current prop', () => {
 		expect(nextState).to.have.property('current')
 			.to.be.an('string');
 	});
 
-	xit('...has the expected value', () => {
+	it('...has the expected value', () => {
 		expect(nextState.current).to.eql(data1[0].id);
 	});
 });
