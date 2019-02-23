@@ -8,17 +8,19 @@ import {
 } from './moviesConstants';
 
 export const initialState = {
-	currMovie: {
-		Title: 'Alien',
-		imdbID: 'tt0078748',
-	},
-	isFavourited: false, // change name to isMovieFavourited...
-	isMovieRegistered: false,
 	apiRequest: {
 		isFetching: false,
 		message: '',
 		status: '',
 	},
+	current: {
+		Title: 'Alien',
+		imdbID: 'tt0078748',
+	},
+	commentIndexes: [],
+	isFavourited: false, // change name to isMovieFavourited...
+	isMovieRegistered: false,
+	
 };
 
 export default function moviesReducer(state = initialState, action = {}) {

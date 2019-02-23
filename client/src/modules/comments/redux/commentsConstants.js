@@ -6,6 +6,6 @@ export const FETCH_COMMENTS_REQUEST = 'FETCH_COMMENTS_REQUEST';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 
 // set the current comment and commentable type/id
-export const SET_CURRENT_COMMENT = 'SET_CURRENT_COMMENT';
-// export const SET_CURRENT_MOVIE = 'SET_CURRENT_MOVIE';
-// export const UPDATE_CURRENT_COMMENTS = 'UPDATE_CURRENT_COMMENTS';
+export const SET_COMMENTABLE_ID = 'SET_COMMENTABLE_ID';
+// set index of sub-comments for the current commentable
+// SET_COMMENTABLE_INDEX

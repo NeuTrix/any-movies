@@ -5,7 +5,7 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_CURRENT_COMMENT,
+	SET_COMMENTABLE_ID,
 } from './commentsConstants';
 
 const comment = new schema.Entity('comments'); // normalize data
@@ -41,7 +41,7 @@ export function fetchCommentsFailure(error) {
 // set the current comment
 export function setCurrentComment(commentableID) {
 	return {
-		type: SET_CURRENT_COMMENT,
+		type: SET_COMMENTABLE_ID,
 		payload: {
 			commentableID,
 		},

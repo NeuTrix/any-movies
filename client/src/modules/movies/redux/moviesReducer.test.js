@@ -29,7 +29,7 @@ const prevState = initialState;
 deepfreeze(prevState);
 
 describe('Movies reducer core actions', () => {
-	xit('...undefined action returns default previous state', () => {
+	it('...undefined action returns default previous state', () => {
 		expect(moviesReducer(prevState)).to.eql(prevState);
 	});
 });
@@ -40,19 +40,18 @@ describe('The FETCH_MOVIE_SUCCESS action', () => {
 	const action2 = fetchMovieSuccess(data2);
 	const nextState2 = moviesReducer(nextState, action2);
 
-
 	describe('The nextState properties', () => {
-		xit('--> nextState has `apiRequest` prop', () => {
+		it('--> nextState has `apiRequest` prop', () => {
 			expect(nextState).to.have.property('apiRequest')
 				.to.be.an('object');
 		});
 
-		xit('--> nextState has a movies (array) prop', () => {
-			expect(nextState).to.have.property('movies')
+		it('--> nextState has a commentIndexes (array) prop', () => {
+			expect(nextState).to.have.property('commentIndexes')
 				.to.be.an('array');
 		});
 
-		xit('...movies array has the correct value', () => {
+		it('...movies array has the correct value', () => {
 			expect(nextState.movies[0]).to.eql(data1.imdbID);
 		});
 
@@ -151,7 +150,7 @@ describe('The FETCH_MOVIE_FAILURE action', () => {
 	});
 });
 
-xdescribe('The SET_CURRENT_COMMENT action', () => {
+xdescribe('The SET_COMMENTABLE_ID action', () => {
 	const action = setCurrentMovie(data1.imdbID);
 	const nextState = moviesReducer(prevState, action);
 
