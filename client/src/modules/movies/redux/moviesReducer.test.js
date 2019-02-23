@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
 
 import {
-	fetchMoviesFailure,
-	fetchMoviesRequest,
-	fetchMoviesSuccess,
-	setCurrentComment,
+	fetchMovieFailure,
+	fetchMovieRequest,
+	fetchMovieSuccess,
+	setCurrentMovie,
 } from './moviesActions';
 
 import moviesReducer, {
@@ -35,9 +35,9 @@ describe('Movies reducer core actions', () => {
 });
 
 describe('The FETCH_MOVIES_SUCCESS action', () => {
-	const action = fetchMoviesSuccess(data1);
+	const action = fetchMovieSuccess(data1);
 	const nextState = moviesReducer(prevState, action);
-	const action2 = fetchMoviesSuccess(data2);
+	const action2 = fetchMovieSuccess(data2);
 	const nextState2 = moviesReducer(nextState, action2);
 
 
@@ -110,7 +110,7 @@ describe('The FETCH_MOVIES_SUCCESS action', () => {
 
 describe('The FETCH_MOVIES_REQUEST', () => {
 	const action = fetchMoviesRequest();
-	const nextState = moviesReducer(prevState, action);
+	constnextState = moviesReducer(prevState, action);
 
 	describe('... the apiRequest object', () => {
 		it('... has an updated apiRequest.isFetching prop', () => {
@@ -131,7 +131,7 @@ describe('The FETCH_MOVIES_REQUEST', () => {
 
 describe('The FETCH_MOVIES_FAILURE action', () => {
 	const error = 'A mock error message';
-	const action = fetchMoviesFailure(error);
+	const action = fetchMovieFailure(error);
 	const nextState = moviesReducer(prevState, action);
 
 	describe('... the apiRequest object', () => {
@@ -152,7 +152,7 @@ describe('The FETCH_MOVIES_FAILURE action', () => {
 });
 
 describe('The SET_CURRENT_COMMENT action', () => {
-	const action = setCurrentComment(data1[0].id);
+	const action = setCurrentMovie(data1[0].id);
 	const nextState = moviesReducer(prevState, action);
 
 	it('...has an updated current prop', () => {
