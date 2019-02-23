@@ -42,7 +42,7 @@ describe('The makeActionCreator function', () => {
 				.to.be.an('object');
 		});
 	});
-	
+
 	describe('--> The payload object', () => {
 		const { payload } = action;
 
