@@ -9,29 +9,26 @@ import {
 	SET_COMMENTABLE_ID,
 } from './commentsConstants';
 
-const comment = new schema.Entity('comments'); // normalize data
-const commentsListSchema = [comment]; // shorthand for new schema.Array...
+// normalizr schema
+export const comment = new schema.Entity('comments'); // normalize data
+export const commentsListSchema = [comment]; // shorthand for new schema.Array...
 
 // update the api request property
-// export function fetchCommentsRequest() {
+export const fetchCommentsRequest = makeActionCreator(FETCH_COMMENTS_REQUEST);
+
+// manage the data returned from comments GET call api
+export const fetchCommentsSuccess = makeActionCreator(FETCH_COMMENTS_SUCCESS, 'comments', 'dictionary');
+
+
+// {
 // 	return {
-// 		type: FETCH_COMMENTS_REQUEST,
+// 		type: ,
+// 		payload: {
+//
+// 		},
 // 	};
 // }
 
-export const fetchCommentsRequest = makeActionCreator(FETCH_COMMENTS_REQUEST)
-
-// manage the data returned from comments GET call api
-export function fetchCommentsSuccess(data) {
-	const normed = normalize(data, commentsListSchema);
-	return {
-		type: FETCH_COMMENTS_SUCCESS,
-		payload: {
-			comments: normed.result, // an array of indices
-			dictionary: normed.entities.comments, // an object map
-		},
-	};
-}
 
 // captures the error messages on fail
 export function fetchCommentsFailure(error) {
@@ -67,7 +64,16 @@ export function getComments(commentableID, commentableType) {
 				console.log('--#getComments data-->', resp.data);
 				return resp.data;
 			})
-			.then(data => dispatch(fetchCommentsSuccess(data)))
+			.then((data) => {
+				const normed = normalize(data, commentsListSchema);
+				// console.log(1,'==>', normed)
+				const comments = normed.result; // an array of indices
+				const dictionary = normed.entities.comments; // an object map
+				// console.log('==>', 'in herer')
+				// console.log('==>', fetchCommentsSuccess(comments, dictionary));
+
+				dispatch(fetchCommentsSuccess(comments, dictionary));
+			})
 			.then(() => commentableType === 'Comment'
 				&& dispatch(setCurrentComment(commentableID)))
 			.catch((err) => {
