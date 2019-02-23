@@ -28,13 +28,14 @@ export function dictionaryReducer(state = {}, action = {}) {
 		case FETCH_COMMENTS_SUCCESS:
 			return {
 				...state, 
-				...payload.dictionary, // target the object dictionary
+				...payload.dictionary, // targeting the object dictionary
 			}
 		default: 
 			return state;
 	}
 };
 
+// ====> Primary reducer
 export default function commentsReducer(state = initialState, action = {}) {
 	const { type, payload } = action;
 	
