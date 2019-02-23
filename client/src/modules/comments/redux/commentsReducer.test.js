@@ -1,19 +1,12 @@
 
 import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
-import {
-	FETCH_COMMENTS_FAILURE,
-	FETCH_COMMENTS_REQUEST,
-	FETCH_COMMENTS_SUCCESS,
-	UPDATE_CURRENT_COMMENTS,
-} from './commentsConstants';
 
 import {
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
 	setCurrentComment,
-	setCurrentMovie,
 } from './commentsActions';
 
 import commentsReducer, { initialState } from './commentsReducer';
@@ -21,10 +14,10 @@ import commentsReducer, { initialState } from './commentsReducer';
 // export to a faker or factory helper file
 const data1 = [
 	{
-		id: '900',
 		body: 'Something to test out',
 		commentable_id: '100',
 		commentable_type: 'Comment',
+		id: '900',
 		title: 'Test Comment',
 		user_id: 'Well#1001',
 	},
@@ -32,18 +25,18 @@ const data1 = [
 
 const data2 = [
 	{
-		id: '1000',
 		body: 'The next addition',
 		commentable_id: '200',
 		commentable_type: 'Comment',
+		id: '1000',
 		title: 'Test Comment',
 		user_id: 'Well#1001',
 	},
 	{
-		id: '800',
 		body: 'Final test',
 		commentable_id: '200',
 		commentable_type: 'Comment',
+		id: '800',
 		title: 'Test Comment',
 		user_id: 'Well#1001',
 	},

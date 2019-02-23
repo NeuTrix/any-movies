@@ -38,7 +38,7 @@ export function fetchCommentsFailure(error) {
 	};
 }
 
-// set the current comment and commentable type/id
+// set the current comment
 export function setCurrentComment(commentableID) {
 	return {
 		type: SET_CURRENT_COMMENT,

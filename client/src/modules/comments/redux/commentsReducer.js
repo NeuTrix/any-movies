@@ -14,8 +14,6 @@ export const initialState = {
 		status: '',
 	}, // status of the api request
 	comments: [], // array of comment ids for the current comment
-	// commentableID: '', // set from the current item
-	// commentableType: '', // set from the current item
 	current: '', // the ID of the current comment (in focus)
 	dictionary: {}, // a lookup object of all comments by id/key
 	favourited: false, // favourited?
