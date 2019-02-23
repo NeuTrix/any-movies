@@ -28,11 +28,10 @@ const data1 = [
 		user_id: 'Well#1001',
 	},
 ];
-
 // normalized
 const normed1 = normalize(data1, commentsListSchema);
 const comments1 = normed1.result;
-const dict1 = normed1.entities;
+const dictionary1 = normed1.entities;
 
 const data2 = [
 	{
@@ -52,11 +51,10 @@ const data2 = [
 		user_id: 'Well#1001',
 	},
 ];
-
 // normalized
 const normed2 = normalize(data1, commentsListSchema);
 const comments2 = normed2.result;
-const dict2 = normed2.entities;
+const dictionary2 = normed2.entities;
 
 // ensure an immutable previous state object for tests
 const prevState = initialState;
@@ -68,43 +66,43 @@ describe('Comments reducer core actions', () => {
 	});
 });
 
-describe.only('The FETCH_COMMENTS_SUCCESS action', () => {
-	const action = fetchCommentsSuccess(comments1, dict1);
+describe('The FETCH_COMMENTS_SUCCESS action', () => {
+	const action = fetchCommentsSuccess(comments1, dictionary1);
 	const nextState = commentsReducer(prevState, action);
-	const action2 = fetchCommentsSuccess(data2);
+	const action2 = fetchCommentsSuccess(comments2, dictionary2);
 	const nextState2 = commentsReducer(nextState, action2);
 
 	describe('The nextState properties', () => {
-		xit('--> nextState has `apiRequest` prop', () => {
+		it('--> nextState has `apiRequest` prop', () => {
 			expect(nextState).to.have.property('apiRequest')
 				.to.be.an('object');
 		});
 
-		xit('--> nextState has a comments (array) prop', () => {
+		it('--> nextState has a comments (array) prop', () => {
 			expect(nextState).to.have.property('comments')
 				.to.be.an('array');
 		});
 
-		xit('...comments array has the correct value', () => {
+		it('...comments array has the correct value', () => {
 			expect(nextState.comments[0]).to.eql(data1[0].id);
 		});
 
-		xit('...comments array length incremented properly', () => {
+		it('...comments array length incremented properly', () => {
 			expect(prevState.comments.length).to.eql(0);
 			expect(nextState.comments.length).to.eql(1);
 		});
 
-		xit('--> nextState has a `current` prop', () => {
+		it('--> nextState has a `current` prop', () => {
 			expect(nextState).to.have.property('current')
 			.to.be.an('string');
 		});
 		
-		xit('...nextState has `favourited` prop', () => {
+		it('...nextState has `favourited` prop', () => {
 			expect(nextState).to.have.property('favourited')
 				.to.be.an('boolean');
 		});
 
-		xit('...nextState has `showForm` prop', () => {
+		it('...nextState has `showForm` prop', () => {
 			expect(nextState).to.have.property('showForm')
 				.to.be.an('boolean');
 		});
