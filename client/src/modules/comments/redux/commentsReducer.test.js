@@ -52,7 +52,7 @@ describe('Comments reducer core actions', () => {
 	});
 });
 
-describe('The FETCH_COMMENTS_SUCCESS action', () => {
+describe.only('The FETCH_COMMENTS_SUCCESS action', () => {
 	const action = fetchCommentsSuccess(data1);
 	const nextState = commentsReducer(prevState, action);
 	const action2 = fetchCommentsSuccess(data2);

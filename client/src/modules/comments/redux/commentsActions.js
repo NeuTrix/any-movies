@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { normalize, schema } from 'normalizr';
+import { makeActionCreator } from '../../../helpers';
 
 import {
 	FETCH_COMMENTS_FAILURE,
@@ -12,11 +13,13 @@ const comment = new schema.Entity('comments'); // normalize data
 const commentsListSchema = [comment]; // shorthand for new schema.Array...
 
 // update the api request property
-export function fetchCommentsRequest() {
-	return {
-		type: FETCH_COMMENTS_REQUEST,
-	};
-}
+// export function fetchCommentsRequest() {
+// 	return {
+// 		type: FETCH_COMMENTS_REQUEST,
+// 	};
+// }
+
+export const fetchCommentsRequest = makeActionCreator(FETCH_COMMENTS_REQUEST)
 
 // manage the data returned from comments GET call api
 export function fetchCommentsSuccess(data) {
