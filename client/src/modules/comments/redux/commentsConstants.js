@@ -9,3 +9,6 @@ export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 export const SET_COMMENTABLE_ID = 'SET_COMMENTABLE_ID';
 // set index of sub-comments for the current commentable
 export const SET_COMMENTABLE_INDEX = 'SET_COMMENTABLE_INDEX';
+// CHECK_CACHE to see if comments is already in dictionary
+// UPDATE_DICTIONARY add to current dictionary
+// RESET_DICTIONARY: reset the dictionary for a new movie
