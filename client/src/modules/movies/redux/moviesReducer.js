@@ -13,14 +13,13 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	current: {
+	currMovie: {
 		Title: 'Alien',
 		imdbID: 'tt0078748',
 	},
 	commentIndexes: [],
 	isFavourited: false, // change name to isMovieFavourited...
 	isMovieRegistered: false,
-	
 };
 
 export default function moviesReducer(state = initialState, action = {}) {
