@@ -34,6 +34,16 @@ export function fetchMovieFailure(error) {
 	};
 }
 
+// set the current movie
+// export function setCurrentComment(commentableID) {
+// 	return {
+// 		type: SET_CURRENT_MOVIE,
+// 		payload: {
+// 			commentableID,
+// 		},
+// 	};
+// }
+
 export function getMovieData(movieTitle) {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
@@ -46,7 +56,7 @@ export function getMovieData(movieTitle) {
 			.then(data => dispatch(fetchMovieSuccess(data)))
 			.catch((err) => {
 				dispatch(fetchMovieFailure(err));
-				console.log('--getMovieData-->', err);
+				console.log('--#getMovieData-->', err);
 			});
 	};
 }

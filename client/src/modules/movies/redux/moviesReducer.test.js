@@ -2,116 +2,165 @@ import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
 
 import {
-	FETCH_MOVIE_FAILURE,
-	FETCH_MOVIE_REQUEST,
-	FETCH_MOVIE_SUCCESS,
-	UPDATE_CURRENT_MOVIE,
-} from './moviesConstants';
-
-import {
-	fetchMovieRequest,
-	fetchMovieSuccess,
-	fetchMovieFailure,
+	fetchMoviesFailure,
+	fetchMoviesRequest,
+	fetchMoviesSuccess,
+	setCurrentComment,
 } from './moviesActions';
 
-import moviesReducer from './moviesReducer';
+import moviesReducer, {
+	initialState,
+} from './moviesReducer';
 
-const newMovie = {
+const data1 = {
 	imdb_id: 'tt0112431',
 	ratings: { metacritic: 100, tomatoes: 95 },
 	title: 'Babe',
 };
 
-describe('The Movies Reducer', () => {
-	let prevState; // initial prevState object for testing
+const data2 = {
+	imdb_id: 'tt0078748',
+	ratings: { metacritic: 95, tomatoes: 85 },
+	title: 'Alien',
+};
 
-	beforeEach(() => {
-		prevState = { };
-		// deepfreeze // add to test for immutability
-		deepfreeze(prevState);
-	});
+// ensure an immutable previous state object for tests
+const prevState = initialState;
+deepfreeze(prevState);
 
-	it('...undefined action returns default prevState', () => {
+describe('Movies reducer core actions', () => {
+	it('...undefined action returns default previous state', () => {
 		expect(moviesReducer(prevState)).to.eql(prevState);
 	});
-
-	
 });
 
-describe('MoviesReducer Async Actions', () => {
-	let prevState;
+describe('The FETCH_MOVIES_SUCCESS action', () => {
+	const action = fetchMoviesSuccess(data1);
+	const nextState = moviesReducer(prevState, action);
+	const action2 = fetchMoviesSuccess(data2);
+	const nextState2 = moviesReducer(nextState, action2);
 
-	beforeEach(() => {
-		prevState = {
-			currMovie: {},
-			requestToOmdbApi: {
-				isFetching: false,
-				message: '',
-				status: 'pending',
-			},
-		};
-		deepfreeze(prevState);
-	});
 
-	describe('=> FETCH_MOVIE_REQUEST', () => {
-		const movieTitle = 'Babe';
-		const action = fetchMovieRequest(movieTitle);
-		const newState = moviesReducer(prevState, action);
-
-		it('... sets `requestToOmdbApi.isFetching` to be `true`', () => {
-			expect(newState.requestToOmdbApi.isFetching).to.eql(true);
+	describe('The nextState properties', () => {
+		it('--> nextState has `apiRequest` prop', () => {
+			expect(nextState).to.have.property('apiRequest')
+				.to.be.an('object');
 		});
 
-		it('... sets `requestToOmdbApi.status` to be `requesting`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('requesting');
+		it('--> nextState has a movies (array) prop', () => {
+			expect(nextState).to.have.property('movies')
+				.to.be.an('array');
 		});
 
-		it('... prevState had a `currMovie` prop', () => {
-			expect(prevState).to.have.property('currMovie')
+		it('...movies array has the correct value', () => {
+			expect(nextState.movies[0]).to.eql(data1[0].id);
 		});
 
-		it('... newState to have `currMovie` prop', () => {
-			expect(newState).to.have.property('currMovie')
-		});
-	});
-
-	describe('=> FETCH_MOVIE_SUCCESS', () => {
-		const action = fetchMovieSuccess(newMovie);
-		const newState = moviesReducer(prevState, action);
-
-		it('... sets `requestToOmdbApi.isFetching` to be `false`', () => {
-			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
+		it('...movies array length incremented properly', () => {
+			expect(prevState.movies.length).to.eql(0);
+			expect(nextState.movies.length).to.eql(1);
 		});
 
-		it('... sets `requestToOmdbApi.status` to be `success`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('success');
+		it('--> nextState has a `current` prop', () => {
+			expect(nextState).to.have.property('current')
+				.to.be.an('string');
 		});
 
-		it('...updates the currMovie object', () => {
-			expect(newState.currMovie).to.eql(newMovie)
+		it('...nextState has `favourited` prop', () => {
+			expect(nextState).to.have.property('favourited')
+				.to.be.an('boolean');
 		});
 
-		xit('...updates and registers the movie', () => {
-			
+		it('...nextState has `showForm` prop', () => {
+			expect(nextState).to.have.property('showForm')
+				.to.be.an('boolean');
 		});
 	});
 
-	describe('=> FETCH_MOVIE_FAILURE', () => {
-		const error = 'A mock error message';
-		const action = fetchMovieFailure(error);
-		const newState = moviesReducer(prevState, action);
-
-		it('... sets `requestToOmdbApi.isFetching` to be`false`', () => {
-			expect(newState.requestToOmdbApi.isFetching).to.eql(false);
+	describe('The apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
+			expect(nextState.apiRequest).to.have.property('isFetching')
+				.to.eql(false);
 		});
 
-		it('... sets `requestToOmdbApi.status` to be`error`', () => {
-			expect(newState.requestToOmdbApi.status).to.eql('error');
+		it('... has an apiRequest.message prop', () => {
+			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		it('...updates the isFetching message with error data', () => {
-			expect(newState.requestToOmdbApi.message).to.eql(error);
+		it('... has an updated apiRequest.status', () => {
+			expect(nextState.apiRequest).to.have.property('status')
+				.to.eql('success');
 		});
 	});
 
+	describe('The dictionary prop | sub reducer', () => {
+		it('...has initial dictionary of length 0', () => {
+			expect(Object.keys(prevState.dictionary).length).to.eql(0);
+		});
+
+		it('...has nextState 1 dictionary of length 1', () => {
+			expect(Object.keys(nextState.dictionary).length).to.eql(1);
+		});
+
+		it('...has nextState 2 dictionary of length 3', () => {
+			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
+		});
+	});
+});
+
+describe('The FETCH_MOVIES_REQUEST', () => {
+	const action = fetchMoviesRequest();
+	const nextState = moviesReducer(prevState, action);
+
+	describe('... the apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
+			expect(nextState.apiRequest).to.have.property('isFetching')
+				.to.eql(true);
+		});
+
+		it('... has an apiRequest.message prop', () => {
+			expect(nextState.apiRequest).to.have.property('message');
+		});
+
+		it('... has an updated apiRequest.status', () => {
+			expect(nextState.apiRequest).to.have.property('status')
+				.to.eql('requesting');
+		});
+	});
+});
+
+describe('The FETCH_MOVIES_FAILURE action', () => {
+	const error = 'A mock error message';
+	const action = fetchMoviesFailure(error);
+	const nextState = moviesReducer(prevState, action);
+
+	describe('... the apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
+			expect(nextState.apiRequest).to.have.property('isFetching')
+				.to.eql(false);
+		});
+
+		it('... has an apiRequest.message prop', () => {
+			expect(nextState.apiRequest).to.have.property('message');
+		});
+
+		it('... has an updated apiRequest.status', () => {
+			expect(nextState.apiRequest).to.have.property('status')
+				.to.eql('error');
+		});
+	});
+});
+
+describe('The SET_CURRENT_COMMENT action', () => {
+	const action = setCurrentComment(data1[0].id);
+	const nextState = moviesReducer(prevState, action);
+
+	it('...has an updated current prop', () => {
+		expect(nextState).to.have.property('current')
+			.to.be.an('string');
+	});
+
+	it('...has the expected value', () => {
+		expect(nextState.current).to.eql(data1[0].id);
+	});
 });
