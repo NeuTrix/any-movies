@@ -14,7 +14,7 @@ export const initialState = {
 	},
 	isFavourited: false, // change name to isMovieFavourited...
 	isMovieRegistered: false,
-	requestToOmdbApi: {
+	apiRequest: {
 		isFetching: false,
 		message: '',
 		status: '',
