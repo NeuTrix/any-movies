@@ -8,7 +8,7 @@ it('the suite is turned off', () => {
 // 	FETCH_MOVIE_FAILURE,
 // 	FETCH_MOVIE_REQUEST,
 // 	FETCH_MOVIE_SUCCESS,
-// 	UPDATE_CURRENT_MOVIE,
+// 	SET_CURRENT_MOVIE,
 // } from './moviesConstants';
 
 // import {

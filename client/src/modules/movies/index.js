@@ -6,4 +6,4 @@ export { default as MovieCommentsContainer } from './MovieCommentsContainer';
 export { default as moviesReducer } from './redux/moviesReducer';
 export { getMovieData } from './redux/moviesActions';
 // constants from strings to ensure against typos
-export { UPDATE_CURRENT_MOVIE } from './redux/moviesConstants';
+export { SET_CURRENT_MOVIE } from './redux/moviesConstants';
