@@ -14,7 +14,6 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	movieID: '',
 	current: {},
 	dictionary: {},
 	favourited: false, // change name to isMovieFavourited...
@@ -37,8 +36,7 @@ export function dictionaryReducer(state = {}, action = {}) {
 }; 
 
 export default function moviesReducer(state = initialState, action = {}) {
-	// deconstruct the action item
-	const { type, payload } = action;
+	const { type, payload } = action; // deconstruct the action item
 
 	switch (type) {
 	// request to the OMBD api
@@ -53,24 +51,20 @@ export default function moviesReducer(state = initialState, action = {}) {
 					},
 				}
 			};
-
-			// consider refactoring to only handle api and move the rest
-			// to an update action.  Simplify.
+		
+		// hydrate the application with movie data
 		case FETCH_MOVIE_SUCCESS:
-			// const movie = payload.dictionar[payload.movieID];
 			const { dictionary, movieID } = payload
 			const movie = dictionary[movieID]
 			return {
 				...state,
 				...{
-					// allow dictionary object ot accumulate objects vs
-					// replacing the whole object state (due to nesting)
-					imdbID: movieID,
+					imdbID: movie.imdbID,
 					current: movie,
 					title: movie.Title,
 					poster: movie.Poster,
+					// allow dictionary object ot accumulate/ cache movie search objects 
 					dictionary: dictionaryReducer(state.dictionary, action),
-					// subComments for the current commentable (movie or comment)
 					apiRequest: {
 						isFetching: false,
 						message: 'Successfully recieved comments',
@@ -78,14 +72,16 @@ export default function moviesReducer(state = initialState, action = {}) {
 					},
 				}
 			};
-
+			
+		// log failures
 		case FETCH_MOVIE_FAILURE:
+			const { error } = payload
 			return {
 				...state,
 				...{
 					apiRequest: {
 						isFetching: false,
-						message: `Error getting movie: \n ${payload.error}`,
+						message: `Error getting movie: \n ${error}`,
 						status: 'error'
 					},
 				},
