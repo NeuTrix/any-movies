@@ -8,7 +8,7 @@ import {
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
-	setCurrentComment,
+	setCommentableID,
 	// normalizr schema variables
 	comment, 
 	commentsListSchema,
@@ -183,12 +183,13 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 	});
 });
 
-describe('The SET_COMMENTABLE_ID action', () => {
-	const action = setCurrentComment(data1[0].id);
+describe.only('The SET_COMMENTABLE action', () => {
+	const action = setCommentableID(data1[0].id);
 	const nextState = commentsReducer(prevState, action);
+	console.log(99, '==>', nextState);
 
 	it('...has an updated current prop', () => {
-		expect(nextState).to.have.property('current')
+		expect(nextState).to.have.property('commentable')
 			.to.be.an('string');
 	});
 

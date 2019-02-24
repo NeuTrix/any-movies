@@ -6,7 +6,7 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_COMMENTABLE_ID,
+	SET_COMMENTABLE,
 } from './commentsConstants';
 
 // normalizr schema
@@ -32,14 +32,10 @@ export const fetchCommentsFailure = makeActionCreator(
 );
 
  // set the current comment
-export function setCurrentComment(commentableID) {
-	return {
-		type: SET_COMMENTABLE_ID,
-		payload: {
-			commentableID,
-		},
-	};
-}
+export const setCommentable = makeActionCreator(
+	SET_COMMENTABLE,
+	'commentable',
+);
 
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {
@@ -57,13 +53,14 @@ export function getComments(commentableID, commentableType) {
 				return resp.data;
 			})
 			.then((data) => {
+				// normalize the datat
 				const normed = normalize(data, commentsListSchema);
 				const comments = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
 				dispatch(fetchCommentsSuccess(comments, dictionary));
 			})
 			.then(() => commentableType === 'Comment'
-				&& dispatch(setCurrentComment(commentableID)))
+				&& dispatch(setCommentable(commentableID)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
 				console.log('---#getComments error--->', error);

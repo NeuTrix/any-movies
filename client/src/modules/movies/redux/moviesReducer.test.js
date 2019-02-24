@@ -150,7 +150,7 @@ describe('The FETCH_MOVIE_FAILURE action', () => {
 	});
 });
 
-xdescribe('The SET_COMMENTABLE_ID action', () => {
+xdescribe('The SET_COMMENTABLE action', () => {
 	const action = setCurrentMovie(data1.imdbID);
 	const nextState = moviesReducer(prevState, action);
 

@@ -1,6 +1,6 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
-	SET_COMMENTABLE_ID,
+	SET_COMMENTABLE,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -83,7 +83,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 			}
 		}
 
-		case SET_COMMENTABLE_ID:
+		case SET_COMMENTABLE:
 			return {
 				...state,
 				...{
