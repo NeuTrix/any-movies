@@ -44,7 +44,8 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		});
 
 		it('...subComments array has the correct value', () => {
-			expect(nextState.subComments[0]).to.eql(data1[0].id);
+
+			expect(nextState.subComments[0]).to.eql(comments1[0]);
 		});
 
 		it('...subComments array length incremented properly', () => {
@@ -143,7 +144,7 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 });
 
 describe('The SET_COMMENTABLE action', () => {
-	const action = setCommentable(data1[0].id);
+	const action = setCommentable(comments1[0]);
 	const nextState = commentsReducer(prevState, action);
 
 	it('...has an updated commentable prop', () => {
@@ -152,6 +153,6 @@ describe('The SET_COMMENTABLE action', () => {
 	});
 
 	it('...has the expected value', () => {
-		expect(nextState.commentable).to.eql(data1[0].id);
+		expect(nextState.commentable).to.eql(comments1[0]);
 	});
 });
