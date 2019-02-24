@@ -47,7 +47,6 @@ describe('The makeActionCreator function', () => {
 		const { payload } = action;
 
 		it('...has the correct number of additional args', () => {
-			console.log(Object.keys(payload));
 			expect(Object.keys(payload).length).to.eql(2);
 		});
 
