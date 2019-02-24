@@ -1,10 +1,16 @@
 import axios from 'axios';
 import { omdbUrl } from '../../../helpers/api.helper';
+import { nomralize, schema } from 'normalizr';
+
 import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
 } from './moviesConstants';
+
+// normalizr schema
+export const movie = new schema.Entity('movies'); // normalize data
+export const moviesListSchema = [movie]; // shorthand for schema.Array...
 
 export function fetchMovieRequest(movieTitle) {
 	return {
