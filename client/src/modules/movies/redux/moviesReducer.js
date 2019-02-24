@@ -18,7 +18,7 @@ export const initialState = {
 		imdbID: 'tt0078748',
 	},
 	commentIndexes: [],
-	isFavourited: false, // change name to isMovieFavourited...
+	favourited: false, // change name to isMovieFavourited...
 	isMovieRegistered: false,
 };
 
