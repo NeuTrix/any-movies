@@ -1,20 +1,24 @@
 
-import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
+import { expect } from 'chai';
 
+// action creators
 import {
-	// action creators
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
 	setCommentable,
 } from './commentsActions';
 
-import { comments1, comments2, dictionary1, dictionary2 } from './commentsTestHelper'
+// test objects
+import {
+	comments1,
+	comments2,
+	dictionary1,
+	dictionary2,
+} from './commentsTestHelper';
 
 import commentsReducer, { initialState } from './commentsReducer';
-
-
 
 // ensure an immutable previous state object for tests
 const prevState = initialState;
@@ -44,7 +48,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		});
 
 		it('...subComments array has the correct value', () => {
-
 			expect(nextState.subComments[0]).to.eql(comments1[0]);
 		});
 
@@ -57,7 +60,7 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 			expect(nextState).to.have.property('commentable')
 				.to.be.an('string');
 		});
-	
+
 		it('...nextState has `favourited` prop', () => {
 			expect(nextState).to.have.property('favourited')
 				.to.be.an('boolean');
