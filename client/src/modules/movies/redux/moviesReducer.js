@@ -19,6 +19,21 @@ export const initialState = {
 	registered: false,
 };
 
+//  reducer to handle nested dictionary state
+export function dictionaryReducer(state = {}, action = {}) {
+	const { type, payload } = action;
+
+	switch (type) {
+		case FETCH_MOVIE_SUCCESS:
+			return {
+				...state, 
+				...payload.dictionary, // targeting the object dictionary
+			}
+		default: 
+			return state;
+	}
+}; 
+
 export default function moviesReducer(state = initialState, action = {}) {
 	// deconstruct the action item
 	const { type, payload } = action;
@@ -35,8 +50,16 @@ export default function moviesReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
+				// allow dictionary object ot accumulate objects vs
+				// replacing the whole object state (due to nesting)
 				current: payload.current,
-				dictionary: payload.dictionary,
+				dictionary: dictionaryReducer(state.dictionary, action),
+				// subComments for the current commentable (movie or comment)
+				apiRequest: {
+					isFetching: false,
+					message: 'Successfully recieved comments',
+					status: 'success',
+				},
 			}
 		};
 

@@ -71,7 +71,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 			...state,
 			...{
 				// allow dictionary object ot accumulate objects vs
-				// replacing the shole object state (due to nesting)
+				// replacing the whole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
 				// subComments for the current commentable (movie or comment)
 				subComments: payload.subComments,

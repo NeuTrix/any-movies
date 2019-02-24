@@ -31,19 +31,19 @@ describe('Movies reducer core actions', () => {
 
 describe('The FETCH_MOVIES_SUCCESS action', () => {
 	const action = fetchMovieSuccess(movie1, details);
-	// const nextState = moviesReducer(prevState, action);
-	// const action2 = fetchMoviesSuccess(movie2, details2);
-	// const nextState2 = moviesReducer(nextState, action2);
+	const nextState = moviesReducer(prevState, action);
+	const action2 = fetchMovieSuccess(movie2, details2);
+	const nextState2 = moviesReducer(nextState, action2);
 
-	xdescribe('The nextState properties', () => {
-		xit('--> nextState has `apiRequest` prop', () => {
+	describe('The nextState properties', () => {
+		it('--> nextState has `apiRequest` prop', () => {
 			expect(nextState).to.have.property('apiRequest')
 				.to.be.an('object');
 		});
 
-		xit('--> nextState has a subMovies (array) prop', () => {
-			expect(nextState).to.have.property('subMovies')
-				.to.be.an('array');
+		it('--> nextState has a current (string) prop', () => {
+			expect(nextState).to.have.property('current')
+				.to.be.an('string');
 		});
 
 		xit('...subMovies array has the correct value', () => {

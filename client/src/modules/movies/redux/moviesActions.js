@@ -10,7 +10,8 @@ import { omdbUrl } from '../../../helpers/api.helper';
 import { makeActionCreator } from '../../../helpers'
 
 // normalizr schema
-export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' }); 
+export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' });
+
 export function fetchMovieRequest(movieTitle) {
 	return {
 		type: FETCH_MOVIE_REQUEST,
@@ -26,15 +27,6 @@ export const fetchMovieSuccess = makeActionCreator(
 	'dictionary',
 ); 
 
-// {
-// 	return {
-// 		type: ,
-// 		payload: {
-// 			current: data,
-// 			requestToOmdbApi: { isFetching: false, status: 'success' },
-// 		},
-// 	};
-// }
 
 export function fetchMovieFailure(error) {
 	return {
