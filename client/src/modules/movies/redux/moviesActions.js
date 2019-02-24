@@ -20,15 +20,12 @@ export const fetchMovieSuccess = makeActionCreator(
 	'dictionary',
 ); 
 
+// captures the error messages on fail
+export const fetchMovieFailure = makeActionCreator(
+	FETCH_MOVIE_FAILURE,
+	'error',
+);
 
-export function fetchMovieFailure(error) {
-	return {
-		type: FETCH_MOVIE_FAILURE,
-		payload: {
-			requestToOmdbApi: { isFetching: false, message: error, status: 'error' },
-		},
-	};
-}
 
 // set the current movie
 // export function setCurrentComment(commentableID) {

@@ -52,9 +52,6 @@ export default function moviesReducer(state = initialState, action = {}) {
 			}
 		}
 
-	case FETCH_MOVIE_FAILURE:
-		return Object.assign({}, state, payload);
-
 	case FETCH_MOVIE_SUCCESS:
 		return {
 			...state,
@@ -72,6 +69,17 @@ export default function moviesReducer(state = initialState, action = {}) {
 			}
 		};
 
+	case FETCH_MOVIE_FAILURE:
+		return {
+			...state,
+			...{
+				apiRequest: {
+					isFetching: false,
+					message: `Error getting movie: \n ${payload.error}`,
+					status: 'error'
+				},
+			},
+		}
 	case SET_CURRENT_MOVIE:
 		return Object.assign({}, state, payload);
 

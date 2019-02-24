@@ -118,9 +118,9 @@ describe('The FETCH_MOVIE_REQUEST', () => {
 	});
 });
 
-xdescribe('The FETCH_MOVIE_FAILURE action', () => {
+describe('The FETCH_MOVIE_FAILURE action', () => {
 	const error = 'A mock error message';
-	const action = fetchMoviesFailure(error);
+	const action = fetchMovieFailure(error);
 	const nextState = moviesReducer(prevState, action);
 
 	xdescribe('... the apiRequest object', () => {
