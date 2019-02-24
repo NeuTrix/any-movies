@@ -43,19 +43,16 @@ export function getMovieData(movieTitle) {
 		dispatch(fetchMovieRequest(movieTitle));
 		// return the axios promise with the data/status
 		return axios.get(`${omdbUrl}&t=${movieTitle}`)
-			.then(resp => 
-				{return normalize(resp.data, movie)})
+			// normalize the data
+			.then(resp => normalize(resp.data, movie))
 			.then(data => {
-				console.log(100, '==>', data);
-
-				// const current = normalize(data, movie)
-				// const dictionary = ;
-				// normalize
-				// dispatch(fetchMovieSuccess(current, dictionary))
+				const current = data.result;
+				const dictionary = data.entities.movies;
+				dispatch(fetchMovieSuccess(current, dictionary))
 			})
 			.catch((err) => {
 				dispatch(fetchMovieFailure(err));
-				console.log('--#getMovieData-->', err);
+				console.log('--ERROR: #getMovieData-->', err);
 			});
 	};
 }
