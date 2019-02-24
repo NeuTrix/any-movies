@@ -4,7 +4,7 @@ import axios from 'axios';
 export function addFavourite(data) {
 	axios.post('/api/favourites', data)
 		.then((resp) => {
-    	console.log('adding the favourite ==>', resp.data)
+    	console.log('adding the favourite ==>', resp.data);
 			return resp;
 		})
 		.catch((err) => {
@@ -14,11 +14,10 @@ export function addFavourite(data) {
 
 // return an index of all favourites for this user
 export function getFavourites(userId) {
-
 	return axios.get(`api/users/${userId}/favourites`)
 		.then((resp) => {
 			console.log(`getting favourites for user: ${userId}:`, resp.data);
-		return resp
+			return resp;
 		})
 		.catch((err) => {
 			console.log('Err: #getFavouites', err);
@@ -26,21 +25,21 @@ export function getFavourites(userId) {
 }
 
 export function removeFavourite(data) {
-  return axios.get('api/favourites', {
-    params: {
-      favourited_id: data.favourited_id,
-      favourited_type: data.favourited_type,
-      user_id: data.user_id,
-    },
-  })
-  .then(resp => {
-    const favId = resp.data.id
-    console.log('removing favourite: ', favId)
-    return axios.delete(`api/favourites/${favId}`);
-  })
-  .catch(err => {
-    console.log('Err: #removeFavourites ==>', err)
-  })
+	return axios.get('api/favourites', {
+		params: {
+			favourited_id: data.favourited_id,
+			favourited_type: data.favourited_type,
+			user_id: data.user_id,
+		},
+	})
+		.then((resp) => {
+			const favId = resp.data.id;
+			console.log('removing favourite: ', favId);
+			return axios.delete(`api/favourites/${favId}`);
+		})
+		.catch((err) => {
+			console.log('Err: #removeFavourites ==>', err);
+		});
 }
 
 // Returns a Promise to verify favuorited status for user/movie
@@ -55,13 +54,14 @@ export function isFavourited(data) {
 	})
 		.then((resp) => {
 			if (resp.id !== 'null') {
-				console.log('current isFavourited status is:', resp.data);
+				// console.log('current isFavourited status is:', resp.data);
 				return resp;
-			} 
-      console.log(`Something's wrong with the data.\n See the logs.`);
-      console.log('data: ', data, 'resp.data: ', resp.data);
+			}
+			// console.log(`Something's wrong with the data.\n See the logs.`);
+			// console.log('data: ', data, 'resp.data: ', resp.data);
+			return "null response?"
 		})
 		.catch((err) => {
-			console.log('Err: #isFavourited', err);
+			// console.log('Err: #isFavourited', err);
 		});
 }

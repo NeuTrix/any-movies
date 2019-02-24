@@ -49,7 +49,7 @@ export function getComments(commentableID, commentableType) {
 		return axios.get(`/api/${path}/${commentableID}/comments`)
 			// normalize the response data
 			.then((resp) => {
-				console.log('--#getComments data-->', resp.data);
+				// console.log('--#getComments data-->', resp.data);
 				return resp.data;
 			})
 			.then((data) => {
@@ -63,7 +63,7 @@ export function getComments(commentableID, commentableType) {
 			.then(() => dispatch(setCommentable(commentableID)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
-				console.log('---#getComments error--->', error);
+				// console.log('---#getComments error--->', error);
 			});
 	};
 }
