@@ -1,7 +1,7 @@
 // present a mock state object for testing
 // Need to consolidate this into a factory or other test helper file
 const mockstate = {
-	current: {
+	currMovie: {
 		imdb_id: 'tt0078748',
 		ratings: [{
 			metacritic: 90,

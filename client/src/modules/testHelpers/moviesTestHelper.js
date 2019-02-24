@@ -1,26 +1,28 @@
 // normalizr schema variables
 import { normalize } from 'normalizr';
-import { moviesListSchema } from '../movies/redux';
+import { movie } from '../movies/redux';
 
 // test objects
 // export to a faker or factory helper file
-// const movie1 = [{
-// 		title: 'Alien',
-// 		imdb_id: 'tt0078748'
-// }];
+const movieMock1 = {
+	imdbID: 'tt0078748',
+	title: 'Alien',
+};
 
-// const movie2 = [
-// 	{ title: 'Star Wars',
-// 			imdb_id: 'tt0076759'
-// 	}
-// ];
+const movieMock2 = {
+	imdbID: 'tt0076759',
+	title: 'Star Wars',
+};
 
 // normalized
-const normed1 = normalize(data1, moviesListSchema);
-const normed2 = normalize(data2, moviesListSchema);
+const normed1 = normalize(movieMock1, movie);
+const normed2 = normalize(movieMock2, movie);
 
 // export test variables
-export const movies1 = normed1.result;
-export const dictionary1 = normed1.entities.movies;
-export const movies2 = normed2.result;
+
+// gets id of the current movie
+export const current = normed1.result;
+export const current2 = normed2.result;
+// get the detailed info of the current movie
+export const dictionary = normed1.entities.movies;
 export const dictionary2 = normed2.entities.movies;

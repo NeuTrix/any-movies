@@ -9,8 +9,7 @@ import {
 } from './moviesConstants';
 
 // normalizr schema
-export const movie = new schema.Entity('movies'); // normalize data
-export const moviesListSchema = [movie]; // shorthand for schema.Array...
+export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' }); // normalize data
 
 export function fetchMovieRequest(movieTitle) {
 	return {
