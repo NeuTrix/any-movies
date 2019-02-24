@@ -123,20 +123,19 @@ describe('The FETCH_MOVIE_FAILURE action', () => {
 	const action = fetchMovieFailure(error);
 	const nextState = moviesReducer(prevState, action);
 
-	xdescribe('... the apiRequest object', () => {
-		xit('... has an updated apiRequest.isFetching prop', () => {
+	describe('... the apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
 			expect(nextState.apiRequest).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		xit('... has an apiRequest.message prop', () => {
+		it('... has an apiRequest.message prop', () => {
 			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		xit('... has an updated apiRequest.status', () => {
+		it('... has an updated apiRequest.status', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('error');
 		});
 	});
 });
-

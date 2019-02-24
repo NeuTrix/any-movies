@@ -40,50 +40,50 @@ export default function moviesReducer(state = initialState, action = {}) {
 
 	switch (type) {
 	// request to the OMBD api
-	case FETCH_MOVIE_REQUEST:
-		return { 
-			...state, 
-			...{ 
-				apiRequest: { 
-					isFetching: true,
-					message: 'Requesting movie',
-					status: 'requesting',
-				},
-			}
-		}
+		case FETCH_MOVIE_REQUEST:
+			return { 
+				...state, 
+				...{ 
+					apiRequest: { 
+						isFetching: true,
+						message: 'Requesting movie',
+						status: 'requesting',
+					},
+				}
+			};
 
-	case FETCH_MOVIE_SUCCESS:
-		return {
-			...state,
-			...{
-				// allow dictionary object ot accumulate objects vs
-				// replacing the whole object state (due to nesting)
-				current: payload.current,
-				dictionary: dictionaryReducer(state.dictionary, action),
-				// subComments for the current commentable (movie or comment)
-				apiRequest: {
-					isFetching: false,
-					message: 'Successfully recieved comments',
-					status: 'success',
-				},
-			}
-		};
+			// consider refactoring to only handle api and move the rest
+			// to an update action.  Simplify.
+		case FETCH_MOVIE_SUCCESS:
+			return {
+				...state,
+				...{
+					// allow dictionary object ot accumulate objects vs
+					// replacing the whole object state (due to nesting)
+					current: payload.current,
+					dictionary: dictionaryReducer(state.dictionary, action),
+					// subComments for the current commentable (movie or comment)
+					apiRequest: {
+						isFetching: false,
+						message: 'Successfully recieved comments',
+						status: 'success',
+					},
+				}
+			};
 
-	case FETCH_MOVIE_FAILURE:
-		return {
-			...state,
-			...{
-				apiRequest: {
-					isFetching: false,
-					message: `Error getting movie: \n ${payload.error}`,
-					status: 'error'
+		case FETCH_MOVIE_FAILURE:
+			return {
+				...state,
+				...{
+					apiRequest: {
+						isFetching: false,
+						message: `Error getting movie: \n ${payload.error}`,
+						status: 'error'
+					},
 				},
-			},
-		}
-	case SET_CURRENT_MOVIE:
-		return Object.assign({}, state, payload);
+			};
 
-	default:
-		return state;
+		default:
+			return state;
 	}
 }
