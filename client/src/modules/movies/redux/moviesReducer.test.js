@@ -66,33 +66,33 @@ describe('The FETCH_MOVIES_SUCCESS action', () => {
 		});
 	});
 
-	xdescribe('The apiRequest object', () => {
-		xit('... has an updated apiRequest.isFetching prop', () => {
+	describe('The apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
 			expect(nextState.apiRequest).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		xit('... has an apiRequest.message prop', () => {
+		it('... has an apiRequest.message prop', () => {
 			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		xit('... has an updated apiRequest.status', () => {
+		it('... has an updated apiRequest.status', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('success');
 		});
 	});
 
-	xdescribe('The dictionary prop | sub reducer', () => {
-		xit('...has inxitial dictionary of length 0', () => {
+	describe('The dictionary prop | sub reducer', () => {
+		it('...has initial dictionary of length 0', () => {
 			expect(Object.keys(prevState.dictionary).length).to.eql(0);
 		});
 
-		xit('...has nextState 1 dictionary of length 1', () => {
+		it('...has nextState 1 dictionary of length 1', () => {
 			expect(Object.keys(nextState.dictionary).length).to.eql(1);
 		});
 
-		xit('...has nextState 2 dictionary of length 3', () => {
-			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
+		it('...has nextState 2 dictionary of length 2', () => {
+			expect(Object.keys(nextState2.dictionary).length).to.eql(2);
 		});
 	});
 });
