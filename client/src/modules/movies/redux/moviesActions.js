@@ -19,7 +19,7 @@ export function fetchMovieSuccess(data) {
 	return {
 		type: FETCH_MOVIE_SUCCESS,
 		payload: {
-			currMovie: data,
+			current: data,
 			requestToOmdbApi: { isFetching: false, status: 'success' },
 		},
 	};

@@ -13,7 +13,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	currMovie: {
+	current: {
 		Title: 'Alien',
 		imdbID: 'tt0078748',
 	},

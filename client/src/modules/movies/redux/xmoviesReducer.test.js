@@ -46,7 +46,7 @@ describe('MoviesReducer Async Actions', () => {
 
 	beforeEach(() => {
 		prevState = {
-			currMovie: {},
+			current: {},
 			requestToOmdbApi: {
 				isFetching: false,
 				message: '',
@@ -69,12 +69,12 @@ describe('MoviesReducer Async Actions', () => {
 			expect(newState.requestToOmdbApi.status).to.eql('requesting');
 		});
 
-		it('... prevState had a `currMovie` prop', () => {
-			expect(prevState).to.have.property('currMovie')
+		it('... prevState had a `current` prop', () => {
+			expect(prevState).to.have.property('current')
 		});
 
-		it('... newState to have `currMovie` prop', () => {
-			expect(newState).to.have.property('currMovie')
+		it('... newState to have `current` prop', () => {
+			expect(newState).to.have.property('current')
 		});
 	});
 
@@ -90,8 +90,8 @@ describe('MoviesReducer Async Actions', () => {
 			expect(newState.requestToOmdbApi.status).to.eql('success');
 		});
 
-		it('...updates the currMovie object', () => {
-			expect(newState.currMovie).to.eql(newMovie)
+		it('...updates the current object', () => {
+			expect(newState.current).to.eql(newMovie)
 		});
 
 	});
