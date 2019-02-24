@@ -59,9 +59,9 @@ export function isFavourited(data) {
 			}
 			// console.log(`Something's wrong with the data.\n See the logs.`);
 			// console.log('data: ', data, 'resp.data: ', resp.data);
-			return "null response?"
+			return 'null response?';
 		})
 		.catch((err) => {
-			// console.log('Err: #isFavourited', err);
+			console.log('Err: #isFavourited', err);
 		});
 }
