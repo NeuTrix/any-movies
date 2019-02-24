@@ -29,7 +29,7 @@ describe('Movies reducer core actions', () => {
 	});
 });
 
-describe('The FETCH_MOVIES_SUCCESS action', () => {
+describe('The FETCH_MOVIE_SUCCESS action', () => {
 	const action = fetchMovieSuccess(movie1, details);
 	const nextState = moviesReducer(prevState, action);
 	const action2 = fetchMovieSuccess(movie2, details2);
@@ -97,28 +97,28 @@ describe('The FETCH_MOVIES_SUCCESS action', () => {
 	});
 });
 
-xdescribe('The FETCH_MOVIES_REQUEST', () => {
-	const action = fetchMoviesRequest();
+describe('The FETCH_MOVIE_REQUEST', () => {
+	const action = fetchMovieRequest();
 	const nextState = moviesReducer(prevState, action);
 
-	xdescribe('... the apiRequest object', () => {
-		xit('... has an updated apiRequest.isFetching prop', () => {
+	describe('... the apiRequest object', () => {
+		it('... has an updated apiRequest.isFetching prop', () => {
 			expect(nextState.apiRequest).to.have.property('isFetching')
 				.to.eql(true);
 		});
 
-		xit('... has an apiRequest.message prop', () => {
+		it('... has an apiRequest.message prop', () => {
 			expect(nextState.apiRequest).to.have.property('message');
 		});
 
-		xit('... has an updated apiRequest.status', () => {
+		it('... has an updated apiRequest.status', () => {
 			expect(nextState.apiRequest).to.have.property('status')
 				.to.eql('requesting');
 		});
 	});
 });
 
-xdescribe('The FETCH_MOVIES_FAILURE action', () => {
+xdescribe('The FETCH_MOVIE_FAILURE action', () => {
 	const error = 'A mock error message';
 	const action = fetchMoviesFailure(error);
 	const nextState = moviesReducer(prevState, action);

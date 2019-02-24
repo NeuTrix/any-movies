@@ -41,7 +41,16 @@ export default function moviesReducer(state = initialState, action = {}) {
 	switch (type) {
 	// request to the OMBD api
 	case FETCH_MOVIE_REQUEST:
-		return Object.assign({}, state, payload);
+		return { 
+			...state, 
+			...{ 
+				apiRequest: { 
+					isFetching: true,
+					message: 'Requesting movie',
+					status: 'requesting',
+				},
+			}
+		}
 
 	case FETCH_MOVIE_FAILURE:
 		return Object.assign({}, state, payload);

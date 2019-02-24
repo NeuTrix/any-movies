@@ -12,14 +12,7 @@ import { makeActionCreator } from '../../../helpers'
 // normalizr schema
 export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' });
 
-export function fetchMovieRequest(movieTitle) {
-	return {
-		type: FETCH_MOVIE_REQUEST,
-		payload: {
-			requestToOmdbApi: { isFetching: true, status: 'requesting' },
-		},
-	};
-}
+export const fetchMovieRequest = makeActionCreator(FETCH_MOVIE_REQUEST)
 
 export const fetchMovieSuccess = makeActionCreator(
 	FETCH_MOVIE_SUCCESS, 
