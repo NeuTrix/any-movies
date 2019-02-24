@@ -53,14 +53,14 @@ export function getComments(commentableID, commentableType) {
 				return resp.data;
 			})
 			.then((data) => {
-				// normalize the datat
+				// normalize the data
 				const normed = normalize(data, commentsListSchema);
 				const subComments = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
 				dispatch(fetchCommentsSuccess(subComments, dictionary));
 			})
-			.then(() => commentableType === 'Comment'
-				&& dispatch(setCommentable(commentableID)))
+			// set the current commentable object id
+			.then(() => dispatch(setCommentable(commentableID)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
 				console.log('---#getComments error--->', error);
