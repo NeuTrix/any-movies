@@ -15,10 +15,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
-	// currUser: PropTypes.instanceOf(Object).isRequired, // mocked
 	// showingCommentForm: PropTypes.bool.isRequired,
-	// delete this duplicate indicator =>
-	// registered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
@@ -104,93 +101,3 @@ const styles = theme => ({
 MainPage.propTypes = propTypes;
 
 export default withStyles(styles)(MainPage);
-
-
-// class MainPage extends Component {
-
-// 	constructor(props) {
-// 		super(props);
-// 		this.state = {
-// 			showingCommentForm: false,
-// 		};
-
-// 		this.toggleCommentableForm = this.toggleCommentableForm.bind(this);
-// 		this.handleCommentsClick = this.handleCommentsClick.bind(this);
-// 	}
-
-// 	// allows the addComment form to toggle on and off
-// 	toggleCommentableForm() {
-// 		this.setState({ showingCommentForm: !this.state.showingCommentForm });
-// 	}
-
-// 	handleCommentsClick(e) {
-// 		e.preventDefault();
-// 		// register the movie if not validated
-// 		if (!this.props.registered) {
-// 			// this.props.handleMovieRegistration();
-// 		}
-// 		this.toggleCommentableForm();
-// 	}
-
-// 	render({ classes, comments, currMovie, currUser, isFormDisplayed }) {
-// 		// const { addComment, getMovieDataDataDataData } = this.props;
-// 		const { showingCommentForm } = this.state;
-
-// 		// generate comment form for current movie
-// 		// const newCommentForm = (
-// 			// <CommentableForm
-// 			// 	// using OMDB obj vs api so need to define commentable_id/type
-// 			// 	// commentable_id={currMovie.imdbID}
-// 			// 	commentable_type="Movie"
-// 			// 	currUser={currUser}
-// 			// 	// submitAction={addComment}
-// 			// 	toggleForm={this.toggleCommentableForm}
-// 			// />
-// 		// );
-
-// 		return (
-// 		// set style for poster.  need to access url variable
-// 			<div
-// 				className={classes.posterBackground}
-// 				style={{ backgroundImage: `url(${currMovie.Poster})` }}
-// 			>
-// 				{/* fake opacity */}
-// 				<div className={classes.grid}>
-
-// 					<p style={{ background: 'aliceblue', gridArea: 'title' }}>
-
-// 						<MenuBar
-// 							isFormDisplayed={isFormDisplayed}
-// 							toggleCommentableForm={this.toggleCommentableForm}
-// 							// getMovieDataDataDataData={getMovieDataDataDataData}
-// 						/>
-
-// 					</p>
-
-// 					<div className={classes.toggleComment} style={{ gridArea: 'addComment' }}>
-// 						<Link color="primary" onClick={this.handleCommentsClick}>
-//               Comment on this movie?
-// 						</Link>
-// 					</div>
-
-// 					<div style={{ gridArea: 'form' }}>
-// 						{/* { showingCommentForm && newCommentForm } */}
-// 					</div>
-
-// 					<div style={{ gridArea: 'movies' }}>
-// 						<MoviePageContainer />
-// 					</div>
-
-// 					<div className={classes.comments}>
-// 						<CommentableContainer
-// 							comments={comments}
-// 							commentable={currMovie}
-// 							currUser={currUser}
-// 						/>
-
-// 					</div>
-// 				</div>
-// 			</div>
-// 		);
-// 	}
-// }

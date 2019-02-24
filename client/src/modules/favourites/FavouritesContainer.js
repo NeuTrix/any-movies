@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 // import FavouritesPage from './FavouritesPage';
 import { getFavourites } from '../favourites';
-import { omdbUrl } from '../../helpers/api.helper'; // movie data
+import { omdbPosterUrl, omdbUrl } from '../helpers'; // movie data
 
-import { omdbPosterUrl } from '../../helpers/api.helper'; // movie posters
+import {  } from '../helpers'; // movie posters
 const propTypes = {
 	currUser: PropTypes.instanceOf(Object).isRequired,
 };

@@ -6,26 +6,24 @@ import {
 
 import axios from 'axios';
 import { nomralize, schema } from 'normalizr';
-import { omdbUrl } from '../../../helpers/api.helper';
-import { makeActionCreator } from '../../../helpers'
+import { actionCreator, omdbUrl } from '../../helpers';
 
 // normalizr schema
 export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' });
 
-export const fetchMovieRequest = makeActionCreator(FETCH_MOVIE_REQUEST)
+export const fetchMovieRequest = actionCreator(FETCH_MOVIE_REQUEST)
 
-export const fetchMovieSuccess = makeActionCreator(
+export const fetchMovieSuccess = actionCreator(
 	FETCH_MOVIE_SUCCESS, 
 	'current', 
 	'dictionary',
 ); 
 
 // captures the error messages on fail
-export const fetchMovieFailure = makeActionCreator(
+export const fetchMovieFailure = actionCreator(
 	FETCH_MOVIE_FAILURE,
 	'error',
 );
-
 
 // set the current movie
 // export function setCurrentComment(commentableID) {

@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { makeActionCreator } from '.';
+import { actionCreator } from '.';
 
-describe('The makeActionCreator function', () => {
+describe('The actionCreator function', () => {
 	// create the new action creator function
 	// assign args to variables for testing comparisons
 	const type = 'PEANUT_BUTTER';
 	const madeArg1 = 'brand';
 	const madeArg2 = 'style';
-	const madeAction = makeActionCreator(type, madeArg1, madeArg2);
+	const madeAction = actionCreator(type, madeArg1, madeArg2);
 
 	// generate an action object from the new function
 	const actionArg1 = 'Jiffy';
@@ -16,7 +16,7 @@ describe('The makeActionCreator function', () => {
 
 	describe('--> The new action creator', () => {
 		it('...is a function', () => {
-			expect(makeActionCreator).to.be.a('function');
+			expect(actionCreator).to.be.a('function');
 		});
 		it('...returns a function', () => {
 			expect(madeAction).to.be.a('function');
