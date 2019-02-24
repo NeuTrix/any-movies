@@ -33,10 +33,18 @@ const defaultState = {
 // trigger Redux devtools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const middlewares = [thunkMiddleware];
+
+// only adds redux-logger outside of Production Environment
+if (process.env.NODE_ENV === 'development') {
+	const { logger } = require('redux-logger');
+	middlewares.push(logger);
+}
+
 const store = createStore(
 	reducers,
 	defaultState,
-	composeEnhancers(applyMiddleware(thunkMiddleware)),
+	composeEnhancers(applyMiddleware(...middlewares)),
 );
 
 // hydrate default movie
