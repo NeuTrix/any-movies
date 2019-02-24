@@ -1,7 +1,6 @@
 
 import { expect } from 'chai';
 import deepfreeze from 'deep-freeze';
-import { normalize } from 'normalizr';
 
 import {
 	// action creators
@@ -9,52 +8,13 @@ import {
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
 	setCommentable,
-	// normalizr schema variables
-	comment, 
-	commentsListSchema,
 } from './commentsActions';
+
+import { comments1, comments2, dictionary1, dictionary2 } from './commentsTestHelper'
 
 import commentsReducer, { initialState } from './commentsReducer';
 
-// test objects
-// export to a faker or factory helper file
-const data1 = [
-	{
-		body: 'Something to test out',
-		commentable_id: '100',
-		commentable_type: 'Comment',
-		id: '900',
-		title: 'Test Comment',
-		user_id: 'Well#1001',
-	},
-];
-// normalized
-const normed1 = normalize(data1, commentsListSchema);
-const comments1 = normed1.result;
-const dictionary1 = normed1.entities.comments;
 
-const data2 = [
-	{
-		body: 'The next addition',
-		commentable_id: '200',
-		commentable_type: 'Comment',
-		id: '1000',
-		title: 'Test Comment',
-		user_id: 'Well#1001',
-	},
-	{
-		body: 'Final test',
-		commentable_id: '200',
-		commentable_type: 'Comment',
-		id: '800',
-		title: 'Test Comment',
-		user_id: 'Well#1001',
-	},
-];
-// normalized
-const normed2 = normalize(data2, commentsListSchema);
-const comments2 = normed2.result;
-const dictionary2 = normed2.entities.comments;
 
 // ensure an immutable previous state object for tests
 const prevState = initialState;

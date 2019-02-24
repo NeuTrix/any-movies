@@ -15,7 +15,7 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // update the api request property
 export const fetchCommentsRequest = makeActionCreator(
-	FETCH_COMMENTS_REQUEST,
+	FETCH_COMMENTS_REQUEST
 );
 
 // manage the data returned from comments GET call api
