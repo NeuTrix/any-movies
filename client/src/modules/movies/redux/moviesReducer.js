@@ -27,7 +27,7 @@ export function dictionaryReducer(state = {}, action = {}) {
 		case FETCH_MOVIE_SUCCESS:
 			return {
 				...state, 
-				...payload.dictionary, // targeting the object dictionary
+				...payload.dictionary, // add the movie details object
 			}
 		default: 
 			return state;

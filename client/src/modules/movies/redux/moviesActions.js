@@ -5,7 +5,7 @@ import {
 } from './moviesConstants';
 
 import axios from 'axios';
-import { nomralize, schema } from 'normalizr';
+import { normalize, schema } from 'normalizr';
 import { actionCreator, omdbUrl } from '../../helpers';
 
 // normalizr schema
@@ -43,14 +43,15 @@ export function getMovieData(movieTitle) {
 		dispatch(fetchMovieRequest(movieTitle));
 		// return the axios promise with the data/status
 		return axios.get(`${omdbUrl}&t=${movieTitle}`)
-			.then(resp => resp.data)
+			.then(resp => 
+				{return normalize(resp.data, movie)})
 			.then(data => {
 				console.log(100, '==>', data);
 
 				// const current = normalize(data, movie)
-				// const movie = 2;
+				// const dictionary = ;
 				// normalize
-				dispatch(fetchMovieSuccess(data))
+				// dispatch(fetchMovieSuccess(current, dictionary))
 			})
 			.catch((err) => {
 				dispatch(fetchMovieFailure(err));
