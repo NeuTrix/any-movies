@@ -15,8 +15,8 @@ export const fetchMovieRequest = actionCreator(FETCH_MOVIE_REQUEST)
 
 export const fetchMovieSuccess = actionCreator(
 	FETCH_MOVIE_SUCCESS, 
-	'current', 
-	'dictionary',
+	'movieID', 
+	'dictionary'
 ); 
 
 // captures the error messages on fail
@@ -46,9 +46,10 @@ export function getMovieData(movieTitle) {
 			// normalize the data
 			.then(resp => normalize(resp.data, movie))
 			.then(data => {
-				const current = data.result;
+				const movieID = data.result;
 				const dictionary = data.entities.movies;
-				dispatch(fetchMovieSuccess(current, dictionary))
+				console.log(1, '==>', movieID, dictionary);
+				dispatch(fetchMovieSuccess(movieID, dictionary))
 			})
 			.catch((err) => {
 				dispatch(fetchMovieFailure(err));

@@ -11,6 +11,10 @@ export function filterComments(subComments, dictionary) {
 	return list;
 }
 
+// export function findMovie(movieID, dictionary) {
+// 	return dictionary[movieID]
+// }
+
 const mapStateToProps = state => ({
 	// comments
 	comments: filterComments(

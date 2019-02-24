@@ -6,6 +6,7 @@ import {
 	SET_CURRENT_MOVIE,
 	// CHECK_MOVIE_REGISTRATION // See if its registered in the api
 } from './moviesConstants';
+import { createRef } from 'react';
 
 export const initialState = {
 	apiRequest: {
@@ -13,7 +14,8 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	current: 'tt0078748',
+	movieID: '',
+	current: {},
 	dictionary: {},
 	favourited: false, // change name to isMovieFavourited...
 	registered: false,
@@ -55,12 +57,18 @@ export default function moviesReducer(state = initialState, action = {}) {
 			// consider refactoring to only handle api and move the rest
 			// to an update action.  Simplify.
 		case FETCH_MOVIE_SUCCESS:
+			// const movie = payload.dictionar[payload.movieID];
+			const { dictionary, movieID } = payload
+			const movie = dictionary[movieID]
 			return {
 				...state,
 				...{
 					// allow dictionary object ot accumulate objects vs
 					// replacing the whole object state (due to nesting)
-					current: payload.current,
+					imdbID: movieID,
+					current: movie,
+					title: movie.Title,
+					poster: movie.Poster,
 					dictionary: dictionaryReducer(state.dictionary, action),
 					// subComments for the current commentable (movie or comment)
 					apiRequest: {
