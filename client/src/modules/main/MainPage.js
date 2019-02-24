@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import CommentableContainer from '../comments/CommentableContainer';
 // import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
-import { MenuBarContainer } from '../main';
+// import { MenuBarContainer } from '../main';
 import { MovieCommentsContainer } from '../movies';
 
 const propTypes = {
