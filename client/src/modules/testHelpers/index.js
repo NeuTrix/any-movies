@@ -5,3 +5,5 @@ export {
   comments2,
   dictionary2,
 } from './commentsTestHelper';
+
+export { movie1, movie2 } from './moviesTestHelper';
