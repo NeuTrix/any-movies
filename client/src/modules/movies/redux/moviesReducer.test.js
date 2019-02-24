@@ -41,13 +41,13 @@ describe('The FETCH_MOVIE_SUCCESS action', () => {
 				.to.be.an('object');
 		});
 
-		it('--> nextState has a current (string) prop', () => {
+		it('--> nextState has a current (movie) prop', () => {
 			expect(nextState).to.have.property('current')
-				.to.be.an('string');
+				.to.be.an('object');
 		});
 
-		it('...current id string has the correct value', () => {
-			expect(nextState.current).to.eql(movie1);
+		it('...current imdbID  has the correct value', () => {
+			expect(nextState.imdbID).to.eql(movie1);
 		});
 
 		it('--> nextState has a `favourited` prop', () => {
