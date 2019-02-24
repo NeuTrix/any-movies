@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getFavourites } from '../favourites';
 import { omdbUrl } from '../../helpers/api.helper'; // movie data
 
-import { omdb_poster_url } from '../../helpers/api.helper'; // movie posters
+import { omdbPosterUrl } from '../../helpers/api.helper'; // movie posters
 const propTypes = {
 	currUser: PropTypes.instanceOf(Object).isRequired,
 };
@@ -31,7 +31,7 @@ class FavouritesContainer extends Component {
 							href={`${omdbUrl}&t=${fav.favourited_id}`}
 						>
 							<img
-								src={`${omdb_poster_url}&i=${fav.favourited_id}`}
+								src={`${omdbPosterUrl}&i=${fav.favourited_id}`}
 								alt="favorite movie poster"
 								height="100"
 							>
@@ -39,7 +39,6 @@ class FavouritesContainer extends Component {
 						</a>
 					)
 				})
-				// console.log('xxxx=>', urls)
 
 				return urls
 			})
