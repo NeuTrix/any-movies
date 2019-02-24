@@ -5,7 +5,7 @@ import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
-} from './moviesConstants';
+} from '../../helpers/constants';
 import { actionCreator, omdbUrl } from '../../helpers';
 
 // normalizr schema

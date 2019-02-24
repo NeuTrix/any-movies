@@ -5,7 +5,7 @@ import {
 	FETCH_MOVIE_SUCCESS,
 	SET_CURRENT_MOVIE,
 	// CHECK_MOVIE_REGISTRATION // See if its registered in the api
-} from './moviesConstants';
+} from '../../helpers/constants';
 import { createRef } from 'react';
 
 export const initialState = {
