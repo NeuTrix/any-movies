@@ -1,16 +1,16 @@
-import axios from 'axios';
-import { omdbUrl } from '../../../helpers/api.helper';
-import { nomralize, schema } from 'normalizr';
-
 import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
 } from './moviesConstants';
 
-// normalizr schema
-export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' }); // normalize data
+import axios from 'axios';
+import { nomralize, schema } from 'normalizr';
+import { omdbUrl } from '../../../helpers/api.helper';
+import { makeActionCreator } from '../../../helpers'
 
+// normalizr schema
+export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' }); 
 export function fetchMovieRequest(movieTitle) {
 	return {
 		type: FETCH_MOVIE_REQUEST,
@@ -20,15 +20,21 @@ export function fetchMovieRequest(movieTitle) {
 	};
 }
 
-export function fetchMovieSuccess(data) {
-	return {
-		type: FETCH_MOVIE_SUCCESS,
-		payload: {
-			current: data,
-			requestToOmdbApi: { isFetching: false, status: 'success' },
-		},
-	};
-}
+export const fetchMovieSuccess = makeActionCreator(
+	FETCH_MOVIE_SUCCESS, 
+	'current', 
+	'dictionary',
+); 
+
+// {
+// 	return {
+// 		type: ,
+// 		payload: {
+// 			current: data,
+// 			requestToOmdbApi: { isFetching: false, status: 'success' },
+// 		},
+// 	};
+// }
 
 export function fetchMovieFailure(error) {
 	return {
@@ -58,7 +64,14 @@ export function getMovieData(movieTitle) {
 		// return the axios promise with the data/status
 		return axios.get(`${omdbUrl}&t=${movieTitle}`)
 			.then(resp => resp.data)
-			.then(data => dispatch(fetchMovieSuccess(data)))
+			.then(data => {
+				console.log(100, '==>', data);
+
+				// const current = normalize(data, movie)
+				// const movie = 2;
+				// normalize
+				dispatch(fetchMovieSuccess(data))
+			})
 			.catch((err) => {
 				dispatch(fetchMovieFailure(err));
 				console.log('--#getMovieData-->', err);

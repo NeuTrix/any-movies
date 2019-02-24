@@ -4,9 +4,9 @@ import { expect } from 'chai';
 
 // action creators
 import {
-	fetchMoviesFailure,
-	fetchMoviesRequest,
-	fetchMoviesSuccess,
+	fetchMovieFailure,
+	fetchMovieRequest,
+	fetchMovieSuccess,
 } from './moviesActions';
 
 // test objects
@@ -29,13 +29,13 @@ describe('Movies reducer core actions', () => {
 	});
 });
 
-xdescribe('The FETCH_MOVIES_SUCCESS action', () => {
-	const action = fetchMoviesSuccess(movie1, dictionary1);
-	const nextState = moviesReducer(prevState, action);
-	const action2 = fetchMoviesSuccess(movie2, dictionary2);
-	const nextState2 = moviesReducer(nextState, action2);
+describe('The FETCH_MOVIES_SUCCESS action', () => {
+	const action = fetchMovieSuccess(movie1, details);
+	// const nextState = moviesReducer(prevState, action);
+	// const action2 = fetchMoviesSuccess(movie2, details2);
+	// const nextState2 = moviesReducer(nextState, action2);
 
-	describe('The nextState properties', () => {
+	xdescribe('The nextState properties', () => {
 		xit('--> nextState has `apiRequest` prop', () => {
 			expect(nextState).to.have.property('apiRequest')
 				.to.be.an('object');

@@ -13,11 +13,8 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	current: {
-		Title: 'Alien',
-		imdbID: 'tt0078748',
-	},
-	commentIndexes: [],
+	current: 'tt0078748',
+	dictionary: {},
 	favourited: false, // change name to isMovieFavourited...
 	registered: false,
 };
@@ -35,7 +32,13 @@ export default function moviesReducer(state = initialState, action = {}) {
 		return Object.assign({}, state, payload);
 
 	case FETCH_MOVIE_SUCCESS:
-		return Object.assign({}, state, payload);
+		return {
+			...state,
+			...{
+				current: payload.current,
+				dictionary: payload.dictionary,
+			}
+		};
 
 	case SET_CURRENT_MOVIE:
 		return Object.assign({}, state, payload);
