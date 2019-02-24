@@ -19,7 +19,7 @@ export const initialState = {
 	},
 	commentIndexes: [],
 	favourited: false, // change name to isMovieFavourited...
-	isMovieRegistered: false,
+	registered: false,
 };
 
 export default function moviesReducer(state = initialState, action = {}) {

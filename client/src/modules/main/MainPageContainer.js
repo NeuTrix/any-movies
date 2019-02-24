@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 	showForm: state.comments.showForm,
 	// movies
 	currMovie: state.movies.currMovie,
-	isMovieRegistered: state.movies.isMovieRegistered,
+	registered: state.movies.registered,
 	// users
 	currUser: state.users.current,
 });

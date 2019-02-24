@@ -18,7 +18,7 @@ const propTypes = {
 	// currUser: PropTypes.instanceOf(Object).isRequired, // mocked
 	// showingCommentForm: PropTypes.bool.isRequired,
 	// delete this duplicate indicator =>
-	// isMovieRegistered: PropTypes.bool.isRequired, // is this currently in api db?
+	// registered: PropTypes.bool.isRequired, // is this currently in api db?
 	// ===> functions
 	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
@@ -126,7 +126,7 @@ export default withStyles(styles)(MainPage);
 // 	handleCommentsClick(e) {
 // 		e.preventDefault();
 // 		// register the movie if not validated
-// 		if (!this.props.isMovieRegistered) {
+// 		if (!this.props.registered) {
 // 			// this.props.handleMovieRegistration();
 // 		}
 // 		this.toggleCommentableForm();
