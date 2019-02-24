@@ -7,7 +7,7 @@ import {
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
 	SET_COMMENTABLE,
-} from './commentsConstants';
+} from '../../helpers/constants';
 
 // normalizr schema
 export const comment = new schema.Entity('comments'); // normalize data

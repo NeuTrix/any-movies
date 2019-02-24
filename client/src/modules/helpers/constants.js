@@ -1,4 +1,4 @@
-// set immutable constants for movie actions
+// ==> COMMENTS constants
 
 // async actions
 export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';

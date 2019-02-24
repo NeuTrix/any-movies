@@ -1,10 +1,10 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
-	SET_COMMENTABLE,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-} from './commentsConstants';
+	SET_COMMENTABLE,
+} from '../../helpers/constants';
 
 // shape of comments state object
 export const initialState = {
