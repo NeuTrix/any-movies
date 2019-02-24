@@ -19,6 +19,7 @@ export const fetchCommentsRequest = actionCreator(
 );
 
 // manage the data returned from comments GET call api
+// need to factor out SET_COMMENTS from the success action
 export const fetchCommentsSuccess = actionCreator(
 	FETCH_COMMENTS_SUCCESS,
 	'subComments', 
