@@ -1,6 +1,6 @@
 // normalizr schema variables
 import { normalize } from 'normalizr';
-import { commentsListSchema } from './commentsActions';
+import { commentsListSchema } from '../comments/redux';
 
 // test objects
 // export to a faker or factory helper file

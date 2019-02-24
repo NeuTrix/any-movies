@@ -16,7 +16,7 @@ import {
 	comments2,
 	dictionary1,
 	dictionary2,
-} from './commentsTestHelper';
+} from '../../testHelpers';
 
 import commentsReducer, { initialState } from './commentsReducer';
 
