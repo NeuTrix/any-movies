@@ -15,6 +15,9 @@ export const initialState = {
 		status: '',
 	},
 	current: {},
+	imdbID: '',
+	title: '',
+	poster: '',
 	dictionary: {},
 	favourited: false, // change name to isMovieFavourited...
 	registered: false,

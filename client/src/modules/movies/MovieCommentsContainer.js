@@ -4,7 +4,7 @@ import { CommentsBar } from '../comments';
 
 const mapStateToProps = state => ({
 	// commentable: state.
-	commentableID: state.movies.current.imdbID,
+	commentableID: state.movies.imdbID,
 	commentableType: 'Movie',
 });
 
