@@ -6,4 +6,9 @@ export {
   dictionary2,
 } from './commentsTestHelper';
 
-export { movie1, movie2 } from './moviesTestHelper';
+export {
+  movie1,
+  movie2,
+  details,
+  details2,
+} from './moviesTestHelper';

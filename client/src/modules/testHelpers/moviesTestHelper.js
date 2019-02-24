@@ -21,8 +21,8 @@ const normed2 = normalize(movieMock2, movie);
 // export test variables
 
 // gets id of the current movie
-export const current = normed1.result;
-export const current2 = normed2.result;
+export const movie1 = normed1.result;
+export const movie2 = normed2.result;
 // get the detailed info of the current movie
-export const dictionary = normed1.entities.movies;
-export const dictionary2 = normed2.entities.movies;
+export const details = normed1.entities.movies;
+export const details2 = normed2.entities.movies;

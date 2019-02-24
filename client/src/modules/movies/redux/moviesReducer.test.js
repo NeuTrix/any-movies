@@ -10,10 +10,12 @@ import {
 } from './moviesActions';
 
 // test objects
-// import {
-// 	movies1,
-// 	movies2,
-// } from '../../testHelpers';
+import {
+	movie1,
+	movie2,
+	details,
+	details2,
+} from '../../testHelpers';
 
 import moviesReducer, { initialState } from './moviesReducer';
 
@@ -21,19 +23,19 @@ import moviesReducer, { initialState } from './moviesReducer';
 const prevState = initialState;
 deepfreeze(prevState);
 
-xdescribe('Movies reducer core actions', () => {
+describe('Movies reducer core actions', () => {
 	it('...undefined action returns default previous state', () => {
 		expect(moviesReducer(prevState)).to.eql(prevState);
 	});
 });
 
 xdescribe('The FETCH_MOVIES_SUCCESS action', () => {
-	const action = fetchMoviesSuccess(movies1, dictionary1);
+	const action = fetchMoviesSuccess(movie1, dictionary1);
 	const nextState = moviesReducer(prevState, action);
-	const action2 = fetchMoviesSuccess(movies2, dictionary2);
+	const action2 = fetchMoviesSuccess(movie2, dictionary2);
 	const nextState2 = moviesReducer(nextState, action2);
 
-	xdescribe('The nextState properties', () => {
+	describe('The nextState properties', () => {
 		xit('--> nextState has `apiRequest` prop', () => {
 			expect(nextState).to.have.property('apiRequest')
 				.to.be.an('object');
@@ -45,7 +47,7 @@ xdescribe('The FETCH_MOVIES_SUCCESS action', () => {
 		});
 
 		xit('...subMovies array has the correct value', () => {
-			expect(nextState.subMovies[0]).to.eql(movies1[0]);
+			expect(nextState.subMovies[0]).to.eql(movie1[0]);
 		});
 
 		xit('...subMovies array length incremented properly', () => {
