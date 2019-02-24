@@ -46,28 +46,23 @@ describe('The FETCH_MOVIES_SUCCESS action', () => {
 				.to.be.an('string');
 		});
 
-		xit('...subMovies array has the correct value', () => {
-			expect(nextState.subMovies[0]).to.eql(movie1[0]);
+		it('...current id string has the correct value', () => {
+			expect(nextState.current).to.eql(movie1);
 		});
 
-		xit('...subMovies array length incremented properly', () => {
-			expect(prevState.subMovies.length).to.eql(0);
-			expect(nextState.subComments.length).to.eql(1);
-		});
-
-		xit('--> nextState has a `commentable` prop', () => {
-			expect(nextState).to.have.property('commentable')
-				.to.be.an('string');
-		});
-
-		xit('...nextState has `favourxited` prop', () => {
-			expect(nextState).to.have.property('favourxited')
+		it('--> nextState has a `favourited` prop', () => {
+			expect(nextState).to.have.property('favourited')
 				.to.be.an('boolean');
 		});
 
-		xit('...nextState has `showForm` prop', () => {
-			expect(nextState).to.have.property('showForm')
+		it('...nextState has `registered` prop', () => {
+			expect(nextState).to.have.property('registered')
 				.to.be.an('boolean');
+		});
+
+		it('...nextState has `dictionary` prop', () => {
+			expect(nextState).to.have.property('dictionary')
+				.to.be.an('object');
 		});
 	});
 
