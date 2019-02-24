@@ -78,18 +78,18 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 				.to.be.an('object');
 		});
 
-		it('--> nextState has a comments (array) prop', () => {
-			expect(nextState).to.have.property('comments')
+		it('--> nextState has a subComments (array) prop', () => {
+			expect(nextState).to.have.property('subComments')
 				.to.be.an('array');
 		});
 
-		it('...comments array has the correct value', () => {
-			expect(nextState.comments[0]).to.eql(data1[0].id);
+		it('...subComments array has the correct value', () => {
+			expect(nextState.subComments[0]).to.eql(data1[0].id);
 		});
 
-		it('...comments array length incremented properly', () => {
-			expect(prevState.comments.length).to.eql(0);
-			expect(nextState.comments.length).to.eql(1);
+		it('...subComments array length incremented properly', () => {
+			expect(prevState.subComments.length).to.eql(0);
+			expect(nextState.subComments.length).to.eql(1);
 		});
 
 		it('--> nextState has a `commentable` prop', () => {
@@ -134,7 +134,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		});
 
 		it('...has nextState 2 dictionary of length 3', () => {
-			console.log(22, '==>', nextState2.dictionary);
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
 		});
 	});
@@ -183,10 +182,9 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 	});
 });
 
-describe.only('The SET_COMMENTABLE action', () => {
+describe('The SET_COMMENTABLE action', () => {
 	const action = setCommentable(data1[0].id);
 	const nextState = commentsReducer(prevState, action);
-	console.log(99, '==>', nextState);
 
 	it('...has an updated commentable prop', () => {
 		expect(nextState).to.have.property('commentable')

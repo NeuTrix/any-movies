@@ -21,7 +21,7 @@ export const fetchCommentsRequest = makeActionCreator(
 // manage the data returned from comments GET call api
 export const fetchCommentsSuccess = makeActionCreator(
 	FETCH_COMMENTS_SUCCESS,
-	'comments', 
+	'subComments', 
 	'dictionary',
 );
 
@@ -55,9 +55,9 @@ export function getComments(commentableID, commentableType) {
 			.then((data) => {
 				// normalize the datat
 				const normed = normalize(data, commentsListSchema);
-				const comments = normed.result; // an array of indices
+				const subComments = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(fetchCommentsSuccess(comments, dictionary));
+				dispatch(fetchCommentsSuccess(subComments, dictionary));
 			})
 			.then(() => commentableType === 'Comment'
 				&& dispatch(setCommentable(commentableID)))

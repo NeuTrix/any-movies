@@ -13,7 +13,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, // status of the api request
-	comments: [], // array of comment ids for the current comment
+	subComments: [], // array of subComment ids for the current comment
 	commentable: '', // the ID of the current comment (in focus)
 	dictionary: {}, // a lookup object of all comments by id/key
 	favourited: false, // favourited?
@@ -73,8 +73,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 				// allow dictionary object ot accumulate objects vs
 				// replacing the shole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
-				// comments for the current commentable (movie or comment)
-				comments: payload.comments,
+				// subComments for the current commentable (movie or comment)
+				subComments: payload.subComments,
 				apiRequest: {
 					isFetching: false,
 					message: 'Successfully recieved comments',
