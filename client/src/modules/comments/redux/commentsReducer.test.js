@@ -23,11 +23,60 @@ import commentsReducer, { initialState } from './commentsReducer';
 // ensure an immutable previous state object for tests
 const prevState = initialState;
 deepfreeze(prevState);
+deepfreeze(initialState);
 
-describe('Comments reducer core actions', () => {
+describe('Comments reducer default actions', () => {
 	it('...undefined action returns default previous state', () => {
 		expect(commentsReducer(prevState)).to.eql(prevState);
 	});
+});
+
+describe('The default state properties', () => {
+	
+	xit('... has a the expected number of default properties', () => {
+		expect(Object.keys(initialState).length).to.eql(8);
+	});n
+	
+	it('...has am `apiStatus` property (object)', () => {
+		expect(initialState).to.have.property('apiStatus')
+			.to.be.a('object');
+	});
+	
+	it('...has am `comments` property (object)', () => {
+		expect(initialState).to.have.property('comments')
+			.to.be.a('object');
+	});
+	
+	it('...has am `commentable` property (object)', () => {
+		expect(initialState).to.have.property('commentable')
+			.to.be.a('object');
+	});
+	
+	it('...has am `current` property (object)', () => {
+		expect(initialState).to.have.property('current')
+			.to.be.a('object');
+	});
+	
+	it('...has am `dictionary` property (object)', () => {
+		expect(initialState).to.have.property('dictionary')
+			.to.be.a('object');
+	});
+	
+	it('...has am `favourited` property (object)', () => {
+		expect(initialState).to.have.property('favourited')
+			.to.be.a('object');
+	});
+	
+	it('...has am `indexes` property (object)', () => {
+		expect(initialState).to.have.property('indexes')
+			.to.be.a('object');
+	});
+	
+	it('...has am `showform` property (object)', () => {
+		expect(initialState).to.have.property('showform')
+			.to.be.a('object');
+	});
+
 });
 
 describe('The FETCH_COMMENTS_SUCCESS action', () => {
