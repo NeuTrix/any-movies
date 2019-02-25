@@ -9,17 +9,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentableID: PropTypes.string.isRequired,
-	commentableType: PropTypes.string.isRequired,
-	subComments: PropTypes.instanceOf(Array), // from commentable
+	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
+	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
 };
 
-// const defaultProps = {
-// 	subComments:[],
-// }
-
-function CommentsBar({classes, subComments, commentableID, commentableType}) {
-
+function CommentsBar({ classes, comments, commentable }) {
 	return (
 		<div className={classes.root}>
 			<ExpansionPanel
@@ -31,7 +25,7 @@ function CommentsBar({classes, subComments, commentableID, commentableType}) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `${commentableType} comments: ${subComments.length}` }
+						{ `${commentable.type} comments: ${comments.length}` }
 					</Typography>
 
 				</ExpansionPanelSummary>
@@ -40,7 +34,7 @@ function CommentsBar({classes, subComments, commentableID, commentableType}) {
 					className={classes.expansion}
 				>
 					<div className={classes.list}>
-						{ subComments }
+						{ comments }
 					</div>
 				</ExpansionPanelDetails>
 
@@ -65,8 +59,8 @@ const styles = theme => ({
 	},
 
 	list: {
-		padding: 'none',
 		margin: 'none',
+		padding: 'none',
 	},
 
 	summary: {
