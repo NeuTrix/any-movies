@@ -7,7 +7,6 @@ const mapStateToProps = state => ({
 	indexes: state.comments.indexes,
 });
 
-
 const MovieCommentsContainer = connect(mapStateToProps)(CommentsBar);
 
 export default MovieCommentsContainer;

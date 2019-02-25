@@ -32,51 +32,49 @@ describe('Comments reducer default actions', () => {
 });
 
 describe('The default state properties', () => {
-	
-	xit('... has a the expected number of default properties', () => {
+	it('... has a the expected number of default properties', () => {
 		expect(Object.keys(initialState).length).to.eql(8);
 	});
-	
+
 	it('...has a `apiStatus` property (object)', () => {
 		expect(initialState).to.have.property('apiStatus')
 			.to.be.a('object');
 	});
-	
+
 	it('...has a `comments` property (object)', () => {
 		expect(initialState).to.have.property('comments')
-			.to.be.a('object');
+			.to.be.a('array');
 	});
-	
+
 	it('...has a `commentable` property (object)', () => {
 		expect(initialState).to.have.property('commentable')
 			.to.be.a('object');
 	});
-	
+
 	it('...has a `current` property (object)', () => {
 		expect(initialState).to.have.property('current')
 			.to.be.a('object');
 	});
-	
+
 	it('...has a `dictionary` property (object)', () => {
 		expect(initialState).to.have.property('dictionary')
 			.to.be.a('object');
 	});
-	
+
 	it('...has a `favourited` property (object)', () => {
 		expect(initialState).to.have.property('favourited')
-			.to.be.a('object');
+			.to.be.a('boolean');
 	});
-	
+
 	it('...has a `indexes` property (object)', () => {
 		expect(initialState).to.have.property('indexes')
-			.to.be.a('object');
+			.to.be.a('array');
 	});
-	
+
 	it('...has a `showForm` property (object)', () => {
 		expect(initialState).to.have.property('showForm')
 			.to.be.a('boolean');
 	});
-
 });
 
 describe('The FETCH_COMMENTS_SUCCESS action', () => {
@@ -107,7 +105,7 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 
 		it('--> nextState has a `commentable` prop', () => {
 			expect(nextState).to.have.property('commentable')
-				.to.be.an('string');
+				.to.be.an('object');
 		});
 
 		it('...nextState has `favourited` prop', () => {

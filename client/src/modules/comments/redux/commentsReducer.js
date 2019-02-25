@@ -8,15 +8,18 @@ import {
 
 // shape of comments state object
 export const initialState = {
+	// status of the api request
 	apiStatus: { 
 		isFetching: false,
 		message: '',
 		status: '',
-	}, // status of the api request
-	indexes: [], // array of subComment ids for the current comment
-	commentable: '', // the ID of the current comment (in focus)
-	dictionary: {}, // a lookup object of all comments by id/key
+	}, 
+	comments: [],
+	commentable: { id: '', type: ''}, // the Parent item of comment (id, type)
+	current: {}, // the current comment in focus
+	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
+	indexes: [], // array of ids for the current commentable
 	showForm: false, // showing new/edit form?
 };
 
