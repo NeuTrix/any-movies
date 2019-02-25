@@ -22,7 +22,7 @@ export const fetchCommentsRequest = actionCreator(
 // need to factor out SET_COMMENTS from the success action
 export const fetchCommentsSuccess = actionCreator(
 	FETCH_COMMENTS_SUCCESS,
-	'subComments', 
+	'indexes', 
 	'dictionary',
 );
 
@@ -56,9 +56,9 @@ export function getComments(commentableID, commentableType) {
 			.then((data) => {
 				// normalize the data
 				const normed = normalize(data, commentsListSchema);
-				const subComments = normed.result; // an array of indices
+				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(fetchCommentsSuccess(subComments, dictionary));
+				dispatch(fetchCommentsSuccess(indexes, dictionary));
 			})
 			// set the current commentable object id
 			.then(() => dispatch(setCommentable(commentableID)))

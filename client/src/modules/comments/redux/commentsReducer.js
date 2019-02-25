@@ -8,12 +8,12 @@ import {
 
 // shape of comments state object
 export const initialState = {
-	apiRequest: { 
+	apiStatus: { 
 		isFetching: false,
 		message: '',
 		status: '',
 	}, // status of the api request
-	subComments: [], // array of subComment ids for the current comment
+	indexes: [], // array of subComment ids for the current comment
 	commentable: '', // the ID of the current comment (in focus)
 	dictionary: {}, // a lookup object of all comments by id/key
 	favourited: false, // favourited?
@@ -45,7 +45,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				apiRequest: {
+				apiStatus: {
 					isFetching: false,
 					message: `Error getting comments: \n ${payload.error}`,
 					status: 'error'
@@ -58,7 +58,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return { 
 			...state, 
 			...{ 
-				apiRequest: { 
+				apiStatus: { 
 					isFetching: true,
 					message: 'Requesting comments',
 					status: 'requesting',
@@ -73,9 +73,9 @@ export default function commentsReducer(state = initialState, action = {}) {
 				// allow dictionary object ot accumulate objects vs
 				// replacing the whole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
-				// subComments for the current commentable (movie or comment)
-				subComments: payload.subComments,
-				apiRequest: {
+				// indexes for the current commentable (movie or comment)
+				indexes: payload.indexes,
+				apiStatus: {
 					isFetching: false,
 					message: 'Successfully recieved comments',
 					status: 'success',

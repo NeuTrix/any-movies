@@ -9,7 +9,7 @@ import {
 import { createRef } from 'react';
 
 export const initialState = {
-	apiRequest: {
+	apiStatus: {
 		isFetching: false,
 		message: '',
 		status: '',
@@ -47,7 +47,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 			return { 
 				...state, 
 				...{ 
-					apiRequest: { 
+					apiStatus: { 
 						isFetching: true,
 						message: 'Requesting movie',
 						status: 'requesting',
@@ -68,7 +68,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 					poster: movie.Poster,
 					// allow dictionary object ot accumulate/ cache movie search objects 
 					dictionary: dictionaryReducer(state.dictionary, action),
-					apiRequest: {
+					apiStatus: {
 						isFetching: false,
 						message: 'Successfully recieved comments',
 						status: 'success',
@@ -82,7 +82,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 			return {
 				...state,
 				...{
-					apiRequest: {
+					apiStatus: {
 						isFetching: false,
 						message: `Error getting movie: \n ${error}`,
 						status: 'error'

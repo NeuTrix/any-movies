@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 import MainPage from './MainPage';
 
-// utilize subComments index to filter cached comments dictionary
-export function filterComments(subComments, dictionary) {
+// utilize indexes index to filter cached comments dictionary
+export function filterComments(indexes, dictionary) {
 	const list = [];
-	subComments.forEach((index) => {
+	indexes.forEach((index) => {
 		list.push(dictionary[index]);
 	});
 	return list;
@@ -18,7 +18,7 @@ export function filterComments(subComments, dictionary) {
 const mapStateToProps = state => ({
 	// comments
 	comments: filterComments(
-		state.comments.subComments, 
+		state.comments.indexes, 
 		state.comments.dictionary,
 	),
 	

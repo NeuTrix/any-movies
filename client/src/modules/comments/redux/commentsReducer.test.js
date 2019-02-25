@@ -35,46 +35,46 @@ describe('The default state properties', () => {
 	
 	xit('... has a the expected number of default properties', () => {
 		expect(Object.keys(initialState).length).to.eql(8);
-	});n
+	});
 	
-	it('...has am `apiStatus` property (object)', () => {
+	it('...has a `apiStatus` property (object)', () => {
 		expect(initialState).to.have.property('apiStatus')
 			.to.be.a('object');
 	});
 	
-	it('...has am `comments` property (object)', () => {
+	it('...has a `comments` property (object)', () => {
 		expect(initialState).to.have.property('comments')
 			.to.be.a('object');
 	});
 	
-	it('...has am `commentable` property (object)', () => {
+	it('...has a `commentable` property (object)', () => {
 		expect(initialState).to.have.property('commentable')
 			.to.be.a('object');
 	});
 	
-	it('...has am `current` property (object)', () => {
+	it('...has a `current` property (object)', () => {
 		expect(initialState).to.have.property('current')
 			.to.be.a('object');
 	});
 	
-	it('...has am `dictionary` property (object)', () => {
+	it('...has a `dictionary` property (object)', () => {
 		expect(initialState).to.have.property('dictionary')
 			.to.be.a('object');
 	});
 	
-	it('...has am `favourited` property (object)', () => {
+	it('...has a `favourited` property (object)', () => {
 		expect(initialState).to.have.property('favourited')
 			.to.be.a('object');
 	});
 	
-	it('...has am `indexes` property (object)', () => {
+	it('...has a `indexes` property (object)', () => {
 		expect(initialState).to.have.property('indexes')
 			.to.be.a('object');
 	});
 	
-	it('...has am `showform` property (object)', () => {
-		expect(initialState).to.have.property('showform')
-			.to.be.a('object');
+	it('...has a `showForm` property (object)', () => {
+		expect(initialState).to.have.property('showForm')
+			.to.be.a('boolean');
 	});
 
 });
@@ -86,23 +86,23 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 	const nextState2 = commentsReducer(nextState, action2);
 
 	describe('The nextState properties', () => {
-		it('--> nextState has `apiRequest` prop', () => {
-			expect(nextState).to.have.property('apiRequest')
+		it('--> nextState has `apiStatus` prop', () => {
+			expect(nextState).to.have.property('apiStatus')
 				.to.be.an('object');
 		});
 
-		it('--> nextState has a subComments (array) prop', () => {
-			expect(nextState).to.have.property('subComments')
+		it('--> nextState has a indexes (array) prop', () => {
+			expect(nextState).to.have.property('indexes')
 				.to.be.an('array');
 		});
 
-		it('...subComments array has the correct value', () => {
-			expect(nextState.subComments[0]).to.eql(comments1[0]);
+		it('...indexes array has the correct value', () => {
+			expect(nextState.indexes[0]).to.eql(comments1[0]);
 		});
 
-		it('...subComments array length incremented properly', () => {
-			expect(prevState.subComments.length).to.eql(0);
-			expect(nextState.subComments.length).to.eql(1);
+		it('...indexes array length incremented properly', () => {
+			expect(prevState.indexes.length).to.eql(0);
+			expect(nextState.indexes.length).to.eql(1);
 		});
 
 		it('--> nextState has a `commentable` prop', () => {
@@ -121,18 +121,18 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		});
 	});
 
-	describe('The apiRequest object', () => {
-		it('... has an updated apiRequest.isFetching prop', () => {
-			expect(nextState.apiRequest).to.have.property('isFetching')
+	describe('The apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		it('... has an apiRequest.message prop', () => {
-			expect(nextState.apiRequest).to.have.property('message');
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
 		});
 
-		it('... has an updated apiRequest.status', () => {
-			expect(nextState.apiRequest).to.have.property('status')
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
 				.to.eql('success');
 		});
 	});
@@ -156,18 +156,18 @@ describe('The FETCH_COMMENTS_REQUEST', () => {
 	const action = fetchCommentsRequest();
 	const nextState = commentsReducer(prevState, action);
 
-	describe('... the apiRequest object', () => {
-		it('... has an updated apiRequest.isFetching prop', () => {
-			expect(nextState.apiRequest).to.have.property('isFetching')
+	describe('... the apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
 				.to.eql(true);
 		});
 
-		it('... has an apiRequest.message prop', () => {
-			expect(nextState.apiRequest).to.have.property('message');
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
 		});
 
-		it('... has an updated apiRequest.status', () => {
-			expect(nextState.apiRequest).to.have.property('status')
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
 				.to.eql('requesting');
 		});
 	});
@@ -178,18 +178,18 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 	const action = fetchCommentsFailure(error);
 	const nextState = commentsReducer(prevState, action);
 
-	describe('... the apiRequest object', () => {
-		it('... has an updated apiRequest.isFetching prop', () => {
-			expect(nextState.apiRequest).to.have.property('isFetching')
+	describe('... the apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		it('... has an apiRequest.message prop', () => {
-			expect(nextState.apiRequest).to.have.property('message');
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
 		});
 
-		it('... has an updated apiRequest.status', () => {
-			expect(nextState.apiRequest).to.have.property('status')
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
 				.to.eql('error');
 		});
 	});

@@ -36,8 +36,8 @@ describe('The FETCH_MOVIE_SUCCESS action', () => {
 	const nextState2 = moviesReducer(nextState, action2);
 
 	describe('The nextState properties', () => {
-		it('--> nextState has `apiRequest` prop', () => {
-			expect(nextState).to.have.property('apiRequest')
+		it('--> nextState has `apiStatus` prop', () => {
+			expect(nextState).to.have.property('apiStatus')
 				.to.be.an('object');
 		});
 
@@ -66,18 +66,18 @@ describe('The FETCH_MOVIE_SUCCESS action', () => {
 		});
 	});
 
-	describe('The apiRequest object', () => {
-		it('... has an updated apiRequest.isFetching prop', () => {
-			expect(nextState.apiRequest).to.have.property('isFetching')
+	describe('The apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		it('... has an apiRequest.message prop', () => {
-			expect(nextState.apiRequest).to.have.property('message');
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
 		});
 
-		it('... has an updated apiRequest.status', () => {
-			expect(nextState.apiRequest).to.have.property('status')
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
 				.to.eql('success');
 		});
 	});
@@ -101,18 +101,18 @@ describe('The FETCH_MOVIE_REQUEST', () => {
 	const action = fetchMovieRequest();
 	const nextState = moviesReducer(prevState, action);
 
-	describe('... the apiRequest object', () => {
-		it('... has an updated apiRequest.isFetching prop', () => {
-			expect(nextState.apiRequest).to.have.property('isFetching')
+	describe('... the apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
 				.to.eql(true);
 		});
 
-		it('... has an apiRequest.message prop', () => {
-			expect(nextState.apiRequest).to.have.property('message');
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
 		});
 
-		it('... has an updated apiRequest.status', () => {
-			expect(nextState.apiRequest).to.have.property('status')
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
 				.to.eql('requesting');
 		});
 	});
@@ -123,18 +123,18 @@ describe('The FETCH_MOVIE_FAILURE action', () => {
 	const action = fetchMovieFailure(error);
 	const nextState = moviesReducer(prevState, action);
 
-	describe('... the apiRequest object', () => {
-		it('... has an updated apiRequest.isFetching prop', () => {
-			expect(nextState.apiRequest).to.have.property('isFetching')
+	describe('... the apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
 				.to.eql(false);
 		});
 
-		it('... has an apiRequest.message prop', () => {
-			expect(nextState.apiRequest).to.have.property('message');
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
 		});
 
-		it('... has an updated apiRequest.status', () => {
-			expect(nextState.apiRequest).to.have.property('status')
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
 				.to.eql('error');
 		});
 	});
