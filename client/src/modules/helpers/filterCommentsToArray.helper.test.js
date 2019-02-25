@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import filterItems from './filterItems.helper';
+import filterCommentsToArray from './filterCommentsToArray.helper';
 
 describe('The Filter Items function', () => {
 	const indexes = ['first', 'last'];
@@ -9,10 +9,10 @@ describe('The Filter Items function', () => {
 		next: 'whatever',
 		previous: [1, 2, 3],
 	};
-	const test = filterItems(indexes, dictionary);
+	const test = filterCommentsToArray(indexes, dictionary);
 
 	it('...is a function', () => {
-		expect(filterItems).to.be.a('function');
+		expect(filterCommentsToArray).to.be.a('function');
 	});
 
 	it('...returns an array for filtered items', () => {

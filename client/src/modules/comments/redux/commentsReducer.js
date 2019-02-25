@@ -6,6 +6,8 @@ import {
 	SET_COMMENTABLE,
 } from '../../helpers/constants';
 
+import { filterCommentsToArray } from '../../helpers';
+
 // shape of comments state object
 export const initialState = {
 	// status of the api request
@@ -22,6 +24,7 @@ export const initialState = {
 	indexes: [], // array of ids for the current commentable
 	showForm: false, // showing new/edit form?
 };
+
 
 // reducer to handle nested dictionary state
 export function dictionaryReducer(state = {}, action = {}) {
@@ -70,6 +73,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		}
 
 	case FETCH_COMMENTS_SUCCESS:
+		const { indexes, dictionary } = payload;
 		return {
 			...state,
 			...{
@@ -77,7 +81,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 				// replacing the whole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
 				// indexes for the current commentable (movie or comment)
-				indexes: payload.indexes,
+				indexes: indexes,
+				comments: filterCommentsToArray(indexes, dictionary),
 				apiStatus: {
 					isFetching: false,
 					message: 'Successfully recieved comments',
