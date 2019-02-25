@@ -5,8 +5,8 @@ import { mockstate } from '../testHelpers';
 import MoviePage from './MoviePage';
 
 describe('The MoviePage component', () => {
-	const { currMovie, currUser } = mockstate;
-	const props = { currMovie, currUser };
+	const { commentable, comments } = mockstate;
+	const props = { commentable, comments };
 
 	it('renders without crashing', () => {
 		const div = document.createElement('div');

@@ -8,7 +8,6 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	commentable: PropTypes.instanceOf(Object).isRequired,
 	comments: PropTypes.instanceOf(Object).isRequired,
-	// imdbID: PropTypes.string.isRequired,
 	// functions
 	getComments: PropTypes.instanceOf(Object).isRequired,
 };
