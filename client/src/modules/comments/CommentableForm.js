@@ -15,22 +15,21 @@ const propTypes = {
 	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
-	editMode: PropTypes.bool, // new or edit form 
+	editMode: PropTypes.bool, // new or edit form
 	addComments: PropTypes.func.isRequired, // adds a new review instance to api
-	
+
 	// toggleForm: PropTypes.func.isRequired, // create or edit commentable
 };
 
 
-
 const defaultProps = {
 	editMode: false,
-}
+};
 
 class CommentableForm extends Component {
 
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			// from props
 			commentable_id: '',
@@ -38,35 +37,36 @@ class CommentableForm extends Component {
 			user_id: '',
 			author: '',
 			// from form
-      body: '',
-      title: '',
-		}
-		this.onChange = this.onChange.bind(this)
-		this.onSubmit = this.onSubmit.bind(this)
+			body: '',
+			title: '',
+		};
+		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	
 	// update the state with form entries
 	onChange(e) {
 		this.setState({
-			[e.target.name]: e.target.value
-		})
+			[e.target.name]: e.target.value,
+		});
 	}
 
-  onSubmit(e) {
+	onSubmit(e) {
 		e.preventDefault();
-		const { commentable } = this.props
+		const { commentable, currUser } = this.props;
 		const data = this.state;
-		console.log('submitting', this.props)
+		console.log('submitting', this.props);
 		// add the type and id to the state object
-    this.setState({ 
+		this.setState({
 			commentable_id: commentable.id,
 			commentable_type: commentable.type,
-		});		
+			user_id: currUser.id,
+		});
 		// #addComment accepts comments as an array of objects
 		this.props.addComment([data]);
-			// setTimeout(() => { this.props.toggleForm(); }, 250) 
+		// setTimeout(() => { this.props.toggleForm(); }, 250)
 	}
+
 	render() {
 		const { classes, currUser, commentable } = this.props;
 		return (
@@ -77,7 +77,7 @@ class CommentableForm extends Component {
 			>
 				<Input
 					fullWidth
-					label = "enter your name"
+					label ="enter your name"
 					margin="dense"
 					name="author"
 					readOnly
@@ -90,7 +90,7 @@ class CommentableForm extends Component {
 				<TextField
 					autoFocus
 					fullWidth
-					label = "enter comment Title"
+					label ="enter comment Title"
 					margin="dense"
 					name="title"
 					required
@@ -100,9 +100,9 @@ class CommentableForm extends Component {
 					onChange={this.onChange}
 				/>
 
-        <TextField
+				<TextField
 					fullWidth
-					label = "enter your comment"
+					label ="enter your comment"
 					margin="dense"
 					multiline
 					name="body"
@@ -113,30 +113,30 @@ class CommentableForm extends Component {
 					variant="outlined"
 					onChange={this.onChange}
 				/>
-				
-				<Button 
+
+				<Button
 					className={classes.button}
 					color="primary"
-					component="button" 
-					type="submit" 
+					component="button"
+					type="submit"
 					variant="contained"
-				> 
-					Submit  
+				>
+					Submit
 				</Button>
 
 			</FormControl>
-		)
+		);
 	}
 }
 
 // add grid to update form layout
-const styles= theme => ({
+const styles = theme => ({
 	button: {
 		width: 100,
 	},
 
-	main: { 
-		display: 'grid'
+	main: {
+		display: 'grid',
 	}, // place holder for styling
 });
 
