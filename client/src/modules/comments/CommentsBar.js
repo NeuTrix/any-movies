@@ -19,7 +19,7 @@ const defaultProps = {
 	title: 'this comment', // default for non movie comments
 };
 
-function CommentsBar({ classes, comments, indexes, title }) {
+function CommentsBar({ classes, comments, count, title }) {
 	return (
 		<div className={classes.root}>
 			<ExpansionPanel
@@ -31,7 +31,7 @@ function CommentsBar({ classes, comments, indexes, title }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `There are ${indexes.length} comments for ${title}` }
+						{ `There are ${count} comments for ${title}` }
 					</Typography>
 
 				</ExpansionPanelSummary>
