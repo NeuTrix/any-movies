@@ -25,7 +25,7 @@ function CommentsBar({ classes, comments, commentable }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `${commentable} comments: ${comments.length}` }
+						{ `There are ${comments.length} comments for ${commentable.id}` }
 					</Typography>
 
 				</ExpansionPanelSummary>

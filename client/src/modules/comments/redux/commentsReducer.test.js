@@ -199,10 +199,10 @@ describe('The SET_COMMENTABLE action', () => {
 
 	it('...has an updated commentable prop', () => {
 		expect(nextState).to.have.property('commentable')
-			.to.be.an('string');
+			.to.be.an('object');
 	});
 
 	it('...has the expected value', () => {
-		expect(nextState.commentable).to.eql(comments1[0]);
+		expect(nextState.commentable.id).to.eql(comments1[0]);
 	});
 });
