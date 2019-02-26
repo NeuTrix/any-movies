@@ -1,7 +1,6 @@
 // container logic for comments
 import { connect } from 'react-redux';
 import MainPage from './MainPage';
-import { addComments } from '../comments/redux/commentsActions';
 
 // utilize indexes index to filter cached comments dictionary
 export function filterComments(indexes, dictionary) {
@@ -27,11 +26,6 @@ const mapStateToProps = state => ({
 	currUser: state.users.current,
 });
 
-const mapDispatchToProps = dispatch => ({
-	addComments: (data) => { dispatch(addComments(data));},
-})
-
-
-const MainPageContainer = connect(mapStateToProps, mapDispatchToProps)(MainPage);
+const MainPageContainer = connect(mapStateToProps)(MainPage);
 
 export default MainPageContainer;

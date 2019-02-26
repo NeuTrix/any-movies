@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 // import CommentableContainer from '../comments/CommentableContainer';
-import CommentableForm from '../comments/CommentableForm';
+import CommentableFormContainer from '../comments';
 import { MoviePageContainer } from '../movies';
 // import { MenuBarContainer } from '../main';
 import { MovieCommentsContainer } from '../movies';
@@ -16,13 +16,12 @@ const propTypes = {
 	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	// showingCommentForm: PropTypes.bool.isRequired,
-	// ===> functions
-	addComments: PropTypes.func.isRequired, // adds a new review instance to api
+	// ===> functionspcomment
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
-function MainPage({ classes, currMovie, addComments }) {
+function MainPage({ classes, currMovie, addCommentspcomment }) {
 
 	return (
 		<div
@@ -37,7 +36,7 @@ function MainPage({ classes, currMovie, addComments }) {
 
 				<div style={{gridArea: 'form'}} >
 					<p> New Comment Form </p>
-					<CommentableForm addComments={addComments}/>
+					<CommentableFormContainer />
 				</div>
 
 				<div style={{gridArea: 'comments'}} >

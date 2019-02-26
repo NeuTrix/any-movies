@@ -12,16 +12,20 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
+	pickle: PropTypes.instanceOf(Object).isRequired, // material UI
 	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
 	editMode: PropTypes.bool, // new or edit form 
-	addComment: PropTypes.func.isRequired, // create or edit commentable
+	addComments: PropTypes.func.isRequired, // adds a new review instance to api
+	
 	// toggleForm: PropTypes.func.isRequired, // create or edit commentable
 };
 
+
+
 const defaultProps = {
 	editMode: false,
+	// commentable:{},
 }
 
 class CommentableForm extends Component {
@@ -65,7 +69,8 @@ class CommentableForm extends Component {
 			// setTimeout(() => { this.props.toggleForm(); }, 250) 
 	}
 	render() {
-		const { classes, currUser } = this.props;
+		const { classes, currUser, commentable } = this.props;
+		console.log(1, '==>', commentable);
 
 		return (
 			<FormControl
@@ -141,4 +146,4 @@ const styles= theme => ({
 CommentableForm.propTypes = propTypes;
 CommentableForm.defaultProps = defaultProps;
 
-export default withStyles(styles)(CommentableForm)
+export default withStyles(styles)(CommentableForm);
