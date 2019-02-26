@@ -22,7 +22,7 @@ const propTypes = {
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
-function MainPage({ classes, currMovie }) {
+function MainPage({ classes, currMovie, addComments }) {
 
 	return (
 		<div
@@ -37,7 +37,7 @@ function MainPage({ classes, currMovie }) {
 
 				<div style={{gridArea: 'form'}} >
 					<p> New Comment Form </p>
-					<CommentableForm />
+					<CommentableForm addComments={addComments}/>
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
