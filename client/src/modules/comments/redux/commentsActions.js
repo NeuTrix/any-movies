@@ -65,10 +65,10 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 					alert(`Your comment was added for \n commentable_id: ${commentable_id}`);
 					return [resp.data];
 				})
-				// .then((data) => {
-				// 	dispatch(getComments(commentable_id, commentable_type))
-				// 	return data
-				// })
+				.then((data) => {
+					dispatch(getComments(commentable_id, commentable_type))
+					return data
+				})
 				.then((data) => {
 					// normalize the data
 					const normed = normalize(data, commentsListSchema);
@@ -76,7 +76,6 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 					const dictionary = normed.entities.comments; // an object map
 					dispatch(addCommentsToDictionary(indexes, dictionary));
 				})
-				
 				.then(() => {
 					// update the subcomments object
 					// this.setState({ showingCommentForm: false });
