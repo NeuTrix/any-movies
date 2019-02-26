@@ -57,7 +57,7 @@ class MoviePage extends Component {
 					/>
 					<div> {`Released...${currMovie.Year}`} </div> <br />
 					<div> {'Rated'} <h3> { currMovie.Rated } </h3> </div>
-					<div> <h6> { `imdbID: ${imdbID}` } </h6> </div>
+					<div> <h6> { `imdbID: ${currMovie.imdbID}` } </h6> </div>
 
 				</div>
 
