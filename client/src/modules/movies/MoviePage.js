@@ -6,10 +6,7 @@ import { FavouritesButton } from '../favourites';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	commentable: PropTypes.instanceOf(Object).isRequired,
-	comments: PropTypes.instanceOf(Object).isRequired,
-	// functions
-	getComments: PropTypes.instanceOf(Object).isRequired,
+	currMovie: PropTypes.instanceOf(Object).isRequired,
 };
 
 class MoviePage extends Component {

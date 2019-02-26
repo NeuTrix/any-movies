@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import { mockstate } from '../testHelpers';
 import MoviePage from './MoviePage';
 
 describe('The MoviePage component', () => {
-	const { commentable, comments } = mockstate;
-	const props = { commentable, comments };
+	const props = { currMovie:{} };
 
 	it('renders without crashing', () => {
 		const div = document.createElement('div');
