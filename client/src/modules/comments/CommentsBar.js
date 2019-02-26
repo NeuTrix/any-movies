@@ -20,11 +20,11 @@ const defaultProps = {
 
 function CommentsBar({ classes, comments, title }) {
 	return (
-		<div className={classes.root}
+		<div className={classes.root}>
 			<ExpansionPanel
 				className={classes.expansion}
 			>
-				<ExpansionPanelSummary
+			<ExpansionPanelSummary
 					className={classes.summary}
 					// onClick={handleGetComments}
 					expandIcon={<ExpandMoreIcon />}
