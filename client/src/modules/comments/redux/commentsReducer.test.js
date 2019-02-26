@@ -234,6 +234,5 @@ describe('The SET_COMMENTABLE action', () => {
 describe('The TOGGLE_COMMENTS_FORM action', () => {
 	const action = toggleCommentsForm();
 	const nextState = commentsReducer(prevState, action)
-	console.log(2, '==>', prevState.showForm);
 	expect(nextState.showForm).not.to.eql(prevState.showForm)
 });
