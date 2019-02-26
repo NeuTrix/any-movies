@@ -44,7 +44,7 @@ export const addCommentsToDictionary = actionCreator(
 
 export const updateCommentsCount = actionCreator(
 	UPDATE_COMMENTS_COUNT,
-	'indexes',
+	'count',
 );
 
 // ===> ASYNC functions
@@ -114,7 +114,10 @@ export function getComments(commentableID, commentableType) {
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
 				dispatch(addCommentsToDictionary(indexes, dictionary));
+				return indexes
 			})
+			// update the counter
+			.then((indexes) => dispatch(updateCommentsCount(indexes.length)))
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))
 			// set the current commentable object id

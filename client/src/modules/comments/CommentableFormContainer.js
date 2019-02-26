@@ -4,6 +4,7 @@ import CommentableForm from './CommentableForm';
 
 const mapStateToProps = state => ({
   commentable: state.comments.commentable,
+  count: state.comments.count,
   currUser: state.users.current,
 });
 

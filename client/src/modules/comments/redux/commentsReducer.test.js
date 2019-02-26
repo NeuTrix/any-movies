@@ -79,7 +79,7 @@ describe('The default state properties', () => {
 	});
 });
 
-describe.only('The ADD_COMMENTS_TO_DICTIONARY action', () => {
+describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 	const action = addCommentsToDictionary(comments1, dictionary1);
 	const nextState = commentsReducer(prevState, action);
 	const action2 = addCommentsToDictionary(comments2, dictionary2);
@@ -132,13 +132,13 @@ describe.only('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 	});
 });
 
-describe('The UPDATE_COMMENTS_COUNT action', () => {
+describe.only('The UPDATE_COMMENTS_COUNT action', () => {
 	const comments = [ {}, {}, {}];
-	const action = updateCommentsCount([]);
+	const action = updateCommentsCount(comments.length);
 	const nextState = commentsReducer(prevState, action);
 
-	it('--> nextState has a counts (array) prop', () => {
-		expect(nextState).to.have.property('counts')
+	it('--> nextState has a count (array) prop', () => {
+		expect(nextState).to.have.property('count')
 			.to.be.an('number');
 	});
 
@@ -150,7 +150,6 @@ describe('The UPDATE_COMMENTS_COUNT action', () => {
 		expect(prevState.count).to.eql(0);
 		expect(nextState.count).to.eql(comments.length);
 	});
-
 });
 
 describe('The FETCH_COMMENTS_FAILURE action', () => {
