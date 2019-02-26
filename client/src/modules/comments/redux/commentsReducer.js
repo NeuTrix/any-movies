@@ -100,7 +100,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 		// handle COMMENTABLES OBJECT
 	case SET_COMMENTABLE:
 		const { commentableID, commentableType } = payload
-		console.log(3, '==commsReducer>', commentableID, commentableType);
 		return {
 			...state,
 			...{

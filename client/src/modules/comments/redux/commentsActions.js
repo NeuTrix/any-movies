@@ -49,7 +49,7 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 // data object is and array of objecst `[{}]`
 	export function addComments( data ) {
 		const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
-		const url = `/api/comments`;
+		const url = `/api/${path}/${data.commentable_id}/comments`;
 		
 		return function thunk(dispatch) {
 

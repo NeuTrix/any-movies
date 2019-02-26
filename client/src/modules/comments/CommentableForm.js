@@ -68,6 +68,7 @@ class CommentableForm extends Component {
 		// add the type and id to the state object
 		
 		// #addComments accepts comments as an object
+		console.log(4, '==>', data);
 		this.props.addComments(data);
 		// setTimeout(() => { this.props.toggleForm(); }, 250)
 	}
