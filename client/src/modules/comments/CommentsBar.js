@@ -11,11 +11,16 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
+	title: PropTypes.string, // 
 };
 
-function CommentsBar({ classes, comments, commentable }) {
+const defaultProps = {
+	title: 'this item',
+};
+
+function CommentsBar({ classes, comments, title }) {
 	return (
-		<div className={classes.root}>
+		<div className={classes.root}
 			<ExpansionPanel
 				className={classes.expansion}
 			>
@@ -25,7 +30,7 @@ function CommentsBar({ classes, comments, commentable }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `There are ${comments.length} comments for ${commentable.id}` }
+						{ `There are ${comments.length} comments for ${title}` }
 					</Typography>
 
 				</ExpansionPanelSummary>
@@ -69,5 +74,6 @@ const styles = theme => ({
 });
 
 CommentsBar.propTypes = propTypes;
+CommentsBar.defaultProps = defaultProps;
 
 export default withStyles(styles)(CommentsBar);

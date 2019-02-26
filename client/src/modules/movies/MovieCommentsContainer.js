@@ -19,6 +19,7 @@ const buildCommentsArray = (array) => {
 const mapStateToProps = state => ({
 	commentable: state.comments.commentable,
 	comments: buildCommentsArray(state.comments.comments),
+	title: state.movies.title,
 });
 
 const MovieCommentsContainer = connect(mapStateToProps)(CommentsBar);
