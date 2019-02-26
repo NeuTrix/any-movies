@@ -79,7 +79,7 @@ describe('The default state properties', () => {
 	});
 });
 
-describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
+describe.only('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 	const action = addCommentsToDictionary(comments1, dictionary1);
 	const nextState = commentsReducer(prevState, action);
 	const action2 = addCommentsToDictionary(comments2, dictionary2);
@@ -98,7 +98,7 @@ describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 
 		it('...indexes array length incremented properly', () => {
 			expect(prevState.indexes.length).to.eql(0);
-			expect(nextState.indexes.length).to.eql(0);
+			expect(nextState.indexes.length).to.eql(1);
 		});
 
 		it('--> nextState has a `commentable` prop', () => {

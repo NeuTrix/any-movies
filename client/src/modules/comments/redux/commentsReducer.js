@@ -60,6 +60,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 				dictionary: dictionaryReducer(state.dictionary, action),
 				// indexes for the current commentable (movie or comment)
 				comments: filterCommentsToArray(indexes, dictionary),
+				indexes: payload.indexes,
 			},
 		};
 
@@ -69,7 +70,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				indexes: payload.indexes,
+				count: payload.count,
 			},
 		};
 
