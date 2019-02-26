@@ -25,7 +25,7 @@ function CommentsBar({ classes, comments, commentable }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `${commentable.type} comments: ${comments.length}` }
+						{ `${commentable} comments: ${comments.length}` }
 					</Typography>
 
 				</ExpansionPanelSummary>
@@ -69,6 +69,5 @@ const styles = theme => ({
 });
 
 CommentsBar.propTypes = propTypes;
-// CommentsBar.defaultProps = defaultProps;
 
 export default withStyles(styles)(CommentsBar);

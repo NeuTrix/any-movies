@@ -35,7 +35,8 @@ export const fetchCommentsFailure = actionCreator(
  // set the current comment
 export const setCommentable = actionCreator(
 	SET_COMMENTABLE,
-	'commentable',
+	'commentableID',
+	'commentableType',
 );
 
 // retrieve the comments object (array of objs) from the api
@@ -61,7 +62,7 @@ export function getComments(commentableID, commentableType) {
 				dispatch(fetchCommentsSuccess(indexes, dictionary));
 			})
 			// set the current commentable object id
-			.then(() => dispatch(setCommentable(commentableID)))
+			.then(() => dispatch(setCommentable(commentableID, commentableType)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
 				// console.log('---#getComments error--->', error);

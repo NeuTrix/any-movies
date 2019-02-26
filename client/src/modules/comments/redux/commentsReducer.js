@@ -25,7 +25,6 @@ export const initialState = {
 	showForm: false, // showing new/edit form?
 };
 
-
 // reducer to handle nested dictionary state
 export function dictionaryReducer(state = {}, action = {}) {
 	const { type, payload } = action;
@@ -58,8 +57,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			},
 		}
-
-	// Handle API actions
 	case FETCH_COMMENTS_REQUEST:
 		return { 
 			...state, 
@@ -90,12 +87,13 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			}
 		}
-
+		// handle COMMENTABLES OBJECT
 		case SET_COMMENTABLE:
+			const { commentableID, commentableType } = payload
 			return {
 				...state,
 				...{
-					commentable: payload.commentable,
+					commentable: { id: commentableID, type: commentableType }
 				}
 			}
 
