@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-	title: 'this item',
+	title: 'this comment',
 };
 
 function CommentsBar({ classes, comments, title }) {
