@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 // import CommentableContainer from '../comments/CommentableContainer';
-// import CommentableForm from '../comments/CommentableForm';
+import CommentableForm from '../comments/CommentableForm';
 import { MoviePageContainer } from '../movies';
 // import { MenuBarContainer } from '../main';
 import { MovieCommentsContainer } from '../movies';
@@ -37,6 +37,7 @@ function MainPage({ classes, currMovie }) {
 
 				<div style={{gridArea: 'form'}} >
 					<p> New Comment Form </p>
+					{/* <CommentableForm /> */}
 				</div>
 
 				<div style={{gridArea: 'comments'}} >

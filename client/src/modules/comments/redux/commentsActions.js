@@ -47,42 +47,50 @@ export const comment = new schema.Entity('comments'); // normalize data
 export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // data object is and array of objecst `[{}]`
-	// export function addComments( data ) {
-	// 	const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
+	export function addComments( data ) {
+		const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
+		const url = `/api/comments`
 		
-	// 	return function thunk(dispatch) {
+		return function thunk(dispatch) {
 
-	// 		// return axios.post(url, data)
-	// 		// 	.then((resp) => {
-	// 		// 			alert(`Your comment was added! \n commentable_id: ${resp.data.id}`);
-	// 		// 			return resp.data;
-	// 		// 		})
-	// 		// 	.then(() => {
-	// 		// 			// update the subcomments object
-	// 		// 			this.setState({ showingCommentForm: false });
-	// 		// 		})
-	// 		// 	.catch((err) => {
-	// 		// 			alert(
-	// 		// 					`There was a problem adding your comment. 
-	// 		// 					\n "CommentableContainer"
-	// 		// 					\n ${err}`,
-	// 		// 				);
-	// 		// 				console.log('ERROR=>', err);
-	// 		// 			});
-	// 	};
-	// }
-
+			return axios.post(url, data)
+				.then((resp) => {
+					alert(`Your comment was added! \n commentable_id: ${resp.data.id}`);
+					return resp.data;
+				})
+				.then((data) => {
+					// normalize the data
+					const normed = normalize(data, commentsListSchema);
+					const indexes = normed.result; // an array of indices
+					const dictionary = normed.entities.comments; // an object map
+					dispatch(addCommentsToDictionary(indexes, dictionary));
+				})
+				.then(() => {
+					// update the subcomments object
+					// this.setState({ showingCommentForm: false });
+				})
+				.catch((err) => {
+					alert(
+						`There was a problem adding your comment. 
+						\n "CommentableContainer"
+						\n ${err}`,
+					);
+					console.log('ERROR=>', err);
+				});
+		};
+	}
 
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {
 	const path = commentableType === 'Comment' ? 'comments' : 'movies';
+	const url = `/api/${path}/${commentableID}/comments`
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
 		// alert state of request action
 		dispatch(fetchCommentsRequest());
 		// return the axios promise with the data/status
-		return axios.get(`/api/${path}/${commentableID}/comments`)
+		return axios.get(url)
 			// normalize the response data
 			.then((resp) => {
 				console.log('--#getComments data-->', resp.data);

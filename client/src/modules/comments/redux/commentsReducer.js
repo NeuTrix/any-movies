@@ -49,7 +49,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 		// handle api failures
 		case ADD_COMMENTS_TO_DICTIONARY:
 		const { indexes, dictionary } = payload;
-		console.log(9, '==>', 'in the add-comments-dict reducer');
 		return {
 			...state,
 			...{
