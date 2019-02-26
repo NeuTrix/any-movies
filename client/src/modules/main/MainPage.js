@@ -17,7 +17,7 @@ const propTypes = {
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	// showingCommentForm: PropTypes.bool.isRequired,
 	// ===> functions
-	// addComment: PropTypes.func.isRequired, // adds a new review instance to api
+	addComments: PropTypes.func.isRequired, // adds a new review instance to api
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
@@ -31,13 +31,13 @@ function MainPage({ classes, currMovie }) {
 		>
 			<div className={classes.grid}> 
 
-				<div style={{gridArea: 'addComment'}} >
+				<div style={{gridArea: 'comment'}} >
 					<p> Add Comment </p>
 				</div>
 
 				<div style={{gridArea: 'form'}} >
 					<p> New Comment Form </p>
-					{/* <CommentableForm /> */}
+					<CommentableForm />
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
@@ -66,7 +66,7 @@ const styles = theme => ({
 		display: 'inline-grid',
 		gridRowGap: '8px',
 		gridTemplateAreas: `
-      "addComment addComment addComment"
+      "comment comment comment"
 			"form form form"
 			"favours favours favours"
       "comments comments comments"

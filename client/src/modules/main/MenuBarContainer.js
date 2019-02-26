@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+	// are brackets needed here?
 	getMovieData: (title) => { dispatch(getMovieData(title)); },
 });
 

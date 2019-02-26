@@ -1,5 +1,5 @@
 // form returns an author, body, and title for a commentable object
-// create action (submitAction) is dellivered through props
+// create action (addComment) is dellivered through props
 // allows movie or comments to share the component
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -13,13 +13,11 @@ import { Button } from '@material-ui/core';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable_id: PropTypes.string.isRequired, 
-	commentable_type: PropTypes.string.isRequired, 
 	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
 	editMode: PropTypes.bool, // new or edit form 
-	submitAction: PropTypes.func.isRequired, // create or edit commentable
-	toggleForm: PropTypes.func.isRequired, // create or edit commentable
+	addComment: PropTypes.func.isRequired, // create or edit commentable
+	// toggleForm: PropTypes.func.isRequired, // create or edit commentable
 };
 
 const defaultProps = {
@@ -44,21 +42,6 @@ class CommentableForm extends Component {
 		this.onSubmit = this.onSubmit.bind(this)
 	}
 
-	// post the review to the rails API
-	componentDidMount() {
-		this.setState((state, props) => {
-			const { commentable, commentable_id, commentable_type, currUser, editMode } = props
-			let author = currUser.username;
-			let user_id = currUser.id;
-			// prepopulate if this is an editing item
-			let body, title
-			if (editMode) {
-				body = commentable.body 
-				title = commentable.title
-			}
-			return { ...state, author, body, title, user_id, commentable_id, commentable_type }
-		});
-	}
 	
 	// update the state with form entries
 	onChange(e) {
@@ -72,9 +55,14 @@ class CommentableForm extends Component {
 		const { commentable } = this.props
 		const data = this.state;
 		console.log('submitting', this.props)
-		// sending an args object to protect against arg order errors
-		this.props.submitAction({ commentable, data });
-			setTimeout(() => { this.props.toggleForm(); }, 250) 
+		// add the type and id to the state object
+    this.setState({ 
+			commentable_id: commentable.id,
+			commentable_type: commentable.type,
+		});		
+		// #addComment accepts comments as an array of objects
+		this.props.addComment([data]);
+			// setTimeout(() => { this.props.toggleForm(); }, 250) 
 	}
 	render() {
 		const { classes, currUser } = this.props;
