@@ -7,10 +7,10 @@ const mapStateToProps = state => ({
   currUser: state.users.current,
 });
 
-// const mapDispatchToProps = dispatch => ({
-	// addComments: data => dispatch(addComments(data)),
-// });
+const mapDispatchToProps = dispatch => ({
+	addComments: data => dispatch(addComments(data)),
+});
 
-const CommentableFormContainer = connect(mapStateToProps)(CommentableForm);
+const CommentableFormContainer = connect(mapStateToProps, mapDispatchToProps)(CommentableForm);
 
 export default CommentableFormContainer;

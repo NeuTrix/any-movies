@@ -25,7 +25,6 @@ const propTypes = {
 
 const defaultProps = {
 	editMode: false,
-	// commentable:{},
 }
 
 class CommentableForm extends Component {
@@ -70,8 +69,6 @@ class CommentableForm extends Component {
 	}
 	render() {
 		const { classes, currUser, commentable } = this.props;
-		console.log(1, '==>', commentable);
-
 		return (
 			<FormControl
 				className={classes.main}
@@ -129,7 +126,7 @@ class CommentableForm extends Component {
 
 			</FormControl>
 		)
-  }
+	}
 }
 
 // add grid to update form layout
