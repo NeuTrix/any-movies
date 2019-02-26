@@ -8,14 +8,16 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	currMovie: PropTypes.instanceOf(Object).isRequired,
 	// fn to  grab comments for this item
-	getComments: PropTypes.instanceOf(Function).isRequired, 
+	getComments: PropTypes.instanceOf(Function), 
 };
 
-class MoviePage extends Component {
+// in the event that a movie is not registered or has no comments
+// eliminates warning messages when fn would return 'undefined'
+const defaultProps = {
+	getComments: f => f,
+}
 
-	constructor(props) {
-		super(props)
-	}
+class MoviePage extends Component {
 
 	componentDidUpdate(prevProps,) {
 		if (this.props.currMovie !== prevProps.currMovie) {
@@ -167,5 +169,6 @@ const styles = theme => ({
 });
 
 MoviePage.propTypes = propTypes;
+MoviePage.defaultProps = defaultProps;
 
 export default withStyles(styles)(MoviePage);

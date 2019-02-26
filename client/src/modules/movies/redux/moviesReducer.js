@@ -3,10 +3,9 @@ import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
-	SET_CURRENT_MOVIE,
+	// SET_CURRENT_MOVIE,
 	// CHECK_MOVIE_REGISTRATION // See if its registered in the api
 } from '../../helpers/constants';
-import { createRef } from 'react';
 
 export const initialState = {
 	apiStatus: {

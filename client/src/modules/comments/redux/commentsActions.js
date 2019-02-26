@@ -52,7 +52,7 @@ export function getComments(commentableID, commentableType) {
 			// normalize the response data
 			.then((resp) => {
 				console.log('--#getComments data-->', resp.data);
-				return resp.data;
+				return resp.data ? resp.data : 'no data'
 			})
 			.then((data) => {
 				// normalize the data
@@ -65,7 +65,7 @@ export function getComments(commentableID, commentableType) {
 			.then(() => dispatch(setCommentable(commentableID, commentableType)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
-				// console.log('---#getComments error--->', error);
+				return console.log('---#getComments error--->', error);
 			});
 	};
 }

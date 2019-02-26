@@ -9,7 +9,6 @@ import thunkMiddleware from 'redux-thunk'; // handle async actions
 // import createLogger from 'redux-logger'
 import { commentsReducer } from '../modules/comments';
 import { favouritesReducer } from '../modules/favourites';
-import { getComments } from '../modules/comments/redux/commentsActions';
 import { getMovieData } from '../modules/movies/redux/moviesActions';
 import { moviesReducer } from '../modules/movies';
 import { usersReducer } from '../modules/users';
@@ -49,8 +48,5 @@ const store = createStore(
 
 // hydrate default movie
 store.dispatch(getMovieData('Alien'));
-// store.dispatch(getComments('tt0078748','Movie'));
-
-// store.dispatch(getComments('tt0076759', 'Movie'));
 
 export default store;
