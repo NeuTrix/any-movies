@@ -50,6 +50,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
+				comments: [], // reset and allows component to update
 				apiStatus: {
 					isFetching: false,
 					message: `Error getting comments: \n ${payload.error}`,

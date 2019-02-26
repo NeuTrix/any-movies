@@ -51,7 +51,7 @@ export function getComments(commentableID, commentableType) {
 		return axios.get(`/api/${path}/${commentableID}/comments`)
 			// normalize the response data
 			.then((resp) => {
-				// console.log('--#getComments data-->', resp.data);
+				console.log('--#getComments data-->', resp.data);
 				return resp.data;
 			})
 			.then((data) => {

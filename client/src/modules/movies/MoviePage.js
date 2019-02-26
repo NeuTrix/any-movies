@@ -7,6 +7,8 @@ import { FavouritesButton } from '../favourites';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	currMovie: PropTypes.instanceOf(Object).isRequired,
+	// fn to  grab comments for this item
+	getComments: PropTypes.instanceOf(Function).isRequired, 
 };
 
 class MoviePage extends Component {
@@ -15,9 +17,11 @@ class MoviePage extends Component {
 		super(props)
 	}
 
-	componentDidMount() {
-		// const { imdb, getComments } = this.props
-		// getComments(imdb, "Movie")
+	componentDidUpdate(prevProps,) {
+		if (this.props.currMovie !== prevProps.currMovie) {
+			const { currMovie, getComments } = this.props;
+			getComments(currMovie.imdbID, "Movie");
+		}
 	}
 
 	render() {// generate list of movie ratings
