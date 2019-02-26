@@ -10,6 +10,7 @@ import {
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
 	setCommentable,
+	toggleCommentsForm,
 } from './commentsActions';
 
 // test objects
@@ -228,4 +229,11 @@ describe('The SET_COMMENTABLE action', () => {
 	it('...has the expected value', () => {
 		expect(nextState.commentable.id).to.eql(comments1[0]);
 	});
+});
+
+describe('The TOGGLE_COMMENTS_FORM action', () => {
+	const action = toggleCommentsForm();
+	const nextState = commentsReducer(prevState, action)
+	console.log(2, '==>', prevState.showForm);
+	expect(nextState.showForm).not.to.eql(prevState.showForm)
 });

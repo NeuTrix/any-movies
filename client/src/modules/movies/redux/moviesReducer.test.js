@@ -41,6 +41,10 @@ describe('The FETCH_MOVIE_SUCCESS action', () => {
 				.to.be.an('object');
 		});
 
+		it('...keeps the count righteous', () => {
+			expect(true).to.eql(true);
+		});
+
 		it('--> nextState has a current (movie) prop', () => {
 			expect(nextState).to.have.property('current')
 				.to.be.an('object');

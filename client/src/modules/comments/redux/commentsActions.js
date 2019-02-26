@@ -4,6 +4,7 @@ import { actionCreator } from '../../helpers';
 
 import {
 	ADD_COMMENTS_TO_DICTIONARY,
+	TOGGLE_COMMENTS_FORM,
 	UPDATE_COMMENTS_COUNT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
@@ -46,6 +47,10 @@ export const updateCommentsCount = actionCreator(
 	UPDATE_COMMENTS_COUNT,
 	'count',
 );
+
+export const toggleCommentsForm = actionCreator(
+	TOGGLE_COMMENTS_FORM,
+)
 
 // ===> ASYNC functions
 // normalizr schema
