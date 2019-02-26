@@ -58,43 +58,43 @@ export const comment = new schema.Entity('comments'); // normalize data
 export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // data object is and array of objecst `[{}]`
-	export function addComments( data ) {
-		const { commentable_id, commentable_type } = data;
-		const path = commentable_type === 'Comment' ? 'comments' : 'movies';
-		const url = `/api/${path}/${commentable_id}/comments`;
-		
-		return function thunk(dispatch) {
+export function addComments( data ) {
+	const { commentable_id, commentable_type } = data;
+	const path = commentable_type === 'Comment' ? 'comments' : 'movies';
+	const url = `/api/${path}/${commentable_id}/comments`;
+	
+	return function thunk(dispatch) {
 
-			return axios.post(url, data)
-				.then((resp) => {
-					alert(`Your comment was added for \n commentable_id: ${commentable_id}`);
-					return [resp.data];
-				})
-				.then((data) => {
-					dispatch(getComments(commentable_id, commentable_type))
-					return data
-				})
-				.then((data) => {
-					// normalize the data
-					const normed = normalize(data, commentsListSchema);
-					const indexes = normed.result; // an array of indices
-					const dictionary = normed.entities.comments; // an object map
-					dispatch(addCommentsToDictionary(indexes, dictionary));
-				})
-				.then(() => {
-					// update the subcomments object
-					// this.setState({ showingCommentForm: false });
-				})
-				.catch((err) => {
-					alert(
-						`There was a problem adding your comment. 
-						\n "CommentableContainer"
-						\n ${err}`,
-					);
-					console.log('ERROR=>', err);
-				});
-		};
-	}
+		return axios.post(url, data)
+			.then((resp) => {
+				alert(`Your comment was added for \n commentable_id: ${commentable_id}`);
+				return [resp.data];
+			})
+			.then((data) => {
+				dispatch(getComments(commentable_id, commentable_type))
+				return data
+			})
+			.then((data) => {
+				// normalize the data
+				const normed = normalize(data, commentsListSchema);
+				const indexes = normed.result; // an array of indices
+				const dictionary = normed.entities.comments; // an object map
+				dispatch(addCommentsToDictionary(indexes, dictionary));
+			})
+			.then(() => {
+				// update the subcomments object
+				// this.setState({ showingCommentForm: false });
+			})
+			.catch((err) => {
+				alert(
+					`There was a problem adding your comment. 
+					\n "CommentableContainer"
+					\n ${err}`,
+				);
+				console.log('ERROR=>', err);
+			});
+	};
+}
 
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {

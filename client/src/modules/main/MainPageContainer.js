@@ -1,6 +1,7 @@
 // container logic for comments
 import { connect } from 'react-redux';
 import MainPage from './MainPage';
+import { toggleCommentsForm } from '../comments/redux/commentsActions';
 
 // utilize indexes index to filter cached comments dictionary
 // export function filterComments(indexes, dictionary) {
@@ -26,6 +27,11 @@ const mapStateToProps = state => ({
 	currUser: state.users.current,
 });
 
-const MainPageContainer = connect(mapStateToProps)(MainPage);
+const mapDispatchToProps = dispatch => ({
+	toggleCommentsForm: () => dispatch(toggleCommentsForm()),
+})
+
+
+const MainPageContainer = connect(mapStateToProps, mapDispatchToProps)(MainPage);
 
 export default MainPageContainer;

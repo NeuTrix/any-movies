@@ -11,19 +11,25 @@ import { CommentableFormContainer } from '../comments';
 import { MovieCommentsContainer } from '../movies';
 // unclear why this linting error appears =>
 import { MoviePageContainer } from '../movies';
+import { toggleCommentsForm } from '../comments/redux/commentsActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	// comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
-	// showingCommentForm: PropTypes.bool.isRequired,
+	showForm: PropTypes.bool.isRequired,
 	// ===> functionspcomment
+	toggleCommentsForm: PropTypes.func.isRequired, // toggles comments form display
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
-function MainPage({ classes, currMovie, comments }) {
+function MainPage({ classes, currMovie, comments, showForm, toggleCommentsForm  }) {
 
+	const onClick = (e) => {
+		e.preventDefault();
+		toggleCommentsForm();
+	}
 	return (
 		<div
 			className={classes.posterBackground}
@@ -36,8 +42,8 @@ function MainPage({ classes, currMovie, comments }) {
 				</div>
 
 				<div style={{gridArea: 'form'}} >
-					<p> New Comment Form </p>
-					<CommentableFormContainer />
+					<button onClick={onClick}> Add a Comment </button>
+				{showForm && <CommentableFormContainer />}
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
