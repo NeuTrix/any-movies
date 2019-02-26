@@ -41,6 +41,7 @@ class CommentableForm extends Component {
 			title: '',
 		};
 		this.onChange = this.onChange.bind(this);
+		this.onClick = this.onClick.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
@@ -51,19 +52,23 @@ class CommentableForm extends Component {
 		});
 	}
 
-	onSubmit(e) {
-		e.preventDefault();
+	onClick(e) {
 		const { commentable, currUser } = this.props;
-		const data = this.state;
-		console.log('submitting', this.props);
-		// add the type and id to the state object
 		this.setState({
 			commentable_id: commentable.id,
 			commentable_type: commentable.type,
 			user_id: currUser.id,
 		});
-		// #addComment accepts comments as an array of objects
-		this.props.addComment([data]);
+	}
+
+	onSubmit(e) {
+		e.preventDefault();
+		const data = this.state;
+		console.log('submitting', this.props);
+		// add the type and id to the state object
+		
+		// #addComments accepts comments as an object
+		this.props.addComments(data);
 		// setTimeout(() => { this.props.toggleForm(); }, 250)
 	}
 
@@ -74,6 +79,7 @@ class CommentableForm extends Component {
 				className={classes.main}
 				component="form"
 				onSubmit={this.onSubmit}
+				onClick={this.onClick}
 			>
 				<Input
 					fullWidth

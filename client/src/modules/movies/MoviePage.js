@@ -22,6 +22,7 @@ class MoviePage extends Component {
 	componentDidUpdate(prevProps,) {
 		if (this.props.currMovie !== prevProps.currMovie) {
 			const { currMovie, getComments } = this.props;
+			// getComments(currMovie.imdbID, "Movie");
 			getComments(currMovie.imdbID, "Movie");
 		}
 	}
