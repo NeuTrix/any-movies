@@ -35,7 +35,7 @@ describe('Comments reducer default actions', () => {
 
 describe('The default state properties', () => {
 	it('... has a the expected number of default properties', () => {
-		expect(Object.keys(initialState).length).to.eql(8);
+		expect(Object.keys(initialState).length).to.eql(9);
 	});
 
 	it('...has a `apiStatus` property (object)', () => {
@@ -132,7 +132,7 @@ describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 	});
 });
 
-describe.only('The UPDATE_COMMENTS_COUNT action', () => {
+describe('The UPDATE_COMMENTS_COUNT action', () => {
 	const comments = [ {}, {}, {}];
 	const action = updateCommentsCount(comments.length);
 	const nextState = commentsReducer(prevState, action);

@@ -11,7 +11,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
-	indexes: PropTypes.instanceOf(Array).isRequired, // from commentable
+	count: PropTypes.number.isRequired, // keep count of comments for display
 	title: PropTypes.string, // title of the comment (Movie)
 };
 
