@@ -10,9 +10,6 @@ import {
 	SET_COMMENTABLE,
 } from '../../helpers/constants';
 
-// normalizr schema
-export const comment = new schema.Entity('comments'); // normalize data
-export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // update the api request property
 export const fetchCommentsRequest = actionCreator(
@@ -22,9 +19,7 @@ export const fetchCommentsRequest = actionCreator(
 // manage the data returned from comments GET call api
 // need to factor out SET_COMMENTS from the success action
 export const fetchCommentsSuccess = actionCreator(
-	FETCH_COMMENTS_SUCCESS,
-	'indexes', 
-	'dictionary',
+	FETCH_COMMENTS_SUCCESS
 );
 
 // captures the error messages on fail
@@ -42,36 +37,41 @@ export const setCommentable = actionCreator(
 
 export const addCommentsToDictionary = actionCreator(
 	ADD_COMMENTS_TO_DICTIONARY,
-	'data',
+	'indexes',
+	'dictionary',
 );
 
 // ===> ASYNC functions
+// normalizr schema
+export const comment = new schema.Entity('comments'); // normalize data
+export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
-// DRY up the duplicate code in add and edit
-	export function addComment( data ) {
-		const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
+// data object is and array of objecst `[{}]`
+	// export function addComments( data ) {
+	// 	const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
 		
-		return function thunk(dispatch) {
+	// 	return function thunk(dispatch) {
 
-			// return axios.post(url, data)
-			// 	.then((resp) => {
-			// 			alert(`Your comment was added! \n commentable_id: ${resp.data.id}`);
-			// 			return resp.data;
-			// 		})
-			// 	.then(() => {
-			// 			// update the subcomments object
-			// 			this.setState({ showingCommentForm: false });
-			// 		})
-			// 	.catch((err) => {
-			// 			alert(
-			// 					`There was a problem adding your comment. 
-			// 					\n "CommentableContainer"
-			// 					\n ${err}`,
-			// 				);
-			// 				console.log('ERROR=>', err);
-			// 			});
-		};
-	}
+	// 		// return axios.post(url, data)
+	// 		// 	.then((resp) => {
+	// 		// 			alert(`Your comment was added! \n commentable_id: ${resp.data.id}`);
+	// 		// 			return resp.data;
+	// 		// 		})
+	// 		// 	.then(() => {
+	// 		// 			// update the subcomments object
+	// 		// 			this.setState({ showingCommentForm: false });
+	// 		// 		})
+	// 		// 	.catch((err) => {
+	// 		// 			alert(
+	// 		// 					`There was a problem adding your comment. 
+	// 		// 					\n "CommentableContainer"
+	// 		// 					\n ${err}`,
+	// 		// 				);
+	// 		// 				console.log('ERROR=>', err);
+	// 		// 			});
+	// 	};
+	// }
+
 
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {
@@ -93,8 +93,10 @@ export function getComments(commentableID, commentableType) {
 				const normed = normalize(data, commentsListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(fetchCommentsSuccess(indexes, dictionary));
+				dispatch(addCommentsToDictionary(indexes, dictionary));
 			})
+			// update the api success state
+			.then(() => dispatch(fetchCommentsSuccess()))
 			// set the current commentable object id
 			.then(() => dispatch(setCommentable(commentableID, commentableType)))
 			.catch((error) => {

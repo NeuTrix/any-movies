@@ -4,7 +4,7 @@ import { expect } from 'chai';
 
 // action creators
 import {
-	addComment,
+	addCommentsToDictionary,
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
@@ -78,10 +78,10 @@ describe('The default state properties', () => {
 	});
 });
 
-describe('The FETCH_COMMENTS_SUCCESS action', () => {
-	const action = fetchCommentsSuccess(comments1, dictionary1);
+describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
+	const action = addCommentsToDictionary(comments1, dictionary1);
 	const nextState = commentsReducer(prevState, action);
-	const action2 = fetchCommentsSuccess(comments2, dictionary2);
+	const action2 = addCommentsToDictionary(comments2, dictionary2);
 	const nextState2 = commentsReducer(nextState, action2);
 
 	describe('The nextState properties', () => {
@@ -120,22 +120,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 		});
 	});
 
-	describe('The apiStatus object', () => {
-		it('... has an updated apiStatus.isFetching prop', () => {
-			expect(nextState.apiStatus).to.have.property('isFetching')
-				.to.eql(false);
-		});
-
-		it('... has an apiStatus.message prop', () => {
-			expect(nextState.apiStatus).to.have.property('message');
-		});
-
-		it('... has an updated apiStatus.status', () => {
-			expect(nextState.apiStatus).to.have.property('status')
-				.to.eql('success');
-		});
-	});
-
 	describe('The dictionary prop | sub reducer', () => {
 		it('...has initial dictionary of length 0', () => {
 			expect(Object.keys(prevState.dictionary).length).to.eql(0);
@@ -147,27 +131,6 @@ describe('The FETCH_COMMENTS_SUCCESS action', () => {
 
 		it('...has nextState 2 dictionary of length 3', () => {
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
-		});
-	});
-});
-
-describe('The FETCH_COMMENTS_REQUEST', () => {
-	const action = fetchCommentsRequest();
-	const nextState = commentsReducer(prevState, action);
-
-	describe('... the apiStatus object', () => {
-		it('... has an updated apiStatus.isFetching prop', () => {
-			expect(nextState.apiStatus).to.have.property('isFetching')
-				.to.eql(true);
-		});
-
-		it('... has an apiStatus.message prop', () => {
-			expect(nextState.apiStatus).to.have.property('message');
-		});
-
-		it('... has an updated apiStatus.status', () => {
-			expect(nextState.apiStatus).to.have.property('status')
-				.to.eql('requesting');
 		});
 	});
 });
@@ -194,6 +157,48 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 	});
 });
 
+describe('The FETCH_COMMENTS_REQUEST', () => {
+	const action = fetchCommentsRequest();
+	const nextState = commentsReducer(prevState, action);
+
+	describe('... the apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
+				.to.eql(true);
+		});
+
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
+		});
+
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
+				.to.eql('requesting');
+		});
+	});
+});
+
+describe('The FETCH_COMMENTS_SUCCESS', () => {
+	const action = fetchCommentsSuccess();
+	const nextState = commentsReducer(prevState, action);
+
+	describe('The apiStatus object', () => {
+		it('... has an updated apiStatus.isFetching prop', () => {
+			expect(nextState.apiStatus).to.have.property('isFetching')
+				.to.eql(false);
+		});
+
+		it('... has an apiStatus.message prop', () => {
+			expect(nextState.apiStatus).to.have.property('message');
+		});
+
+		it('... has an updated apiStatus.status', () => {
+			expect(nextState.apiStatus).to.have.property('status')
+				.to.eql('success');
+		});
+	});
+});
+
 describe('The SET_COMMENTABLE action', () => {
 	const action = setCommentable(comments1[0]);
 	const nextState = commentsReducer(prevState, action);
@@ -205,24 +210,5 @@ describe('The SET_COMMENTABLE action', () => {
 
 	it('...has the expected value', () => {
 		expect(nextState.commentable.id).to.eql(comments1[0]);
-	});
-});
-
-describe.only('The ADD_COMMENTS_TO_DICTIONARY action', () => {
-	const data = {
-		body: 'this is a test',
-		commentable_id: 'tt0078748',
-		commentable_type: 'Movie',
-		title: 'A test comment',
-		user_id: 1,
-	};
-	const action = addComment(data);
-	const nextState = commentsReducer(prevState, action);
-	const prevLength = Object.keys(prevState.dictionary).length;
-	const nextLength = Object.keys(nextState.dictionary).length;
-
-	it('...can add a new comment', () => {
-		expect(prevLength).to.eql(0);
-		expect(nextLength).to.eql(1);
 	});
 });

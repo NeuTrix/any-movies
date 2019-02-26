@@ -1,5 +1,6 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
+	ADD_COMMENTS_TO_DICTIONARY,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -30,7 +31,7 @@ export function dictionaryReducer(state = {}, action = {}) {
 	const { type, payload } = action;
 
 	switch (type) {
-		case FETCH_COMMENTS_SUCCESS:
+		case ADD_COMMENTS_TO_DICTIONARY:
 			return {
 				...state, 
 				...payload.dictionary, // targeting the object dictionary
@@ -46,6 +47,21 @@ export default function commentsReducer(state = initialState, action = {}) {
 	
 	switch (type) {
 		// handle api failures
+		case ADD_COMMENTS_TO_DICTIONARY:
+		const { indexes, dictionary } = payload;
+		console.log(9, '==>', 'in the add-comments-dict reducer');
+		return {
+			...state,
+			...{
+				// allow dictionary object ot accumulate objects vs
+				// replacing the whole object state (due to nesting)
+				dictionary: dictionaryReducer(state.dictionary, action),
+				// indexes for the current commentable (movie or comment)
+				indexes: indexes,
+				comments: filterCommentsToArray(indexes, dictionary),
+			},
+		}
+
 	case FETCH_COMMENTS_FAILURE:
 		return {
 			...state,
@@ -58,6 +74,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			},
 		}
+
 	case FETCH_COMMENTS_REQUEST:
 		return { 
 			...state, 
@@ -71,16 +88,9 @@ export default function commentsReducer(state = initialState, action = {}) {
 		}
 
 	case FETCH_COMMENTS_SUCCESS:
-		const { indexes, dictionary } = payload;
 		return {
 			...state,
 			...{
-				// allow dictionary object ot accumulate objects vs
-				// replacing the whole object state (due to nesting)
-				dictionary: dictionaryReducer(state.dictionary, action),
-				// indexes for the current commentable (movie or comment)
-				indexes: indexes,
-				comments: filterCommentsToArray(indexes, dictionary),
 				apiStatus: {
 					isFetching: false,
 					message: 'Successfully recieved comments',
