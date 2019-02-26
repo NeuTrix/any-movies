@@ -22,7 +22,7 @@ const reducers = combineReducers({
 
 const defaultState = {
 	users: {
-		currUser: {
+		current: {
 			username: 'Mickey333',
 			id: 1,
 		},

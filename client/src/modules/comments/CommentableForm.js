@@ -12,7 +12,7 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	pickle: PropTypes.instanceOf(Object).isRequired, // material UI
+	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
 	// functions
 	editMode: PropTypes.bool, // new or edit form 

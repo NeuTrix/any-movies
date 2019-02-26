@@ -4,6 +4,7 @@ import CommentableForm from './CommentableForm';
 
 const mapStateToProps = state => ({
   commentable: state.comments.commentable,
+  currUser: state.users.current,
 });
 
 // const mapDispatchToProps = dispatch => ({
@@ -13,4 +14,3 @@ const mapStateToProps = state => ({
 const CommentableFormContainer = connect(mapStateToProps)(CommentableForm);
 
 export default CommentableFormContainer;
-CommentableForm

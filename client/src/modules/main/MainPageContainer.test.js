@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { filterComments } from './MainPageContainer';
 
-describe('The #filterComments function', () => {
+xdescribe('The #filterComments function', () => {
 	const dictionary = {
 		'132x': 100,
 		b: 200,

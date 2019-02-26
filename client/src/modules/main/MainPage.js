@@ -6,14 +6,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 // import CommentableContainer from '../comments/CommentableContainer';
-import CommentableFormContainer from '../comments';
-import { MoviePageContainer } from '../movies';
+import { CommentableFormContainer } from '../comments';
 // import { MenuBarContainer } from '../main';
 import { MovieCommentsContainer } from '../movies';
+// unclear why this linting error appears =>
+import { MoviePageContainer } from '../movies';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
+	// comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	// showingCommentForm: PropTypes.bool.isRequired,
 	// ===> functionspcomment
@@ -21,7 +22,7 @@ const propTypes = {
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
 
-function MainPage({ classes, currMovie, addCommentspcomment }) {
+function MainPage({ classes, currMovie, comments }) {
 
 	return (
 		<div

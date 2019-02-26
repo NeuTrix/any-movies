@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import MainPage from './MainPage';
 
 // utilize indexes index to filter cached comments dictionary
-export function filterComments(indexes, dictionary) {
-	const list = [];
-	indexes.forEach((index) => {
-		list.push(dictionary[index]);
-	});
-	return list;
-}
+// export function filterComments(indexes, dictionary) {
+// 	const list = [];
+// 	indexes.forEach((index) => {
+// 		list.push(dictionary[index]);
+// 	});
+// 	return list;
+// }
 
 const mapStateToProps = state => ({
 	// comments
-	comments: filterComments(
-		state.comments.indexes, 
-		state.comments.dictionary,
-	),
+	// comments: filterComments(
+	// 	state.comments.indexes, 
+	// 	state.comments.dictionary,
+	// ),
 	
 	showForm: state.comments.showForm,
 	// movies
