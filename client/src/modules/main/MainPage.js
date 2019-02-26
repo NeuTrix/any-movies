@@ -36,23 +36,24 @@ function MainPage({ classes, currMovie, comments, showForm, toggleCommentsForm  
 			style={{ backgroundImage: `url(${currMovie.Poster})` }}
 		>
 			<div className={classes.grid}> 
+				<div className={classes.favours}>
+					<p> Favourites </p>
+				</div>
 
-				<div style={{gridArea: 'comment'}} >
-					<p> Add Comment </p>
+				<div style={{gridArea: 'addComment'}} >
+					<button onClick={onClick}> 
+						{ !showForm ? 'Show Comment Form' : 'Hide Comment Form' }
+					</button>
 				</div>
 
 				<div style={{gridArea: 'form'}} >
-					<button onClick={onClick}> Add a Comment </button>
-				{showForm && <CommentableFormContainer />}
+					{ showForm && <CommentableFormContainer /> }
 				</div>
 
 				<div style={{gridArea: 'comments'}} >
 					<MovieCommentsContainer />
 				</div>
 
-				<div style={{gridArea: 'favours'}} >
-					<p> Favourites </p>
-				</div>
 
 				<div style={{gridArea: 'movies'}} >
 					<MoviePageContainer />
@@ -67,14 +68,20 @@ const styles = theme => ({
 	comments: {
 		gridArea: 'comments',
 	},
+
+	favours: {
+		gridArea: 'favours',
+		marginTop: theme.spacing.unit * 5,
+	},
+
 	grid: {
 		backgroundColor: 'whitesmoke',
 		display: 'inline-grid',
 		gridRowGap: '8px',
 		gridTemplateAreas: `
-      "comment comment comment"
+		"favours favours favours"
+      "addComment addComment addComment"
 			"form form form"
-			"favours favours favours"
       "comments comments comments"
       "movies movies movies"
     `,
