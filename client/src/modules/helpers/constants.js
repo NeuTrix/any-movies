@@ -7,6 +7,7 @@ export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 
 // set the current comment and commentable type/id
 export const SET_COMMENTABLE = 'SET_COMMENTABLE';
+export const ADD_COMMENTS_TO_DICTIONARY = 'ADD_COMMENTS_TO_DICTIONARY';
 // SET_indexes = 'SET_SUBCOMMENTS'// specific reset of subcomments
 // CHECK_CACHE to see if comments is already in dictionary
 // UPDATE_DICTIONARY add to current dictionary

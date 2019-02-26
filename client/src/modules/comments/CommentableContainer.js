@@ -36,33 +36,7 @@ class CommentableContainer extends Component {
 		}
 	}
 
-	// DRY up the duplicate code in add and edit
-	addComment({ commentable, data }) {
-		let url;
-		if (commentable.commentable_type) {
-			url = `/api/comments/${commentable.id}/comments`;
-		} else {
-			url = `/api/movies/${commentable.imdbID}/comments`;
-		}
-
-		return axios.post(url, data)
-			.then((resp) => {
-				alert(`Your comment was added! \n commentable id: ${resp.data.id}`);
-				return resp.data;
-			})
-			.then(() => {
-				// update the subcomments object
-				this.setState({ showingCommentForm: false });
-			})
-			.catch((err) => {
-				alert(
-					`There was a problem adding your comment. 
-          \n "CommentableContainer"
-          \n ${err}`,
-				);
-				console.log('ERROR=>', err);
-			});
-	}
+	
 
 	editComment({ commentable, data }) {
 		return axios.put(`/api/comments/${commentable.id}`, data)

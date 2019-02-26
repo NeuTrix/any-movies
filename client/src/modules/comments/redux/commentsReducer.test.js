@@ -4,6 +4,7 @@ import { expect } from 'chai';
 
 // action creators
 import {
+	addComment,
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
@@ -204,5 +205,24 @@ describe('The SET_COMMENTABLE action', () => {
 
 	it('...has the expected value', () => {
 		expect(nextState.commentable.id).to.eql(comments1[0]);
+	});
+});
+
+describe.only('The ADD_COMMENTS_TO_DICTIONARY action', () => {
+	const data = {
+		body: 'this is a test',
+		commentable_id: 'tt0078748',
+		commentable_type: 'Movie',
+		title: 'A test comment',
+		user_id: 1,
+	};
+	const action = addComment(data);
+	const nextState = commentsReducer(prevState, action);
+	const prevLength = Object.keys(prevState.dictionary).length;
+	const nextLength = Object.keys(nextState.dictionary).length;
+
+	it('...can add a new comment', () => {
+		expect(prevLength).to.eql(0);
+		expect(nextLength).to.eql(1);
 	});
 });

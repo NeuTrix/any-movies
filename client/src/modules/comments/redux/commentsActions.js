@@ -3,6 +3,7 @@ import { normalize, schema } from 'normalizr';
 import { actionCreator } from '../../helpers';
 
 import {
+	ADD_COMMENTS_TO_DICTIONARY,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -38,6 +39,39 @@ export const setCommentable = actionCreator(
 	'commentableID',
 	'commentableType',
 );
+
+export const addCommentsToDictionary = actionCreator(
+	ADD_COMMENTS_TO_DICTIONARY,
+	'data',
+);
+
+// ===> ASYNC functions
+
+// DRY up the duplicate code in add and edit
+	export function addComment( data ) {
+		const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
+		
+		return function thunk(dispatch) {
+
+			// return axios.post(url, data)
+			// 	.then((resp) => {
+			// 			alert(`Your comment was added! \n commentable_id: ${resp.data.id}`);
+			// 			return resp.data;
+			// 		})
+			// 	.then(() => {
+			// 			// update the subcomments object
+			// 			this.setState({ showingCommentForm: false });
+			// 		})
+			// 	.catch((err) => {
+			// 			alert(
+			// 					`There was a problem adding your comment. 
+			// 					\n "CommentableContainer"
+			// 					\n ${err}`,
+			// 				);
+			// 				console.log('ERROR=>', err);
+			// 			});
+		};
+	}
 
 // retrieve the comments object (array of objs) from the api
 export function getComments(commentableID, commentableType) {
