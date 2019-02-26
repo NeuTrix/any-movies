@@ -11,14 +11,15 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
-	title: PropTypes.string, // 
+	indexes: PropTypes.instanceOf(Array).isRequired, // from commentable
+	title: PropTypes.string, // title of the comment (Movie)
 };
 
 const defaultProps = {
-	title: 'this comment',
+	title: 'this comment', // default for non movie comments
 };
 
-function CommentsBar({ classes, comments, title }) {
+function CommentsBar({ classes, comments, indexes, title }) {
 	return (
 		<div className={classes.root}>
 			<ExpansionPanel
@@ -30,7 +31,7 @@ function CommentsBar({ classes, comments, title }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `There are ${comments.length} comments for ${title}` }
+						{ `There are ${indexes.length} comments for ${title}` }
 					</Typography>
 
 				</ExpansionPanelSummary>

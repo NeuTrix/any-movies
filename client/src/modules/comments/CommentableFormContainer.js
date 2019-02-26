@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addComments } from './redux/commentsActions';
+import { addComments, getComments } from './redux/commentsActions';
 import CommentableForm from './CommentableForm';
 
 const mapStateToProps = state => ({

@@ -54,6 +54,8 @@ class CommentableForm extends Component {
 
 	onClick(e) {
 		const { commentable, currUser } = this.props;
+		// add the type and ids to the state object
+		
 		this.setState({
 			commentable_id: commentable.id,
 			commentable_type: commentable.type,
@@ -65,10 +67,8 @@ class CommentableForm extends Component {
 		e.preventDefault();
 		const data = this.state;
 		console.log('submitting', this.props);
-		// add the type and id to the state object
 		
 		// #addComments accepts comments as an object
-		console.log(4, '==>', data);
 		this.props.addComments(data);
 		// setTimeout(() => { this.props.toggleForm(); }, 250)
 	}

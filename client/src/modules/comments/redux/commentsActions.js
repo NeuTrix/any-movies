@@ -4,6 +4,7 @@ import { actionCreator } from '../../helpers';
 
 import {
 	ADD_COMMENTS_TO_DICTIONARY,
+	UPDATE_COMMENTS_COUNT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -41,6 +42,11 @@ export const addCommentsToDictionary = actionCreator(
 	'dictionary',
 );
 
+export const updateCommentsCount = actionCreator(
+	UPDATE_COMMENTS_COUNT,
+	'indexes',
+);
+
 // ===> ASYNC functions
 // normalizr schema
 export const comment = new schema.Entity('comments'); // normalize data
@@ -48,16 +54,21 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // data object is and array of objecst `[{}]`
 	export function addComments( data ) {
-		const path = data.commentable_type === 'Comment' ? 'comments' : 'movies';
-		const url = `/api/${path}/${data.commentable_id}/comments`;
+		const { commentable_id, commentable_type } = data;
+		const path = commentable_type === 'Comment' ? 'comments' : 'movies';
+		const url = `/api/${path}/${commentable_id}/comments`;
 		
 		return function thunk(dispatch) {
 
 			return axios.post(url, data)
 				.then((resp) => {
-					alert(`Your comment was added! \n commentable_id: ${resp.data.id}`);
+					alert(`Your comment was added for \n commentable_id: ${commentable_id}`);
 					return [resp.data];
 				})
+				// .then((data) => {
+				// 	dispatch(getComments(commentable_id, commentable_type))
+				// 	return data
+				// })
 				.then((data) => {
 					// normalize the data
 					const normed = normalize(data, commentsListSchema);
@@ -65,6 +76,7 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 					const dictionary = normed.entities.comments; // an object map
 					dispatch(addCommentsToDictionary(indexes, dictionary));
 				})
+				
 				.then(() => {
 					// update the subcomments object
 					// this.setState({ showingCommentForm: false });

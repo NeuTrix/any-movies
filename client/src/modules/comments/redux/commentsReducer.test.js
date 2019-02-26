@@ -5,6 +5,7 @@ import { expect } from 'chai';
 // action creators
 import {
 	addCommentsToDictionary,
+	updateCommentsCount,
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
@@ -95,13 +96,9 @@ describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 				.to.be.an('array');
 		});
 
-		it('...indexes array has the correct value', () => {
-			expect(nextState.indexes[0]).to.eql(comments1[0]);
-		});
-
 		it('...indexes array length incremented properly', () => {
 			expect(prevState.indexes.length).to.eql(0);
-			expect(nextState.indexes.length).to.eql(1);
+			expect(nextState.indexes.length).to.eql(0);
 		});
 
 		it('--> nextState has a `commentable` prop', () => {
@@ -133,6 +130,27 @@ describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
 		});
 	});
+});
+
+describe('The UPDATE_COMMENTS_COUNT action', () => {
+	const comments = [ {}, {}, {}];
+	const action = updateCommentsCount([]);
+	const nextState = commentsReducer(prevState, action);
+
+	it('--> nextState has a counts (array) prop', () => {
+		expect(nextState).to.have.property('counts')
+			.to.be.an('number');
+	});
+
+	it('...indexes array has the correct value', () => {
+		expect(nextState.count).to.eql(comments.length);
+	});
+
+	it('...indexes array length incremented properly', () => {
+		expect(prevState.count).to.eql(0);
+		expect(nextState.count).to.eql(comments.length);
+	});
+
 });
 
 describe('The FETCH_COMMENTS_FAILURE action', () => {

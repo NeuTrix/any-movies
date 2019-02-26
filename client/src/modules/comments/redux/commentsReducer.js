@@ -1,6 +1,7 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
 	ADD_COMMENTS_TO_DICTIONARY,
+	UPDATE_COMMENTS_COUNT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -19,6 +20,7 @@ export const initialState = {
 	}, 
 	comments: [],
 	commentable: { id: '', type: ''}, // the Parent item of comment (id, type)
+	count: 0,
 	current: {}, // the current comment in focus
 	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
@@ -47,7 +49,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 	
 	switch (type) {
 		// handle api failures
-		case ADD_COMMENTS_TO_DICTIONARY:
+	case ADD_COMMENTS_TO_DICTIONARY:
+		// this causes scopiong issues- refactor
 		const { indexes, dictionary } = payload;
 		return {
 			...state,
@@ -56,10 +59,19 @@ export default function commentsReducer(state = initialState, action = {}) {
 				// replacing the whole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
 				// indexes for the current commentable (movie or comment)
-				indexes: indexes,
 				comments: filterCommentsToArray(indexes, dictionary),
 			},
-		}
+		};
+
+	// update separately to allow comment counts to increment 
+	// with bouncing to display '1' after a single add on
+	case UPDATE_COMMENTS_COUNT:
+		return {
+			...state,
+			...{
+				indexes: payload.indexes,
+			},
+		};
 
 	case FETCH_COMMENTS_FAILURE:
 		return {
@@ -72,7 +84,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 					status: 'error'
 				},
 			},
-		}
+		};
 
 	case FETCH_COMMENTS_REQUEST:
 		return { 
@@ -83,8 +95,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 					message: 'Requesting comments',
 					status: 'requesting',
 				},
-			}
-		}
+			},
+		};
 
 	case FETCH_COMMENTS_SUCCESS:
 		return {
@@ -98,16 +110,17 @@ export default function commentsReducer(state = initialState, action = {}) {
 			}
 		}
 		// handle COMMENTABLES OBJECT
-	case SET_COMMENTABLE:
+	
+		case SET_COMMENTABLE:
 		const { commentableID, commentableType } = payload
 		return {
 			...state,
 			...{
 				commentable: { id: commentableID, type: commentableType }
-			}
-		}
+			},
+		};
 
 	default:
 		return state;
-	}
+	};
 }
