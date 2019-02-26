@@ -1,0 +1,69 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "indent": [2, "tab"],
+    "max-len": ["warn",
+      {
+        "code": 100
+      }
+    ],
+    "no-console": "off",
+    "no-return-assign": ["error", "except-parens"],
+    "no-underscore-dangle": ["warn", {
+      "allow": ["_id"]
+    }],
+    "no-tabs": 0,
+    "padded-blocks": ["error", {
+      "blocks": "never"
+    }],
+    "react/display-name": ["warn", {
+      "ignoreTranspilerName": false
+    }],
+    "react/jsx-filename-extension": [1, {
+      "extensions": [".js", ".jsx"]
+    }],
+    "react/jsx-indent": ["error", "tab"],
+    "react/jsx-indent-props": ["error", "tab"],
+    "react/require-default-props": [1, {
+      "forbidDefaultForRequired": false
+    }],
+    "react/jsx-sort-props": ["error", {
+      "callbacksLast": true,
+      "ignoreCase": true,
+      "noSortAlphabetically": true,
+      "reservedFirst": true
+    }],
+    "space-in-parens": ["error", "never"],
+    "sort-keys": ["warn", "asc", {
+      "caseSensitive": true,
+      "natural": false
+    }],
+    "sort-imports": ["warn", {
+      "ignoreCase": true,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+    }],
+    "sort-vars": ["error", {
+      "ignoreCase": true
+    }]
+  }
+}
