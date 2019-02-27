@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { CommentsBar } from '../comments';
 import { CommentCard } from '../comments';
 
-const buildCommentsArray = (array, user) => {
+export const buildCommentsArray = (array, user) => {
 
 	const comments = array.map( item => {
 		return (

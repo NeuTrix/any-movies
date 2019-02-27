@@ -9,9 +9,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 // custom components
-import CommentsPage from './CommentsPage';
+import CommentsBar from './CommentsBar';
 // import CommentableContainer from './CommentableContainer';
 import CommentableForm from './CommentableForm';/*  */
+import { buildCommentsArray } from '../movies/MovieCommentsContainer';
 
 // should consider spreading props from the parent instead
 const propTypes = {
@@ -26,32 +27,42 @@ function CommentCard(props) {
 	const { classes, commentable, commentable_id, commentable_type } = props;
 	return(
 		<Card className={classes.grid}>
-			<div> {commentable.title} </div>
+			<div className={classes.title}>
+				<h3>{commentable.title}</h3>
+			</div>
+			<div className={classes.body}>
+				<p>{commentable.body}</p>
+			</div>
+			<div className={classes.author}>
+				<p>{commentable.author}</p>
+			</div>
+			<div className={classes.replies}>
+				<CommentsBar comments={[<li>1</li>,<li>3</li>]} />
+			</div>
 		</Card>
 	)
 }
 
 const styles = theme => ({
-	actions: {
-		display: 'inherit',
-	},
-
+	actions: { display: 'inherit' },
+	body: { gridArea: 'body' },
+	form: { gridArea: 'form' },
 	grid: {
+		border: '2px solid lime',
 		display: 'grid',
 		gridTemplateAreas: `
       "title title"
-      "reply reply"
+      "author author"
+      "body body"
+      "replies replies"
       "form form"
-      "response response"
     `,
-		border: '2px solid lime',
-
-		// margin: 'none',
-		marginBottom: theme.spacing.unit,
+		marginBottom: theme.spacing.unit * 2,
+		padding: theme.spacing.unit,
 	},
-	pos: {
-		marginBottom: 12,
-	},
+	pos: { marginBottom: 12 },
+	replies: { gridArea: 'replies' },
+	title: { gridArea: 'title' },
 });
 
 CommentCard.propTypes = propTypes;
