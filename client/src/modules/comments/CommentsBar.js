@@ -67,6 +67,7 @@ const styles = theme => ({
 	list: {
 		margin: 'none',
 		padding: 'none',
+		width: '100%',
 	},
 
 	summary: {
