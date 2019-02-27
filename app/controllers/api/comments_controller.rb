@@ -6,6 +6,7 @@ module Api
     # GET /comments
     def index
       @comments = @commentable.comments
+      Comment.update_sub_comments(@comments)
       render json: @comments
     end
 
@@ -20,9 +21,8 @@ module Api
       # @comment.user_id = current_user.id
 
       if @comment.save
+        # add sub comments to the instance attribute
         render json: @comment, status: :created
-        # render "passed the saved comment"
-        # , location: @comment
       else
         render json: @comment.errors, status: :unprocessable_entity
       end
