@@ -9,7 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 // custom components
-import CommentableContainer from './CommentableContainer';
+import CommentsPage from './CommentsPage';
+// import CommentableContainer from './CommentableContainer';
 import CommentableForm from './CommentableForm';/*  */
 
 // should consider spreading props from the parent instead
@@ -19,171 +20,15 @@ const propTypes = {
 	commentable_id: PropTypes.string.isRequired,
 	commentable_type: PropTypes.string.isRequired,
 	currUser: PropTypes.instanceOf(Object).isRequired, // mocked.Will be from auth
-	// functions
-	addComment: PropTypes.func.isRequired, // adds a new review instance to api
-	deleteComment: PropTypes.func.isRequired, // adds a new review instance to api
-	editComment: PropTypes.func.isRequired, // adds a new review instance to api
 };
 
-class CommentCard extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			displaySubComments: true,
-			showNewCommentForm: false,
-			showEditCommentForm: false,
-		};
-
-		this.toggleSubComments = this.toggleSubComments.bind(this);
-		this.toggleNewCommentForm = this.toggleNewCommentForm.bind(this);
-		this.toggleEditCommentForm = this.toggleEditCommentForm.bind(this);
-		this.handleDelete = this.handleDelete.bind(this);
-	}
-
-	// using this?
-	toggleSubComments(prevState) {
-		// toggle displaySubComments
-		this.setState({ displaySubComments: !this.state.displaySubComments });
-	}
-
-	// allows the addCommentableForm to toggle on and off
-	toggleNewCommentForm() {
-		this.setState({ showNewCommentForm: !this.state.showNewCommentForm });
-	}
-
-	// allows the editCommentableForm to toggle on and off
-	toggleEditCommentForm() {
-		this.setState({ showEditCommentForm: !this.state.showEditCommentForm });
-	}
-
-	// Read, Create and Update/Edit actions handled in form via CommentsPage
-	handleDelete(e) {
-		e.preventDefault();
-		const { commentable } = this.props;
-		this.props.deleteComment(commentable.id);
-	}
-
-	handleEdit(e) {
-		e.preventDefault();
-		const { commentable } = this.props;
-		this.props.eidtComment(commentable.id);
-	}
-
-	render() {
-		const {
-			addComment,
-			editComment,
-			classes,
-			commentable,
-			commentable_id,
-			commentable_type,
-			currUser,
-		} = this.props;
-		const { showNewCommentForm, showEditCommentForm } = this.state;
-
-		const newCommentForm = (
-			<CommentableForm
-				commentable={commentable}
-				commentable_id={commentable_id}
-				commentable_type={commentable_type}
-				currUser={currUser}
-				submitAction={addComment}
-				toggleForm={this.toggleNewCommentForm}
-			/>
-		);
-
-		const editCommentForm = (
-			<CommentableForm
-				commentable={commentable}
-				commentable_id={commentable_id}
-				commentable_type={commentable_type}
-				currUser={currUser}
-				submitAction={editComment}
-				editMode="true"
-				toggleForm={this.toggleEditCommentForm}
-			/>
-		);
-
-		return (
-			<Card className={classes.grid}>
-
-				<CardContent>
-
-					<div
-						className={classes.title}
-						style={{ gridArea: 'title' }}
-					>
-						<Typography variant="subtitle" component="h2">
-							{ commentable.title}
-						</Typography>
-
-						<Typography ccolor="textSecondary" gutterBottom>
-              by:
-							{ commentable.author }
-						</Typography>
-
-						<Typography className={classes.pos} color="textSecondary">
-              comment_id:
-							{ commentable.id}
-						</Typography>
-
-					</div>
-
-					<Typography variant="body1" component="p">
-						{ commentable.body }
-					</Typography>
-
-				</CardContent>
-
-				<CardActions
-					className={classes.buttons}
-					style={{ gridArea: 'reply' }}
-				>
-					<Button size="small" onClick={this.toggleNewCommentForm}>
-            reply
-
-
-					
-</Button>
-
-					<Button size="small" onClick={this.handleDelete}>
-             delete
-
-
-					
-</Button>
-
-					<Button size="small" onClick={this.toggleEditCommentForm}>
-             edit
-
-
-					
-</Button>
-
-				</CardActions>
-
-				<CardActions
-					className={classes.actions}
-					style={{ gridArea: 'response' }}
-				>
-
-					<CommentableContainer
-						commentable={commentable}
-						commentable_id={commentable_id}
-						commentable_type="Comment"
-						currUser={currUser}
-					/>
-				</CardActions>
-
-				<CardContent style={{ gridArea: 'form' }}>
-					{ showNewCommentForm && newCommentForm }
-					{ showEditCommentForm && editCommentForm }
-				</CardContent>
-
-			</Card>
-		);
-	}
+function CommentCard(props) {
+	const { classes, commentable, commentable_id, commentable_type } = props;
+	return(
+		<Card className={classes.grid}>
+			<div> {commentable.title} </div>
+		</Card>
+	)
 }
 
 const styles = theme => ({
