@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_02_27_220821) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "author"
-    t.text "subcomments"
+    t.text "sub_comments"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
