@@ -8,4 +8,5 @@ class Comment < ApplicationRecord
   # users can favorite a comment
   has_many :favourites, as: :favourited, dependent: :destroy
   
+  # serialize :sub
 end
