@@ -120,17 +120,11 @@ class CommentCard extends Component {
 
 						<Typography ccolor="textSecondary" gutterBottom>
               by:
-
-
-							{' '}
 							{ commentable.author }
 						</Typography>
 
 						<Typography className={classes.pos} color="textSecondary">
               comment_id:
-
-
-							{' '}
 							{ commentable.id}
 						</Typography>
 
