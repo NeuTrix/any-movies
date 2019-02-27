@@ -21,13 +21,12 @@ export const buildCommentsArray = (array, user) => {
 }
 
 const mapStateToProps = state => ({
-	commentable: state.comments.commentable,
 	comments: buildCommentsArray(state.comments.comments, state.user),
 	count: state.comments.count,
-	indexes: state.comments.indexes,
 	title: state.movies.title,
 });
 
+// wrap around CommentsBar component for initial hydration
 const MovieCommentsContainer = connect(mapStateToProps)(CommentsBar);
 
 export default MovieCommentsContainer;

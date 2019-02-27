@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
+	// commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
 	count: PropTypes.number.isRequired, // keep count of comments for display
 	title: PropTypes.string, // title of the comment (Movie)
@@ -22,12 +22,9 @@ const defaultProps = {
 function CommentsBar({ classes, comments, count, title }) {
 	return (
 		<div className={classes.root}>
-			<ExpansionPanel
-				className={classes.expansion}
-			>
-			<ExpansionPanelSummary
+			<ExpansionPanel className={classes.expansion}>
+				<ExpansionPanelSummary
 					className={classes.summary}
-					// onClick={handleGetComments}
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
@@ -36,12 +33,8 @@ function CommentsBar({ classes, comments, count, title }) {
 
 				</ExpansionPanelSummary>
 
-				<ExpansionPanelDetails
-					className={classes.expansion}
-				>
-					<div className={classes.list}>
-						{ comments }
-					</div>
+				<ExpansionPanelDetails className={classes.expansion}>
+					<div className={classes.list}>{ comments }</div>
 				</ExpansionPanelDetails>
 
 			</ExpansionPanel>
@@ -50,11 +43,6 @@ function CommentsBar({ classes, comments, count, title }) {
 }
 
 const styles = theme => ({
-
-	root: {
-		textAlign: 'left',
-	},
-
 	expansion: {
 		background: 'aliceblue',
 		padding: 0,
@@ -68,6 +56,10 @@ const styles = theme => ({
 		margin: 'none',
 		padding: 'none',
 		width: '100%',
+	},
+
+	root: {
+		textAlign: 'left',
 	},
 
 	summary: {

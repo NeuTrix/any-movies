@@ -25,7 +25,7 @@ const propTypes = {
 
 function CommentCard(props) {
 	const { classes, commentable, commentable_id, commentable_type } = props;
-	return(
+	return (
 		<Card className={classes.grid}>
 			<div className={classes.title}>
 				<h3>{commentable.title}</h3>
@@ -40,7 +40,7 @@ function CommentCard(props) {
 				<CommentsBar comments={[<li>1</li>,<li>3</li>]} />
 			</div>
 		</Card>
-	)
+	);
 }
 
 const styles = theme => ({

@@ -2,10 +2,10 @@
 
 exports[` 1`] = `
 <div
-  className="CommentsBar-root-1"
+  className="CommentsBar-root-4"
 >
   <div
-    className="MuiPaper-root-10 MuiPaper-elevation1-13 MuiPaper-rounded-11 MuiExpansionPanel-root-6 MuiExpansionPanel-rounded-7 CommentsBar-expansion-2"
+    className="MuiPaper-root-10 MuiPaper-elevation1-13 MuiPaper-rounded-11 MuiExpansionPanel-root-6 MuiExpansionPanel-rounded-7 CommentsBar-expansion-1"
   >
     <div
       aria-expanded={false}
@@ -29,7 +29,7 @@ exports[` 1`] = `
         className="MuiExpansionPanelSummary-content-41"
       >
         <p
-          className="MuiTypography-root-46 MuiTypography-body2-54 CommentsBar-heading-3"
+          className="MuiTypography-root-46 MuiTypography-body2-54 CommentsBar-heading-2"
         >
           There are 0 comments for this comment
         </p>
@@ -91,10 +91,10 @@ exports[` 1`] = `
           className="MuiCollapse-wrapperInner-100"
         >
           <div
-            className="MuiExpansionPanelDetails-root-101 CommentsBar-expansion-2"
+            className="MuiExpansionPanelDetails-root-101 CommentsBar-expansion-1"
           >
             <div
-              className="CommentsBar-list-4"
+              className="CommentsBar-list-3"
             />
           </div>
         </div>
