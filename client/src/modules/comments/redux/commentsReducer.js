@@ -106,14 +106,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 			},
 		};
 	
-		// !!! remove this
-		case TOGGLE_COMMENTS_FORM:
-		return {
-			...state,
-			...{
-				showForm: !state.showForm
-			},
-		};
 
 	default:
 		return state;
