@@ -54,6 +54,7 @@ function CommentsBar({ classes, comments, count, title }) {
 							className={classes.badge}
 							badgeContent={comments.length} 
 							color="primary"
+							max={9}
 						/>
 						{ message() }
 					</Typography>
