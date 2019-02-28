@@ -5,7 +5,7 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_COMMENTABLE,
+	SET_MOVIE_COMMENTS,
 } from '../../helpers/constants';
 
 import { filterCommentsToArray } from '../../helpers';
@@ -18,8 +18,8 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
-	comments: [],
-	commentable: { id: '', type: ''}, // the Parent item of comment (id, type)
+	comments: [], // (sub)comments related to current commentable item
+	// commentable: { id: '', type: ''}, // the Parent item of comment (id, type)
 	count: 0,
 	current: {}, // the current comment in focus
 	dictionary: {}, // a lookup object of all comments viewed in this session
@@ -51,16 +51,12 @@ export default function commentsReducer(state = initialState, action = {}) {
 		// handle api failures
 	case ADD_COMMENTS_TO_DICTIONARY:
 		// this causes scopiong issues- refactor
-		const { indexes, dictionary } = payload;
 		return {
 			...state,
 			...{
 				// allow dictionary object ot accumulate objects vs
 				// replacing the whole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
-				// indexes for the current commentable (movie or comment)
-				comments: filterCommentsToArray(indexes, dictionary),
-				indexes: payload.indexes,
 			},
 		};
 
@@ -102,15 +98,15 @@ export default function commentsReducer(state = initialState, action = {}) {
 		}
 		// handle COMMENTABLES OBJECT
 	
-		case SET_COMMENTABLE:
-		const { commentableID, commentableType } = payload
+		case SET_MOVIE_COMMENTS:
 		return {
 			...state,
 			...{
-				commentable: { id: commentableID, type: commentableType }
+				comments: filterCommentsToArray(payload.indexes, state.dictionary),
 			},
 		};
 	
+		// !!! remove this
 		case TOGGLE_COMMENTS_FORM:
 		return {
 			...state,

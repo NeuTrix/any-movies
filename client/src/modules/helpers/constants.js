@@ -6,7 +6,7 @@ export const FETCH_COMMENTS_REQUEST = 'FETCH_COMMENTS_REQUEST';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 
 // set the current comment and commentable type/id
-export const SET_COMMENTABLE = 'SET_COMMENTABLE';
+export const SET_MOVIE_COMMENTS = 'SET_MOVIE_COMMENTS';
 export const ADD_COMMENTS_TO_DICTIONARY = 'ADD_COMMENTS_TO_DICTIONARY';
 export const TOGGLE_COMMENTS_FORM = 'TOGGLE_COMMENTS_FORM';
 // SET_indexes = 'SET_SUBCOMMENTS'// specific reset of subcomments

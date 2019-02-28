@@ -9,42 +9,37 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_COMMENTABLE,
+	SET_MOVIE_COMMENTS,
 } from '../../helpers/constants';
 
 
 // update the api request property
 export const fetchCommentsRequest = actionCreator(
-	FETCH_COMMENTS_REQUEST
+	FETCH_COMMENTS_REQUEST,
 );
 
 // manage the data returned from comments GET call api
 // need to factor out SET_COMMENTS from the success action
 export const fetchCommentsSuccess = actionCreator(
-	FETCH_COMMENTS_SUCCESS
+	FETCH_COMMENTS_SUCCESS,
 );
 
 // captures the error messages on fail
 export const fetchCommentsFailure = actionCreator(
 	FETCH_COMMENTS_FAILURE, 
-	'error'
+	'error',
 );
 
  // set the current comment
-export const setCommentable = actionCreator(
-	SET_COMMENTABLE,
-	'commentableID',
-	'commentableType'
+export const setMovieComments = actionCreator(
+	SET_MOVIE_COMMENTS,
+	'indexes',
 );
-
+	
 export const addCommentToDictionary = actionCreator(
 	ADD_COMMENTS_TO_DICTIONARY,
 	'indexes',
-	'dictionary'
-);
-
-export const toggleCommentsForm = actionCreator(
-	TOGGLE_COMMENTS_FORM
+	'dictionary',
 );
 
 // ===> ASYNC functions
@@ -76,13 +71,10 @@ export function addComment( data ) {
 				const dictionary = normed.entities.comments; // an object map
 				dispatch(addCommentToDictionary(indexes, dictionary));
 			})
-			.then(() => {
-				dispatch(toggleCommentsForm())
-			})
 			.catch((err) => {
 				alert( `There was a problem adding your comment. 
 					\n "CommentableContainer"
-					\n ${err}`
+					\n ${err}`,
 				);
 				console.log('ERROR=>', err);
 			});
@@ -113,10 +105,14 @@ export function getComments(commentableID, commentableType) {
 				dispatch(addCommentToDictionary(indexes, dictionary));
 				return indexes
 			})
+			// set the current comments for this
+			.then((indexes) => {
+				if (commentableType === 'Movie') {
+					dispatch(setMovieComments(indexes))
+				}
+			})
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))
-			// set the current commentable object id
-			.then(() => dispatch(setCommentable(commentableID, commentableType)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
 				return console.log('---#getComments error--->', error);

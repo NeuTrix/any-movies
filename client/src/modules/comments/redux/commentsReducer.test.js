@@ -8,7 +8,7 @@ import {
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
-	setCommentable,
+	setMovieComments,
 	toggleCommentsForm,
 } from './commentsActions';
 
@@ -196,8 +196,8 @@ describe('The FETCH_COMMENTS_SUCCESS', () => {
 	});
 });
 
-describe('The SET_COMMENTABLE action', () => {
-	const action = setCommentable(comments1[0]);
+describe('The SET_MOVIE_COMMENTS action', () => {
+	const action = setMovieComments(comments1[0]);
 	const nextState = commentsReducer(prevState, action);
 
 	it('...has an updated commentable prop', () => {
