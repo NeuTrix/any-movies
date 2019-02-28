@@ -34,7 +34,7 @@ function CommentCard(props) {
 				<p>{comment.author}</p>
 			</div>
 			<div className={classes.replies}>
-				<CommentsBar comments={[<li>1</li>,<li>3</li>]} />
+				{/* <CommentsBar comments={[<li>1</li>,<li>3</li>]} /> */}
 			</div>
 		</Card>
 	);

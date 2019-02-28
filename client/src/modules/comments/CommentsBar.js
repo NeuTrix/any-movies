@@ -6,6 +6,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { CommentCard } from '../comments';
+
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -15,11 +17,20 @@ const propTypes = {
 	title: PropTypes.string, // title of the comment (Movie)
 };
 
-const defaultProps = {
+const defaultProps = { 
 	title: 'this comment', // default for non movie comments
 };
 
 function CommentsBar({ classes, comments, count, title }) {
+
+	const cards = comments.map(item => (
+		<CommentCard
+			key={item.id}
+			comment={item}
+			subComments={item.sub_comments}
+		/>
+	));
+
 	return (
 		<div className={classes.root}>
 			<ExpansionPanel className={classes.expansion}>
@@ -34,7 +45,7 @@ function CommentsBar({ classes, comments, count, title }) {
 				</ExpansionPanelSummary>
 
 				<ExpansionPanelDetails className={classes.expansion}>
-					<div className={classes.list}>{ comments }</div>
+					<div className={classes.list}>{ cards }</div>
 				</ExpansionPanelDetails>
 
 			</ExpansionPanel>
