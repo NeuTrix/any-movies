@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Badge,
+	Button,
 	ExpansionPanel,
 	ExpansionPanelDetails,
 	ExpansionPanelSummary,
@@ -9,9 +10,9 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
-import { 
-	CommentCardContainer, 
-	CommentableFormContainer,
+import {
+	CommentCardContainer,
+	CommentableFormContainer, // for adding new comments
 } from '.';
 
 const propTypes = {
@@ -31,6 +32,8 @@ class CommentsBar extends Component {
 			deck: [],
 			showForm: false,
 		};
+		this.handleClick = this.handleClick.bind(this);
+		this.toggleForm = this.toggleForm.bind(this);
 	}
 
 	componentDidMount() {
@@ -43,6 +46,16 @@ class CommentsBar extends Component {
 		if (comments && prevProps !== this.props) {
 			this.updateComments(comments);
 		}
+	}
+
+	handleClick(e) {
+		e.preventDefault();
+		this.toggleForm();
+	}
+
+	toggleForm() {
+		const { showForm } = this.state;
+		this.setState({ showForm: !showForm });
 	}
 
 	updateComments(comments) {
@@ -69,6 +82,15 @@ class CommentsBar extends Component {
 		return (
 			<div className={classes.root}>
 				<ExpansionPanel className={classes.expansion}>
+
+					<Button 
+						color="primary"
+						variant="outlined" 
+						onClick={this.handleClick}
+					>
+						{ !showForm ? 'Add a Comment' : 'Hide Comment Form' }
+					</Button>
+
 					<ExpansionPanelSummary
 						className={classes.summary}
 						expandIcon={<ExpandMoreIcon />}
@@ -85,11 +107,14 @@ class CommentsBar extends Component {
 							{ message() }
 						</Typography>
 					</ExpansionPanelSummary>
+					
+					<ExpansionPanelDetails>
+						{ showForm && <CommentableFormContainer /> }
+					</ExpansionPanelDetails>
 
 					<ExpansionPanelDetails className={classes.expansion}>
 						<div className={classes.list}>{ deck }</div>
 					</ExpansionPanelDetails>
-
 				</ExpansionPanel>
 			</div>
 		);

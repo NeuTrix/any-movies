@@ -49,6 +49,7 @@ class CommentableForm extends Component {
 	}
 
 	onClick(e) {
+		// e.preventDefault();
 		const { commentable, user } = this.props;
 		// add the type and ids to the state object
 		this.setState({
