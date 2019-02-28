@@ -38,14 +38,17 @@ class CommentsBar extends Component {
 		};
 	}
 
-	// componentDidMount() {
-
-	// }
+	componentDidMount() {
+		const { comments } = this.props;
+		if (comments) {
+			this.updateComments(comments);
+		}
+	}
 
 	componentDidUpdate(prevProps) {
 		const { comments } = this.props;
 		if (comments && prevProps !== this.props) {
-			this.updateComments(comments)
+			this.updateComments(comments);
 		}
 	}
 
