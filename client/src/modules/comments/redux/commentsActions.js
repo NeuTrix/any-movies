@@ -37,7 +37,7 @@ export const setCommentable = actionCreator(
 	'commentableType'
 );
 
-export const addCommentsToDictionary = actionCreator(
+export const addCommentToDictionary = actionCreator(
 	ADD_COMMENTS_TO_DICTIONARY,
 	'indexes',
 	'dictionary'
@@ -79,7 +79,7 @@ export function addComment( data ) {
 				const normed = normalize(data, commentsListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(addCommentsToDictionary(indexes, dictionary));
+				dispatch(addCommentToDictionary(indexes, dictionary));
 			})
 			.then(() => {
 				dispatch(toggleCommentsForm())
@@ -115,7 +115,7 @@ export function getComments(commentableID, commentableType) {
 				const normed = normalize(data, commentsListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(addCommentsToDictionary(indexes, dictionary));
+				dispatch(addCommentToDictionary(indexes, dictionary));
 				return indexes
 			})
 			// update the counter
