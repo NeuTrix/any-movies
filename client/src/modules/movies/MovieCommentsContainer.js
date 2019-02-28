@@ -4,21 +4,16 @@ import { CommentsBar } from '../comments';
 import { CommentCard } from '../comments';
 
 export const buildCommentsArray = (array, user) => {
-
-	const comments = array.map( item => {
-		return (
-			<CommentCard 
-				key={item.id}
-				commentable={item}
-				commentable_id={item.id}
-				commentable_type={item.type}
-				currUser={user}
-			/>
-		)
-	});
+	const comments = array.map((item) => 
+		<CommentCard
+			key={item.id}
+			comment={item}
+			subComments={item.sub_comments}
+		/>
+	);
 
 	return comments;
-}
+};
 
 const mapStateToProps = state => ({
 	comments: buildCommentsArray(state.comments.comments, state.user),

@@ -12,29 +12,26 @@ import Typography from '@material-ui/core/Typography';
 import CommentsBar from './CommentsBar';
 // import CommentableContainer from './CommentableContainer';
 import CommentableForm from './CommentableForm';/*  */
-import { buildCommentsArray } from '../movies/MovieCommentsContainer';
 
 // should consider spreading props from the parent instead
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable_id: PropTypes.string.isRequired,
-	commentable_type: PropTypes.string.isRequired,
-	currUser: PropTypes.instanceOf(Object).isRequired, // mocked.Will be from auth
+	comment: PropTypes.instanceOf(Object).isRequired, // material UI
+	subComments: PropTypes.instanceOf(Array).isRequired, // material UI
 };
 
 function CommentCard(props) {
-	const { classes, commentable, commentable_id, commentable_type } = props;
+	const { classes, comment, subComments } = props;
 	return (
 		<Card className={classes.grid}>
 			<div className={classes.title}>
-				<h3>{commentable.title}</h3>
+				<h3>{comment.title}</h3>
 			</div>
 			<div className={classes.body}>
-				<p>{commentable.body}</p>
+				<p>{comment.body}</p>
 			</div>
 			<div className={classes.author}>
-				<p>{commentable.author}</p>
+				<p>{comment.author}</p>
 			</div>
 			<div className={classes.replies}>
 				<CommentsBar comments={[<li>1</li>,<li>3</li>]} />
