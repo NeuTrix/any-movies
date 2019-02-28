@@ -3,6 +3,7 @@ import { addComment } from './redux/commentsActions';
 import CommentableForm from './CommentableForm';
 
 const mapStateToProps = (state, props) => ({
+  // must pass a commentable object with an id (and type if available)
   commentable: props.commentable,
   user: state.users.current,
 });

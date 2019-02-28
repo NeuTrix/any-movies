@@ -13,6 +13,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 
 import CommentsBar from './CommentsBar';
+import { CommentableForm } from '.';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -42,7 +43,10 @@ function CommentCard(props) {
 				</div>
 
 			<div className={classes.replies}>
-				<CommentsBar comments={comment.sub_comments} />
+				<CommentsBar 
+					commentable={comment} // parent info for adding comments
+					comments={comment.sub_comments} 
+				/>
 			</div>
 		</Card>
 	);

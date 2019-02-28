@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 // import CommentableContainer from '../comments/CommentableContainer';
-import { CommentableFormContainer } from '../comments';
+// import { CommentableFormContainer } from '../comments';
 // import { MenuBarContainer } from '../main';
 import { MovieCommentsContainer } from '../movies';
 // unclear why this linting error appears =>
@@ -17,9 +17,9 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	// comments: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 	currMovie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
-	showForm: PropTypes.bool.isRequired,
+	// showForm: PropTypes.bool.isRequired,
 	// ===> functionspcomment
-	toggleCommentsForm: PropTypes.func.isRequired, // toggles comments form display
+	// toggleCommentsForm: PropTypes.func.isRequired, // toggles comments form display
 	// addFavourite: PropTypes.func.isRequired, // add favourite for currMovie
 	// handleMovieRegistration: PropTypes.func.isRequired, // search for currMovie
 };
@@ -39,21 +39,18 @@ function MainPage({ classes, currMovie, comments, showForm, toggleCommentsForm  
 				<div className={classes.favours}>
 					<p> Favourites </p>
 				</div>
-
-				<div style={{gridArea: 'addComment'}} >
+				{/* <div style={{gridArea: 'addComment'}} >
 					<button onClick={onClick}> 
 						{ !showForm ? 'Show Comment Form' : 'Hide Comment Form' }
 					</button>
-				</div>
+				</div> */}
 
-				<div style={{gridArea: 'form'}} >
+				{/* <div style={{gridArea: 'form'}} >
 					{ showForm && <CommentableFormContainer /> }
-				</div>
-
+				</div> */}
 				<div style={{gridArea: 'comments'}} >
 					<MovieCommentsContainer />
 				</div>
-
 
 				<div style={{gridArea: 'movies'}} >
 					<MoviePageContainer />
@@ -79,13 +76,13 @@ const styles = theme => ({
 		display: 'inline-grid',
 		gridRowGap: '8px',
 		gridTemplateAreas: `
-		"favours favours favours"
-      "addComment addComment addComment"
+			"favours favours favours"
 			"form form form"
       "comments comments comments"
       "movies movies movies"
     `,
 		gridTemplateColumns: '1fr 1fr 1fr',
+		// marginTop: 100,
 		maxWidth: 600,
 		opacity: '0.90',
 		padding: theme.spacing.unit,
@@ -104,12 +101,12 @@ const styles = theme => ({
 			zIndex: -10,
 		},
 	},
-	toggleComment: {
-		display: 'grid',
-		marginBelow: theme.spacing.unit,
-		padding: theme.spacing.unit,
-		textAlign: 'left',
-	},
+	// toggleComment: {
+	// 	display: 'grid',
+	// 	marginBelow: theme.spacing.unit,
+	// 	padding: theme.spacing.unit,
+	// 	textAlign: 'left',
+	// },
 });
 
 MainPage.propTypes = propTypes;

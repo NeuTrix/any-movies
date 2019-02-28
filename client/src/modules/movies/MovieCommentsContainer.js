@@ -2,8 +2,11 @@ import { connect } from 'react-redux';
 import { CommentsBar } from '../comments';
 
 const mapStateToProps = state => ({
+	commentable: {
+		id: state.movies.imdbID,
+		type: 'Movie',
+	},
 	comments: state.comments.comments,
-	count: state.comments.count,
 	title: state.movies.title,
 });
 

@@ -12,7 +12,7 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // The subject
+	commentable: PropTypes.instanceOf(Object).isRequired, // target w/ id and type
 	user: PropTypes.instanceOf(Object).isRequired, // the current user
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -54,7 +54,9 @@ class CommentableForm extends Component {
 		// add the type and ids to the state object
 		this.setState({
 			commentable_id: commentable.id,
-			commentable_type: commentable.type ? 'Comment' : 'Movie',
+			// Movies from OMDB api don't have an inherit type prop for this api ...
+			// logic to account for this missing commentable property
+			commentable_type: commentable.type ? commentable.type : 'Movie',
 			user_id: user.id,
 		});
 	}
@@ -70,6 +72,7 @@ class CommentableForm extends Component {
 
 	render() {
 		const { classes, user } = this.props;
+		console.log(11, '==>', this.props.commentable);
 		return (
 			<FormControl
 				className={classes.main}

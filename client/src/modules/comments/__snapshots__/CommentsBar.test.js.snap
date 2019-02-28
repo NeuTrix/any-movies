@@ -81,7 +81,7 @@ exports[` 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-110"
+          className="MuiTouchRipple-root-136"
         />
       </div>
     </div>
@@ -100,8 +100,38 @@ exports[` 1`] = `
         <div
           className="MuiCollapse-wrapperInner-108"
         >
+          <button
+            className="MuiButtonBase-root-44 MuiButton-root-109 MuiButton-outlined-117 MuiButton-outlinedPrimary-118"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            <span
+              className="MuiButton-label-110"
+            >
+              Add a Comment
+            </span>
+            <span
+              className="MuiTouchRipple-root-136"
+            />
+          </button>
           <div
-            className="MuiExpansionPanelDetails-root-109 CommentsBar-expansion-2"
+            className="MuiExpansionPanelDetails-root-135"
+          />
+          <div
+            className="MuiExpansionPanelDetails-root-135 CommentsBar-expansion-2"
           >
             <div
               className="CommentsBar-list-4"
