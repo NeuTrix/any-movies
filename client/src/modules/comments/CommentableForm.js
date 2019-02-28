@@ -68,7 +68,7 @@ class CommentableForm extends Component {
 	}
 
 	render() {
-		const { classes, user, commentable } = this.props;
+		const { classes, user } = this.props;
 		return (
 			<FormControl
 				className={classes.main}
