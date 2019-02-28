@@ -12,18 +12,14 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
-	// functions
-	editMode: PropTypes.bool, // new or edit form
-	addComments: PropTypes.func.isRequired, // adds a new review instance to api
-
-	// toggleForm: PropTypes.func.isRequired, // create or edit commentable
+	commentable: PropTypes.instanceOf(Object).isRequired, // The subject
+	user: PropTypes.instanceOf(Object).isRequired, // the current user
+	// editMode: PropTypes.bool, // new or edit form
+	addComment: PropTypes.func.isRequired, // adds a new review instance to api
 };
 
-
 const defaultProps = {
-	editMode: false,
+	// editMode: false,
 };
 
 class CommentableForm extends Component {
@@ -53,13 +49,12 @@ class CommentableForm extends Component {
 	}
 
 	onClick(e) {
-		const { commentable, currUser } = this.props;
+		const { commentable, user } = this.props;
 		// add the type and ids to the state object
-		
 		this.setState({
 			commentable_id: commentable.id,
-			commentable_type: commentable.type,
-			user_id: currUser.id,
+			commentable_type: commentable.type ? 'Comment' : 'Movie',
+			user_id: user.id,
 		});
 	}
 
@@ -67,14 +62,13 @@ class CommentableForm extends Component {
 		e.preventDefault();
 		const data = this.state;
 		console.log('submitting', this.props);
-		
-		// #addComments accepts comments as an object
-		this.props.addComments(data);
+		// #addComment accepts comments as an object
+		this.props.addComment(data);
 		// setTimeout(() => { this.props.toggleForm(); }, 250)
 	}
 
 	render() {
-		const { classes, currUser, commentable } = this.props;
+		const { classes, user, commentable } = this.props;
 		return (
 			<FormControl
 				className={classes.main}
@@ -82,6 +76,7 @@ class CommentableForm extends Component {
 				onSubmit={this.onSubmit}
 				onClick={this.onClick}
 			>
+
 				<Input
 					fullWidth
 					label ="enter your name"
@@ -89,7 +84,7 @@ class CommentableForm extends Component {
 					name="author"
 					readOnly
 					type="text"
-					value={currUser.username}
+					value={user.username}
 					variant="outlined"
 					onChange={this.onChange}
 				/>

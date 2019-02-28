@@ -9,22 +9,21 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CommentsBar from './CommentsBar';
-import CommentableForm from './CommentableForm';
+import CommentableFormContainer from './CommentableFormContainer';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comment: PropTypes.instanceOf(Object).isRequired, // material UI
-	// functions
-	addComments: PropTypes.instanceOf(Function).isRequired, // to add subcomments
+	addComment: PropTypes.instanceOf(Function).isRequired, // to add subcomments
 };
 
 function CommentCard(props) {
-	const { addComments, classes, comment } = props;
+	const { addComment, classes, comment } = props;
 
 	const onClick = (e) => {
 		e.preventDefault();
 
-		// addComments
+		// addComment
 	}
 
 	return (
@@ -36,10 +35,15 @@ function CommentCard(props) {
 				<p>{comment.body}</p>
 			</div>
 			<div className={classes.author}>
-				<p>{comment.author}</p>
+					{comment.author}
 			</div>
-			{/* <Button> showForm </Button> */}
+			<div className={classes.actions}>
+				<Button variant="outlined" > ADD </Button>
+				<Button variant="outlined" > DEL </Button>
+				<Button variant="outlined" > EDIT </Button>
+			</div>
 			<div className={classes.replies}>
+				<CommentableFormContainer/>
 				<CommentsBar
 					comments={comment.sub_comments}
 					count={comment.sub_comments.length}
@@ -50,16 +54,23 @@ function CommentCard(props) {
 }
 
 const styles = theme => ({
-	actions: { display: 'inherit' },
+	actions: {
+		display: 'inherit',
+		gridArea: 'actions',
+	},
 	body: { gridArea: 'body' },
-	form: { gridArea: 'form' },
+	form: {
+		gridArea: 'form',
+		marginTop: theme.spacing.unit * 10,
+	},
 	grid: {
 		border: '2px solid lime',
 		display: 'grid',
 		gridTemplateAreas: `
       "title title"
       "author author"
-      "body body"
+			"body body"
+			"actions actions"
       "replies replies"
       "form form"
     `,

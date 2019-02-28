@@ -58,7 +58,7 @@ export const comment = new schema.Entity('comments'); // normalize data
 export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // data object is an array of objects `[{}]`
-export function addComments( data ) {
+export function addComment( data ) {
 	const { commentable_id, commentable_type } = data;
 	const path = commentable_type === 'Comment' ? 'comments' : 'movies';
 	const url = `/api/${path}/${commentable_id}/comments`;
