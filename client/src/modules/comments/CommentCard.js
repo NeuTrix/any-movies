@@ -2,12 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // material UI components
+import {
+	Button,
+	Card,
+	CardActionArea,
+	CardActions,
+	CardContent,
+	Typography,
+} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+
 import CommentsBar from './CommentsBar';
 
 const propTypes = {
@@ -20,21 +24,25 @@ function CommentCard(props) {
 
 	return (
 		<Card className={classes.grid}>
-			<div className={classes.title}>
-				<h3>{comment.title}</h3>
-			</div>
-			<div className={classes.body}>
-				<p>{comment.body}</p>
-			</div>
-			<div className={classes.author}>
-				{comment.author}
-			</div>
-			<div className={classes.actions}>
-			</div>
+				<div className={classes.title}>
+					<h3>{comment.title}</h3>
+				</div>
+				<div className={classes.body}>
+					<p>{comment.body}</p>
+				</div>
+				<div className={classes.author}>
+					{comment.author}
+				</div>
+
+				<div className={classes.actions}>
+					<CardActions>
+						<Button> edit </Button>
+						<Button> del </Button>
+					</CardActions>
+				</div>
+
 			<div className={classes.replies}>
-				<CommentsBar
-					comments={comment.sub_comments}
-				/>
+				<CommentsBar comments={comment.sub_comments} />
 			</div>
 		</Card>
 	);
@@ -45,7 +53,10 @@ const styles = theme => ({
 		display: 'inherit',
 		gridArea: 'actions',
 	},
-	body: { gridArea: 'body' },
+	body: {
+		gridArea: 'body',
+		width: '100%',
+	},
 	form: {
 		gridArea: 'form',
 		marginTop: theme.spacing.unit * 10,
@@ -64,7 +75,11 @@ const styles = theme => ({
 		padding: theme.spacing.unit,
 	},
 	replies: { gridArea: 'replies' },
-	title: { gridArea: 'title' },
+
+	title: {
+		gridArea: 'title',
+		width: '100%',
+	},
 });
 
 CommentCard.propTypes = propTypes;
