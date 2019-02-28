@@ -1,5 +1,5 @@
 //  Should abstract out view from logic for Cards
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 // material UI components
 import { withStyles } from '@material-ui/core/styles';
@@ -8,20 +8,25 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// custom components
 import CommentsBar from './CommentsBar';
-// import CommentableContainer from './CommentableContainer';
-import CommentableForm from './CommentableForm';/*  */
+import CommentableForm from './CommentableForm';
 
-// should consider spreading props from the parent instead
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comment: PropTypes.instanceOf(Object).isRequired, // material UI
-	subComments: PropTypes.instanceOf(Array).isRequired, // material UI
+	// functions
+	addComments: PropTypes.instanceOf(Function).isRequired, // to add subcomments
 };
 
 function CommentCard(props) {
-	const { classes, comment, subComments } = props;
+	const { addComments, classes, comment } = props;
+
+	const onClick = (e) => {
+		e.preventDefault();
+
+		// addComments
+	}
+
 	return (
 		<Card className={classes.grid}>
 			<div className={classes.title}>
@@ -33,11 +38,12 @@ function CommentCard(props) {
 			<div className={classes.author}>
 				<p>{comment.author}</p>
 			</div>
+			{/* <Button> showForm </Button> */}
 			<div className={classes.replies}>
-				<CommentsBar 
-					comments={subComments}
-					count={subComments.length}
-					/>
+				<CommentsBar
+					comments={comment.sub_comments}
+					count={comment.sub_comments.length}
+				/>
 			</div>
 		</Card>
 	);

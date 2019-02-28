@@ -27,30 +27,30 @@ export const fetchCommentsSuccess = actionCreator(
 // captures the error messages on fail
 export const fetchCommentsFailure = actionCreator(
 	FETCH_COMMENTS_FAILURE, 
-	'error',
+	'error'
 );
 
  // set the current comment
 export const setCommentable = actionCreator(
 	SET_COMMENTABLE,
 	'commentableID',
-	'commentableType',
+	'commentableType'
 );
 
 export const addCommentsToDictionary = actionCreator(
 	ADD_COMMENTS_TO_DICTIONARY,
 	'indexes',
-	'dictionary',
+	'dictionary'
 );
 
 export const updateCommentsCount = actionCreator(
 	UPDATE_COMMENTS_COUNT,
-	'count',
+	'count'
 );
 
 export const toggleCommentsForm = actionCreator(
-	TOGGLE_COMMENTS_FORM,
-)
+	TOGGLE_COMMENTS_FORM
+);
 
 // ===> ASYNC functions
 // normalizr schema
@@ -85,10 +85,9 @@ export function addComments( data ) {
 				dispatch(toggleCommentsForm())
 			})
 			.catch((err) => {
-				alert(
-					`There was a problem adding your comment. 
+				alert( `There was a problem adding your comment. 
 					\n "CommentableContainer"
-					\n ${err}`,
+					\n ${err}`
 				);
 				console.log('ERROR=>', err);
 			});

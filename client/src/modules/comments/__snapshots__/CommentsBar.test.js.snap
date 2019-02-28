@@ -31,7 +31,7 @@ exports[` 1`] = `
         <p
           className="MuiTypography-root-46 MuiTypography-body2-54 CommentsBar-heading-2"
         >
-          There are 0 comments for this comment
+          There are no comments for this comment
         </p>
       </div>
       <div

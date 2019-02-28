@@ -6,30 +6,26 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { CommentCard } from '../comments';
+import { CommentCardContainer } from '../comments';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	// commentable: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
-	count: PropTypes.number.isRequired, // keep count of comments for display
+	count: PropTypes.number, // keep count of comments for display
 	title: PropTypes.string, // title of the comment (Movie)
 };
 
-const defaultProps = { 
+const defaultProps = {
+	count: 0,
 	title: 'this comment', // default for non movie comments
 };
 
 function CommentsBar({ classes, comments, count, title }) {
 	
-	let cards
+	let deck
 	if (comments) {
-		cards = comments.map(item => (
-			<CommentCard
-				key={item.id}
-				comment={item}
-				subComments={item.sub_comments}
-			/>
+		deck = comments.map(item => (
+			<CommentCardContainer key={item.id} comment={item} />
 		));
 	}
 
@@ -43,7 +39,7 @@ function CommentsBar({ classes, comments, count, title }) {
 		}
 
 		return `There are ${count} comments for ${title}`;
-	}
+	};
 
 	return (
 		<div className={classes.root}>
@@ -59,7 +55,7 @@ function CommentsBar({ classes, comments, count, title }) {
 				</ExpansionPanelSummary>
 
 				<ExpansionPanelDetails className={classes.expansion}>
-					<div className={classes.list}>{ cards }</div>
+					<div className={classes.list}>{ deck }</div>
 				</ExpansionPanelDetails>
 
 			</ExpansionPanel>
