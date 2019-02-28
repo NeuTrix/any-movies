@@ -32,7 +32,6 @@ class CommentsBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			count: 0,
 			deck: [],
 			showForm: false,
 		};
