@@ -55,7 +55,9 @@ function CommentsBar({ classes, comments, count, title }) {
 							badgeContent={comments.length} 
 							color="primary"
 							max={9}
-						/>
+						>
+							<span/>
+						</Badge>
 						{ message() }
 					</Typography>
 

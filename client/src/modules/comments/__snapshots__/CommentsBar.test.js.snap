@@ -2,14 +2,14 @@
 
 exports[` 1`] = `
 <div
-  className="CommentsBar-root-4"
+  className="CommentsBar-root-5"
 >
   <div
-    className="MuiPaper-root-10 MuiPaper-elevation1-13 MuiPaper-rounded-11 MuiExpansionPanel-root-6 MuiExpansionPanel-rounded-7 CommentsBar-expansion-1"
+    className="MuiPaper-root-11 MuiPaper-elevation1-14 MuiPaper-rounded-12 MuiExpansionPanel-root-7 MuiExpansionPanel-rounded-8 CommentsBar-expansion-2"
   >
     <div
       aria-expanded={false}
-      className="MuiButtonBase-root-43 MuiExpansionPanelSummary-root-37 CommentsBar-summary-5"
+      className="MuiButtonBase-root-44 MuiExpansionPanelSummary-root-38 CommentsBar-summary-6"
       onBlur={[Function]}
       onClick={[Function]}
       onContextMenu={[Function]}
@@ -26,17 +26,27 @@ exports[` 1`] = `
       tabIndex="0"
     >
       <div
-        className="MuiExpansionPanelSummary-content-41"
+        className="MuiExpansionPanelSummary-content-42"
       >
         <p
-          className="MuiTypography-root-46 MuiTypography-body2-54 CommentsBar-heading-2"
+          className="MuiTypography-root-47 MuiTypography-body2-55 CommentsBar-heading-3"
         >
-          There are no comments for this comment
+          <span
+            className="MuiBadge-root-83 CommentsBar-badge-1"
+          >
+            <span />
+            <span
+              className="MuiBadge-badge-84 MuiBadge-colorPrimary-85 MuiBadge-invisible-88"
+            >
+              0
+            </span>
+          </span>
+          There are no reviews for this comment
         </p>
       </div>
       <div
         aria-hidden="true"
-        className="MuiButtonBase-root-43 MuiIconButton-root-82 MuiExpansionPanelSummary-expandIcon-42"
+        className="MuiButtonBase-root-44 MuiIconButton-root-90 MuiExpansionPanelSummary-expandIcon-43"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onFocus={[Function]}
@@ -52,11 +62,11 @@ exports[` 1`] = `
         tabIndex={-1}
       >
         <span
-          className="MuiIconButton-label-87"
+          className="MuiIconButton-label-95"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-88"
+            className="MuiSvgIcon-root-96"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -71,13 +81,13 @@ exports[` 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-102"
+          className="MuiTouchRipple-root-110"
         />
       </div>
     </div>
     <div
       aria-hidden="true"
-      className="MuiCollapse-container-97"
+      className="MuiCollapse-container-105"
       style={
         Object {
           "minHeight": "0px",
@@ -85,16 +95,16 @@ exports[` 1`] = `
       }
     >
       <div
-        className="MuiCollapse-wrapper-99"
+        className="MuiCollapse-wrapper-107"
       >
         <div
-          className="MuiCollapse-wrapperInner-100"
+          className="MuiCollapse-wrapperInner-108"
         >
           <div
-            className="MuiExpansionPanelDetails-root-101 CommentsBar-expansion-1"
+            className="MuiExpansionPanelDetails-root-109 CommentsBar-expansion-2"
           >
             <div
-              className="CommentsBar-list-3"
+              className="CommentsBar-list-4"
             />
           </div>
         </div>
