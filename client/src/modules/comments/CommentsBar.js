@@ -9,8 +9,10 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
-import { CommentCardContainer, } from '.';
-import { ADD_COMMENTS_TO_DICTIONARY, } from '../helpers/constants';
+import { 
+	CommentCardContainer, 
+	CommentableFormContainer,
+} from '.';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
