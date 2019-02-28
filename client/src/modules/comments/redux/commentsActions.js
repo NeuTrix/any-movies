@@ -57,7 +57,7 @@ export const toggleCommentsForm = actionCreator(
 export const comment = new schema.Entity('comments'); // normalize data
 export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
-// data object is and array of objecst `[{}]`
+// data object is an array of objects `[{}]`
 export function addComments( data ) {
 	const { commentable_id, commentable_type } = data;
 	const path = commentable_type === 'Comment' ? 'comments' : 'movies';
@@ -82,8 +82,7 @@ export function addComments( data ) {
 				dispatch(addCommentsToDictionary(indexes, dictionary));
 			})
 			.then(() => {
-				// update the subcomments object
-				// this.setState({ showingCommentForm: false });
+				dispatch(toggleCommentsForm())
 			})
 			.catch((err) => {
 				alert(
