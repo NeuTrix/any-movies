@@ -80,7 +80,7 @@ describe('The default state properties', () => {
 	});
 });
 
-describe('The ADD_COMMENTS_TO_DICTIONARY action', () => {
+describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 	const action = addCommentToDictionary(comments1, dictionary1);
 	const nextState = commentsReducer(prevState, action);
 	const action2 = addCommentToDictionary(comments2, dictionary2);
