@@ -84,63 +84,33 @@ class CommentsBar extends Component {
 		};
 
 		return (
-<
-			div className = {
-				classes.root
-			} >
-			<
-			ExpansionPanel className = {
-				classes.expansion
-			} >
-			<
-			ExpansionPanelSummary className = {
-				classes.summary
-			}
-			expandIcon = {
-				< ExpandMoreIcon / >
-			} >
-			<
-			Typography variant = "body2"
-			className = {
-				classes.heading
-			} >
-			<
-			Badge className = {
-				classes.badge
-			}
-			badgeContent = {
-				count
-			}
-			color = "primary"
-			max = {
-				9
-			} >
-			<
-			span / >
-			<
-			/Badge> {
-				message()
-			} <
-			/Typography>
+			<div className={ classes.root } >
+				<ExpansionPanel className={ classes.expansion } >
+					<ExpansionPanelSummary 
+						className={ classes.summary }
+						expandIcon={ <ExpandMoreIcon /> } 
+					>
+						<Typography variant="body2" className={classes.heading}>
+							< Badge 
+								className={ classes.badge }
+								badgeContent={ count }
+								color = "primary"
+								max = { 9 } 
+							>
+								<span/>
+							</Badge> 
+							{ message() }						
+						</Typography>  
+					</ExpansionPanelSummary>
+					
+					<ExpansionPanelDetails className = { classes.expansion } >
+						< div className = { classes.list } > 
+							{ deck } 
+						</div> 
+					</ExpansionPanelDetails>
 
-			<
-			/ExpansionPanelSummary>
-
-			<
-			ExpansionPanelDetails className = {
-				classes.expansion
-			} >
-			<
-			div className = {
-				classes.list
-			} > {
-				deck
-			} < /div> <
-			/ExpansionPanelDetails>
-
-			<
-			/ExpansionPanel> <
-			/div>
+				</ExpansionPanel> 
+			</div>
 		);
 	}
 }
