@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { CommentCard } from '../comments';
 
-
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	// commentable: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -22,14 +21,17 @@ const defaultProps = {
 };
 
 function CommentsBar({ classes, comments, count, title }) {
+	let cards
 
-	const cards = comments.map(item => (
-		<CommentCard
-			key={item.id}
-			comment={item}
-			subComments={item.sub_comments}
-		/>
-	));
+	if (comments) {
+		cards = comments.map(item => (
+			<CommentCard
+				key={item.id}
+				comment={item}
+				subComments={item.sub_comments}
+			/>
+		));
+	}
 
 	return (
 		<div className={classes.root}>
