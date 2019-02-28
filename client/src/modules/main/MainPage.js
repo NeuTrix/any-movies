@@ -11,7 +11,7 @@ import { CommentableFormContainer } from '../comments';
 import { MovieCommentsContainer } from '../movies';
 // unclear why this linting error appears =>
 import { MoviePageContainer } from '../movies';
-import { toggleCommentsForm } from '../comments/redux/commentsActions';
+// import { toggleCommentsForm } from '../comments/redux/commentsActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
