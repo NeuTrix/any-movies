@@ -1,22 +1,16 @@
-import React, {
-	Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-	withStyles,
-} from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
+	Badge,
+	ExpansionPanel,
+	ExpansionPanelDetails,
+	ExpansionPanelSummary,
+	Typography,
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {
-	CommentCardContainer,
-} from '.';
-import {
-	ADD_COMMENTS_TO_DICTIONARY,
-} from '../helpers/constants';
+import { withStyles } from '@material-ui/core/styles';
+import { CommentCardContainer, } from '.';
+import { ADD_COMMENTS_TO_DICTIONARY, } from '../helpers/constants';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -25,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-	// title: 'this comment', // default for non movie comments
+	title: 'this comment', // default for non movie comments
 };
 
 class CommentsBar extends Component {
@@ -62,6 +56,7 @@ class CommentsBar extends Component {
 		const count = comments.length;
 
 		const message = () => {
+			// guard clause and base case for CommentsBar recursion
 			if (count === 0) return 'Be the first to review or reply!';
 
 			return count === 1
@@ -90,9 +85,7 @@ class CommentsBar extends Component {
 					</ExpansionPanelSummary>
 
 					<ExpansionPanelDetails className={classes.expansion}>
-						<div className={classes.list}>
-							{ deck }
-						</div>
+						<div className={classes.list}>{ deck }</div>
 					</ExpansionPanelDetails>
 
 				</ExpansionPanel>
@@ -102,33 +95,12 @@ class CommentsBar extends Component {
 }
 
 const styles = theme => ({
-	badge: {
-		// left: '-1',
-		marginRight: theme.spacing.unit * 2,
-	},
-
-	expansion: {
-		background: 'aliceblue',
-		padding: 0,
-	},
-
-	heading: {
-		fontWeight: theme.typography.fontWeightRegular,
-	},
-
-	list: {
-		margin: 'none',
-		padding: 'none',
-		width: '100%',
-	},
-
-	root: {
-		textAlign: 'left',
-	},
-
-	summary: {
-		background: theme.palette.secondary.main,
-	},
+	badge: { marginRight: theme.spacing.unit * 2 },
+	expansion: { background: 'aliceblue', padding: 0 },
+	heading: { fontWeight: theme.typography.fontWeightRegular },
+	list: { margin: 'none', padding: 'none', width: '100%' },
+	root: { textAlign: 'left' },
+	summary: { background: theme.palette.secondary.main },
 });
 
 CommentsBar.propTypes = propTypes;
