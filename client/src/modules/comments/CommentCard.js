@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import CommentsBar from './CommentsBar';
+import CommentsBarContainer from './CommentsBarContainer';
 import { CommentableForm } from '.';
 
 const propTypes = {
@@ -27,6 +27,8 @@ function CommentCard(props) {
 		<Card className={classes.grid}>
 				<div className={classes.title}>
 					<h3>{comment.title}</h3>
+					<p>{comment.id}</p>
+					<p>{comment.type}</p>
 				</div>
 				<div className={classes.body}>
 					<p>{comment.body}</p>
@@ -43,8 +45,9 @@ function CommentCard(props) {
 				</div>
 
 			<div className={classes.replies}>
-				<CommentsBar 
-					commentable={comment} // parent info for adding comments
+				<CommentsBarContainer
+					commentableID={comment.id} // parent info for adding comments
+					commentableType={'Comment'} // parent info for adding comments
 					comments={comment.sub_comments} 
 				/>
 			</div>

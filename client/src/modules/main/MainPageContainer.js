@@ -4,19 +4,12 @@ import MainPage from './MainPage';
 import { toggleCommentsForm } from '../comments/redux/commentsActions';
 
 const mapStateToProps = state => ({
-	showForm: state.comments.showForm,
-	// movies
-	currMovie: state.movies.current,
-	registered: state.movies.registered,
-	// users
-	currUser: state.users.current,
+	comments: state.comments.comments,
+	movie: state.movies.current,
+	commentableID: state.movies.imdbID,
 });
 
-const mapDispatchToProps = dispatch => ({
-	toggleCommentsForm: () => dispatch(toggleCommentsForm()),
-})
 
-
-const MainPageContainer = connect(mapStateToProps, mapDispatchToProps)(MainPage);
+const MainPageContainer = connect(mapStateToProps)(MainPage);
 
 export default MainPageContainer;
