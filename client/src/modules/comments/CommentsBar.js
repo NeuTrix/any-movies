@@ -21,8 +21,8 @@ const defaultProps = {
 };
 
 function CommentsBar({ classes, comments, count, title }) {
+	
 	let cards
-
 	if (comments) {
 		cards = comments.map(item => (
 			<CommentCard
@@ -33,6 +33,18 @@ function CommentsBar({ classes, comments, count, title }) {
 		));
 	}
 
+	const message = () => {
+		if (count === 0) {
+			return `There are no comments for ${title}`;
+		}
+
+		if (count === 1) {
+			return `There is ${count} comment for ${title}`;
+		}
+
+		return `There are ${count} comments for ${title}`;
+	}
+
 	return (
 		<div className={classes.root}>
 			<ExpansionPanel className={classes.expansion}>
@@ -41,7 +53,7 @@ function CommentsBar({ classes, comments, count, title }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ `There are ${count} comments for ${title}` }
+						{ message()}
 					</Typography>
 
 				</ExpansionPanelSummary>
