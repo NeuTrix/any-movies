@@ -1,6 +1,6 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
-	ADD_COMMENTS_TO_DICTIONARY,
+	ADD_COMMENT_TO_DICTIONARY,
 	TOGGLE_COMMENTS_FORM,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
@@ -28,7 +28,7 @@ export function dictionaryReducer(state = {}, action = {}) {
 	const { type, payload } = action;
 
 	switch (type) {
-		case ADD_COMMENTS_TO_DICTIONARY:
+		case ADD_COMMENT_TO_DICTIONARY:
 			return {
 				...state, 
 				...payload.dictionary, // targeting the object dictionary
@@ -44,7 +44,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 	
 	switch (type) {
 		// handle api failures
-	case ADD_COMMENTS_TO_DICTIONARY:
+	case ADD_COMMENT_TO_DICTIONARY:
 		// this causes scopiong issues- refactor
 		return {
 			...state,

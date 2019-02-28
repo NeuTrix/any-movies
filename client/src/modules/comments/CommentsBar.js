@@ -45,7 +45,7 @@ class CommentsBar extends Component {
 
 	componentDidUpdate(prevProps) {
 		const { comments } = this.props;
-		if (comments && prevProps !== this.props) {
+		if (comments && prevProps.comments !== comments) {
 			this.updateComments(comments);
 		}
 	}
@@ -109,7 +109,7 @@ class CommentsBar extends Component {
 								className={classes.badge}
 								badgeContent={count}
 								color="primary"
-								max={9}
+								max={25}
 							>
 								<span />
 							</Badge>

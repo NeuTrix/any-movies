@@ -3,7 +3,7 @@ import { normalize, schema } from 'normalizr';
 import { actionCreator } from '../../helpers';
 
 import {
-	ADD_COMMENTS_TO_DICTIONARY,
+	ADD_COMMENT_TO_DICTIONARY,
 	TOGGLE_COMMENTS_FORM,
 	UPDATE_COMMENTS_COUNT,
 	FETCH_COMMENTS_FAILURE,
@@ -37,7 +37,7 @@ export const setMovieComments = actionCreator(
 );
 	
 export const addCommentToDictionary = actionCreator(
-	ADD_COMMENTS_TO_DICTIONARY,
+	ADD_COMMENT_TO_DICTIONARY,
 	'indexes',
 	'dictionary',
 );
