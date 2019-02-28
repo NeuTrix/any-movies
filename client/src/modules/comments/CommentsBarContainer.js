@@ -8,7 +8,7 @@ const mapStateToProps = (state, props) => ({
 	title: props.title,
 });
 
-// wrap around CommentsBar component 
+// wrap around CommentsBar component
 const CommentsBarContainer = connect(mapStateToProps)(CommentsBar);
 
 export default CommentsBarContainer;

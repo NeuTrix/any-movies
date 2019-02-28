@@ -1,14 +1,12 @@
 // container logic for comments
 import { connect } from 'react-redux';
 import MainPage from './MainPage';
-import { toggleCommentsForm } from '../comments/redux/commentsActions';
 
 const mapStateToProps = state => ({
-	comments: state.comments.comments,
-	movie: state.movies.current,
 	commentableID: state.movies.imdbID,
+	comments: state.comments.movieComments,
+	movie: state.movies.current,
 });
-
 
 const MainPageContainer = connect(mapStateToProps)(MainPage);
 

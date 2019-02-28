@@ -18,14 +18,9 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
-	comments: [], // (sub)comments related to current commentable item
-	// commentable: { id: '', type: ''}, // the Parent item of comment (id, type)
-	count: 0,
-	current: {}, // the current comment in focus
+	movieComments: [], // (sub)comments related to current commentable item
 	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
-	indexes: [], // array of ids for the current commentable
-	showForm: false, // showing new/edit form?
 };
 
 // reducer to handle nested dictionary state
@@ -64,7 +59,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				comments: [], // reset and allows component to update
+				movieComments: [], // reset and allows component to update
 				apiStatus: {
 					isFetching: false,
 					message: `Error getting comments: \n ${payload.error}`,
@@ -102,7 +97,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				comments: filterCommentsToArray(payload.indexes, state.dictionary),
+				movieComments: filterCommentsToArray(payload.indexes, state.dictionary),
 			},
 		};
 	
