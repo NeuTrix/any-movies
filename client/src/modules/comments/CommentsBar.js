@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Badge from '@material-ui/core/Badge';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -31,14 +32,14 @@ function CommentsBar({ classes, comments, count, title }) {
 
 	const message = () => {
 		if (count === 0) {
-			return `There are no comments for ${title}`;
+			return `There are no reviews for ${title}`;
 		}
 
 		if (count === 1) {
-			return `There is ${count} comment for ${title}`;
+			return `There is ${count} review for ${title}`;
 		}
 
-		return `There are ${count} comments for ${title}`;
+		return `There are ${count} reviews for ${title}`;
 	};
 
 	return (
@@ -49,7 +50,12 @@ function CommentsBar({ classes, comments, count, title }) {
 					expandIcon={<ExpandMoreIcon />}
 				>
 					<Typography variant="body2" className={classes.heading}>
-						{ message()}
+						<Badge
+							className={classes.badge}
+							badgeContent={comments.length} 
+							color="primary"
+						/>
+						{ message() }
 					</Typography>
 
 				</ExpansionPanelSummary>
@@ -64,6 +70,11 @@ function CommentsBar({ classes, comments, count, title }) {
 }
 
 const styles = theme => ({
+	badge: {
+		// left: '-1',
+		marginRight: theme.spacing.unit * 2
+	},
+
 	expansion: {
 		background: 'aliceblue',
 		padding: 0,
