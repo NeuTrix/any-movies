@@ -17,7 +17,8 @@ import {
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // from commentable
+	commentableID: PropTypes.string.isRequired, // from commentable
+	commentableType: PropTypes.string.isRequired, // from commentable
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
 	title: PropTypes.string, // title of the comment (Movie)
 };
@@ -67,7 +68,14 @@ class CommentsBar extends Component {
 	}
 
 	render() {
-		const { classes, comments, commentable, title } = this.props;
+		const {
+			classes,
+			comments,
+			commentableID,
+			commentableType,
+			title
+		} = this.props;
+
 		const { deck, showForm } = this.state;
 		const count = comments.length;
 
@@ -110,7 +118,13 @@ class CommentsBar extends Component {
 					</ExpansionPanelSummary>
 					
 					<ExpansionPanelDetails>
-						{ showForm && <CommentableFormContainer commentable={commentable}/> }
+						{ showForm && (
+							<CommentableFormContainer
+								commentableID={commentableID}
+								commentableType={commentableType}
+							/>
+						)}
+
 					</ExpansionPanelDetails>
 
 					<ExpansionPanelDetails className={classes.expansion}>

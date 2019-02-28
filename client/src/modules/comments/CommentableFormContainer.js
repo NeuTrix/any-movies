@@ -4,7 +4,8 @@ import CommentableForm from './CommentableForm';
 
 const mapStateToProps = (state, props) => ({
   // must pass a commentable object with an id (and type if available)
-  commentable: props.commentable,
+  commentableID: props.commentableID,
+  commentabletype: props.commentabletype,
   user: state.users.current,
 });
 
