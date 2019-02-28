@@ -25,7 +25,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-	title: 'this comment', // default for non movie comments
+	// title: 'this comment', // default for non movie comments
 };
 
 class CommentsBar extends Component {
@@ -40,9 +40,7 @@ class CommentsBar extends Component {
 
 	componentDidMount() {
 		const { comments } = this.props;
-		if (comments) {
-			this.updateComments(comments);
-		}
+		if (comments) { this.updateComments(comments) }
 	}
 
 	componentDidUpdate(prevProps) {
@@ -60,27 +58,16 @@ class CommentsBar extends Component {
 	}
 
 	render() {
-		const {
-			classes,
-			comments,
-			title,
-		} = this.props;
-		const {
-			deck,
-			showForm,
-		} = this.state;
+		const { classes, comments, title } = this.props;
+		const { deck, showForm } = this.state;
 		const count = comments.length;
 
 		const message = () => {
-			if (count === 0) {
-				return `There are no reviews for ${title}`;
-			}
+			if (count === 0) return 'Be the first to review or reply!';
 
-			if (count === 1) {
-				return `There is ${count} review for ${title}`;
-			}
-
-			return `There are ${count} reviews for ${title}`;
+			return count === 1
+				? `There is ${count} review for ${title}`
+				: `There are ${count} reviews for ${title}`;
 		};
 
 		return (
