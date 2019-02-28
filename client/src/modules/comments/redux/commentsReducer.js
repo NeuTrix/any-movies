@@ -2,7 +2,6 @@
 import {
 	ADD_COMMENTS_TO_DICTIONARY,
 	TOGGLE_COMMENTS_FORM,
-	UPDATE_COMMENTS_COUNT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -62,16 +61,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 				// indexes for the current commentable (movie or comment)
 				comments: filterCommentsToArray(indexes, dictionary),
 				indexes: payload.indexes,
-			},
-		};
-
-	// update separately to allow comment counts to increment 
-	// with bouncing to display '1' after a single add on
-	case UPDATE_COMMENTS_COUNT:
-		return {
-			...state,
-			...{
-				count: payload.count,
 			},
 		};
 

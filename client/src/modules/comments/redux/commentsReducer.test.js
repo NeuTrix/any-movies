@@ -5,7 +5,6 @@ import { expect } from 'chai';
 // action creators
 import {
 	addCommentToDictionary,
-	updateCommentsCount,
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
@@ -130,26 +129,6 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 		it('...has nextState 2 dictionary of length 3', () => {
 			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
 		});
-	});
-});
-
-describe('The UPDATE_COMMENTS_COUNT action', () => {
-	const comments = [ {}, {}, {}];
-	const action = updateCommentsCount(comments.length);
-	const nextState = commentsReducer(prevState, action);
-
-	it('--> nextState has a count (array) prop', () => {
-		expect(nextState).to.have.property('count')
-			.to.be.an('number');
-	});
-
-	it('...indexes array has the correct value', () => {
-		expect(nextState.count).to.eql(comments.length);
-	});
-
-	it('...indexes array length incremented properly', () => {
-		expect(prevState.count).to.eql(0);
-		expect(nextState.count).to.eql(comments.length);
 	});
 });
 

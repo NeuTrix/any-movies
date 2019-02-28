@@ -9,22 +9,14 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CommentsBar from './CommentsBar';
-import CommentableFormContainer from './CommentableFormContainer';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	comment: PropTypes.instanceOf(Object).isRequired, // material UI
-	addComment: PropTypes.instanceOf(Function).isRequired, // to add subcomments
+	comment: PropTypes.instanceOf(Object).isRequired, // raw comments from api
 };
 
 function CommentCard(props) {
-	const { addComment, classes, comment } = props;
-
-	const onClick = (e) => {
-		e.preventDefault();
-
-		// addComment
-	}
+	const { classes, comment } = props;
 
 	return (
 		<Card className={classes.grid}>
@@ -35,18 +27,13 @@ function CommentCard(props) {
 				<p>{comment.body}</p>
 			</div>
 			<div className={classes.author}>
-					{comment.author}
+				{comment.author}
 			</div>
 			<div className={classes.actions}>
-				<Button variant="outlined" > ADD </Button>
-				<Button variant="outlined" > DEL </Button>
-				<Button variant="outlined" > EDIT </Button>
 			</div>
 			<div className={classes.replies}>
-				<CommentableFormContainer/>
 				<CommentsBar
 					comments={comment.sub_comments}
-					count={comment.sub_comments.length}
 				/>
 			</div>
 		</Card>
@@ -72,12 +59,10 @@ const styles = theme => ({
 			"body body"
 			"actions actions"
       "replies replies"
-      "form form"
     `,
 		marginBottom: theme.spacing.unit * 2,
 		padding: theme.spacing.unit,
 	},
-	pos: { marginBottom: 12 },
 	replies: { gridArea: 'replies' },
 	title: { gridArea: 'title' },
 });

@@ -43,11 +43,6 @@ export const addCommentToDictionary = actionCreator(
 	'dictionary'
 );
 
-export const updateCommentsCount = actionCreator(
-	UPDATE_COMMENTS_COUNT,
-	'count'
-);
-
 export const toggleCommentsForm = actionCreator(
 	TOGGLE_COMMENTS_FORM
 );
@@ -118,8 +113,6 @@ export function getComments(commentableID, commentableType) {
 				dispatch(addCommentToDictionary(indexes, dictionary));
 				return indexes
 			})
-			// update the counter
-			.then((indexes) => dispatch(updateCommentsCount(indexes.length)))
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))
 			// set the current commentable object id

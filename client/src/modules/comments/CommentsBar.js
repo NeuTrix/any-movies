@@ -8,21 +8,21 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { CommentCardContainer } from '../comments';
+import { ADD_COMMENTS_TO_DICTIONARY } from '../helpers/constants';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
-	count: PropTypes.number, // keep count of comments for display
 	title: PropTypes.string, // title of the comment (Movie)
 };
 
 const defaultProps = {
-	count: 0,
 	title: 'this comment', // default for non movie comments
 };
 
-function CommentsBar({ classes, comments, count, title }) {
-	
+function CommentsBar({ classes, comments, title }) {
+	const count = comments.length;
+
 	let deck
 	if (comments) {
 		deck = comments.map(item => (
