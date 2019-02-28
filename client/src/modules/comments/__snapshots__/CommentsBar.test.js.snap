@@ -41,7 +41,9 @@ exports[` 1`] = `
               0
             </span>
           </span>
+           
           There are no reviews for this comment
+           
         </p>
       </div>
       <div
@@ -105,11 +107,16 @@ exports[` 1`] = `
           >
             <div
               className="CommentsBar-list-4"
-            />
+            >
+               
+               
+            </div>
+             
           </div>
         </div>
       </div>
     </div>
   </div>
+   
 </div>
 `;
