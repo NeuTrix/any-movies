@@ -105,17 +105,18 @@ export function getComments(commentableID, commentableType) {
 			.then((data) => {
 				// normalize the data
 				const normed = normalize(data, commentsListSchema);
+				console.log(2, '==>', normed);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
 				dispatch(updateDictionary(indexes, dictionary));
-				return indexes
+				return normed
 			})
 			// set the current comments for this
-			.then((indexes) => {
-				if (commentableType === 'Movie') {
-					dispatch(setMovieComments(indexes))
-				}
-			})
+			// .then((normed) => {
+			// 	if (commentableType === 'Movie') {
+			// 		dispatch(setMovieComments(normed.result, normed.entities.comments))
+			// 	}
+			// })
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))
 			.catch((error) => {

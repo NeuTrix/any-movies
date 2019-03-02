@@ -19,19 +19,12 @@ module Api
     def create
       @comment = @commentable.comments.build(comment_params)
       
-      
       if @comment.save
-        # @commentable_id = comment_params[:commentable_id]
-        # @parent = Comment.find(@commentable_id)
-        @commentable.sub_comments << @comment
-        @commentable.save
-        
-        # Comment.update_sub_comments(@commentable.comments)
-        
-        # if @commentable.commentable_type == 'Comment'
-          # @commentable.sub_comments << @comment
-        # end
         # add sub comments to the instance attribute
+        if @commentable.commentable_type == 'Comment'
+          @commentable.sub_comments << @comment
+          @commentable.save
+        end
         render json: @commentable, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity

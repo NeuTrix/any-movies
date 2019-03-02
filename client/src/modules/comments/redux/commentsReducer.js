@@ -101,8 +101,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 				movieComments: filterCommentsToArray(payload.indexes, state.dictionary),
 			},
 		};
-	
-
 
 	default:
 		return state;

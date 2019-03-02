@@ -35,7 +35,7 @@ describe('Comments reducer default actions', () => {
 
 describe('The default state properties', () => {
 	it('... has a the expected number of default properties', () => {
-		expect(Object.keys(initialState).length).to.eql(9);
+		expect(Object.keys(initialState).length).to.eql(4);
 	});
 
 	it('...has a `apiStatus` property (object)', () => {
@@ -43,19 +43,9 @@ describe('The default state properties', () => {
 			.to.be.a('object');
 	});
 
-	it('...has a `comments` property (object)', () => {
-		expect(initialState).to.have.property('comments')
+	it('...has a `movieComments` property (object)', () => {
+		expect(initialState).to.have.property('movieComments')
 			.to.be.a('array');
-	});
-
-	it('...has a `commentable` property (object)', () => {
-		expect(initialState).to.have.property('commentable')
-			.to.be.a('object');
-	});
-
-	it('...has a `current` property (object)', () => {
-		expect(initialState).to.have.property('current')
-			.to.be.a('object');
 	});
 
 	it('...has a `dictionary` property (object)', () => {
@@ -68,15 +58,6 @@ describe('The default state properties', () => {
 			.to.be.a('boolean');
 	});
 
-	it('...has a `indexes` property (object)', () => {
-		expect(initialState).to.have.property('indexes')
-			.to.be.a('array');
-	});
-
-	it('...has a `showForm` property (object)', () => {
-		expect(initialState).to.have.property('showForm')
-			.to.be.a('boolean');
-	});
 });
 
 describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
@@ -91,19 +72,9 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 				.to.be.an('object');
 		});
 
-		it('--> nextState has a indexes (array) prop', () => {
-			expect(nextState).to.have.property('indexes')
+		it('--> nextState has a `movieComments` prop', () => {
+			expect(nextState).to.have.property('movieComments')
 				.to.be.an('array');
-		});
-
-		it('...indexes array length incremented properly', () => {
-			expect(prevState.indexes.length).to.eql(0);
-			expect(nextState.indexes.length).to.eql(1);
-		});
-
-		it('--> nextState has a `commentable` prop', () => {
-			expect(nextState).to.have.property('commentable')
-				.to.be.an('object');
 		});
 
 		it('...nextState has `favourited` prop', () => {
@@ -111,10 +82,6 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 				.to.be.an('boolean');
 		});
 
-		it('...nextState has `showForm` prop', () => {
-			expect(nextState).to.have.property('showForm')
-				.to.be.an('boolean');
-		});
 	});
 
 	describe('The dictionary prop | sub reducer', () => {
@@ -197,21 +164,11 @@ describe('The FETCH_COMMENTS_SUCCESS', () => {
 });
 
 describe('The SET_MOVIE_COMMENTS action', () => {
-	const action = setMovieComments(comments1[0]);
+	const action = setMovieComments(comments1);
 	const nextState = commentsReducer(prevState, action);
 
-	it('...has an updated commentable prop', () => {
-		expect(nextState).to.have.property('commentable')
-			.to.be.an('object');
+	it('...has an updated movieComments prop', () => {
+		expect(nextState).to.have.property('movieComments')
+			.to.be.an('array');
 	});
-
-	it('...has the expected value', () => {
-		expect(nextState.commentable.id).to.eql(comments1[0]);
-	});
-});
-
-describe('The TOGGLE_COMMENTS_FORM action', () => {
-	const action = toggleCommentsForm();
-	const nextState = commentsReducer(prevState, action)
-	expect(nextState.showForm).not.to.eql(prevState.showForm)
 });
