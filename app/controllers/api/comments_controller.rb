@@ -18,11 +18,21 @@ module Api
     # POST /comments
     def create
       @comment = @commentable.comments.build(comment_params)
-      # @comment.user_id = current_user.id
-
+      
+      
       if @comment.save
+        # @commentable_id = comment_params[:commentable_id]
+        # @parent = Comment.find(@commentable_id)
+        @commentable.sub_comments << @comment
+        @commentable.save
+        
+        # Comment.update_sub_comments(@commentable.comments)
+        
+        # if @commentable.commentable_type == 'Comment'
+          # @commentable.sub_comments << @comment
+        # end
         # add sub comments to the instance attribute
-        render json: @comment, status: :created
+        render json: @commentable, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity
       end
