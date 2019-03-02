@@ -1,11 +1,11 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
 	ADD_COMMENT_TO_DICTIONARY,
-	TOGGLE_COMMENTS_FORM,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
 	SET_MOVIE_COMMENTS,
+	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
 import { filterCommentsToArray } from '../../helpers';
@@ -29,6 +29,7 @@ export function dictionaryReducer(state = {}, action = {}) {
 
 	switch (type) {
 		case ADD_COMMENT_TO_DICTIONARY:
+		case UPDATE_DICTIONARY:
 			return {
 				...state, 
 				...payload.dictionary, // targeting the object dictionary
@@ -44,7 +45,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 	
 	switch (type) {
 		// handle api failures
-	case ADD_COMMENT_TO_DICTIONARY:
+		case ADD_COMMENT_TO_DICTIONARY:
+		case UPDATE_DICTIONARY:
 		// this causes scopiong issues- refactor
 		return {
 			...state,
@@ -91,9 +93,8 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			}
 		}
-		// handle COMMENTABLES OBJECT
 	
-		case SET_MOVIE_COMMENTS:
+	case SET_MOVIE_COMMENTS:
 		return {
 			...state,
 			...{
@@ -101,6 +102,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 			},
 		};
 	
+
 
 	default:
 		return state;

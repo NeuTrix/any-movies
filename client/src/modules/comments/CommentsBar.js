@@ -20,6 +20,7 @@ const propTypes = {
 	commentableID: PropTypes.string.isRequired, // from commentable
 	commentableType: PropTypes.string.isRequired, // from commentable
 	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
+	getComments: PropTypes.instanceOf(Function).isRequired,
 	title: PropTypes.string, // title of the comment (Movie)
 };
 
@@ -40,13 +41,20 @@ class CommentsBar extends Component {
 
 	componentDidMount() {
 		const { comments } = this.props;
-		if (comments) { this.updateComments(comments) }
+		if (comments) { this.updateComments(comments)}
 	}
 
 	componentDidUpdate(prevProps) {
-		const { comments } = this.props;
-		if (comments && prevProps.comments !== comments) {
+		const {
+			commentableID,
+			commentableType,
+			comments,
+			getComments,
+		} = this.props;
+
+		if (prevProps.comments !== comments) {
 			this.updateComments(comments);
+			// getComments(commentableID, commentableType);
 		}
 	}
 
@@ -92,9 +100,9 @@ class CommentsBar extends Component {
 			<div className={classes.root}>
 				<ExpansionPanel className={classes.expansion}>
 
-					<Button 
+					<Button
 						color="primary"
-						variant="outlined" 
+						variant="outlined"
 						onClick={this.handleClick}
 					>
 						{ !showForm ? 'Add a Comment' : 'Hide Comment Form' }
@@ -116,7 +124,7 @@ class CommentsBar extends Component {
 							{ message() }
 						</Typography>
 					</ExpansionPanelSummary>
-					
+
 					<ExpansionPanelDetails>
 						{ showForm && (
 							<CommentableFormContainer

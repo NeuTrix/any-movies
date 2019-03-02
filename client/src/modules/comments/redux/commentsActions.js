@@ -4,12 +4,11 @@ import { actionCreator } from '../../helpers';
 
 import {
 	ADD_COMMENT_TO_DICTIONARY,
-	TOGGLE_COMMENTS_FORM,
-	UPDATE_COMMENTS_COUNT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
 	SET_MOVIE_COMMENTS,
+	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
 
@@ -41,6 +40,12 @@ export const addCommentToDictionary = actionCreator(
 	'indexes',
 	'dictionary',
 );
+	
+export const updateDictionary = actionCreator(
+	UPDATE_DICTIONARY,
+	'indexes',
+	'dictionary',
+);
 
 // ===> ASYNC functions
 // normalizr schema
@@ -61,15 +66,15 @@ export function addComment( data ) {
 				return [resp.data];
 			})
 			.then((data) => {
-				dispatch(getComments(commentable_id, commentable_type))
-				return data
-			})
-			.then((data) => {
 				// normalize the data
 				const normed = normalize(data, commentsListSchema);
-				const indexes = normed.result; // an array of indices
-				const dictionary = normed.entities.comments; // an object map
-				dispatch(addCommentToDictionary(indexes, dictionary));
+				// pass indexes array and dictionary object 
+				dispatch(addCommentToDictionary(normed.result, normed.entities.comments));
+				// return normed
+			}) 
+			.then(() => {
+				dispatch(getComments(commentable_id, commentable_type))
+			// 	return data
 			})
 			.catch((err) => {
 				alert( `There was a problem adding your comment. 
@@ -102,7 +107,7 @@ export function getComments(commentableID, commentableType) {
 				const normed = normalize(data, commentsListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(addCommentToDictionary(indexes, dictionary));
+				dispatch(updateDictionary(indexes, dictionary));
 				return indexes
 			})
 			// set the current comments for this

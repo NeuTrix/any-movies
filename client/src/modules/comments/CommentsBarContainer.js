@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { CommentsBar } from '.';
+import { getComments } from './redux/commentsActions'
 
 const mapStateToProps = (state, props) => ({
 	commentableID: props.commentableID,
@@ -8,7 +9,14 @@ const mapStateToProps = (state, props) => ({
 	title: props.title,
 });
 
+const mapDispatchToProps = dispatch => ({
+	getComments: (id, type) => dispatch(getComments(id, type)),
+});
+
 // wrap around CommentsBar component
-const CommentsBarContainer = connect(mapStateToProps)(CommentsBar);
+const CommentsBarContainer = connect(
+	mapStateToProps, 
+	mapDispatchToProps,
+)(CommentsBar);
 
 export default CommentsBarContainer;
