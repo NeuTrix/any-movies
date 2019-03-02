@@ -18,7 +18,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
-	movieComments: [], // (sub)comments related to current commentable item
+	thisMovie: [], // (sub)comments related to current commentable item
 	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
 };
@@ -61,7 +61,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				movieComments: [], // reset and allows component to update
+				thisMovie: [], // reset and allows component to update
 				apiStatus: {
 					isFetching: false,
 					message: `Error getting comments: \n ${payload.error}`,
@@ -98,7 +98,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				movieComments: filterCommentsToArray(payload.indexes, state.dictionary),
+				thisMovie: filterCommentsToArray(payload.indexes, state.dictionary),
 			},
 		};
 

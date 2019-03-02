@@ -26,6 +26,7 @@ const propTypes = {
 
 const defaultProps = {
 	title: 'this comment', // default for non movie comments
+	comments: [],
 };
 
 class CommentsBar extends Component {
@@ -41,6 +42,7 @@ class CommentsBar extends Component {
 
 	componentDidMount() {
 		const { comments } = this.props;
+		// this.updateComments(comments);
 		if (comments) { this.updateComments(comments)}
 	}
 
@@ -54,6 +56,7 @@ class CommentsBar extends Component {
 
 		if (prevProps.comments !== comments) {
 			this.updateComments(comments);
+			console.log(11, '==>', 'didUpdate reached');
 			// getComments(commentableID, commentableType);
 		}
 	}
@@ -81,12 +84,12 @@ class CommentsBar extends Component {
 			comments,
 			commentableID,
 			commentableType,
-			title
+			title,
 		} = this.props;
 
 		const { deck, showForm } = this.state;
 		const count = comments.length;
-
+		console.log(7, '==>', count);
 		const message = () => {
 			// guard clause and base case for CommentsBar recursion
 			if (count === 0) return 'Be the first to review or reply!';

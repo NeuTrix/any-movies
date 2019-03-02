@@ -8,7 +8,7 @@ import { MoviePageContainer } from '../movies';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	comments: PropTypes.instanceOf(Object).isRequired, // app api object
+	comments: PropTypes.instanceOf(Array).isRequired, // app api object
 	commentableID: PropTypes.string.isRequired, // app api object
 	movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
 };

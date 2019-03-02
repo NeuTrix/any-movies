@@ -8,7 +8,7 @@ import {
 	fetchCommentsFailure,
 	fetchCommentsRequest,
 	fetchCommentsSuccess,
-	setMovieComments,
+	setthisMovie,
 	toggleCommentsForm,
 } from './commentsActions';
 
@@ -43,8 +43,8 @@ describe('The default state properties', () => {
 			.to.be.a('object');
 	});
 
-	it('...has a `movieComments` property (object)', () => {
-		expect(initialState).to.have.property('movieComments')
+	it('...has a `thisMovie` property (object)', () => {
+		expect(initialState).to.have.property('thisMovie')
 			.to.be.a('array');
 	});
 
@@ -72,8 +72,8 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 				.to.be.an('object');
 		});
 
-		it('--> nextState has a `movieComments` prop', () => {
-			expect(nextState).to.have.property('movieComments')
+		it('--> nextState has a `thisMovie` prop', () => {
+			expect(nextState).to.have.property('thisMovie')
 				.to.be.an('array');
 		});
 
@@ -164,11 +164,11 @@ describe('The FETCH_COMMENTS_SUCCESS', () => {
 });
 
 describe('The SET_MOVIE_COMMENTS action', () => {
-	const action = setMovieComments(comments1);
+	const action = setthisMovie(comments1);
 	const nextState = commentsReducer(prevState, action);
 
-	it('...has an updated movieComments prop', () => {
-		expect(nextState).to.have.property('movieComments')
+	it('...has an updated thisMovie prop', () => {
+		expect(nextState).to.have.property('thisMovie')
 			.to.be.an('array');
 	});
 });
