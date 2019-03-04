@@ -89,7 +89,6 @@ class CommentsBar extends Component {
 
 		const { deck, showForm } = this.state;
 		const count = comments.length;
-		console.log(7, '==>', count);
 		const message = () => {
 			// guard clause and base case for CommentsBar recursion
 			if (count === 0) return 'Be the first to review or reply!';
