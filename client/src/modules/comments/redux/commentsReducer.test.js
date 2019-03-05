@@ -43,8 +43,8 @@ describe('The default state properties', () => {
 			.to.be.a('object');
 	});
 
-	it('...has a `thisMovie` property (object)', () => {
-		expect(initialState).to.have.property('thisMovie')
+	it('...has a `movieComments` property (object)', () => {
+		expect(initialState).to.have.property('movieComments')
 			.to.be.a('array');
 	});
 
@@ -72,8 +72,8 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 				.to.be.an('object');
 		});
 
-		it('--> nextState has a `thisMovie` prop', () => {
-			expect(nextState).to.have.property('thisMovie')
+		it('--> nextState has a `movieComments` prop', () => {
+			expect(nextState).to.have.property('movieComments')
 				.to.be.an('array');
 		});
 
@@ -167,8 +167,8 @@ describe('The SET_MOVIE_COMMENTS action', () => {
 	const action = setthisMovie(comments1);
 	const nextState = commentsReducer(prevState, action);
 
-	it('...has an updated thisMovie prop', () => {
-		expect(nextState).to.have.property('thisMovie')
+	it('...has an updated movieComments prop', () => {
+		expect(nextState).to.have.property('movieComments')
 			.to.be.an('array');
 	});
 });

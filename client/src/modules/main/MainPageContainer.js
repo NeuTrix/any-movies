@@ -4,7 +4,7 @@ import MainPage from './MainPage';
 
 const mapStateToProps = state => ({
 	commentableID: state.movies.imdbID,
-	comments: state.comments.thisMovie,
+	comments: state.comments.movieComments,
 	movie: state.movies.current,
 });
 
