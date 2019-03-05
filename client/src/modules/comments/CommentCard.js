@@ -12,37 +12,45 @@ import {
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import CommentsBar from './CommentsBar';
+import CommentsBarContainer from './CommentsBarContainer';
+import { CommentableForm } from '.';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comment: PropTypes.instanceOf(Object).isRequired, // raw comments from api
+	subComments: PropTypes.instanceOf(Array).isRequired, // subComments filtered
 };
 
 function CommentCard(props) {
-	const { classes, comment } = props;
+	const { classes, comment, subComments } = props;
 
 	return (
 		<Card className={classes.grid}>
-				<div className={classes.title}>
-					<h3>{comment.title}</h3>
-				</div>
-				<div className={classes.body}>
-					<p>{comment.body}</p>
-				</div>
-				<div className={classes.author}>
-					{comment.author}
-				</div>
+			<div className={classes.title}>
+				<h3>{comment.title}</h3>
+				<p>{comment.id}</p>
+				<p>{comment.type}</p>
+			</div>
+			<div className={classes.body}>
+				<p>{comment.body}</p>
+			</div>
+			<div className={classes.author}>
+				{comment.author}
+			</div>
 
-				<div className={classes.actions}>
-					<CardActions>
-						<Button> edit </Button>
-						<Button> del </Button>
-					</CardActions>
-				</div>
+			<div className={classes.actions}>
+				<CardActions>
+					<Button> edit </Button>
+					<Button> del </Button>
+				</CardActions>
+			</div>
 
 			<div className={classes.replies}>
-				<CommentsBar comments={comment.sub_comments} />
+				<CommentsBarContainer
+					commentableID={comment.id} // parent info for adding comments
+					commentableType="Comment" // parent info for adding comments
+					comments={subComments}
+				/>
 			</div>
 		</Card>
 	);
@@ -62,7 +70,7 @@ const styles = theme => ({
 		marginTop: theme.spacing.unit * 10,
 	},
 	grid: {
-		border: '2px solid lime',
+		border: '1px solid lime',
 		display: 'grid',
 		gridTemplateAreas: `
       "title title"
@@ -72,7 +80,7 @@ const styles = theme => ({
       "replies replies"
     `,
 		marginBottom: theme.spacing.unit * 2,
-		padding: theme.spacing.unit,
+		padding: theme.spacing.unit * 0.5,
 	},
 	replies: { gridArea: 'replies' },
 

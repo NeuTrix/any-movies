@@ -3,48 +3,42 @@ import { normalize, schema } from 'normalizr';
 import { actionCreator } from '../../helpers';
 
 import {
-	ADD_COMMENTS_TO_DICTIONARY,
-	TOGGLE_COMMENTS_FORM,
-	UPDATE_COMMENTS_COUNT,
+	ADD_COMMENT_TO_DICTIONARY,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_COMMENTABLE,
+	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
 
 // update the api request property
 export const fetchCommentsRequest = actionCreator(
-	FETCH_COMMENTS_REQUEST
+	FETCH_COMMENTS_REQUEST,
 );
 
 // manage the data returned from comments GET call api
 // need to factor out SET_COMMENTS from the success action
 export const fetchCommentsSuccess = actionCreator(
-	FETCH_COMMENTS_SUCCESS
+	FETCH_COMMENTS_SUCCESS,
 );
 
 // captures the error messages on fail
 export const fetchCommentsFailure = actionCreator(
 	FETCH_COMMENTS_FAILURE, 
-	'error'
+	'error',
 );
 
- // set the current comment
-export const setCommentable = actionCreator(
-	SET_COMMENTABLE,
-	'commentableID',
-	'commentableType'
-);
-
+	
 export const addCommentToDictionary = actionCreator(
-	ADD_COMMENTS_TO_DICTIONARY,
+	ADD_COMMENT_TO_DICTIONARY,
 	'indexes',
-	'dictionary'
+	'dictionary',
 );
-
-export const toggleCommentsForm = actionCreator(
-	TOGGLE_COMMENTS_FORM
+	
+export const updateDictionary = actionCreator(
+	UPDATE_DICTIONARY,
+	'indexes',
+	'dictionary',
 );
 
 // ===> ASYNC functions
@@ -66,23 +60,20 @@ export function addComment( data ) {
 				return [resp.data];
 			})
 			.then((data) => {
-				dispatch(getComments(commentable_id, commentable_type))
-				return data
-			})
-			.then((data) => {
 				// normalize the data
 				const normed = normalize(data, commentsListSchema);
-				const indexes = normed.result; // an array of indices
-				const dictionary = normed.entities.comments; // an object map
-				dispatch(addCommentToDictionary(indexes, dictionary));
-			})
+				// pass indexes array and dictionary object 
+				dispatch(addCommentToDictionary(normed.result, normed.entities.comments));
+				// return normed
+			}) 
 			.then(() => {
-				dispatch(toggleCommentsForm())
+				dispatch(getComments(commentable_id, commentable_type))
+			// 	return data
 			})
 			.catch((err) => {
 				alert( `There was a problem adding your comment. 
 					\n "CommentableContainer"
-					\n ${err}`
+					\n ${err}`,
 				);
 				console.log('ERROR=>', err);
 			});
@@ -90,16 +81,14 @@ export function addComment( data ) {
 }
 
 // retrieve the comments object (array of objs) from the api
-export function getComments(commentableID, commentableType) {
-	const path = commentableType === 'Comment' ? 'comments' : 'movies';
-	const url = `/api/${path}/${commentableID}/comments`
+export function getComments() {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
 		// alert state of request action
 		dispatch(fetchCommentsRequest());
 		// return the axios promise with the data/status
-		return axios.get(url)
+		return axios.get(`/api/comments/`)
 			// normalize the response data
 			.then((resp) => {
 				console.log('--#getComments data-->', resp.data);
@@ -110,13 +99,12 @@ export function getComments(commentableID, commentableType) {
 				const normed = normalize(data, commentsListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
-				dispatch(addCommentToDictionary(indexes, dictionary));
-				return indexes
+				dispatch(updateDictionary(indexes, dictionary));
+				console.log(99, '==>', data );
+				return normed
 			})
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))
-			// set the current commentable object id
-			.then(() => dispatch(setCommentable(commentableID, commentableType)))
 			.catch((error) => {
 				dispatch(fetchCommentsFailure(error));
 				return console.log('---#getComments error--->', error);

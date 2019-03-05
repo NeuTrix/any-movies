@@ -12,10 +12,14 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // The subject
+	commentableID: PropTypes.string.isRequired, // target id for new comments
+	commentableType: PropTypes.string.isRequired, // target type for new comments
 	user: PropTypes.instanceOf(Object).isRequired, // the current user
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
+	getComments: PropTypes.func.isRequired, // adds a new review instance to api
+  toggleForm: PropTypes.instanceOf(Function).isRequired,
+	
 };
 
 const defaultProps = {
@@ -49,11 +53,14 @@ class CommentableForm extends Component {
 	}
 
 	onClick(e) {
-		const { commentable, user } = this.props;
+		// e.preventDefault();
+		const { commentableID, commentableType, user } = this.props;
 		// add the type and ids to the state object
 		this.setState({
-			commentable_id: commentable.id,
-			commentable_type: commentable.type ? 'Comment' : 'Movie',
+			commentable_id: commentableID,
+			// Movies from OMDB api don't have an inherit type prop for this api ...
+			// logic to account for this missing commentable property
+			commentable_type: commentableType ? commentableType : 'Movie',
 			user_id: user.id,
 		});
 	}
@@ -61,10 +68,19 @@ class CommentableForm extends Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const data = this.state;
+		const { 
+			addComment, 
+			commentableID, 
+			commentableType, 
+			getComments, 
+			toggleForm, 
+		} = this.props;
+
 		console.log('submitting', this.props);
 		// #addComment accepts comments as an object
-		this.props.addComment(data);
-		// setTimeout(() => { this.props.toggleForm(); }, 250)
+		addComment(data);
+		getComments();
+		toggleForm()
 	}
 
 	render() {
@@ -123,7 +139,7 @@ class CommentableForm extends Component {
 					type="submit"
 					variant="contained"
 				>
-					Submit
+					{ 'Submit' }
 				</Button>
 
 			</FormControl>
