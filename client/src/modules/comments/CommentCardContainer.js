@@ -4,10 +4,8 @@ import { addComment } from './redux';
 import { filterCommentsToArray } from '../helpers';
 
 const mapStateToProps = (state, ownProps) => {
-	console.log(77, '==>', ownProps.comment.sub_comments);
 	const { comment } = ownProps;
 	const subComments = comment.sub_comments;
-	console.log(99, '==>', subComments);
 	const { dictionary } = state.comments;
 	if (subComments) {
 		return ({
