@@ -14,8 +14,11 @@ class Comment < ApplicationRecord
   # populates the sub_comments property for each comment
   # used in the controller #index action, not stored in db
   def self.update_sub_comments(comments)
+    # for each comment in the args array..
     comments.each do |com|
+      # ...grab list of sub comments...
       subs = com.comments
+      # ... and pass the list to each comments sub_comm prop
       subs.each { |s| com.sub_comments << s }
     end
   end
