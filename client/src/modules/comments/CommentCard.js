@@ -22,34 +22,34 @@ const propTypes = {
 };
 
 function CommentCard(props) {
-	const { classes, comment } = props;
+	const { classes, comment, subComments } = props;
 
 	return (
 		<Card className={classes.grid}>
-				<div className={classes.title}>
-					<h3>{comment.title}</h3>
-					<p>{comment.id}</p>
-					<p>{comment.type}</p>
-				</div>
-				<div className={classes.body}>
-					<p>{comment.body}</p>
-				</div>
-				<div className={classes.author}>
-					{comment.author}
-				</div>
+			<div className={classes.title}>
+				<h3>{comment.title}</h3>
+				<p>{comment.id}</p>
+				<p>{comment.type}</p>
+			</div>
+			<div className={classes.body}>
+				<p>{comment.body}</p>
+			</div>
+			<div className={classes.author}>
+				{comment.author}
+			</div>
 
-				<div className={classes.actions}>
-					<CardActions>
-						<Button> edit </Button>
-						<Button> del </Button>
-					</CardActions>
-				</div>
+			<div className={classes.actions}>
+				<CardActions>
+					<Button> edit </Button>
+					<Button> del </Button>
+				</CardActions>
+			</div>
 
 			<div className={classes.replies}>
 				<CommentsBarContainer
 					commentableID={comment.id} // parent info for adding comments
-					commentableType={'Comment'} // parent info for adding comments
-					comments={comment.sub_comments} 
+					commentableType="Comment" // parent info for adding comments
+					comments={subComments}
 				/>
 			</div>
 		</Card>
