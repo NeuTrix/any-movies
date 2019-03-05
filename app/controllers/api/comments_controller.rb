@@ -20,11 +20,6 @@ module Api
       @comment = @commentable.comments.build(comment_params)
       
       if @comment.save
-        # add sub comments to the instance attribute
-        if @commentable.commentable_type == 'Comment'
-          @commentable.sub_comments << @comment
-          @commentable.save
-        end
         render json: @comment, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity
