@@ -30,7 +30,7 @@ export const fetchCommentsFailure = actionCreator(
 );
 
  // set the current comment
-export const setthisMovie = actionCreator(
+export const setMovieComments = actionCreator(
 	SET_MOVIE_COMMENTS,
 	'indexes',
 );
@@ -113,7 +113,7 @@ export function getComments(commentableID, commentableType) {
 			// set the current comments for this
 			.then((normed) => {
 				if (commentableType === 'Movie') {
-					dispatch(setthisMovie(normed.result, normed.entities.comments))
+					dispatch(setMovieComments(normed.result, normed.entities.comments))
 				}
 			})
 			// update the api success state
