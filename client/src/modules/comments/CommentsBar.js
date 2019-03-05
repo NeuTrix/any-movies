@@ -47,10 +47,7 @@ class CommentsBar extends Component {
 
 	componentDidUpdate(prevProps) {
 		const {
-			commentableID,
-			commentableType,
 			comments,
-			getComments,
 		} = this.props;
 
 		if (prevProps.comments !== comments) {
