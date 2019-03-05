@@ -12,18 +12,18 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
-	commentable: PropTypes.instanceOf(Object).isRequired, // material UI
-	currUser: PropTypes.instanceOf(Object).isRequired, // material UI
-	// functions
-	editMode: PropTypes.bool, // new or edit form
-	addComments: PropTypes.func.isRequired, // adds a new review instance to api
+	commentableID: PropTypes.string.isRequired, // target id for new comments
+	commentableType: PropTypes.string.isRequired, // target type for new comments
+	user: PropTypes.instanceOf(Object).isRequired, // the current user
+	// editMode: PropTypes.bool, // new or edit form
+	addComment: PropTypes.func.isRequired, // adds a new review instance to api
+	getComments: PropTypes.func.isRequired, // adds a new review instance to api
+	toggleForm: PropTypes.instanceOf(Function).isRequired,
 
-	// toggleForm: PropTypes.func.isRequired, // create or edit commentable
 };
 
-
 const defaultProps = {
-	editMode: false,
+	// editMode: false,
 };
 
 class CommentableForm extends Component {
@@ -53,28 +53,37 @@ class CommentableForm extends Component {
 	}
 
 	onClick(e) {
-		const { commentable, currUser } = this.props;
+		// e.preventDefault();
+		const { commentableID, commentableType, user } = this.props;
 		// add the type and ids to the state object
-		
 		this.setState({
-			commentable_id: commentable.id,
-			commentable_type: commentable.type,
-			user_id: currUser.id,
+			commentable_id: commentableID,
+			// Movies from OMDB api don't have an inherit type prop for this api ...
+			// logic to account for this missing commentable property
+			commentable_type: commentableType ? commentableType : 'Movie',
+			user_id: user.id,
 		});
 	}
 
 	onSubmit(e) {
 		e.preventDefault();
 		const data = this.state;
+		const {
+			addComment,
+			getComments,
+			toggleForm,
+		} = this.props;
+
 		console.log('submitting', this.props);
-		
-		// #addComments accepts comments as an object
-		this.props.addComments(data);
-		// setTimeout(() => { this.props.toggleForm(); }, 250)
+		// #addComment accepts comments as an object
+		addComment(data);
+		getComments();
+		toggleForm();
 	}
 
 	render() {
-		const { classes, currUser, commentable } = this.props;
+		const { classes, user } = this.props;
+		const { body, title } = this.sate;
 		return (
 			<FormControl
 				className={classes.main}
@@ -82,6 +91,7 @@ class CommentableForm extends Component {
 				onSubmit={this.onSubmit}
 				onClick={this.onClick}
 			>
+
 				<Input
 					fullWidth
 					label ="enter your name"
@@ -89,7 +99,7 @@ class CommentableForm extends Component {
 					name="author"
 					readOnly
 					type="text"
-					value={currUser.username}
+					value={user.username}
 					variant="outlined"
 					onChange={this.onChange}
 				/>
@@ -103,7 +113,7 @@ class CommentableForm extends Component {
 					required
 					type="text"
 					variant="outlined"
-					value={this.state.title}
+					value={title}
 					onChange={this.onChange}
 				/>
 
@@ -116,7 +126,7 @@ class CommentableForm extends Component {
 					required
 					rows="4"
 					type="text"
-					value={this.state.body}
+					value={body}
 					variant="outlined"
 					onChange={this.onChange}
 				/>
@@ -128,7 +138,7 @@ class CommentableForm extends Component {
 					type="submit"
 					variant="contained"
 				>
-					Submit
+					{ 'Submit' }
 				</Button>
 
 			</FormControl>

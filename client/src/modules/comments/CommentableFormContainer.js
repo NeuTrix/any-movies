@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
-import { addComments, getComments } from './redux/commentsActions';
+import { addComment, getComments } from './redux/commentsActions';
 import CommentableForm from './CommentableForm';
 
-const mapStateToProps = state => ({
-  commentable: state.comments.commentable,
-  currUser: state.users.current,
+const mapStateToProps = (state, props) => ({
+  // must pass a commentable object with an id (and type if available)
+  commentableID: props.commentableID,
+  commentableType: props.commentableType,
+  toggleForm: props.toggleForm,
+  user: state.users.current,
 });
 
 const mapDispatchToProps = dispatch => ({
-	addComments: data => dispatch(addComments(data)),
+  addComment: data => dispatch(addComment(data)),
+  getComments: () => dispatch(getComments()),
+  // getComments: (id, type) => dispatch(getComments(id, type)),
 });
 
 const CommentableFormContainer = connect(mapStateToProps, mapDispatchToProps)(CommentableForm);

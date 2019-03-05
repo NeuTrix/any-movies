@@ -1,12 +1,10 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
-	ADD_COMMENTS_TO_DICTIONARY,
-	TOGGLE_COMMENTS_FORM,
-	UPDATE_COMMENTS_COUNT,
+	ADD_COMMENT_TO_DICTIONARY,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_COMMENTABLE,
+	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
 import { filterCommentsToArray } from '../../helpers';
@@ -19,14 +17,9 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
-	comments: [],
-	commentable: { id: '', type: ''}, // the Parent item of comment (id, type)
-	count: 0,
-	current: {}, // the current comment in focus
+	// indices:  // of all of dictionary objects
 	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
-	indexes: [], // array of ids for the current commentable
-	showForm: false, // showing new/edit form?
 };
 
 // reducer to handle nested dictionary state
@@ -34,7 +27,8 @@ export function dictionaryReducer(state = {}, action = {}) {
 	const { type, payload } = action;
 
 	switch (type) {
-		case ADD_COMMENTS_TO_DICTIONARY:
+		case ADD_COMMENT_TO_DICTIONARY:
+		case UPDATE_DICTIONARY:
 			return {
 				...state, 
 				...payload.dictionary, // targeting the object dictionary
@@ -50,28 +44,15 @@ export default function commentsReducer(state = initialState, action = {}) {
 	
 	switch (type) {
 		// handle api failures
-	case ADD_COMMENTS_TO_DICTIONARY:
+		case ADD_COMMENT_TO_DICTIONARY:
+		case UPDATE_DICTIONARY:
 		// this causes scopiong issues- refactor
-		const { indexes, dictionary } = payload;
 		return {
 			...state,
 			...{
 				// allow dictionary object ot accumulate objects vs
 				// replacing the whole object state (due to nesting)
 				dictionary: dictionaryReducer(state.dictionary, action),
-				// indexes for the current commentable (movie or comment)
-				comments: filterCommentsToArray(indexes, dictionary),
-				indexes: payload.indexes,
-			},
-		};
-
-	// update separately to allow comment counts to increment 
-	// with bouncing to display '1' after a single add on
-	case UPDATE_COMMENTS_COUNT:
-		return {
-			...state,
-			...{
-				count: payload.count,
 			},
 		};
 
@@ -79,7 +60,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		return {
 			...state,
 			...{
-				comments: [], // reset and allows component to update
+				movieComments: [], // reset and allows component to update
 				apiStatus: {
 					isFetching: false,
 					message: `Error getting comments: \n ${payload.error}`,
@@ -111,25 +92,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			}
 		}
-		// handle COMMENTABLES OBJECT
 	
-		case SET_COMMENTABLE:
-		const { commentableID, commentableType } = payload
-		return {
-			...state,
-			...{
-				commentable: { id: commentableID, type: commentableType }
-			},
-		};
-	
-		case TOGGLE_COMMENTS_FORM:
-		return {
-			...state,
-			...{
-				showForm: !state.showForm
-			},
-		};
-
 	default:
 		return state;
 	};

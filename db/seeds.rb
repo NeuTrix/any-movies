@@ -102,6 +102,17 @@
 )
 @response2_alien.save
 
+@response3_alien = @response_alien.comments.build(
+  title: 'Another Yuck',
+  author: @critic.username,
+  user_id: @critic.id,
+  commentable_id: @response_alien.id,
+  commentable_type: @response_alien.class.name,
+  body: 'I just wanted to add another test comment',
+  rating: 3
+)
+@response3_alien.save
+
 # test to see if a comment can be built directly from a Movie
 @testComment = @alien.comments.build(
   title: 'can you comment on a alien dircetly?',

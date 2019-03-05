@@ -5,24 +5,24 @@ module Api
 
     # GET /comments
     def index
-      @comments = @commentable.comments
+      @comments = Comment.filter(params[:filter])
+
+      Comment.update_sub_comments(@comments)
       render json: @comments
     end
 
     # GET /comments/1
     def show
+      Comment.update_sub_comments([@comment])
       render json: @comment
     end
 
     # POST /comments
     def create
       @comment = @commentable.comments.build(comment_params)
-      # @comment.user_id = current_user.id
 
       if @comment.save
         render json: @comment, status: :created
-        # render "passed the saved comment"
-        # , location: @comment
       else
         render json: @comment.errors, status: :unprocessable_entity
       end
@@ -56,7 +56,8 @@ module Api
           :imdb_id,
           :body, 
           :commentable_id, 
-          :commentable_type, 
+          :commentable_type,
+          :filter, 
           :rating,
           :title, 
           :user_id, 

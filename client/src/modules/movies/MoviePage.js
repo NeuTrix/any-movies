@@ -23,7 +23,7 @@ class MoviePage extends Component {
 		if (this.props.currMovie !== prevProps.currMovie) {
 			const { currMovie, getComments } = this.props;
 			// getComments(currMovie.imdbID, "Movie");
-			getComments(currMovie.imdbID, "Movie");
+			getComments();
 		}
 	}
 
