@@ -83,7 +83,6 @@ class CommentableForm extends Component {
 
 	render() {
 		const { classes, user } = this.props;
-		const { body, title } = this.sate;
 		return (
 			<FormControl
 				className={classes.main}
@@ -113,7 +112,7 @@ class CommentableForm extends Component {
 					required
 					type="text"
 					variant="outlined"
-					value={title}
+					value={this.state.title}
 					onChange={this.onChange}
 				/>
 
@@ -126,7 +125,7 @@ class CommentableForm extends Component {
 					required
 					rows="4"
 					type="text"
-					value={body}
+					value={this.state.body}
 					variant="outlined"
 					onChange={this.onChange}
 				/>
