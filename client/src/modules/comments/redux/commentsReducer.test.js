@@ -162,13 +162,3 @@ describe('The FETCH_COMMENTS_SUCCESS', () => {
 		});
 	});
 });
-
-describe('The SET_MOVIE_COMMENTS action', () => {
-	const action = setthisMovie(comments1);
-	const nextState = commentsReducer(prevState, action);
-
-	it('...has an updated movieComments prop', () => {
-		expect(nextState).to.have.property('movieComments')
-			.to.be.an('array');
-	});
-});

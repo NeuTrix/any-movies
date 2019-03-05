@@ -4,7 +4,6 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_MOVIE_COMMENTS,
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
@@ -18,7 +17,6 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
-	movieComments: [], // (sub)comments related to current commentable item
 	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
 };
@@ -94,14 +92,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 			}
 		}
 	
-	case SET_MOVIE_COMMENTS:
-		return {
-			...state,
-			...{
-				movieComments: filterCommentsToArray(payload.indexes, state.dictionary),
-			},
-		};
-
 	default:
 		return state;
 	};

@@ -7,7 +7,6 @@ import {
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
-	SET_MOVIE_COMMENTS,
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
@@ -29,11 +28,6 @@ export const fetchCommentsFailure = actionCreator(
 	'error',
 );
 
- // set the current comment
-export const setMovieComments = actionCreator(
-	SET_MOVIE_COMMENTS,
-	'indexes',
-);
 	
 export const addCommentToDictionary = actionCreator(
 	ADD_COMMENT_TO_DICTIONARY,
@@ -88,12 +82,6 @@ export function addComment( data ) {
 
 // retrieve the comments object (array of objs) from the api
 export function getComments() {
-	// const path = commentableType === 'Comment' ? 'comments' : 'movies';
-	// const url = `/api/comments/`
-	// const url = `/api/${path}/comments/`
-	// ${commentableID}
-	
-	// comments
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
@@ -105,8 +93,6 @@ export function getComments() {
 			.then((resp) => {
 				console.log('--#getComments data-->', resp.data);
 				return resp.data ? resp.data : 'no data'
-				// console.log(33, '==>', resp);
-				// return resp.data
 			})
 			.then((data) => {
 				// normalize the data
@@ -116,12 +102,6 @@ export function getComments() {
 				dispatch(updateDictionary(indexes, dictionary));
 				console.log(99, '==>', data );
 				return normed
-			})
-			// set the current comments for this
-			.then((normed) => {
-				// if (commentableType === 'Movie') {
-					dispatch(setMovieComments(normed.result, normed.entities.comments))
-				// }
 			})
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))
