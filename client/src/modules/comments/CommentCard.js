@@ -18,6 +18,7 @@ import { CommentableForm } from '.';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comment: PropTypes.instanceOf(Object).isRequired, // raw comments from api
+	subComments: PropTypes.instanceOf(Array).isRequired, // subComments filtered
 };
 
 function CommentCard(props) {
