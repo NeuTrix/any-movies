@@ -19,7 +19,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentableID: PropTypes.string.isRequired, // from commentable
 	commentableType: PropTypes.string.isRequired, // from commentable
-	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
+	comments: PropTypes.instanceOf(Array).isRequired, // from commentable	
 	getComments: PropTypes.instanceOf(Function).isRequired,
 	title: PropTypes.string, // title of the comment (Movie)
 };
@@ -42,7 +42,6 @@ class CommentsBar extends Component {
 
 	componentDidMount() {
 		const { comments } = this.props;
-		// this.updateComments(comments);
 		if (comments) { this.updateComments(comments)}
 	}
 
@@ -56,7 +55,6 @@ class CommentsBar extends Component {
 
 		if (prevProps.comments !== comments) {
 			this.updateComments(comments);
-			// getComments(commentableID, commentableType);
 		}
 	}
 
@@ -132,6 +130,7 @@ class CommentsBar extends Component {
 							<CommentableFormContainer
 								commentableID={commentableID}
 								commentableType={commentableType}
+								toggleForm={this.toggleForm}
 							/>
 						)}
 

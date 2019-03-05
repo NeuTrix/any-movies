@@ -18,6 +18,8 @@ const propTypes = {
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
 	getComments: PropTypes.func.isRequired, // adds a new review instance to api
+  toggleForm: PropTypes.instanceOf(Function).isRequired,
+	
 };
 
 const defaultProps = {
@@ -66,12 +68,19 @@ class CommentableForm extends Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const data = this.state;
-		const { addComment, commentableID, commentableType, getComments } = this.props;
+		const { 
+			addComment, 
+			commentableID, 
+			commentableType, 
+			getComments, 
+			toggleForm, 
+		} = this.props;
 
 		console.log('submitting', this.props);
 		// #addComment accepts comments as an object
 		addComment(data);
 		getComments();
+		toggleForm()
 	}
 
 	render() {

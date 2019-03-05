@@ -6,6 +6,7 @@ const mapStateToProps = (state, props) => ({
   // must pass a commentable object with an id (and type if available)
   commentableID: props.commentableID,
   commentableType: props.commentableType,
+  toggleForm: props.toggleForm,
   user: state.users.current,
 });
 
