@@ -6,6 +6,7 @@ module Api
     # GET /comments
     def index
       @comments = Comment.filter(params[:filter])
+
       Comment.update_sub_comments(@comments)
       render json: @comments
     end
@@ -19,7 +20,7 @@ module Api
     # POST /comments
     def create
       @comment = @commentable.comments.build(comment_params)
-      
+
       if @comment.save
         render json: @comment, status: :created
       else
