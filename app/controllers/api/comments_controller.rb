@@ -5,11 +5,8 @@ module Api
 
     # GET /comments
     def index
-      # @comments = @commentable.comments
-      # try scope instead?
-      # @comments = Comment.filter(params[:filter])
       @comments = Comment.filter(params[:filter])
-      # Comment.update_sub_comments(@comments)
+      Comment.update_sub_comments(@comments)
       render json: @comments
     end
 
