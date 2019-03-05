@@ -11,6 +11,13 @@ class Comment < ApplicationRecord
 
   serialize :sub_comments, Array
 
+  def self.filter(filter)
+    return Comment.all unless filter # guard clause
+
+    filter = JSON.parse(filter) # ensure conversion from string to array
+    @comments = Comment.all.where(id: filter) # filter for results
+  end
+
   # populates the sub_comments property for each comment
   # used in the controller #index action, not stored in db
   def self.update_sub_comments(comments)

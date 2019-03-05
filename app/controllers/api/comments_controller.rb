@@ -5,8 +5,11 @@ module Api
 
     # GET /comments
     def index
-      @comments = @commentable.comments
-      Comment.update_sub_comments(@comments)
+      # @comments = @commentable.comments
+      # try scope instead?
+      # @comments = Comment.filter(params[:filter])
+      @comments = Comment.filter(params[:filter])
+      # Comment.update_sub_comments(@comments)
       render json: @comments
     end
 
@@ -55,7 +58,8 @@ module Api
           :imdb_id,
           :body, 
           :commentable_id, 
-          :commentable_type, 
+          :commentable_type,
+          :filter, 
           :rating,
           :title, 
           :user_id, 
