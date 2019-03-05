@@ -87,20 +87,26 @@ export function addComment( data ) {
 }
 
 // retrieve the comments object (array of objs) from the api
-export function getComments(commentableID, commentableType) {
-	const path = commentableType === 'Comment' ? 'comments' : 'movies';
-	const url = `/api/${path}/${commentableID}/comments`
+export function getComments() {
+	// const path = commentableType === 'Comment' ? 'comments' : 'movies';
+	// const url = `/api/comments/`
+	// const url = `/api/${path}/comments/`
+	// ${commentableID}
+	
+	// comments
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
 		// alert state of request action
 		dispatch(fetchCommentsRequest());
 		// return the axios promise with the data/status
-		return axios.get(url)
+		return axios.get(`/api/comments/`)
 			// normalize the response data
 			.then((resp) => {
 				console.log('--#getComments data-->', resp.data);
 				return resp.data ? resp.data : 'no data'
+				// console.log(33, '==>', resp);
+				// return resp.data
 			})
 			.then((data) => {
 				// normalize the data
@@ -108,13 +114,14 @@ export function getComments(commentableID, commentableType) {
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.comments; // an object map
 				dispatch(updateDictionary(indexes, dictionary));
+				console.log(99, '==>', data );
 				return normed
 			})
 			// set the current comments for this
 			.then((normed) => {
-				if (commentableType === 'Movie') {
+				// if (commentableType === 'Movie') {
 					dispatch(setMovieComments(normed.result, normed.entities.comments))
-				}
+				// }
 			})
 			// update the api success state
 			.then(() => dispatch(fetchCommentsSuccess()))

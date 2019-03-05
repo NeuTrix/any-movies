@@ -10,7 +10,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getComments: (id, type) => dispatch(getComments(id, type)),
+	getComments: () => dispatch(getComments()),
+	// getComments: (id, type) => dispatch(getComments(id, type)),
 });
 
 // wrap around CommentsBar component

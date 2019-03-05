@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getComments: (...args) => { dispatch(getComments(...args)); },
+	getComments: () => { dispatch(getComments()); },
+	// getComments: (...args) => { dispatch(getComments(...args)); },
 });
 
 const MoviePageContainer = connect(

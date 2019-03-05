@@ -4,8 +4,8 @@ import { expect } from 'chai';
 
 xdescribe('The #getComments action', () => {
   const id = 'tt0078748';
+  const test = getComments();
   const type = 'Movie';
-  const test = getComments(id, type)
   console.log(1, '==>', test);
 
   

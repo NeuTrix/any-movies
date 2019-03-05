@@ -56,7 +56,6 @@ class CommentsBar extends Component {
 
 		if (prevProps.comments !== comments) {
 			this.updateComments(comments);
-			console.log(11, '==>', 'didUpdate reached');
 			// getComments(commentableID, commentableType);
 		}
 	}

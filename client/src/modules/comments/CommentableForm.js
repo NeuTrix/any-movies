@@ -71,7 +71,7 @@ class CommentableForm extends Component {
 		console.log('submitting', this.props);
 		// #addComment accepts comments as an object
 		addComment(data);
-		getComments(commentableID, commentableType);
+		getComments();
 	}
 
 	render() {
