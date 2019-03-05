@@ -70,7 +70,7 @@ const styles = theme => ({
 		marginTop: theme.spacing.unit * 10,
 	},
 	grid: {
-		border: '2px solid lime',
+		border: '1px solid lime',
 		display: 'grid',
 		gridTemplateAreas: `
       "title title"
@@ -80,7 +80,7 @@ const styles = theme => ({
       "replies replies"
     `,
 		marginBottom: theme.spacing.unit * 2,
-		padding: theme.spacing.unit,
+		padding: theme.spacing.unit * 0.5,
 	},
 	replies: { gridArea: 'replies' },
 

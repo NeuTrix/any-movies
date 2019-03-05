@@ -17,6 +17,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
+	// indices:  // of all of dictionary objects
 	dictionary: {}, // a lookup object of all comments viewed in this session
 	favourited: false, // favourited?
 };

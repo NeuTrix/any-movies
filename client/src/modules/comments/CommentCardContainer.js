@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import CommentCard from './CommentCard';
 import { addComment } from './redux';
 import { filterCommentsToArray } from '../helpers';
+import CommentCard from './CommentCard';
 
 const mapStateToProps = (state, ownProps) => {
 	const { comment } = ownProps;
@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 			subComments: filterCommentsToArray(subComments, dictionary),
 		});
 	}
+	return subComments;
 };
 
 const mapDispatchToProps = dispatch => ({

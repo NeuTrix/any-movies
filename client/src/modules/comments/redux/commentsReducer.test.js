@@ -35,17 +35,12 @@ describe('Comments reducer default actions', () => {
 
 describe('The default state properties', () => {
 	it('... has a the expected number of default properties', () => {
-		expect(Object.keys(initialState).length).to.eql(4);
+		expect(Object.keys(initialState).length).to.eql(3);
 	});
 
 	it('...has a `apiStatus` property (object)', () => {
 		expect(initialState).to.have.property('apiStatus')
 			.to.be.a('object');
-	});
-
-	it('...has a `movieComments` property (object)', () => {
-		expect(initialState).to.have.property('movieComments')
-			.to.be.a('array');
 	});
 
 	it('...has a `dictionary` property (object)', () => {
@@ -70,11 +65,6 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 		it('--> nextState has `apiStatus` prop', () => {
 			expect(nextState).to.have.property('apiStatus')
 				.to.be.an('object');
-		});
-
-		it('--> nextState has a `movieComments` prop', () => {
-			expect(nextState).to.have.property('movieComments')
-				.to.be.an('array');
 		});
 
 		it('...nextState has `favourited` prop', () => {
