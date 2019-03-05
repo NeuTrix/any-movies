@@ -12,6 +12,7 @@ module Api
 
     # GET /comments/1
     def show
+      Comment.update_sub_comments([@comment])
       render json: @comment
     end
 

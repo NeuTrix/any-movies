@@ -71,6 +71,7 @@ class CommentsBar extends Component {
 		this.setState({ showForm: !showForm });
 	}
 
+	// create a comment card component for each comment element
 	updateComments(comments) {
 		const cards = comments.map(item => (
 			<CommentCardContainer key={item.id} comment={item} />

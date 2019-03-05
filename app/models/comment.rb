@@ -19,7 +19,7 @@ class Comment < ApplicationRecord
       # ...grab list of sub comments...
       subs = com.comments
       # ... and pass the list to each comments sub_comm prop
-      subs.each { |s| com.sub_comments << s }
+      subs.each { |sub| com.sub_comments << sub.id }
     end
   end
 end
