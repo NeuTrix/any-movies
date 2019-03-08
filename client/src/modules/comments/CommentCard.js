@@ -19,10 +19,21 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comment: PropTypes.instanceOf(Object).isRequired, // raw comments from api
 	subComments: PropTypes.instanceOf(Array).isRequired, // subComments filtered
+	deleteComment: PropTypes.instanceOf(Function).isRequired,
+	getComments: PropTypes.instanceOf(Function).isRequired,
 };
 
 function CommentCard(props) {
-	const { classes, comment, subComments } = props;
+	const { classes, comment, deleteComment, getComments, subComments } = props;
+
+	const handleDelete = () => {
+		deleteComment(comment.id);
+		window.confirm(`Do want to delete comment: ${comment.id}?`);
+		getComments();
+		return; 
+
+		// console.log(997997, '==>', comment);
+	};
 
 	return (
 		<Card className={classes.grid}>
@@ -41,7 +52,9 @@ function CommentCard(props) {
 			<div className={classes.actions}>
 				<CardActions>
 					<Button> edit </Button>
-					<Button> del </Button>
+					<Button
+						onClick={handleDelete}
+					> del </Button>
 				</CardActions>
 			</div>
 

@@ -46,10 +46,7 @@ class CommentsBar extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const {
-			comments,
-		} = this.props;
-
+		const { comments } = this.props;
 		if (prevProps.comments !== comments) {
 			this.updateComments(comments);
 		}

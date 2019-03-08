@@ -151,4 +151,8 @@ describe('The FETCH_COMMENTS_SUCCESS', () => {
 				.to.eql('success');
 		});
 	});
+
+	describe('The DELETE_COMMENTS reducer action', () => {
+		
+	});
 });

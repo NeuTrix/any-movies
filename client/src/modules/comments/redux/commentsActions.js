@@ -4,12 +4,12 @@ import { actionCreator } from '../../helpers';
 
 import {
 	ADD_COMMENT_TO_DICTIONARY,
+	DELETE_COMMENT,
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
-
 
 // update the api request property
 export const fetchCommentsRequest = actionCreator(
@@ -34,6 +34,11 @@ export const addCommentToDictionary = actionCreator(
 	'indexes',
 	'dictionary',
 );
+
+export const deleteComment = actionCreator(
+	DELETE_COMMENT,
+	'dictionary'
+)
 	
 export const updateDictionary = actionCreator(
 	UPDATE_DICTIONARY,
@@ -53,7 +58,7 @@ export function addComment( data ) {
 	const url = `/api/${path}/${commentable_id}/comments`;
 	
 	return function thunk(dispatch) {
-
+		dispatch(fetchCommentsRequest())
 		return axios.post(url, data)
 			.then((resp) => {
 				alert(`Your comment was added for \n commentable_id: ${commentable_id}`);
@@ -64,13 +69,13 @@ export function addComment( data ) {
 				const normed = normalize(data, commentsListSchema);
 				// pass indexes array and dictionary object 
 				dispatch(addCommentToDictionary(normed.result, normed.entities.comments));
-				// return normed
 			}) 
 			.then(() => {
 				dispatch(getComments(commentable_id, commentable_type))
-			// 	return data
 			})
+			.then(() => dispatch(fetchCommentsSuccess()))
 			.catch((err) => {
+				dispatch(fetchCommentsFailure(err));
 				alert( `There was a problem adding your comment. 
 					\n "CommentableContainer"
 					\n ${err}`,
@@ -78,6 +83,24 @@ export function addComment( data ) {
 				console.log('ERROR=>', err);
 			});
 	};
+}
+
+export function deleteCommentFromApi(commentID) {
+
+	return function thunk(dispatch) {
+		dispatch(fetchCommentsRequest());
+		
+		return axios.delete(`api/comments/${commentID}`) 
+			.then(resp => {
+				console.log(44, '==>', resp);
+				dispatch(	deleteComment(commentID));
+			})
+			.then(() => dispatch(fetchCommentsSuccess()))
+			.catch(err => {
+				dispatch(fetchCommentsFailure(err));
+				console.log('Error', '==>', err);
+			})
+	}
 }
 
 // retrieve the comments object (array of objs) from the api

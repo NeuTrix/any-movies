@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addComment } from './redux';
+import { deleteCommentFromApi, getComments } from './redux';
 import { filterCommentsToArray } from '../helpers';
 import CommentCard from './CommentCard';
 
@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	addComment: data => dispatch(addComment(data)),
+	deleteComment: commentID => dispatch(deleteCommentFromApi(commentID)),
+	getComments:() => dispatch(getComments()),
 });
 
 const CommentCardsContainer = connect(mapStateToProps, mapDispatchToProps)(CommentCard);

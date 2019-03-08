@@ -42,7 +42,7 @@ class Api::CommentsControllerTest < ActionDispatch::IntegrationTest
   # end
 
   # test "should destroy comment" do
-    # skip
+  #   skip
   #   assert_difference('Comment.count', -1) do
   #     delete api_comment_url(@comment), as: :json
   #   end
