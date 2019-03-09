@@ -154,7 +154,6 @@ export function deleteComment(commentID) {
 		dispatch(deleteCommentRequest());
 
 		return axios.delete(`api/comments/${commentID}`)
-			.then(() => dispatch(deleteComment(commentID)))
 			.then(() => dispatch(deleteCommentSuccess()))
 			.catch(err => {
 				dispatch(deleteCommentFailure(err));
