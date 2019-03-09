@@ -89,7 +89,7 @@ describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
 	});
 });
 
-describe('The FETCH_COMMENTS_FAILURE action', () => {
+describe('The GET_COMMENTS_FAILURE action', () => {
 	const error = 'A mock error message';
 	const action = fetchCommentsFailure(error);
 	const nextState = commentsReducer(prevState, action);
@@ -111,7 +111,7 @@ describe('The FETCH_COMMENTS_FAILURE action', () => {
 	});
 });
 
-describe('The FETCH_COMMENTS_REQUEST', () => {
+describe('The GET_COMMENTS_REQUEST', () => {
 	const action = fetchCommentsRequest();
 	const nextState = commentsReducer(prevState, action);
 
@@ -132,7 +132,7 @@ describe('The FETCH_COMMENTS_REQUEST', () => {
 	});
 });
 
-describe('The FETCH_COMMENTS_SUCCESS', () => {
+describe('The GET_COMMENTS_SUCCESS', () => {
 	const action = fetchCommentsSuccess();
 	const nextState = commentsReducer(prevState, action);
 

@@ -5,9 +5,9 @@ import { actionCreator } from '../../helpers';
 import {
 	DELETE_COMMENT,
 	// get
-	FETCH_COMMENTS_FAILURE,
-	FETCH_COMMENTS_REQUEST,
-	FETCH_COMMENTS_SUCCESS,
+	GET_COMMENTS_FAILURE,
+	GET_COMMENTS_REQUEST,
+	GET_COMMENTS_SUCCESS,
 	//  add
 	ADD_COMMENT_FAILURE,
 	ADD_COMMENT_REQUEST,
@@ -28,16 +28,16 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 // ====> GET actions
 // captures the error messages on fail
 export const fetchCommentsFailure = actionCreator(
-	FETCH_COMMENTS_FAILURE,
+	GET_COMMENTS_FAILURE,
 	'error',
 );
 // update the api request property
 export const fetchCommentsRequest = actionCreator(
-	FETCH_COMMENTS_REQUEST,
+	GET_COMMENTS_REQUEST,
 );
 // manage the data returned from comments GET call api
 export const fetchCommentsSuccess = actionCreator(
-	FETCH_COMMENTS_SUCCESS,
+	GET_COMMENTS_SUCCESS,
 );
 
 export const updateDictionary = actionCreator(
@@ -79,7 +79,6 @@ export function getComments() {
 }
 
 // ====> ADD actions
-
 // captures the error messages on fail
 export const addCommentFailure = actionCreator(
 	ADD_COMMENT_FAILURE,
@@ -107,22 +106,24 @@ export function addComment(data) {
 
 	return function thunk(dispatch) {
 		return axios.post(url, data)
-		.then(resp => {
+		.then(resp => { 
 				dispatch(addCommentRequest())	
-				let data = resp.data;
-				return data
+				return resp
 			})
-			.then((data) => {
-				alert(`Added comment for commentable_id: ${commentable_id}`)
-				return data
+			.then((resp) => {
+				if (resp.status) { dispatch(addCommentSuccess()) }
+				return resp
 			})
-			.then(data => {
+			.then(resp => {
 				// normalize the data
-				const normed = normalize(data, commentsListSchema);
-				// pass indexes array and dictionary object 
+				const normed = normalize(resp.data, commentsListSchema);
 				dispatch(addCommentToDictionary(normed.result, normed.entities.comments));
+				return resp
 			})
-			.then(() => dispatch(addCommentSuccess()))
+			.then((resp) => {
+					console.log('#addComment success==>', {commentable_id, resp});
+					alert(`Added comment ${resp.data.id} ${resp.data.title}`);
+			})
 			.catch((err) => {
 				dispatch(addCommentFailure(err));
 				alert(`There was a problem adding your comment. \n ${err}`);
@@ -130,6 +131,7 @@ export function addComment(data) {
 			})
 	};
 }
+
 // ====> DELETE actions
 // update the api request to delete a comment
 // captures the error messages on fail

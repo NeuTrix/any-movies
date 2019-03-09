@@ -7,9 +7,9 @@ import {
 	ADD_COMMENT_SUCCESS,
 	DELETE_COMMENT,
 
-	FETCH_COMMENTS_FAILURE,
-	FETCH_COMMENTS_REQUEST,
-	FETCH_COMMENTS_SUCCESS,
+	GET_COMMENTS_FAILURE,
+	GET_COMMENTS_REQUEST,
+	GET_COMMENTS_SUCCESS,
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
@@ -72,7 +72,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 	// }
 
 	case ADD_COMMENT_FAILURE:
-	case FETCH_COMMENTS_FAILURE:
+	case GET_COMMENTS_FAILURE:
 		return {
 			...state,
 			...{
@@ -86,7 +86,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		};
 
 	case ADD_COMMENT_REQUEST:
-	case FETCH_COMMENTS_REQUEST:
+	case GET_COMMENTS_REQUEST:
 		return { 
 			...state, 
 			...{ 
@@ -99,7 +99,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 		};
 
 	case ADD_COMMENT_SUCCESS:
-	case FETCH_COMMENTS_SUCCESS:
+	case GET_COMMENTS_SUCCESS:
 		return {
 			...state,
 			...{

@@ -27,11 +27,9 @@ function CommentCard(props) {
 	const { classes, comment, deleteComment, getComments, subComments } = props;
 
 	const handleDelete = () => {
-			deleteComment(comment.id);
-			window.confirm(`Do want to delete comment: ${comment.id}?`);
-			getComments();
-		return; 
-
+		new Promise(() => deleteComment(comment.id))
+			.then(() => { window.confirm(`Delete comment: ${comment.id}?`); })
+			.then(() => getComments());
 	};
 
 	return (
