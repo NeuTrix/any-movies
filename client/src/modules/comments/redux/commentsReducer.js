@@ -5,7 +5,10 @@ import {
 	ADD_COMMENT_FAILURE,
 	ADD_COMMENT_REQUEST,
 	ADD_COMMENT_SUCCESS,
-	DELETE_COMMENT,
+	// delete
+	DELETE_COMMENT_FAILURE,
+	DELETE_COMMENT_REQUEST,
+	DELETE_COMMENT_SUCCESS,
 
 	GET_COMMENTS_FAILURE,
 	GET_COMMENTS_REQUEST,
@@ -34,7 +37,6 @@ export function dictionaryReducer(state = {}, action = {}) {
 
 	switch (type) {
 		case ADD_COMMENT_TO_DICTIONARY:
-		// case DELETE_COMMENT:
 		case UPDATE_DICTIONARY:
 			return {
 				...state, 
@@ -63,14 +65,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 			},
 		};
 
-	// case DELETE_COMMENT:
-	// return {
-	// 	...state,
-	// 	...{
-	// 			dictionary: dictionaryReducer(state.dictionary, action),
-	// 	}
-	// }
-
 	case ADD_COMMENT_FAILURE:
 	case GET_COMMENTS_FAILURE:
 		return {
@@ -97,6 +91,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			},
 		};
+	
 
 	case ADD_COMMENT_SUCCESS:
 	case GET_COMMENTS_SUCCESS:

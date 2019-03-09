@@ -3,7 +3,6 @@ import { normalize, schema } from 'normalizr';
 import { actionCreator } from '../../helpers';
 
 import {
-	DELETE_COMMENT,
 	// get
 	GET_COMMENTS_FAILURE,
 	GET_COMMENTS_REQUEST,
@@ -154,7 +153,9 @@ export function deleteComment(commentID) {
 		dispatch(deleteCommentRequest());
 
 		return axios.delete(`api/comments/${commentID}`)
+			// .then(() => dispatch(deleteComment(commentID)))
 			.then(() => dispatch(deleteCommentSuccess()))
+			.then(() => dispatch(updateDictionary()))
 			.catch(err => {
 				dispatch(deleteCommentFailure(err));
 				console.log('Error', '==>', err);
