@@ -68,17 +68,17 @@ class CommentableForm extends Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const data = this.state;
-		const {
-			addComment,
-			getComments,
-			toggleForm,
-		} = this.props;
+		const { addComment, getComments, toggleForm } = this.props;
 
-		console.log('submitting', this.props);
-		// #addComment accepts comments as an object
-		addComment(data);
-		getComments();
-		toggleForm();
+		// use Promises to manage order of async executions
+		const added = new Promise((res) => {
+			console.log('submitting', this.props);
+			res(addComment(data));
+		});
+
+		added.then(() => getComments())
+			.then(() => toggleForm())
+			.catch(err => console.log(err));
 	}
 
 	render() {
@@ -146,14 +146,11 @@ class CommentableForm extends Component {
 }
 
 // add grid to update form layout
-const styles = theme => ({
-	button: {
-		width: 100,
-	},
-
+const styles = () => ({
+	button: { width: 100 },
 	main: {
 		display: 'grid',
-	}, // place holder for styling
+	},
 });
 
 CommentableForm.propTypes = propTypes;
