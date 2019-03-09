@@ -1,13 +1,23 @@
 // =====> COMMENTS constants
 
-// async actions
+// FETCH actions
 export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';
 export const FETCH_COMMENTS_REQUEST = 'FETCH_COMMENTS_REQUEST';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 
+// ADD actions
+export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
+export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
+export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
+
+// async actions
+export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
+export const DELETE_COMMENT_REQUEST = 'DELETE_COMMENT_REQUEST';
+export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+
 // set the current comment and commentable type/id
 export const ADD_COMMENT_TO_DICTIONARY = 'ADD_COMMENT_TO_DICTIONARY';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const TOGGLE_COMMENTS_FORM = 'TOGGLE_COMMENTS_FORM';
 export const UPDATE_DICTIONARY = 'UPDATE_DICTIONARY';
 // SET_indexes = 'SET_SUBCOMMENTS'// specific reset of subcomments

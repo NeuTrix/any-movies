@@ -1,7 +1,12 @@
 // reducer for comments actions with a sub reducer for dictionary
 import {
 	ADD_COMMENT_TO_DICTIONARY,
+	//  add
+	ADD_COMMENT_FAILURE,
+	ADD_COMMENT_REQUEST,
+	ADD_COMMENT_SUCCESS,
 	DELETE_COMMENT,
+
 	FETCH_COMMENTS_FAILURE,
 	FETCH_COMMENTS_REQUEST,
 	FETCH_COMMENTS_SUCCESS,
@@ -66,6 +71,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 	// 	}
 	// }
 
+	case ADD_COMMENT_FAILURE:
 	case FETCH_COMMENTS_FAILURE:
 		return {
 			...state,
@@ -79,6 +85,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 			},
 		};
 
+	case ADD_COMMENT_REQUEST:
 	case FETCH_COMMENTS_REQUEST:
 		return { 
 			...state, 
@@ -91,6 +98,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 			},
 		};
 
+	case ADD_COMMENT_SUCCESS:
 	case FETCH_COMMENTS_SUCCESS:
 		return {
 			...state,

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteCommentFromApi, getComments } from './redux';
+import { deleteComment, getComments } from './redux';
 import { filterCommentsToArray } from '../helpers';
 import CommentCard from './CommentCard';
 
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	deleteComment: commentID => dispatch(deleteCommentFromApi(commentID)),
+	deleteComment: commentID => dispatch(deleteComment(commentID)),
 	getComments:() => dispatch(getComments()),
 });
 

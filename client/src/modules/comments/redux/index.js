@@ -3,6 +3,6 @@
 export {
   addComment,
   commentsListSchema,
-  deleteCommentFromApi,
+  deleteComment,
   getComments,
 } from './commentsActions';
