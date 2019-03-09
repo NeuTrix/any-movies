@@ -52,7 +52,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 	const { type, payload } = action;
 	
 	switch (type) {
-		// handle api failures
+// === DICTIONARY
 		case ADD_COMMENT_TO_DICTIONARY:
 		case UPDATE_DICTIONARY:
 		// this causes scopiong issues- refactor
@@ -65,7 +65,9 @@ export default function commentsReducer(state = initialState, action = {}) {
 			},
 		};
 
+// === FAILURE
 	case ADD_COMMENT_FAILURE:
+	case DELETE_COMMENT_FAILURE:
 	case GET_COMMENTS_FAILURE:
 		return {
 			...state,
@@ -78,8 +80,9 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			},
 		};
-
+// === REQUEST
 	case ADD_COMMENT_REQUEST:
+	case DELELTE_COMMENT_REQUEST:
 	case GET_COMMENTS_REQUEST:
 		return { 
 			...state, 
@@ -91,9 +94,9 @@ export default function commentsReducer(state = initialState, action = {}) {
 				},
 			},
 		};
-	
-
+//  === SUCCESS
 	case ADD_COMMENT_SUCCESS:
+	case DELETE_COMMENT_SUCCESS:
 	case GET_COMMENTS_SUCCESS:
 		return {
 			...state,
