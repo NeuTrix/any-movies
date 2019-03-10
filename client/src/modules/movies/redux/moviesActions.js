@@ -78,11 +78,9 @@ export function isMovieRegistered(imdbID) {
 	return function thunk(dispatch) {
 		return axios.get(`/api/movies/${imdbID}`)
 		.then((resp) => {
-			console.log(888, ' is movie regis==>', resp);
 			dispatch(validateMovie(true))
 		})
 		.catch(err => {
-			console.log(888, ' is NOT movie regis==>', err);
 			dispatch(validateMovie(false))
 			console.log(Error, '==>', err);
 		})
@@ -110,7 +108,7 @@ export function registerMovie(movie) {
 			})
 			.catch((err) => {
 				dispatch(registerMovieFailure(err));
-				alert(`There was a problem adding your comment. \n ${err}`);
+				alert(`There was a problem adding your movie. \n ${err}`);
 				console.log('ERROR=>', err);
 			})
 	};
