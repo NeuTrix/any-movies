@@ -83,6 +83,7 @@ class CommentCard extends Component {
 							commentableID={comment.commentableID} 
 							commentableType={comment.commentableType}
 							editMode={editMode}
+							toggleForm={this.toggleEditMode}
 						/> 
 					}
 
