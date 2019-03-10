@@ -15,6 +15,10 @@ import {
 	DELETE_COMMENT_FAILURE,
 	DELETE_COMMENT_REQUEST,
 	DELETE_COMMENT_SUCCESS,
+	// edit
+	EDIT_COMMENT_FAILURE,
+	EDIT_COMMENT_REQUEST,
+	EDIT_COMMENT_SUCCESS,
 	// general
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
@@ -147,4 +151,47 @@ export function deleteComment(commentID) {
 				console.log('Error', '==>', err);
 			})
 	}
+}
+
+// ====> EDIT actions
+export const editCommentFailure = actionCreator(
+	EDIT_COMMENT_FAILURE,
+	'error',
+);
+export const editCommentRequest = actionCreator(
+	EDIT_COMMENT_REQUEST,
+);
+export const editCommentSuccess = actionCreator(
+	EDIT_COMMENT_SUCCESS,
+);
+
+export function editComment(id, data) {
+	const url = `/api//comments/${id}`
+
+	return function thunk(dispatch) {
+		return axios.put(url, data)
+		.then(resp => { 
+				dispatch(editCommentRequest())	
+				return resp
+			})
+			.then((resp) => {
+				if (resp.status) { dispatch(editCommentSuccess()) }
+				return resp
+			})
+			.then((resp) => {
+				console.log(`#editComment id ${resp.data.id} success==>`, { resp });
+				alert(`Edited comment ${resp.data.id}: "${resp.data.title}"`);
+				return resp
+			})
+			// update the comments dictionary state
+			.then((resp) => {
+				dispatch(getComments());
+				return resp
+			})
+			.catch((err) => {
+				dispatch(editCommentFailure(err));
+				alert(`There was a problem editing your comment. \n ${err}`);
+				console.log('ERROR=>', err);
+			})
+	};
 }

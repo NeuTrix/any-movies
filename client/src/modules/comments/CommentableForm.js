@@ -12,17 +12,23 @@ import { Button } from '@material-ui/core';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
+	comment: PropTypes.instanceOf(Object), // placeholder - support editMode logic
 	commentableID: PropTypes.string.isRequired, // target id for new comments
 	commentableType: PropTypes.string.isRequired, // target type for new comments
+	editMode: PropTypes.bool, // determine edit (starting) state of the form
 	user: PropTypes.instanceOf(Object).isRequired, // the current user
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
+	editComment: PropTypes.func.isRequired, // edits a current comment to api
 	toggleForm: PropTypes.instanceOf(Function).isRequired,
-
 };
 
 const defaultProps = {
-	// editMode: false,
+	comment: {
+		body: "test body",
+		title: "test title",
+	},
+	editMode: false,
 };
 
 class CommentableForm extends Component {
@@ -62,16 +68,23 @@ class CommentableForm extends Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const data = this.state;
-		const { addComment, toggleForm } = this.props;
+		const { addComment, editMode, toggleForm } = this.props;
 		// use Promises to manage order of async executions
-		new Promise(res => res(addComment(data)))
+		if (editMode) {
+			new Promise(res => res(addComment(data)))
+				.then(() => console.log('submitting', this.props))
+				.then(() => toggleForm())
+				.catch(err => console.log(err));
+		} else {
+			new Promise(res => res(addComment(data)))
 			.then(() => console.log('submitting', this.props))
 			.then(() => toggleForm())
 			.catch(err => console.log(err));
+		}
 	}
 
 	render() {
-		const { classes, user } = this.props;
+		const { classes, comment, editMode, user } = this.props;
 		return (
 			<FormControl
 				className={classes.main}
@@ -101,7 +114,7 @@ class CommentableForm extends Component {
 					required
 					type="text"
 					variant="outlined"
-					value={this.state.title}
+					defaultValue={editMode ? comment.title : this.state.title}
 					onChange={this.onChange}
 				/>
 
@@ -114,7 +127,7 @@ class CommentableForm extends Component {
 					required
 					rows="4"
 					type="text"
-					value={this.state.body}
+					defaultValue = { editMode ? comment.body : this.state.body }
 					variant="outlined"
 					onChange={this.onChange}
 				/>

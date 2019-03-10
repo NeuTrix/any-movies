@@ -13,7 +13,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 
 import CommentsBarContainer from './CommentsBarContainer';
-import { CommentableForm } from '.';
+import { CommentableFormContainer } from '.';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -31,11 +31,13 @@ class CommentCard extends Component {
 		};
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
+		this.toggleEditMode = this.toggleEditMode.bind(this);
 	}
 
 	handleEdit(e) {
 		e.preventDefault();
-		const { comment, editComment } = this.props;
+		// const { comment, editComment } = this.props;
+		this.toggleEditMode();
 		// editComment(comment.id);
 	};
 
@@ -46,8 +48,13 @@ class CommentCard extends Component {
 		deleteComment(comment.id);
 	};
 
+	toggleEditMode() {
+		this.setState(prevState => ({ editMode: !prevState.editMode }));
+	}
+
 	render() {
 		const { classes, comment, subComments } = this.props;
+		const { editMode } = this.state;
 		return (
 			<Card className={classes.grid}>
 				<div className={classes.title}>
@@ -64,12 +71,21 @@ class CommentCard extends Component {
 
 				<div className={classes.actions}>
 					<CardActions>
-						<Button onClick={this.handeEdit}>edit</Button>
+						<Button onClick={this.handleEdit}>edit</Button>
 						<Button onClick={this.handleDelete}>del</Button>
 					</CardActions>
 				</div>
 
 				<div className={classes.replies}>
+					{ editMode && 
+						<CommentableFormContainer 
+							comment={comment}
+							commentableID={comment.id} 
+							commentableType="Comment" 
+							editMode={editMode}
+						/> 
+					}
+
 					<CommentsBarContainer
 						commentableID={comment.id} // parent info for adding comments
 						commentableType="Comment" // parent info for adding comments
