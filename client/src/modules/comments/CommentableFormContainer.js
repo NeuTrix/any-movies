@@ -12,7 +12,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   addComment: data => dispatch(addComment(data)),
-  editComment: data => dispatch(editComment(data)),
+  editComment: (id, data) => dispatch(editComment(id, data)),
 });
 
 const CommentableFormContainer = connect(mapStateToProps, mapDispatchToProps)(CommentableForm);

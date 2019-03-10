@@ -106,7 +106,6 @@ export function addComment(data) {
 				if (resp.status) { dispatch(addCommentSuccess()) }
 				return resp
 			})
-			
 			.then((resp) => {
 				console.log(`#addComment id ${resp.data.id} success==>`, { resp });
 				alert(`Added comment ${resp.data.id}: "${resp.data.title}"`);
@@ -166,11 +165,12 @@ export const editCommentSuccess = actionCreator(
 );
 
 export function editComment(id, data) {
-	const url = `/api//comments/${id}`
-
+	const url = `/api/comments/${id}`
+	console.log(33, '==> wheres. the data', data);
 	return function thunk(dispatch) {
 		return axios.put(url, data)
 		.then(resp => { 
+			console.log(99, '==>', {data, resp});
 				dispatch(editCommentRequest())	
 				return resp
 			})

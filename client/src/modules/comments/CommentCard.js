@@ -80,8 +80,8 @@ class CommentCard extends Component {
 					{ editMode && 
 						<CommentableFormContainer 
 							comment={comment}
-							commentableID={comment.id} 
-							commentableType="Comment" 
+							commentableID={comment.commentableID} 
+							commentableType={comment.commentableType}
 							editMode={editMode}
 						/> 
 					}

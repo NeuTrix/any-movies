@@ -8,6 +8,10 @@ import {
 	DELETE_COMMENT_FAILURE,
 	DELETE_COMMENT_REQUEST,
 	DELETE_COMMENT_SUCCESS,
+	// edit
+	EDIT_COMMENT_FAILURE,
+	EDIT_COMMENT_REQUEST,
+	EDIT_COMMENT_SUCCESS,
 	// get
 	GET_COMMENTS_FAILURE,
 	GET_COMMENTS_REQUEST,
@@ -45,6 +49,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 // === FAILURE
 	case ADD_COMMENT_FAILURE:
 	case DELETE_COMMENT_FAILURE:
+	case EDIT_COMMENT_FAILURE:
 	case GET_COMMENTS_FAILURE:
 		return {
 			...state,
@@ -60,6 +65,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 // === REQUEST
 	case ADD_COMMENT_REQUEST:
 	case DELETE_COMMENT_REQUEST:
+	case EDIT_COMMENT_REQUEST:
 	case GET_COMMENTS_REQUEST:
 		return { 
 			...state, 
@@ -75,6 +81,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 //  === SUCCESS
 	case ADD_COMMENT_SUCCESS:
 	case DELETE_COMMENT_SUCCESS:
+	case EDIT_COMMENT_SUCCESS:
 	case GET_COMMENTS_SUCCESS:
 		return {
 			...state,
