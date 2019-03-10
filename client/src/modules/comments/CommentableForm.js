@@ -25,8 +25,8 @@ const propTypes = {
 
 const defaultProps = {
 	comment: {
-		body: "test body",
-		title: "test title",
+		body: "",
+		title: "",
 	},
 	editMode: false,
 };
@@ -36,15 +36,24 @@ class CommentableForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			author: '',
-			body: '',
-			title: '',
 		};
 		this.onChange = this.onChange.bind(this);
-		this.onClick = this.onClick.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
+	componentDidMount() {
+		const { comment, commentableID, commentableType, user } = this.props;
+		
+		this.setState({
+			author: user.username,
+			body: comment.body,
+			commentable_id: commentableID,
+			// Movies from OMDB api don't have an type prop matching this api ...
+			commentable_type: comment.commentableType || "Movie",
+			title: comment.title,
+			user_id: user.id,
+		});
+	}
 	// update the state with form entries
 	onChange(e) {
 		this.setState({
@@ -52,18 +61,6 @@ class CommentableForm extends Component {
 		});
 	}
 
-	onClick(e) {
-		// e.preventDefault();
-		const { commentableID, commentableType, user } = this.props;
-		// add the type and ids to the state object
-		this.setState({
-			author: user.username,
-			commentable_id: commentableID,
-			// Movies from OMDB api don't have an type prop matching this api ...
-			commentable_type: commentableType ? commentableType : 'Movie',
-			user_id: user.id,
-		});
-	}
 
 	onSubmit(e) {
 		e.preventDefault();
@@ -90,7 +87,6 @@ class CommentableForm extends Component {
 				className={classes.main}
 				component="form"
 				onSubmit={this.onSubmit}
-				onClick={this.onClick}
 			>
 
 				<Input
