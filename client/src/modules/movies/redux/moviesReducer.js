@@ -3,8 +3,11 @@ import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
-	// SET_CURRENT_MOVIE,
-	// CHECK_MOVIE_REGISTRATION // See if its registered in the api
+	// Registraion
+	REGISTER_MOVIE_FAILURE,
+	REGISTER_MOVIE_REQUEST,
+	REGISTER_MOVIE_SUCCESS,
+	VALIDATE_MOVIE_REGISTRATION,
 } from '../../helpers/constants';
 
 export const initialState = {
@@ -43,6 +46,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 	switch (type) {
 	// request to the OMBD api
 		case FETCH_MOVIE_REQUEST:
+		case REGISTER_MOVIE_REQUEST:
 			return { 
 				...state, 
 				...{ 
@@ -74,9 +78,22 @@ export default function moviesReducer(state = initialState, action = {}) {
 					},
 				}
 			};
+
+		case REGISTER_MOVIE_SUCCESS:
+			return {
+				...state,
+				...{
+					apiStatus: {
+						isFetching: false,
+						message: 'Successfully registered this movie',
+						status: 'success',
+					},
+				}
+			}
 			
 		// log failures
 		case FETCH_MOVIE_FAILURE:
+		case REGISTER_MOVIE_FAILURE:
 			const { error } = payload
 			return {
 				...state,
@@ -89,7 +106,15 @@ export default function moviesReducer(state = initialState, action = {}) {
 				},
 			};
 
+			case VALIDATE_MOVIE_REGISTRATION:
+				return {
+					...state,
+					...{ registered: payload.registered }
+				}
+
 		default:
 			return state;
 	}
 }
+
+

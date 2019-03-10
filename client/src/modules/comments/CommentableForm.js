@@ -20,7 +20,7 @@ const propTypes = {
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
 	editComment: PropTypes.func.isRequired, // edits a current comment to api
-	toggleForm: PropTypes.instanceOf(Function).isRequired,
+	toggleForm: PropTypes.instanceOf(Function).isRequired, // use parent toggle fn
 };
 
 const defaultProps = {
@@ -60,7 +60,6 @@ class CommentableForm extends Component {
 			[e.target.name]: e.target.value,
 		});
 	}
-
 
 	onSubmit(e) {
 		e.preventDefault();
