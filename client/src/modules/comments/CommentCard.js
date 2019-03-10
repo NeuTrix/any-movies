@@ -1,5 +1,5 @@
 //  Should abstract out view from logic for Cards
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material UI components
 import {
@@ -22,47 +22,63 @@ const propTypes = {
 	subComments: PropTypes.instanceOf(Array).isRequired, // subComments filtered
 };
 
-function CommentCard(props) {
-	const { classes, comment, deleteComment, subComments } = props;
+class CommentCard extends Component {
 
-	const handleDelete = (e) => {
+	constructor(props) {
+		super(props);
+		this.state = {
+			editMode: false
+		};
+		this.handleDelete = this.handleDelete.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
+	}
+
+	handleEdit(e) {
 		e.preventDefault();
+		const { comment, editComment } = this.props;
+		// editComment(comment.id);
+	};
+
+	handleDelete(e) {
+		e.preventDefault();
+		const { comment, deleteComment } = this.props;
 		window.confirm(`Delete comment: ${comment.id}?`);
 		deleteComment(comment.id);
 	};
 
-	return (
-		<Card className={classes.grid}>
-			<div className={classes.title}>
-				<h3>{comment.title}</h3>
-				<p>{comment.id}</p>
-				<p>{comment.type}</p>
-			</div>
-			<div className={classes.body}>
-				<p>{comment.body}</p>
-			</div>
-			<div className={classes.author}>
-				{comment.author}
-			</div>
+	render() {
+		const { classes, comment, subComments } = this.props;
+		return (
+			<Card className={classes.grid}>
+				<div className={classes.title}>
+					<h3>{comment.title}</h3>
+					<p>{comment.id}</p>
+					<p>{comment.type}</p>
+				</div>
+				<div className={classes.body}>
+					<p>{comment.body}</p>
+				</div>
+				<div className={classes.author}>
+					{comment.author}
+				</div>
 
-			<div className={classes.actions}>
-				<CardActions>
-					<Button> edit </Button>
-					<Button
-						onClick={handleDelete}
-					> del </Button>
-				</CardActions>
-			</div>
+				<div className={classes.actions}>
+					<CardActions>
+						<Button onClick={this.handeEdit}>edit</Button>
+						<Button onClick={this.handleDelete}>del</Button>
+					</CardActions>
+				</div>
 
-			<div className={classes.replies}>
-				<CommentsBarContainer
-					commentableID={comment.id} // parent info for adding comments
-					commentableType="Comment" // parent info for adding comments
-					comments={subComments}
-				/>
-			</div>
-		</Card>
-	);
+				<div className={classes.replies}>
+					<CommentsBarContainer
+						commentableID={comment.id} // parent info for adding comments
+						commentableType="Comment" // parent info for adding comments
+						comments={subComments}
+					/>
+				</div>
+			</Card>
+		);
+	}
 }
 
 const styles = theme => ({
@@ -82,12 +98,12 @@ const styles = theme => ({
 		border: '1px solid lime',
 		display: 'grid',
 		gridTemplateAreas: `
-      "title title"
-      "author author"
+			"title title"
+			"author author"
 			"body body"
 			"actions actions"
-      "replies replies"
-    `,
+			"replies replies"
+		`,
 		marginBottom: theme.spacing.unit * 2,
 		padding: theme.spacing.unit * 0.5,
 	},
