@@ -11,7 +11,6 @@ import {
 	ADD_COMMENT_FAILURE,
 	ADD_COMMENT_REQUEST,
 	ADD_COMMENT_SUCCESS,
-	ADD_COMMENT_TO_DICTIONARY,
 	// delete
 	DELETE_COMMENT_FAILURE,
 	DELETE_COMMENT_REQUEST,
@@ -26,16 +25,16 @@ export const commentsListSchema = [comment]; // shorthand for schema.Array...
 
 // ====> GET actions
 // captures the error messages on fail
-export const fetchCommentsFailure = actionCreator(
+export const getCommentsFailure = actionCreator(
 	GET_COMMENTS_FAILURE,
 	'error',
 );
 // update the api request property
-export const fetchCommentsRequest = actionCreator(
+export const getCommentsRequest = actionCreator(
 	GET_COMMENTS_REQUEST,
 );
 // manage the data returned from comments GET call api
-export const fetchCommentsSuccess = actionCreator(
+export const getCommentsSuccess = actionCreator(
 	GET_COMMENTS_SUCCESS,
 );
 
@@ -52,7 +51,7 @@ export function getComments() {
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch) {
 		// alert state of request action
-		dispatch(fetchCommentsRequest());
+		dispatch(getCommentsRequest());
 		// return the axios promise with the data/status
 		return axios.get(`/api/comments/`)
 			// normalize the response data
@@ -69,9 +68,9 @@ export function getComments() {
 				return normed
 			})
 			// update the api success state
-			.then(() => dispatch(fetchCommentsSuccess()))
+			.then(() => dispatch(getCommentsSuccess()))
 			.catch((error) => {
-				dispatch(fetchCommentsFailure(error));
+				dispatch(getCommentsFailure(error));
 				return console.log('---#getComments error--->', error);
 			});
 	};
@@ -92,12 +91,6 @@ export const addCommentSuccess = actionCreator(
 	ADD_COMMENT_SUCCESS,
 );
 
-export const addCommentToDictionary = actionCreator(
-	ADD_COMMENT_TO_DICTIONARY,
-	'indexes',
-	'dictionary',
-);
-
 export function addComment(data) {
 	const { commentable_id, commentable_type } = data;
 	const path = commentable_type === 'Comment' ? 'comments' : 'movies';
@@ -111,17 +104,16 @@ export function addComment(data) {
 			})
 			.then((resp) => {
 				if (resp.status) { dispatch(addCommentSuccess()) }
+				
 				return resp
 			})
-			.then(resp => {
-				// normalize the data
-				const normed = normalize(resp.data, commentsListSchema);
-				dispatch(addCommentToDictionary(normed.result, normed.entities.comments));
+			.then((resp) => { 
+				dispatch(getComments());
 				return resp
 			})
 			.then((resp) => {
-					console.log('#addComment success==>', {commentable_id, resp});
-					alert(`Added comment ${resp.data.id} ${resp.data.title}`);
+					console.log(`#addComment id ${resp.data.id} success==>`, { resp });
+					alert(`Added comment ${resp.data.id}: "${resp.data.title}"`);
 			})
 			.catch((err) => {
 				dispatch(addCommentFailure(err));
@@ -153,9 +145,8 @@ export function deleteComment(commentID) {
 		dispatch(deleteCommentRequest());
 
 		return axios.delete(`api/comments/${commentID}`)
-			// .then(() => dispatch(deleteComment(commentID)))
 			.then(() => dispatch(deleteCommentSuccess()))
-			.then(() => dispatch(updateDictionary()))
+			.then(() => dispatch(getComments()))
 			.catch(err => {
 				dispatch(deleteCommentFailure(err));
 				console.log('Error', '==>', err);

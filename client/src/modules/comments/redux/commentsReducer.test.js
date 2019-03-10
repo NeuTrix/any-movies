@@ -5,9 +5,9 @@ import { expect } from 'chai';
 // action creators
 import {
 	addCommentToDictionary,
-	fetchCommentsFailure,
-	fetchCommentsRequest,
-	fetchCommentsSuccess,
+	getCommentsFailure,
+	getCommentsRequest,
+	getCommentsSuccess,
 	setthisMovie,
 	toggleCommentsForm,
 } from './commentsActions';
@@ -55,43 +55,9 @@ describe('The default state properties', () => {
 
 });
 
-describe('The ADD_COMMENT_TO_DICTIONARY action', () => {
-	const action = addCommentToDictionary(comments1, dictionary1);
-	const nextState = commentsReducer(prevState, action);
-	const action2 = addCommentToDictionary(comments2, dictionary2);
-	const nextState2 = commentsReducer(nextState, action2);
-
-	describe('The nextState properties', () => {
-		it('--> nextState has `apiStatus` prop', () => {
-			expect(nextState).to.have.property('apiStatus')
-				.to.be.an('object');
-		});
-
-		it('...nextState has `favourited` prop', () => {
-			expect(nextState).to.have.property('favourited')
-				.to.be.an('boolean');
-		});
-
-	});
-
-	describe('The dictionary prop | sub reducer', () => {
-		it('...has initial dictionary of length 0', () => {
-			expect(Object.keys(prevState.dictionary).length).to.eql(0);
-		});
-
-		it('...has nextState 1 dictionary of length 1', () => {
-			expect(Object.keys(nextState.dictionary).length).to.eql(1);
-		});
-
-		it('...has nextState 2 dictionary of length 3', () => {
-			expect(Object.keys(nextState2.dictionary).length).to.eql(3);
-		});
-	});
-});
-
 describe('The GET_COMMENTS_FAILURE action', () => {
 	const error = 'A mock error message';
-	const action = fetchCommentsFailure(error);
+	const action = getCommentsFailure(error);
 	const nextState = commentsReducer(prevState, action);
 
 	describe('... the apiStatus object', () => {
@@ -112,7 +78,7 @@ describe('The GET_COMMENTS_FAILURE action', () => {
 });
 
 describe('The GET_COMMENTS_REQUEST', () => {
-	const action = fetchCommentsRequest();
+	const action = getCommentsRequest();
 	const nextState = commentsReducer(prevState, action);
 
 	describe('... the apiStatus object', () => {
@@ -133,7 +99,7 @@ describe('The GET_COMMENTS_REQUEST', () => {
 });
 
 describe('The GET_COMMENTS_SUCCESS', () => {
-	const action = fetchCommentsSuccess();
+	const action = getCommentsSuccess();
 	const nextState = commentsReducer(prevState, action);
 
 	describe('The apiStatus object', () => {

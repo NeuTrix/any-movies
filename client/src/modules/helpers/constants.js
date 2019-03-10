@@ -16,7 +16,6 @@ export const DELETE_COMMENT_REQUEST = 'DELETE_COMMENT_REQUEST';
 export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
 
 // set the current comment and commentable type/id
-export const ADD_COMMENT_TO_DICTIONARY = 'ADD_COMMENT_TO_DICTIONARY';
 export const TOGGLE_COMMENTS_FORM = 'TOGGLE_COMMENTS_FORM';
 export const UPDATE_DICTIONARY = 'UPDATE_DICTIONARY';
 // SET_indexes = 'SET_SUBCOMMENTS'// specific reset of subcomments
