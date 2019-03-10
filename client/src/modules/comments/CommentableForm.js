@@ -49,7 +49,7 @@ class CommentableForm extends Component {
 			body: comment.body,
 			commentable_id: commentableID,
 			// Movies from OMDB api don't have an type prop matching this api ...
-			commentable_type: comment.commentableType || "Movie",
+			commentable_type: commentableType || "Movie",
 			title: comment.title,
 			user_id: user.id,
 		});
