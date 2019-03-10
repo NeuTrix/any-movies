@@ -26,8 +26,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	}, 
-	// indices:  // of all of dictionary objects
-	dictionary: {}, // a lookup object of all comments viewed in this session
+	dictionary: {}, // a map of all comments viewed in this session
 	favourited: false, // favourited?
 };
 
@@ -38,7 +37,6 @@ export default function commentsReducer(state = initialState, action = {}) {
 	switch (type) {
 // === DICTIONARY
 		case UPDATE_DICTIONARY:
-		// this causes scopiong issues- refactor
 		return {
 			...state,
 			...{ dictionary: payload.dictionary },

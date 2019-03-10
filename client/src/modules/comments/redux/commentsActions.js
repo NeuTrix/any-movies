@@ -15,7 +15,7 @@ import {
 	DELETE_COMMENT_FAILURE,
 	DELETE_COMMENT_REQUEST,
 	DELETE_COMMENT_SUCCESS,
-
+	// general
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
@@ -45,7 +45,6 @@ export const updateDictionary = actionCreator(
 );
 
 // retrieve the comments object (array of objs) from the api
-// ??? change to 'fetchComments'?
 export function getComments() {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
@@ -67,7 +66,7 @@ export function getComments() {
 				dispatch(updateDictionary(indexes, dictionary));
 				return normed
 			})
-			// update the api success state
+			// dispatch to update the state of the dictionary
 			.then(() => dispatch(getCommentsSuccess()))
 			.catch((error) => {
 				dispatch(getCommentsFailure(error));
@@ -77,16 +76,13 @@ export function getComments() {
 }
 
 // ====> ADD actions
-// captures the error messages on fail
 export const addCommentFailure = actionCreator(
 	ADD_COMMENT_FAILURE,
 	'error',
 );
-// update the api request property
 export const addCommentRequest = actionCreator(
 	ADD_COMMENT_REQUEST,
 );
-// manage the data returned from comments GET call api
 export const addCommentSuccess = actionCreator(
 	ADD_COMMENT_SUCCESS,
 );
@@ -104,16 +100,17 @@ export function addComment(data) {
 			})
 			.then((resp) => {
 				if (resp.status) { dispatch(addCommentSuccess()) }
-				
 				return resp
 			})
-			.then((resp) => { 
-				dispatch(getComments());
+			
+			.then((resp) => {
+				console.log(`#addComment id ${resp.data.id} success==>`, { resp });
+				alert(`Added comment ${resp.data.id}: "${resp.data.title}"`);
 				return resp
 			})
 			.then((resp) => {
-					console.log(`#addComment id ${resp.data.id} success==>`, { resp });
-					alert(`Added comment ${resp.data.id}: "${resp.data.title}"`);
+				dispatch(getComments());
+				return resp
 			})
 			.catch((err) => {
 				dispatch(addCommentFailure(err));
@@ -125,7 +122,6 @@ export function addComment(data) {
 
 // ====> DELETE actions
 // update the api request to delete a comment
-// captures the error messages on fail
 export const deleteCommentFailure = actionCreator(
 	DELETE_COMMENT_FAILURE,
 	'error',
@@ -134,7 +130,6 @@ export const deleteCommentFailure = actionCreator(
 export const deleteCommentRequest = actionCreator(
 	DELETE_COMMENT_REQUEST,
 );
-// affirm success of delete action in api
 export const deleteCommentSuccess = actionCreator(
 	DELETE_COMMENT_SUCCESS,
 );

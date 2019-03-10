@@ -17,7 +17,6 @@ const propTypes = {
 	user: PropTypes.instanceOf(Object).isRequired, // the current user
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
-	getComments: PropTypes.func.isRequired, // adds a new review instance to api
 	toggleForm: PropTypes.instanceOf(Function).isRequired,
 
 };
@@ -31,12 +30,7 @@ class CommentableForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// from props
-			commentable_id: '',
-			commentable_type: '',
-			user_id: '',
 			author: '',
-			// from form
 			body: '',
 			title: '',
 		};
@@ -57,9 +51,9 @@ class CommentableForm extends Component {
 		const { commentableID, commentableType, user } = this.props;
 		// add the type and ids to the state object
 		this.setState({
+			author: user.username,
 			commentable_id: commentableID,
-			// Movies from OMDB api don't have an inherit type prop for this api ...
-			// logic to account for this missing commentable property
+			// Movies from OMDB api don't have an type prop matching this api ...
 			commentable_type: commentableType ? commentableType : 'Movie',
 			user_id: user.id,
 		});
@@ -68,11 +62,10 @@ class CommentableForm extends Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const data = this.state;
-		const { addComment, getComments, toggleForm } = this.props;
+		const { addComment, toggleForm } = this.props;
 		// use Promises to manage order of async executions
 		new Promise(res => res(addComment(data)))
 			.then(() => console.log('submitting', this.props))
-			// .then(() => getComments())
 			.then(() => toggleForm())
 			.catch(err => console.log(err));
 	}

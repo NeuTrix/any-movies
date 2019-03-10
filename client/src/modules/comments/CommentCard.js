@@ -18,18 +18,17 @@ import { CommentableForm } from '.';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	comment: PropTypes.instanceOf(Object).isRequired, // raw comments from api
-	subComments: PropTypes.instanceOf(Array).isRequired, // subComments filtered
 	deleteComment: PropTypes.instanceOf(Function).isRequired,
-	getComments: PropTypes.instanceOf(Function).isRequired,
+	subComments: PropTypes.instanceOf(Array).isRequired, // subComments filtered
 };
 
 function CommentCard(props) {
-	const { classes, comment, deleteComment, getComments, subComments } = props;
+	const { classes, comment, deleteComment, subComments } = props;
 
-	const handleDelete = () => {
-		new Promise(() => deleteComment(comment.id))
-			.then(() => { window.confirm(`Delete comment: ${comment.id}?`); })
-			.then(() => getComments());
+	const handleDelete = (e) => {
+		e.preventDefault();
+		window.confirm(`Delete comment: ${comment.id}?`);
+		deleteComment(comment.id);
 	};
 
 	return (
