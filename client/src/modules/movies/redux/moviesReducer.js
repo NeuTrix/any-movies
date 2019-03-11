@@ -5,6 +5,7 @@ import {
 	FETCH_MOVIE_SUCCESS,
 	// Registraion
 	REGISTER_MOVIE_FAILURE,
+	REGISTER_MOVIE_NOT_NEEDED,
 	REGISTER_MOVIE_REQUEST,
 	REGISTER_MOVIE_SUCCESS,
 	VALIDATE_MOVIE_REGISTRATION,
@@ -16,7 +17,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	current: {},
+	current: '',
 	imdbID: '',
 	title: '',
 	poster: '',
@@ -73,12 +74,13 @@ export default function moviesReducer(state = initialState, action = {}) {
 					dictionary: dictionaryReducer(state.dictionary, action),
 					apiStatus: {
 						isFetching: false,
-						message: 'Successfully recieved comments',
+						message: 'Successfully recieved this movie',
 						status: 'success',
 					},
 				}
 			};
 
+		case REGISTER_MOVIE_NOT_NEEDED:
 		case REGISTER_MOVIE_SUCCESS:
 			return {
 				...state,

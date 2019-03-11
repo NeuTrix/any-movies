@@ -7,6 +7,7 @@ import {
 	FETCH_MOVIE_SUCCESS,
 	// register
 	REGISTER_MOVIE_FAILURE,
+	REGISTER_MOVIE_NOT_NEEDED,
 	REGISTER_MOVIE_REQUEST,
 	REGISTER_MOVIE_SUCCESS,
 	VALIDATE_MOVIE_REGISTRATION,
@@ -14,10 +15,11 @@ import {
 import { actionCreator, omdbUrl } from '../../helpers';
 
 // normalizr schema
-export const movie = new schema.Entity('movies', {}, { idAttribute: 'imdbID' });
+export const movieSchema = new schema.Entity('movies', {}, { idAttribute: 'imdbID' });
 
-// ==> Build actions with actionCreator. Simplifies boilerplate
+// actions with actionCreator. Simplifies boilerplate
 // track progress of api request to OMDB database
+// ===> GET / FETCH
 export const fetchMovieRequest = actionCreator(FETCH_MOVIE_REQUEST);
 // captures the error messages on fail
 export const fetchMovieFailure = actionCreator(FETCH_MOVIE_FAILURE, 'error');
@@ -28,27 +30,21 @@ export const fetchMovieSuccess = actionCreator(
 	'dictionary',
 );
 
-// Redux thunk to facilitate async actions (not tested)
 export function getMovieData(movieTitle) {
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
-	return function thunk(dispatch) {
+	return function thunk(dispatch, state) {
 		// alert app of request action
 		dispatch(fetchMovieRequest(movieTitle));
-		// return the axios promise with the data/status
+		// grab the movie from the OMDB database api
 		return axios.get(`${omdbUrl}&t=${movieTitle}`)
-			// VALIDATE registraion of current movie
-			.then((resp) => {
-				// console.log(989, '==>', resp.data.imdbID);
-				dispatch(isMovieRegistered(resp.data.imdbID));
-				return resp
-			})
-			// normalize the data
-			.then(resp => normalize(resp.data, movie))
-			// pass normalize data to the application
-			.then((resp) => {
-				const movieID = resp.result;
-				const dictionary = resp.entities.movies;
+			// normalize the OMDB data
+			.then(resp => normalize(resp.data, movieSchema))
+			// pass normalized data to the application state
+			.then((norm) => {
+				const movieID = norm.result;
+				const dictionary = norm.entities.movies;
+				// store the movie in the 'viewed' dictionary
 				dispatch(fetchMovieSuccess(movieID, dictionary));
 			})
 			.catch((err) => {
@@ -58,7 +54,7 @@ export function getMovieData(movieTitle) {
 	};
 }
 
-// ===> register actions
+// ===> REGISTRATION actions
 export const registerMovieRequest = actionCreator(REGISTER_MOVIE_REQUEST);
 // captures the error messages on fail
 export const registerMovieFailure = actionCreator(REGISTER_MOVIE_FAILURE, 'error');
@@ -68,30 +64,38 @@ export const registerMovieSuccess = actionCreator(
 	'movieID',
 	'dictionary',
 );
-
+// Conclude no action needed for registraion
+export const registerMovieNotNeeded = actionCreator(
+	REGISTER_MOVIE_NOT_NEEDED,
+)
+// Determine whether the movie exist in the app db and set state boolean
 export const validateMovie = actionCreator(
 	VALIDATE_MOVIE_REGISTRATION,
 	'registered',
 )
-
+// ==> async functions
+// validate registration status
 export function isMovieRegistered(imdbID) {
 	return function thunk(dispatch) {
 		return axios.get(`/api/movies/${imdbID}`)
-		.then((resp) => {
-			dispatch(validateMovie(true))
-		})
+		.then(resp => dispatch(validateMovie(true)))
 		.catch(err => {
 			dispatch(validateMovie(false))
 			console.log(Error, '==>', err);
 		})
 	}
 }
-
+// add a movie to the app db
 export function registerMovie(movie) {
 	const { imdbID, title } = movie;
 	const url = `/api/movies`;
 
-	return function thunk(dispatch) {
+	return function thunk(dispatch, getState) {
+		// bypass if this movvie is already registered (from state)
+		if (getState().movies.registered) {
+			console.log(`${current.Title} is already registered`);
+			return dispatch(registerMovieNotNeeded());
+		}
 		return axios.post(url, movie)
 		.then(resp => { 
 				dispatch(registerMovieRequest())
@@ -103,12 +107,10 @@ export function registerMovie(movie) {
 			})
 			.then((resp) => {
 				console.log(`#registerMovie id ${resp.data.id} success==>`, { resp });
-				alert(`Added comment ${resp.data.id}: "${resp.data.title}"`);
 				return resp
 			})
 			.catch((err) => {
 				dispatch(registerMovieFailure(err));
-				alert(`There was a problem adding your movie. \n ${err}`);
 				console.log('ERROR=>', err);
 			})
 	};

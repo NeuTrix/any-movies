@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { normalize, schema } from 'normalizr';
 import { actionCreator } from '../../helpers';
+import { registerMovie } from '../../movies/redux/moviesActions';
 
 import {
 	// get
@@ -96,7 +97,8 @@ export function addComment(data) {
 	const path = commentable_type === 'Comment' ? 'comments' : 'movies';
 	const url = `/api/${path}/${commentable_id}/comments`;
 
-	return function thunk(dispatch) {
+	return function thunk(dispatch, state) {
+
 		return axios.post(url, data)
 		.then(resp => { 
 				dispatch(addCommentRequest())	
