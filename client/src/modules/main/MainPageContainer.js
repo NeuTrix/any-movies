@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
 	commentableID: state.movies.imdbID,
 	comments: findMovieComments(state.movies.imdbID, state.comments.dictionary),
 	movie: state.movies.current,
+	registered: state.movies.registered,
 });
 
 const MainPageContainer = connect(mapStateToProps)(MainPage);

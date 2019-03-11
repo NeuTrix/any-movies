@@ -11,9 +11,10 @@ const propTypes = {
 	comments: PropTypes.instanceOf(Array).isRequired, // app api object
 	commentableID: PropTypes.string.isRequired, // app api object
 	movie: PropTypes.instanceOf(Object).isRequired, // OMBD api object
+	registered: PropTypes.bool.isRequired, // pulled from state
 };
 
-function MainPage({ classes, movie, comments, commentableID }) {
+function MainPage({ classes, comments, commentableID, movie, registered }) {
 
 	return (
 		<div
@@ -31,7 +32,8 @@ function MainPage({ classes, movie, comments, commentableID }) {
 						comments={comments}
 						commentableID={commentableID}
 						commentableType="Movie"
-						title={movie.title}
+						registered={registered}
+						title={movie.Title} // OMDB api object
 					/>
 				</div>
 

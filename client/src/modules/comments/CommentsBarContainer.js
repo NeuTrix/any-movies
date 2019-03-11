@@ -7,7 +7,7 @@ const mapStateToProps = (state, props) => ({
 	commentableID: props.commentableID,
 	commentableType: props.commentableType,
 	comments: props.comments,
-	registered: state.movies.registered,
+	registered: props.registered,
 	title: props.title,
 });
 
