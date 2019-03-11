@@ -165,10 +165,13 @@ const styles = theme => ({
 	badge: { marginRight: theme.spacing.unit * 2 },
 	button:{ marginTop: 10},
 	expansion: { background: 'aliceblue', padding: 0 },
-	heading: { fontWeight: theme.typography.fontWeightRegular },
+	heading: {
+		color: 'white',
+		fontWeight: theme.typography.fontWeightRegular,
+	},
 	list: { margin: 'none', padding: 'none', width: '100%' },
 	root: { textAlign: 'left' },
-	summary: { background: 'orangered', color: 'white' },
+	summary: { background: 'orangered' },
 });
 
 CommentsBar.propTypes = propTypes;
