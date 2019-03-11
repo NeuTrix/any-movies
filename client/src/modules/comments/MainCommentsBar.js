@@ -168,7 +168,7 @@ const styles = theme => ({
 	heading: { fontWeight: theme.typography.fontWeightRegular },
 	list: { margin: 'none', padding: 'none', width: '100%' },
 	root: { textAlign: 'left' },
-	summary: { background: 'orangered' },
+	summary: { background: 'orangered', color: 'white' },
 });
 
 CommentsBar.propTypes = propTypes;

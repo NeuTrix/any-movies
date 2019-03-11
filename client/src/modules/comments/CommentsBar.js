@@ -10,10 +10,7 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
-import {
-	CommentCardContainer,
-	CommentableFormContainer, // for adding new comments
-} from '.';
+import { CommentCardContainer } from '.';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
@@ -113,16 +110,6 @@ class CommentsBar extends Component {
 		return (
 			<div className={classes.root}>
 				<ExpansionPanel className={classes.expansion}>
-
-					<Button
-						className={classes.button}
-						color="primary"
-						variant="outlined"
-						onClick={this.handleClick}
-					>
-						{ !showForm ? 'Review' : 'Close' }
-					</Button>
-
 					<ExpansionPanelSummary
 						className={classes.summary}
 						expandIcon={<ExpandMoreIcon />}
@@ -139,18 +126,6 @@ class CommentsBar extends Component {
 							{ message() }
 						</Typography>
 					</ExpansionPanelSummary>
-
-					<ExpansionPanelDetails>
-						{ showForm && (
-							<CommentableFormContainer
-								commentableID={commentableID}
-								commentableType={commentableType}
-								registered={registered}
-								toggleForm={this.toggleForm}
-							/>
-						)}
-
-					</ExpansionPanelDetails>
 
 					<ExpansionPanelDetails className={classes.expansion}>
 						<div className={classes.list}>{ deck }</div>
