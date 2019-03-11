@@ -17,7 +17,7 @@ import {
 	GET_COMMENTS_REQUEST,
 	GET_COMMENTS_SUCCESS,
 	
-	UPDATE_DICTIONARY,
+	UPDATE_COMMENTS_DICTIONARY,
 } from '../../helpers/constants';
 
 // import { filterCommentsToArray } from '../../helpers';
@@ -40,7 +40,7 @@ export default function commentsReducer(state = initialState, action = {}) {
 	
 	switch (type) {
 // === DICTIONARY
-		case UPDATE_DICTIONARY:
+		case UPDATE_COMMENTS_DICTIONARY:
 		return {
 			...state,
 			...{ dictionary: payload.dictionary },

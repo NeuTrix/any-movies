@@ -21,7 +21,7 @@ import {
 	EDIT_COMMENT_REQUEST,
 	EDIT_COMMENT_SUCCESS,
 	// general
-	UPDATE_DICTIONARY,
+	UPDATE_COMMENTS_DICTIONARY,
 } from '../../helpers/constants';
 
 // normalizr schema
@@ -44,7 +44,7 @@ export const getCommentsSuccess = actionCreator(
 );
 
 export const updateDictionary = actionCreator(
-	UPDATE_DICTIONARY,
+	UPDATE_COMMENTS_DICTIONARY,
 	'indexes',
 	'dictionary',
 );

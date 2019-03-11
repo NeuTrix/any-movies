@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// material ui
 import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
 import { IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,8 +12,8 @@ import {
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	currMovie: PropTypes.instanceOf(Object).isRequired,
-	currUserId: PropTypes.number.isRequired,
+	movie: PropTypes.instanceOf(Object).isRequired,
+	user: PropTypes.number.isRequired,
 };
 
 class FavouritesButton extends Component {
@@ -29,12 +28,12 @@ class FavouritesButton extends Component {
 	}
 
 	componentDidMount() {
-		const { currMovie, currUserId } = this.props;
+		const { movie, user } = this.props;
 		const	data = {
-			favourited_id: currMovie.imdbID,
-			favourited_title: currMovie.Title,
+			favourited_id: movie.imdbID,
+			favourited_title: movie.Title,
 			favourited_type: "Movie",
-			user_id: currUserId,
+			user_id: user,
 		};
 		isFavourited(data)
 			.then((resp) => {
@@ -49,15 +48,15 @@ class FavouritesButton extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { currMovie, currUserId } = this.props;
+		const { movie, user } = this.props;
 		const data = {
-			favourited_id: currMovie.imdbID,
-			favourited_title: currMovie.Title,
+			favourited_id: movie.imdbID,
+			favourited_title: movie.Title,
 			favourited_type: "Movie",
-			user_id: currUserId,
+			user_id: user,
 		};
 
-		if (prevProps.currMovie.imdbID !== currMovie.imdbID) {
+		if (prevProps.movie.imdbID !== movie.imdbID) {
 			isFavourited(data)
 				.then((resp) => {
 					if (resp.data) {
