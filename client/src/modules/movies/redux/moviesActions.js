@@ -91,8 +91,9 @@ export function registerMovie(movie) {
 	const url = `/api/movies`;
 
 	return function thunk(dispatch, getState) {
-		// bypass if this movvie is already registered (from state)
-		if (getState().movies.registered) {
+		const { current, registered} = getState().movies;
+		// bypass if this movie is already registered (from state)
+		if (registered) {
 			console.log(`${current.Title} is already registered`);
 			return dispatch(registerMovieNotNeeded());
 		}

@@ -8,9 +8,7 @@ import {
 import MenuBar from './MenuBar';
 
 const mapStateToProps = state => ({
-	currMovie: state.movies.currMovie,
-	currUser: state.users.currUser,
-	showingCommentForm: state.comments.showingCommentForm,
+	movie: state.movies.current,
 });
 
 const mapDispatchToProps = dispatch => ({

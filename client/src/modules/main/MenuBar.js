@@ -14,6 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
+	// movie: PropTypes.instanceOf(Object).isRequired,
 	getMovieData: PropTypes.instanceOf(Function).isRequired,
 };
 
