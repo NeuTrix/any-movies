@@ -14,8 +14,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	movie: PropTypes.instanceOf(Object).isRequired,
-	// functions
 	getMovieData: PropTypes.instanceOf(Function).isRequired,
 };
 
@@ -34,7 +32,7 @@ class MenuBar extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		const { getMovieData, movie } = this.props;
+		const { getMovieData } = this.props;
 		const { searchTerm } = this.state;
 		// update movie and check for registration status in the api
 		getMovieData(searchTerm)
