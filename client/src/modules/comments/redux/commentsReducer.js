@@ -20,7 +20,7 @@ import {
 	UPDATE_DICTIONARY,
 } from '../../helpers/constants';
 
-import { filterCommentsToArray } from '../../helpers';
+// import { filterCommentsToArray } from '../../helpers';
 
 // shape of comments state object
 export const initialState = {
