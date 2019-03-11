@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { CommentsBar } from '.';
 import { getComments } from './redux/commentsActions';
-import { registerMovie } from '../movies/redux/moviesActions';
+import { isMovieRegistered, registerMovie } from '../movies/redux/moviesActions';
 
 const mapStateToProps = (state, props) => ({
 	commentableID: props.commentableID,
@@ -13,7 +13,8 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
 	getComments: () => dispatch(getComments()),
-	registerMovie: () => dispatch(registerMovie()),
+	registerMovie: (data) => dispatch(registerMovie(data)),
+	isMovieRegistered: (imdbID) => dispatch(isMovieRegistered(imdbID))
 });
 
 // wrap around CommentsBar component

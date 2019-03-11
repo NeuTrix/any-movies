@@ -24,6 +24,7 @@ const propTypes = {
 	title: PropTypes.string.isRequired, // title of the comment (Movie)
 	// functions
 	getComments: PropTypes.instanceOf(Function).isRequired,
+	isMovieRegistered: PropTypes.instanceOf(Function).isRequired,
 	registerMovie: PropTypes.instanceOf(Function).isRequired,
 };
 
@@ -58,22 +59,20 @@ class CommentsBar extends Component {
 	handleClick(e) {
 		e.preventDefault();
 		const {
-			commentableID,
-			commentableType,
-			registered,
-			registerMovie,
-			title,
+			 commentableID,
+			 commentableType,
+			 isMovieRegistered,
+			 registered,
+			 registerMovie,
+			 title,
 		} = this.props;
 
 		this.toggleForm();
 
 		if (commentableType === 'Movie' && !registered) {
-			console.log(999, '==>', {
-				imdb_id: commentableID,
-				registered,
-				title
-			});
-			registerMovie({ imdb_id: commentableID, title });
+			const data = { imdb_id: commentableID, title };
+			new Promise(resolve => resolve(registerMovie(data)))
+				.then(() => isMovieRegistered(commentableID));
 		}
 	}
 
