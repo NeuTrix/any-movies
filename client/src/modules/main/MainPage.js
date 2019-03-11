@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { CommentsBarContainer } from '../comments';
+import { MainCommentsBarContainer } from '../comments';
 // unclear why this linting error appears =>
 import { MoviePageContainer } from '../movies';
 
@@ -28,7 +28,7 @@ function MainPage({ classes, comments, commentableID, movie, registered }) {
 				</div>
 
 				<div style={{ gridArea: 'comments' }}>
-					<CommentsBarContainer
+					<MainCommentsBarContainer
 						comments={comments}
 						commentableID={commentableID}
 						commentableType="Movie"
