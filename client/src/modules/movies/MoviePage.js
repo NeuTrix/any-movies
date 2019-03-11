@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { FavouritesButton } from '../favourites';
+import { FavouritesButtonContainer } from '../favourites';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
@@ -49,7 +49,7 @@ class MoviePage extends Component {
 				<div className={classes.titlebar}>
 					<div className={classes.fav}>
 					{/* faking the curr use */}
-						<FavouritesButton currUserId={1} currMovie={currMovie} />
+						<FavouritesButtonContainer currUserId={1} currMovie={currMovie} />
 					</div>
 
 					<div className={classes.title} >
