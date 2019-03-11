@@ -7,8 +7,9 @@ import { FavouritesButton } from '../favourites';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	currMovie: PropTypes.instanceOf(Object).isRequired,
-	// fn to  grab comments for this item
+	// functions
 	getComments: PropTypes.instanceOf(Function), 
+	isMovieRegistered: PropTypes.instanceOf(Function), 
 };
 
 // in the event that a movie is not registered or has no comments
@@ -21,9 +22,9 @@ class MoviePage extends Component {
 
 	componentDidUpdate(prevProps,) {
 		if (this.props.currMovie !== prevProps.currMovie) {
-			const { currMovie, getComments } = this.props;
-			// getComments(currMovie.imdbID, "Movie");
-			getComments();
+			const { currMovie, getComments, isMovieRegistered } = this.props;
+			new Promise((resolve) => resolve(getComments()))
+				.then(() => isMovieRegistered(currMovie.imdbID))
 		}
 	}
 
