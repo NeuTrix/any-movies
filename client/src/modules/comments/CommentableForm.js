@@ -15,7 +15,7 @@ const propTypes = {
 	comment: PropTypes.instanceOf(Object), // placeholder - support editMode logic
 	commentableID: PropTypes.string.isRequired, // target id for new comments
 	commentableType: PropTypes.string.isRequired, // target type for new comments
-	editMode: PropTypes.bool, // determine edit (starting) state of the form
+	editMode: PropTypes.bool.isRequired, // determine edit (starting) state of the form
 	user: PropTypes.instanceOf(Object).isRequired, // the current user
 	// editMode: PropTypes.bool, // new or edit form
 	addComment: PropTypes.func.isRequired, // adds a new review instance to api
@@ -28,7 +28,6 @@ const defaultProps = {
 		body: "",
 		title: "",
 	},
-	editMode: false,
 };
 
 class CommentableForm extends Component {
@@ -42,15 +41,16 @@ class CommentableForm extends Component {
 	}
 
 	componentDidMount() {
-		const { comment, commentableID, commentableType, user } = this.props;
+		const { comment, commentableID, commentableType, editMode, user } = this.props;
 		
 		this.setState({
 			author: user.username,
 			body: comment.body,
 			commentable_id: commentableID,
+			editMode,
 			// Movies from OMDB api don't have an type prop matching this api ...
 			commentable_type: commentableType || "Movie",
-			title: comment.title,
+			// title: comment.title,
 			user_id: user.id,
 		});
 	}
@@ -81,6 +81,8 @@ class CommentableForm extends Component {
 
 	render() {
 		const { classes, comment, editMode, user } = this.props;
+		// const { editMode } = this.state;
+		console.log(99, '==>', editMode);
 		return (
 			<FormControl
 				className={classes.main}
@@ -103,13 +105,13 @@ class CommentableForm extends Component {
 				<TextField
 					autoFocus
 					fullWidth
-					label ="enter comment Title"
+					label="enter comment Title"
 					margin="dense"
 					name="title"
 					required
 					type="text"
 					variant="outlined"
-					defaultValue={editMode ? comment.title : this.state.title}
+					defaultValue={editMode === 'true' ? comment.title :''}
 					onChange={this.onChange}
 				/>
 
@@ -122,7 +124,7 @@ class CommentableForm extends Component {
 					required
 					rows="4"
 					type="text"
-					defaultValue = { editMode ? comment.body : this.state.body }
+					defaultValue={editMode === 'true' ? comment.body :''}
 					variant="outlined"
 					onChange={this.onChange}
 				/>

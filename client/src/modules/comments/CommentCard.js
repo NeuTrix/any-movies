@@ -27,18 +27,24 @@ class CommentCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editMode: false
+			showEditForm: false,
+			showReplyForm: false,
 		};
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
-		this.toggleEditMode = this.toggleEditMode.bind(this);
+		this.handleReply = this.handleReply.bind(this);
+		this.toggleEditForm = this.toggleEditForm.bind(this);
+		this.toggleReplyForm = this.toggleReplyForm.bind(this);
 	}
 
 	handleEdit(e) {
 		e.preventDefault();
-		// const { comment, editComment } = this.props;
-		this.toggleEditMode();
-		// editComment(comment.id);
+		this.toggleEditForm();
+	};
+
+	handleReply(e) {
+		e.preventDefault();
+		this.toggleReplyForm();
 	};
 
 	handleDelete(e) {
@@ -48,13 +54,23 @@ class CommentCard extends Component {
 		deleteComment(comment.id);
 	};
 
-	toggleEditMode() {
-		this.setState(prevState => ({ editMode: !prevState.editMode }));
-	}
+	toggleEditForm() {
+		this.setState(prevState => ({
+			showEditForm: !prevState.showEditForm,
+			showReplyForm: false,
+		}));
+	};
+
+	toggleReplyForm() {
+		this.setState(prevState => ({
+			showEditForm: false,
+			showReplyForm: !prevState.showReplyForm,
+		}));
+	};
 
 	render() {
 		const { classes, comment, subComments } = this.props;
-		const { editMode } = this.state;
+		const { showEditForm, showReplyForm } = this.state;
 		return (
 			<Card className={classes.grid}>
 				<div className={classes.title}>
@@ -71,20 +87,31 @@ class CommentCard extends Component {
 
 				<div className={classes.actions}>
 					<CardActions>
-						<Button onClick={this.handleEdit}>edit</Button>
-						<Button onClick={this.handleDelete}>del</Button>
+						<Button variant="outline" onClick={this.handleReply}>Reply</Button>
+						<Button variant="outline" onClick={this.handleEdit}>Edit</Button>
+						<Button variant="outline" onClick={this.handleDelete}>Del</Button>
 					</CardActions>
 				</div>
 
 				<div className={classes.replies}>
-					{ editMode && 
-						<CommentableFormContainer 
+					{ showEditForm && 
+						<CommentableFormContainer
 							comment={comment}
-							commentableID={comment.commentableID} 
+							commentableID={comment.commentableID}
 							commentableType={comment.commentableType}
-							editMode={editMode}
-							toggleForm={this.toggleEditMode}
-						/> 
+							editMode="true"
+							toggleForm={this.toggleEditForm}
+						/>
+					}
+
+					{ showReplyForm &&
+						<CommentableFormContainer
+							comment={comment}
+							commentableID={comment.commentableID}
+							commentableType={comment.commentableType}
+							editMode="false"
+							toggleForm={this.toggleReplyForm}
+						/>
 					}
 
 					<CommentsBarContainer
@@ -122,7 +149,7 @@ const styles = theme => ({
 			"replies replies"
 		`,
 		marginBottom: theme.spacing.unit * 2,
-		padding: theme.spacing.unit * 0.5,
+		padding: theme.spacing.unit * 1,
 	},
 	replies: { gridArea: 'replies' },
 

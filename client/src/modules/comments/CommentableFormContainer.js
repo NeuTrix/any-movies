@@ -5,6 +5,7 @@ import CommentableForm from './CommentableForm';
 const mapStateToProps = (state, props) => ({
   commentableID: props.commentableID,
   commentableType: props.commentableType,
+  editMode: props.editMode,
   // allow the form to toggle on submit (based on parent state)
   toggleForm: props.toggleForm,
   user: state.users.current,
