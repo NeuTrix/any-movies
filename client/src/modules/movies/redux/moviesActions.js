@@ -87,23 +87,28 @@ export function isMovieRegistered(imdbID) {
 }
 // add a movie to the app db
 export function registerMovie(movie) {
-	const { imdbID, title } = movie;
+	const data = {
+		imdb_id: movie.imdbID,
+		title: movie.Title,
+	}
+	console.log(545, '==>', movie);
 	const url = `/api/movies`;
 
 	return function thunk(dispatch, getState) {
-		const { current, registered} = getState().movies;
-		// bypass if this movie is already registered (from state)
-		if (registered) {
-			console.log(`${current.Title} is already registered`);
-			return dispatch(registerMovieNotNeeded());
-		}
-		return axios.post(url, movie)
+		// const {registered} = getState().movies;
+		// // bypass if this movie is already registered (from state)
+		// if (registered) {
+		// 	console.log(`${movie.Title} is already registered`);
+		// 	return dispatch(registerMovieNotNeeded());
+		// }
+		return axios.post(url, data)
 		.then(resp => { 
 				dispatch(registerMovieRequest())
 				return resp
 			})
 			.then((resp) => {
-				if (resp.status) { dispatch(registerMovieSuccess()) }
+				console.log(444, '==>', resp);
+				if (resp.status === 201) { dispatch(registerMovieSuccess()) }
 				return resp
 			})
 			.then((resp) => {

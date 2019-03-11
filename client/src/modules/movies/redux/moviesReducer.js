@@ -17,7 +17,9 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
-	current: '',
+	current: {
+		imdbID:''
+	},
 	imdbID: '',
 	title: '',
 	poster: '',

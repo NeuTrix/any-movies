@@ -1,6 +1,6 @@
 // normalizr schema variables
+import { movieSchema } from '../movies/redux';
 import { normalize } from 'normalizr';
-import { movie } from '../movies/redux';
 
 // test objects
 // export to a faker or factory helper file
@@ -15,8 +15,8 @@ const movieMock2 = {
 };
 
 // normalized
-const normed1 = normalize(movieMock1, movie);
-const normed2 = normalize(movieMock2, movie);
+const normed1 = normalize(movieMock1, movieSchema);
+const normed2 = normalize(movieMock2, movieSchema);
 
 // export test variables
 

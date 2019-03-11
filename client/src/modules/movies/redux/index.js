@@ -3,5 +3,5 @@
 
 export { 
   default as moviesActions,
-  movie, // normalizr movie schema object
+  movieSchema, // normalizr movie schema object
 } from './moviesActions';

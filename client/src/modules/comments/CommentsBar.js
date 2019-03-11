@@ -19,9 +19,13 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired, // material UI
 	commentableID: PropTypes.string.isRequired, // from commentable
 	commentableType: PropTypes.string.isRequired, // from commentable
-	comments: PropTypes.instanceOf(Array).isRequired, // from commentable	
-	getComments: PropTypes.instanceOf(Function).isRequired,
+	comments: PropTypes.instanceOf(Array).isRequired, // from commentable
+	movie: PropTypes.instanceOf(Object).isRequired, // current displayed movie
+	registered: PropTypes.bool.isRequired,
 	title: PropTypes.string, // title of the comment (Movie)
+	// functions
+	getComments: PropTypes.instanceOf(Function).isRequired,
+	registerMovie: PropTypes.instanceOf(Function).isRequired,
 };
 
 const defaultProps = {
@@ -54,7 +58,18 @@ class CommentsBar extends Component {
 
 	handleClick(e) {
 		e.preventDefault();
+		const {
+			commentableType,
+			movie,
+			registered,
+			registerMovie,
+		} = this.props;
+
 		this.toggleForm();
+
+		if (commentableType === 'Movie' && !registered) {
+			registerMovie(movie.imdbID);
+		}
 	}
 
 	toggleForm() {
