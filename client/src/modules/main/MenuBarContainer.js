@@ -8,12 +8,9 @@ import {
 import MenuBar from './MenuBar';
 
 const mapStateToProps = state => ({
-	showingCommentForm: state.comments.showingCommentForm,
-	// movies
 	currMovie: state.movies.currMovie,
-	// registered: state.movies.registered,
-	// users
 	currUser: state.users.currUser,
+	showingCommentForm: state.comments.showingCommentForm,
 });
 
 const mapDispatchToProps = dispatch => ({
