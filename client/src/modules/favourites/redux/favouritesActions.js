@@ -43,14 +43,16 @@ export const updateIsFavouritedStatus = actionCreator(
 
 // returns a boolean value re presence of favourite for this user
 export function isFavourited(userID,movieID) {
-	
+
 	return function thunk(dispatch, prevState) {
 
 		return axios.get(`/api/users/${userID}/favourites?filter=${movieID}`)
 			.then((resp) => {
 				if (resp.data) {
 					const data = resp.data[0]
-					dispatch(updateIsFavouritedStatus(data && data.favourited_id === movieID ? true : false))
+					dispatch(updateIsFavouritedStatus(
+						data && data.favourited_id === movieID ? true : false)
+					)
 				}
 			})
 			.catch(err => { console.log(err)})
