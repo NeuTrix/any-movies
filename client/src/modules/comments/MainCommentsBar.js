@@ -71,7 +71,7 @@ class CommentsBar extends Component {
 
 		if (commentableType === 'Movie' && !registered) {
 			const data = { imdb_id: commentableID, title };
-			new Promise(resolve => resolve(registerMovie(data)))
+			const update = new Promise(resolve => resolve(registerMovie(data)))
 				.then(() => isMovieRegistered(commentableID));
 		}
 	}

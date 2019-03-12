@@ -7,9 +7,13 @@ import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
+	favID: PropTypes.string.isRequired, // id of current movie favourited object
+	movie: PropTypes.instanceOf(Object).isRequired, // current movie
+	status: PropTypes.bool.isRequired, // favourited status of current movie
+	user: PropTypes.number.isRequired, // current user
+	// functions
 	isFavourited: PropTypes.instanceOf(Function).isRequired, // from container
-	movie: PropTypes.instanceOf(Object).isRequired,
-	user: PropTypes.number.isRequired,
+	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
 };
 
 class FavouritesButton extends Component {
@@ -67,32 +71,25 @@ class FavouritesButton extends Component {
 	// }
 
 	onClick(e) {
-
 		e.preventDefault();
-		const { isFavourited, movie, user } = this.props;
-		alert('hello')
-		// check to see if favourited in the api db
-		// isFavourited({ userID: user.id, movieID: movie.imdbID });
-			// .then((resp) => {
-			// 	if (favoured) {
-			// 		removeFavourite(data); // remove a favourited item
-			// 		this.setState({ favoured: false });
-			// 	} else {
-			// 		addFavourite(data); // add to the faves list
-			// 		this.setState({ favoured: true });
-			// 	}
-			// })
-			// .then(resp => {console.log(777, '==>', resp)})
-			// .catch((err) => {
-			// 	console.log('FavouritesButton', err);
-			// });
+		// actions
+		const { isFavourited, toggleFavourited } = this.props;
+		// variables
+		const { favID, movie, status, user } = this.props;
+		const movieID = movie.imdbID;
+		const userID = user.id;
+		// const update = new Promise(resolve => resolve());
+			// update.then(() => 
+			toggleFavourited({ favID, movieID, status, userID });
+		// )
+			// .then(() => isFavourited({ movieID, userID }))
+			// .then(() => isFavourited({ movieID, userID }));
 	}
 
 	render() {
 		const { classes } = this.props;
 
 		return (
-
 			<IconButton
 				size="large"
 				onClick={this.onClick}
@@ -131,7 +128,6 @@ const styles = theme => ({
 		position: 'absolute',
 		width: '100%',
 	},
-
 });
 
 FavouritesButton.propTypes = propTypes;

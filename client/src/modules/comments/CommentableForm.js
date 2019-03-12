@@ -67,12 +67,12 @@ class CommentableForm extends Component {
 		const { addComment, comment, editComment, editMode, toggleForm } = this.props;
 		// use Promises to manage order of async executions
 		if (editMode) {
-			new Promise(res => res(editComment(comment.id, data)))
+			const update = new Promise(res => res(editComment(comment.id, data)))
 				.then(() => console.log('submitting #edit', data))
 				.then(() => toggleForm())
 				.catch(err => console.log(err));
 		} else {
-			new Promise(res => res(addComment(data)))
+			const update = new Promise(res => res(addComment(data)))
 			.then(() => console.log('submitting #add', data))
 			.then(() => toggleForm())
 			.catch(err => console.log(err));

@@ -19,14 +19,6 @@ import {
 const prevState = initialState;
 deepfreeze(prevState);
 // how to test thunks?
-describe('The toggleFavouritedStatus action', () => {
-	const favID = 1;
-	const action = toggleFavouritedStatus(favID, movie1.imdbID);
-	const nextState = favouritesReducer(prevState, action)
-	it.only('... toggles the state status', () => {
-		expect(nextState.favourites.status).not.to.eql(prevState.favourites.status);
-	});
-});
 
 describe('Favourites reducer default actions', () => {
 	it('...undefined action returns default previous state', () => {

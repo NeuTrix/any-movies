@@ -60,13 +60,13 @@ export function isFavourited({ movieID, userID }) {
 				const data = resp.data;
 				if (data) {
 					const status = data[0] && data[0].favourited_id === movieID || false;
-					const current = status && data[0].id || null;
+					const current = status && data[0].id || 'null';
 					dispatch(updateIsFavouritedStatus(current, status));
 				}
 			})
 			.then(() => dispatch(checkIsFavouritedSuccess()))
 			.catch(err => { 
-				dispatchEvent(checkIsFavouritedFailure());
+				dispatchEvent(checkIsFavouritedFailure(err));
 				console.log(err);
 			})
 	} 
@@ -105,186 +105,25 @@ export const deleteFavouriteSuccess = actionCreator(
 );
 
 // pass in an args 'data' object
-export function toggleFavourited({ favID, movieID, status }) {
+export function toggleFavourited({ favID, movieID, status, userID }) {
 
 	return function thunk(dispatch) {
 
 		if (status) {
 			dispatch(deleteFavouriteRequest());
+
 			return axios.delete(`/api/favourites/${favID}`)
+				.then(() => dispatch(toggleFavouritedStatus('null2', false)))
 				.then(() => dispatch(deleteFavouriteSuccess()))
 				.catch((err) => dispatch(deleteFavouriteFailure(err)))
 		} else {
 			dispatch(addFavouriteRequest())
-			return axios.post(`/api/favourites/${favID}`)
+			const data = {favourited_id: movieID, favourited_type: 'Movie'}
+			
+			return axios.post(`/api/users/${userID}/favourites/`, data)
+				.then((resp) => dispatch(toggleFavouritedStatus(resp.data.id, true)))
 				.then(() => dispatch(addFavouriteSuccess()))
 				.catch((err) => dispatch(addFavouriteFailure(err)))
 		}
 	}
 }
-
-// // ====> GET actions
-// // captures the error messages on fail
-// export const updateFavouritesFailure = actionCreator(
-// 	UPDATE_FAVOURITES_FAILURE,
-// 	'error',
-// );
-// // update the api request property
-// export const updateFavouritesRequest = actionCreator(
-// 	UPDATE_FAVOURITES_REQUEST,
-// );
-// // manage the data returned from favourites GET call api
-// export const updateFavouritesSuccess = actionCreator(
-// 	UPDATE_FAVOURITES_SUCCESS,
-// );
-
-// export const updateFavouritesDictionary = actionCreator(
-// 	UPDATE_FAVOURITES_DICTIONARY,
-// 	'indexes',
-// 	'dictionary',
-// );
-
-// // retrieve the favourites object (array of objs) from the api
-// export function updateFavourites() {
-// 	// using thunk middleware to return a fn from an action
-// 	// named it `thunk` to clear linting err re:anonymous fucntions
-// 	return function thunk(dispatch) {
-// 		// alert state of request action
-// 		dispatch(updateFavouritesRequest());
-// 		// return the axios promise with the data/status
-// 		return axios.get(`/api/favourites/`)
-// 			// normalize the response data
-// 			.then((resp) => {
-// 				console.log('--#updateFavourites data-->', resp.data);
-// 				return resp.data ? resp.data : 'no data'
-// 			})
-// 			.then((data) => {
-// 				// normalize the data
-// 				const normed = normalize(data, favouritesListSchema);
-// 				const indexes = normed.result; // an array of indices
-// 				const dictionary = normed.entities.favourites; // an object map
-// 				dispatch(updateDictionary(indexes, dictionary));
-// 				return normed
-// 			})
-// 			// dispatch to update the state of the dictionary
-// 			.then(() => dispatch(updateFavouritesSuccess()))
-// 			.catch((error) => {
-// 				dispatch(updateFavouritesFailure(error));
-// 				return console.log('---#updateFavourites error--->', error);
-// 			});
-// 	};
-// }
-
-// // ====> ADD actions
-// export const toggleFavouriteFailure = actionCreator(
-// 	TOGGLE_FAVOURITE_FAILURE,
-// 	'error',
-// );
-// export const toggleFavouriteRequest = actionCreator(
-// 	TOGGLE_FAVOURITE_REQUEST,
-// );
-// export const toggleFavouriteSuccess = actionCreator(
-// 	TOGGLE_FAVOURITE_SUCCESS,
-// );
-
-// export function toggleFavourite(data) {
-// 	const { commentable_id, commentable_type } = data;
-// 	const path = commentable_type === 'Favourite' ? 'favourites' : 'movies';
-// 	const url = `/api/${path}/${commentable_id}/favourites`;
-
-// 	return function thunk(dispatch, state) {
-
-// 		return axios.post(url, data)
-// 		.then(resp => { 
-// 				dispatch(toggleFavouriteRequest())	
-// 				return resp
-// 			})
-// 			.then((resp) => {
-// 				if (resp.status) { dispatch(toggleFavouriteSuccess()) }
-// 				return resp
-// 			})
-// 			.then((resp) => {
-// 				console.log(`#toggleFavourite id ${resp.data.id} success==>`, { resp });
-// 				alert(`Added favourite ${resp.data.id}: "${resp.data.title}"`);
-// 				return resp
-// 			})
-// 			.then((resp) => {
-// 				dispatch(updateFavourites());
-// 				return resp
-// 			})
-// 			.catch((err) => {
-// 				dispatch(toggleFavouriteFailure(err));
-// 				alert(`There was a problem adding your favourite. \n ${err}`);
-// 				console.log('ERROR=>', err);
-// 			})
-// 	};
-// }
-
-
-// // ====================================
-
-// // add a movie to a user's favourites
-// export function toggleFavourite(data) {
-// 	axios.post('/api/favourites', data)
-// 		.then((resp) => {
-//     	console.log('adding the favourite ==>', resp.data);
-// 			return resp;
-// 		})
-// 		.catch((err) => {
-// 			console.log('Err: #toggleFavourites ==>', err);
-// 		});
-// }
-
-// // return an index of all favourites for this user
-// export function updateFavourites(userId) {
-// 	return axios.get(`api/users/${userId}/favourites`)
-// 		.then((resp) => {
-// 			console.log(`getting favourites for user: ${userId}:`, resp.data);
-// 			return resp;
-// 		})
-// 		.catch((err) => {
-// 			console.log('Err: #getFavouites', err);
-// 		});
-// }
-
-// export function removeFavourite(data) {
-// 	return axios.get('api/favourites', {
-// 		params: {
-// 			favourited_id: data.favourited_id,
-// 			favourited_type: data.favourited_type,
-// 			user_id: data.user_id,
-// 		},
-// 	})
-// 		.then((resp) => {
-// 			const favId = resp.data.id;
-// 			console.log('removing favourite: ', favId);
-// 			return axios.delete(`api/favourites/${favId}`);
-// 		})
-// 		.catch((err) => {
-// 			console.log('Err: #removeFavourites ==>', err);
-// 		});
-// }
-
-// // Returns a Promise to verify favuorited status for user/movie
-// // data object has the favourite_id and boolean regarding exists?
-// export function isFavourited(data) {
-// 	return axios.get('api/favourites', {
-// 		params: {
-// 			favourited_id: data.favourited_id,
-// 			favourited_type: data.favourited_type,
-// 			user_id: data.user_id,
-// 		},
-// 	})
-// 		.then((resp) => {
-// 			if (resp.id !== 'null') {
-// 				// console.log('current isFavourited status is:', resp.data);
-// 				return resp;
-// 			}
-// 			// console.log(`Something's wrong with the data.\n See the logs.`);
-// 			// console.log('data: ', data, 'resp.data: ', resp.data);
-// 			return 'null response?';
-// 		})
-// 		.catch((err) => {
-// 			console.log('Err: #isFavourited', err);
-// 		});
-// }

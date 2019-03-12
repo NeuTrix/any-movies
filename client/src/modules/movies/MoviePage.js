@@ -30,7 +30,7 @@ class MoviePage extends Component {
 				user,
 			} = this.props;
 
-			new Promise((resolve) => resolve(getComments()))
+			const update = new Promise((resolve) => resolve(getComments()))
 				.then(() => isMovieRegistered(movie.imdbID))
 				// 
 				.then(() => isFavourited({ movieID: movie.imdbID, userID: user.id }))
