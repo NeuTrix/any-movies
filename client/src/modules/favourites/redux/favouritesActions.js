@@ -27,10 +27,6 @@ import {
 	UPDATE_FAVOURITES_DICTIONARY,
 } from '../../helpers/constants';
 
-// normalizr schema
-export const favourite = new schema.Entity('favourites'); // normalize data
-export const favouritesListSchema = [favourite]; // shorthand for schema.Array...
-
 // ============ CHECK Favourites
 // captures the error messages on fail
 export const checkIsFavouritedFailure = actionCreator(
@@ -54,7 +50,7 @@ export const updateIsFavouritedStatus = actionCreator(
 // returns a boolean value re presence of favourite for this user
 export function isFavourited({ movieID, userID }) {
 
-	return function thunk(dispatch, prevState) {
+	return function thunk(dispatch) {
 
 		return axios.get(`/api/users/${userID}/favourites?filter=${movieID}`)
 			.then(resp => {
@@ -135,6 +131,10 @@ export function toggleFavourited({ favID, movieID, status, userID }) {
 
 // ============ GET Favourites
 
+// normalizr schema
+export const favourite = new schema.Entity('favourites'); // normalize data
+export const favouritesListSchema = [favourite]; // shorthand -> schema.Array...
+
 export const getFavouritesFailure = actionCreator(
 	GET_FAVOURITES_FAILURE,
 	'error',
@@ -151,5 +151,25 @@ export const getFavouritesSuccess = actionCreator(
 export const updateFavouritesDictionary = actionCreator(
 	UPDATE_FAVOURITES_DICTIONARY
 );
+export function getUsersFavourites(userID) {
+
+	return function thunk(dispatch) {
+
+		return axios.get(`/api/users/${userID}/favourites`)
+			.then((resp) => {
+				const data = resp.data;
+				// normalize the data
+				const normed = normalize(data, favouritesListSchema);
+				const indexes = normed.result; // an array of indices
+				const dictionary = normed.entities.favourites; // an object map
+				dispatch(updateFavouritesDictionary(indexes, dictionary));
+				return normed
+			})
+			.then((normed) => console.log(777, '==>', normed))
+			.catch(err => console.log(err))
+
+	}
+
+}
 
 

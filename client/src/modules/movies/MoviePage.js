@@ -9,31 +9,30 @@ const propTypes = {
 	movie: PropTypes.instanceOf(Object).isRequired,
 	// functions
 	getComments: PropTypes.instanceOf(Function).isRequired,
+	getUsersFavourites: PropTypes.instanceOf(Function).isRequired,
 	isMovieRegistered: PropTypes.instanceOf(Function).isRequired,
 	isFavourited: PropTypes.instanceOf(Function).isRequired,
 	user: PropTypes.instanceOf(Object).isRequired,
 };
 
-// in the event that a movie is not registered or has no comments
-// eliminates warning messages when fn would return 'undefined'
-
 class MoviePage extends Component {
 
 	componentDidUpdate(prevProps) {
-		const { movie } = this.props;
-		
-		if (movie !== prevProps.movie) {
-			const {
-				getComments,
-				isFavourited,
-				isMovieRegistered,
-				user,
-			} = this.props;
+		const {
+			getComments,
+			getUsersFavourites,
+			isFavourited,
+			isMovieRegistered,
+			movie,
+			user,
+		} = this.props;
 
-			const update = new Promise((resolve) => resolve(getComments()))
+		if (movie !== prevProps.movie) {
+			const update = new Promise((res) => res());
+			update.then(() => getComments())
 				.then(() => isMovieRegistered(movie.imdbID))
-				// 
 				.then(() => isFavourited({ movieID: movie.imdbID, userID: user.id }))
+				.then(() => getUsersFavourites(user.id))
 				.catch(err => console.log(err));
 		}
 	}
