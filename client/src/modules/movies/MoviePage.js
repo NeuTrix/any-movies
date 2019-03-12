@@ -8,9 +8,9 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	movie: PropTypes.instanceOf(Object).isRequired,
 	// functions
-	getComments: PropTypes.instanceOf(Function).isRequired, 
-	isMovieRegistered: PropTypes.instanceOf(Function).isRequired, 
-	isFavourited: PropTypes.instanceOf(Function).isRequired, 
+	getComments: PropTypes.instanceOf(Function).isRequired,
+	isMovieRegistered: PropTypes.instanceOf(Function).isRequired,
+	isFavourited: PropTypes.instanceOf(Function).isRequired,
 	user: PropTypes.instanceOf(Object).isRequired,
 };
 
@@ -20,13 +20,14 @@ const propTypes = {
 class MoviePage extends Component {
 
 	componentDidUpdate(prevProps) {
-		if (this.props.movie !== prevProps.movie) {
-			const { 
-				getComments, 
-				isFavourited, 
+		const { movie } = this.props;
+		
+		if (movie !== prevProps.movie) {
+			const {
+				getComments,
+				isFavourited,
 				isMovieRegistered,
-				movie, 
-				user, 
+				user,
 			} = this.props;
 
 			new Promise((resolve) => resolve(getComments()))
