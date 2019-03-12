@@ -6,32 +6,40 @@ import { FavouritesButtonContainer } from '../favourites';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
-	currMovie: PropTypes.instanceOf(Object).isRequired,
+	movie: PropTypes.instanceOf(Object).isRequired,
 	// functions
-	getComments: PropTypes.instanceOf(Function), 
-	isMovieRegistered: PropTypes.instanceOf(Function), 
+	getComments: PropTypes.instanceOf(Function).isRequired, 
+	isMovieRegistered: PropTypes.instanceOf(Function).isRequired, 
+	isFavourited: PropTypes.instanceOf(Function).isRequired, 
+	user: PropTypes.instanceOf(Object).isRequired,
 };
 
 // in the event that a movie is not registered or has no comments
 // eliminates warning messages when fn would return 'undefined'
-const defaultProps = {
-	getComments: f => f,
-}
 
 class MoviePage extends Component {
 
-	componentDidUpdate(prevProps,) {
-		if (this.props.currMovie !== prevProps.currMovie) {
-			const { currMovie, getComments, isMovieRegistered } = this.props;
+	componentDidUpdate(prevProps) {
+		if (this.props.movie !== prevProps.movie) {
+			const { 
+				getComments, 
+				isFavourited, 
+				isMovieRegistered,
+				movie, 
+				user, 
+			} = this.props;
+
 			new Promise((resolve) => resolve(getComments()))
-				.then(() => isMovieRegistered(currMovie.imdbID))
+				.then(() => isMovieRegistered(movie.imdbID))
+				.then(() => isFavourited(user.id, movie.imdbID))
+				.catch(err => console.log(err));
 		}
 	}
 
 	render() {// generate list of movie ratings
-		const { classes, currMovie, imdbID } = this.props;
+		const { classes, movie, imdbID } = this.props;
 
-		const ratings = currMovie.Ratings && currMovie.Ratings.map((rating) => {
+		const ratings = movie.Ratings && movie.Ratings.map((rating) => {
 			return (
 				<div key={imdbID} className={classes.ratingUnit}>
 					<div style={{ gridArea: 'critic' }}>
@@ -49,31 +57,31 @@ class MoviePage extends Component {
 				<div className={classes.titlebar}>
 					<div className={classes.fav}>
 					{/* faking the curr use */}
-						<FavouritesButtonContainer currUserId={1} currMovie={currMovie} />
+						<FavouritesButtonContainer currUserId={1} movie={movie} />
 					</div>
 
 					<div className={classes.title} >
-						<Typography variant="h4"> { currMovie.Title } </Typography>
+						<Typography variant="h4"> { movie.Title } </Typography>
 					</div>
 				</div>
 
 				<div className={classes.image}>
 					<img
 						className={classes.poster}
-						src={currMovie.Poster}
-						alt="currMovie poster"
+						src={movie.Poster}
+						alt="movie poster"
 					/>
-					<div> {`Released...${currMovie.Year}`} </div> <br />
-					<div> {'Rated'} <h3> { currMovie.Rated } </h3> </div>
-					<div> <h6> { `imdbID: ${currMovie.imdbID}` } </h6> </div>
+					<div> {`Released...${movie.Year}`} </div> <br />
+					<div> {'Rated'} <h3> { movie.Rated } </h3> </div>
+					<div> <h6> { `imdbID: ${movie.imdbID}` } </h6> </div>
 
 				</div>
 
 				<div className={classes.info}>
 
-					<div> <h4> {'Genre:'} </h4> <p> {currMovie.Genre} </p> </div>
-					<div> <h4> { 'Director:' } </h4> <p> {currMovie.Director} </p> </div>
-					<div> <h4> {' Starring:' } </h4> <p> { currMovie.Actors } </p> </div>
+					<div> <h4> {'Genre:'} </h4> <p> {movie.Genre} </p> </div>
+					<div> <h4> { 'Director:' } </h4> <p> {movie.Director} </p> </div>
+					<div> <h4> {' Starring:' } </h4> <p> { movie.Actors } </p> </div>
 
 				</div>
 
@@ -83,7 +91,7 @@ class MoviePage extends Component {
 
 				<div className={classes.plot}>
 					<h4> Movie Plot: </h4>
-					<p> { currMovie.Plot } </p>
+					<p> { movie.Plot } </p>
 				</div>
 
 			</div>
@@ -92,7 +100,6 @@ class MoviePage extends Component {
 }
 
 const styles = theme => ({
-
 	fav: {
 		display: 'inherit',
 		gridArea: 'fav',
@@ -171,6 +178,5 @@ const styles = theme => ({
 });
 
 MoviePage.propTypes = propTypes;
-MoviePage.defaultProps = defaultProps;
 
 export default withStyles(styles)(MoviePage);

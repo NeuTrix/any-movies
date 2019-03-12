@@ -69,9 +69,9 @@ class FavouritesButton extends Component {
 	onClick(e) {
 
 		e.preventDefault();
-		const { isFavourited } = this.props;
+		const { isFavourited, movie, user } = this.props;
 		// check to see if favourited in the api db
-		isFavourited(1, 'tt0076759');
+		isFavourited(user.id, movie.imdbID);
 			// .then((resp) => {
 			// 	if (favoured) {
 			// 		removeFavourite(data); // remove a favourited item
