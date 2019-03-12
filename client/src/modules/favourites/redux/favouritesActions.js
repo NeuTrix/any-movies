@@ -18,8 +18,8 @@ import {
 } from '../../helpers/constants';
 
 // normalizr schema
-export const favourite = new schema.Entity('favourties'); // normalize data
-export const favourtiesListSchema = [favourite]; // shorthand for schema.Array...
+export const favourite = new schema.Entity('favourites'); // normalize data
+export const favouritesListSchema = [favourite]; // shorthand for schema.Array...
 
 // ====> isFavourited actions
 // captures the error messages on fail
@@ -31,7 +31,7 @@ export const checkIsFavouritedFailure = actionCreator(
 export const checkIsFavouritedRequest = actionCreator(
 	CHECK_IS_FAVOURITED_REQUEST,
 );
-// manage the data returned from favourties GET call api
+// manage the data returned from favourites GET call api
 export const checkIsFavouritedSuccess = actionCreator(
 	CHECK_IS_FAVOURITED_SUCCESS,
 );
@@ -54,7 +54,7 @@ export const updateIsFavouritedStatus = actionCreator(
 // export const updateFavouritesRequest = actionCreator(
 // 	UPDATE_FAVOURITES_REQUEST,
 // );
-// // manage the data returned from favourties GET call api
+// // manage the data returned from favourites GET call api
 // export const updateFavouritesSuccess = actionCreator(
 // 	UPDATE_FAVOURITES_SUCCESS,
 // );
@@ -65,7 +65,7 @@ export const updateIsFavouritedStatus = actionCreator(
 // 	'dictionary',
 // );
 
-// // retrieve the favourties object (array of objs) from the api
+// // retrieve the favourites object (array of objs) from the api
 // export function updateFavourites() {
 // 	// using thunk middleware to return a fn from an action
 // 	// named it `thunk` to clear linting err re:anonymous fucntions
@@ -73,7 +73,7 @@ export const updateIsFavouritedStatus = actionCreator(
 // 		// alert state of request action
 // 		dispatch(updateFavouritesRequest());
 // 		// return the axios promise with the data/status
-// 		return axios.get(`/api/favourties/`)
+// 		return axios.get(`/api/favourites/`)
 // 			// normalize the response data
 // 			.then((resp) => {
 // 				console.log('--#updateFavourites data-->', resp.data);
@@ -81,9 +81,9 @@ export const updateIsFavouritedStatus = actionCreator(
 // 			})
 // 			.then((data) => {
 // 				// normalize the data
-// 				const normed = normalize(data, favourtiesListSchema);
+// 				const normed = normalize(data, favouritesListSchema);
 // 				const indexes = normed.result; // an array of indices
-// 				const dictionary = normed.entities.favourties; // an object map
+// 				const dictionary = normed.entities.favourites; // an object map
 // 				dispatch(updateDictionary(indexes, dictionary));
 // 				return normed
 // 			})
@@ -110,8 +110,8 @@ export const updateIsFavouritedStatus = actionCreator(
 
 // export function toggleFavourite(data) {
 // 	const { commentable_id, commentable_type } = data;
-// 	const path = commentable_type === 'Favourite' ? 'favourties' : 'movies';
-// 	const url = `/api/${path}/${commentable_id}/favourties`;
+// 	const path = commentable_type === 'Favourite' ? 'favourites' : 'movies';
+// 	const url = `/api/${path}/${commentable_id}/favourites`;
 
 // 	return function thunk(dispatch, state) {
 

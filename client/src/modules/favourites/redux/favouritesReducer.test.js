@@ -24,10 +24,10 @@ describe('Favourites reducer default actions', () => {
 	});
 });
 
-// describe('The default state properties', () => {
-// 	xit('... has a the expected number of default properties', () => {
-// 		expect(Object.keys(initialState).length).to.eql(3);
-// 	});
+describe('The default state properties', () => {
+	it('... has a the expected number of default properties', () => {
+		expect(Object.keys(initialState).length).to.eql(3);
+	});
 
 // 	xit('...has a `apiStatus` property (object)', () => {
 // 		expect(initialState).to.have.property('apiStatus')
@@ -44,6 +44,5 @@ describe('Favourites reducer default actions', () => {
 // 			.to.be.a('boolean');
 // 	});
 
-// });
+});
 
-//
