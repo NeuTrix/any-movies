@@ -18,11 +18,12 @@ import {
 const prevState = initialState;
 deepfreeze(prevState);
 // how to test thunks?
-xdescribe('The isFavourited action', () => {
-	it('... returns an object', () => {
-		console.log(isFavourited(1, 'tt0076759'))
-		expect(isFavourited(1, 'tt0076759')()).to.eql('')
-	});
+describe('The isFavourited action', () => {
+	// it.only('... returns an object', () => {
+	// 	const action = isFavourited(1, 'tt0076759');
+	// 	// const nextState = favouritesReducer(prevState, action)
+	// 	expect(nextState.favourites.favourited).to.eql('')
+	// });
 });
 
 describe('Favourites reducer default actions', () => {
