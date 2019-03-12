@@ -1,9 +1,17 @@
 // reducer for favourites actions with a sub reducer for dictionary
 import {
-	// isFavourited
+	ADD_FAVOURITE_FAILURE,
+	ADD_FAVOURITE_REQUEST,
+	ADD_FAVOURITE_SUCCESS,
+
 	CHECK_IS_FAVOURITED_FAILURE,
 	CHECK_IS_FAVOURITED_REQUEST,
 	CHECK_IS_FAVOURITED_SUCCESS,
+	
+	DELETE_FAVOURITE_FAILURE,
+	DELETE_FAVOURITE_REQUEST,
+	DELETE_FAVOURITE_SUCCESS,
+
 	TOGGLE_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
 } from '../../helpers/constants';
@@ -35,10 +43,12 @@ export default function favouritesReducer(state = initialState, action = {}) {
 					current: payload.current,
 					status: payload.status,
 				},
-			};
+			}
 
 		// === FAILURE
+		case ADD_FAVOURITE_FAILURE:
 		case CHECK_IS_FAVOURITED_FAILURE:
+		case DELETE_FAVOURITE_FAILURE:
 			return {
 				...state,
 				...{
@@ -51,7 +61,9 @@ export default function favouritesReducer(state = initialState, action = {}) {
 			};
 
 		// === REQUEST
+		case ADD_FAVOURITE_REQUEST:
 		case CHECK_IS_FAVOURITED_REQUEST:
+		case DELETE_FAVOURITE_REQUEST:
 			return {
 				...state,
 				...{
@@ -64,7 +76,9 @@ export default function favouritesReducer(state = initialState, action = {}) {
 			};
 
 		//  === SUCCESS
+		case ADD_FAVOURITE_SUCCESS:
 		case CHECK_IS_FAVOURITED_SUCCESS:
+		case DELETE_FAVOURITE_SUCCESS:
 			return {
 				...state,
 				...{

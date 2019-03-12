@@ -10,6 +10,7 @@ import {
 	checkIsFavouritedFailure,
 	checkIsFavouritedRequest,
 	checkIsFavouritedSuccess,
+	toggleFavouritedStatus,
 	updateIsFavouritedStatus,
 	isFavourited,
 } from './favouritesActions';
@@ -18,12 +19,13 @@ import {
 const prevState = initialState;
 deepfreeze(prevState);
 // how to test thunks?
-describe('The isFavourited action', () => {
-	// it.only('... returns an object', () => {
-	// 	const action = isFavourited(1, 'tt0076759');
-	// 	// const nextState = favouritesReducer(prevState, action)
-	// 	expect(nextState.favourites.favourited).to.eql('')
-	// });
+describe('The toggleFavouritedStatus action', () => {
+	const favID = 1;
+	const action = toggleFavouritedStatus(favID, movie1.imdbID);
+	const nextState = favouritesReducer(prevState, action)
+	it.only('... toggles the state status', () => {
+		expect(nextState.favourites.status).not.to.eql(prevState.favourites.status);
+	});
 });
 
 describe('Favourites reducer default actions', () => {

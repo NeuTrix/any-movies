@@ -4,17 +4,21 @@ import { actionCreator } from '../../helpers';
 import { registerMovie } from '../../movies/redux/moviesActions';
 
 import {
+	ADD_FAVOURITE_FAILURE,
+	ADD_FAVOURITE_REQUEST,
+	ADD_FAVOURITE_SUCCESS,
+	
 	// check status
 	CHECK_IS_FAVOURITED_FAILURE,
 	CHECK_IS_FAVOURITED_REQUEST,
 	CHECK_IS_FAVOURITED_SUCCESS,
+	
+	DELETE_FAVOURITE_FAILURE,
+	DELETE_FAVOURITE_REQUEST,
+	DELETE_FAVOURITE_SUCCESS,
+	
+	TOGGLE_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
-	// update
-	// UPDATE_FAVOURITES_FAILURE,
-	// UPDATE_FAVOURITES_REQUEST,
-	// UPDATE_FAVOURITES_SUCCESS,
-	// UPDATE_FAVOURITES_DICTIONARY,
-	// TOGGLE_FAVOURITE,
 } from '../../helpers/constants';
 
 // normalizr schema
@@ -68,6 +72,49 @@ export function isFavourited(userID,movieID) {
 	} 
 }
 
+export const toggleFavouritedStatus = actionCreator(
+	TOGGLE_FAVOURITED_STATUS,
+	'current', // favourite id
+	'status', // current movie id
+);
+
+export const addFavouriteFailure = actionCreator(
+	ADD_FAVOURITE_FAILURE
+);
+
+export const addFavouriteRequest = actionCreator(
+	ADD_FAVOURITE_REQUEST
+);
+
+export const addFavouriteSuccess = actionCreator(
+	ADD_FAVOURITE_SUCCESS
+);
+
+export const deleteFavouriteFailure = actionCreator(
+	DELETE_FAVOURITE_FAILURE
+);
+
+export const deleteFavouriteRequest = actionCreator(
+	DELETE_FAVOURITE_REQUEST
+);
+
+export const deleteFavouriteSuccess = actionCreator(
+	DELETE_FAVOURITE_SUCCESS
+);
+
+
+
+export function toggleFavourited(movieID, favrID, status) {
+
+	return function thunk(dispatch) {
+		if (status) {
+			return axios.delete(``)
+		}
+
+
+
+	}
+}
 // // ====> GET actions
 // // captures the error messages on fail
 // export const updateFavouritesFailure = actionCreator(
