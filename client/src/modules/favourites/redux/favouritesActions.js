@@ -106,7 +106,7 @@ export const deleteFavouriteSuccess = actionCreator(
 	DELETE_FAVOURITE_SUCCESS
 );
 // pass in an args 'data' object
-export function toggleFavourited({ favID, movieID, status, userID }) {
+export function toggleFavourited({ favID, movie, status, userID }) {
 
 	return function thunk(dispatch) {
 
@@ -119,7 +119,11 @@ export function toggleFavourited({ favID, movieID, status, userID }) {
 				.catch((err) => dispatch(deleteFavouriteFailure(err)))
 		} else {
 			dispatch(addFavouriteRequest())
-			const data = {favourited_id: movieID, favourited_type: 'Movie'}
+			const data = { 
+				favourited_id: movie.imdbID, 
+				favourited_type: 'Movie',
+				poster: movie.Poster,
+			}
 			
 			return axios.post(`/api/users/${userID}/favourites/`, data)
 				.then((resp) => dispatch(toggledFavouritedStatus(resp.data.id, true)))

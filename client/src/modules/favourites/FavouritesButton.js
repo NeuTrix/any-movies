@@ -7,18 +7,18 @@ import { withStyles } from '@material-ui/core/styles';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	favID: PropTypes.string.isRequired, // id of current movie favourited object
-	movieID: PropTypes.instanceOf(Object).isRequired, // current movie
+	movie: PropTypes.instanceOf(Object).isRequired, // current movie
 	status: PropTypes.bool.isRequired, // favourited status of current movie
 	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
 	userID: PropTypes.number.isRequired, // current user
 };
 
 function FavouritesButton(props) {
-	const { classes, favID, movieID, status, toggleFavourited, userID } = props;
+	const { classes, favID, movie, status, toggleFavourited, userID } = props;
 
 	const handleToggle = (e) => {
 		e.preventDefault();
-		toggleFavourited({ favID, movieID, status, userID });
+		toggleFavourited({ favID, movie, status, userID });
 	};
 
 	return (
