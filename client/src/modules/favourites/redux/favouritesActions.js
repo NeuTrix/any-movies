@@ -17,7 +17,7 @@ import {
 	DELETE_FAVOURITE_REQUEST,
 	DELETE_FAVOURITE_SUCCESS,
 	
-	TOGGLE_FAVOURITED_STATUS,
+	TOGGLED_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
 } from '../../helpers/constants';
 
@@ -72,8 +72,8 @@ export function isFavourited({ movieID, userID }) {
 	} 
 }
 
-export const toggleFavouritedStatus = actionCreator(
-	TOGGLE_FAVOURITED_STATUS,
+export const toggledFavouritedStatus = actionCreator(
+	TOGGLED_FAVOURITED_STATUS,
 	'current', // favourite id
 	'status', // current movie id
 );
@@ -113,7 +113,7 @@ export function toggleFavourited({ favID, movieID, status, userID }) {
 			dispatch(deleteFavouriteRequest());
 
 			return axios.delete(`/api/favourites/${favID}`)
-				.then(() => dispatch(toggleFavouritedStatus('null2', false)))
+				.then(() => dispatch(toggledFavouritedStatus('null2', false)))
 				.then(() => dispatch(deleteFavouriteSuccess()))
 				.catch((err) => dispatch(deleteFavouriteFailure(err)))
 		} else {
@@ -121,7 +121,7 @@ export function toggleFavourited({ favID, movieID, status, userID }) {
 			const data = {favourited_id: movieID, favourited_type: 'Movie'}
 			
 			return axios.post(`/api/users/${userID}/favourites/`, data)
-				.then((resp) => dispatch(toggleFavouritedStatus(resp.data.id, true)))
+				.then((resp) => dispatch(toggledFavouritedStatus(resp.data.id, true)))
 				.then(() => dispatch(addFavouriteSuccess()))
 				.catch((err) => dispatch(addFavouriteFailure(err)))
 		}

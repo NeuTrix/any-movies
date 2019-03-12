@@ -12,7 +12,7 @@ import {
 	DELETE_FAVOURITE_REQUEST,
 	DELETE_FAVOURITE_SUCCESS,
 
-	TOGGLE_FAVOURITED_STATUS,
+	TOGGLED_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
 } from '../../helpers/constants';
 
@@ -35,7 +35,7 @@ export default function favouritesReducer(state = initialState, action = {}) {
 
 	switch (type) {
 		// === FAVOURITES
-		case TOGGLE_FAVOURITED_STATUS:
+		case TOGGLED_FAVOURITED_STATUS:
 		case UPDATE_IS_FAVOURITED_STATUS:
 			return {
 				...state,

@@ -10,7 +10,7 @@ import {
 	checkIsFavouritedFailure,
 	checkIsFavouritedRequest,
 	checkIsFavouritedSuccess,
-	toggleFavouritedStatus,
+	toggledFavouritedStatus,
 	updateIsFavouritedStatus,
 	isFavourited,
 } from './favouritesActions';
