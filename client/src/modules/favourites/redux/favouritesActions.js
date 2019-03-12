@@ -38,7 +38,8 @@ export const checkIsFavouritedSuccess = actionCreator(
 
 export const updateIsFavouritedStatus = actionCreator(
 	UPDATE_IS_FAVOURITED_STATUS,
-	'status',
+	'current', // favourite_id of the current movie
+	'status', // determine if this movie is favourited
 );
 
 // returns a boolean value re presence of favourite for this user
@@ -52,10 +53,12 @@ export function isFavourited(userID,movieID) {
 				return resp;
 			})
 			.then((resp) => {
-				if (resp.data) {
-					dispatch(updateIsFavouritedStatus(
-						resp.data[0] && resp.data.favourited_id === movieID ? true : false)
-				)}
+				const data = resp.data;
+				if (data) {
+					const status = data[0] && data[0].favourited_id === movieID || false;
+					const current = status && data[0].id || null;
+					dispatch(updateIsFavouritedStatus(current, status));
+				}
 			})
 			.then(() => dispatch(checkIsFavouritedSuccess()))
 			.catch(err => { 

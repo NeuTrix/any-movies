@@ -15,6 +15,7 @@ export const initialState = {
 		message: '',
 		status: '',
 	},
+	current:'',
 	dictionary: {}, // a map of all favourites viewed in this session
 	favourited: false, // favourited?
 };
@@ -29,7 +30,8 @@ export default function favouritesReducer(state = initialState, action = {}) {
 			return {
 				...state,
 				...{
-					favourited: payload.status
+					current: payload.current,
+					favourited: payload.status,
 				},
 			};
 
