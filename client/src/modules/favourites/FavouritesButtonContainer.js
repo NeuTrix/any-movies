@@ -4,9 +4,9 @@ import { toggleFavourited } from '../favourites/redux/favouritesActions';
 
 const mapStateToProps = (state, props) => ({
 	favID: state.favourites.current,
-	movie: state.movies.current, // current movie displayed
+	movieID: state.movies.current.imdbID, // current movie displayed
 	status: state.favourites.status,
-	user: state.users.current, // current user
+	userID: state.users.current.id, // current user
 })
 
 const mapDispatchToProps = (dispatch) => ({
