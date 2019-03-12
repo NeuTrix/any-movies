@@ -25,7 +25,7 @@ require 'test_helper'
   end
 
   test "should create favourite" do
-    # skip
+    skip
     # assert_difference('Favourite.count') do
       post api_favourites_url,
       params:  {

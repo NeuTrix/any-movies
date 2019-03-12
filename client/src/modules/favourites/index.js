@@ -5,8 +5,8 @@ export { default as favouritesReducer } from './redux/favouritesReducer';
 // export Redux
 export {
   addFavourite,
-  getFavourites,
-  isFavourited,
-  removeFavourite,
+  // getFavourites,
+  // isFavourited,
+  // removeFavourite,
 }
 from './redux/favouritesActions';

@@ -41,11 +41,11 @@ export const updateIsFavouritedStatus = actionCreator(
 	'status',
 );
 
-export function isFavourited(movieID) {
+export function isFavourited(userID,movieID) {
 
 	return function thunk(dispatch, prevState) {
 
-		return axios.get(`/api/movies/$`)
+		return axios.get(`/api/user/${userID} `)
 
 	} 
 }

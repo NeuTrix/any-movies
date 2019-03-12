@@ -1,5 +1,5 @@
 class Api::Users::FavouritesController < ApplicationController
-  before_action :set_user, 
+  before_action :set_user
   # :set_user_favourite
 
   # GET /users/user_id/favourites
@@ -8,6 +8,16 @@ class Api::Users::FavouritesController < ApplicationController
 
     render json: @user_favourites
     # render "Hello"
+  end
+
+  def create
+    @favourite = @user.favourites.build(user_favourite_params)
+
+    if @favourite.save
+      render json: @favourite, status: :created
+    else
+      render json: @favourite.errors, status: :unprocessable_entity
+    end
   end
 
   # GET /users/user_id/favourites/favourite_id
