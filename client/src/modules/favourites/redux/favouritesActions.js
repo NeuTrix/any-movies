@@ -38,11 +38,17 @@ export const checkIsFavouritedSuccess = actionCreator(
 
 export const updateIsFavouritedStatus = actionCreator(
 	UPDATE_IS_FAVOURITED_STATUS,
-	'indexes',
-	'dictionary',
+	'status',
 );
 
+export function isFavourited(movieID) {
 
+	return function thunk(dispatch, prevState) {
+
+		return axios.get(`/api/movies/$`)
+
+	} 
+}
 
 // // ====> GET actions
 // // captures the error messages on fail

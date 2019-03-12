@@ -5,7 +5,6 @@ import {
 	CHECK_IS_FAVOURITED_REQUEST,
 	CHECK_IS_FAVOURITED_SUCCESS,
 	UPDATE_IS_FAVOURITED_STATUS,
-	
 } from '../../helpers/constants';
 
 // shape of favourites state object
@@ -34,14 +33,14 @@ export default function favouritesReducer(state = initialState, action = {}) {
 				},
 			};
 
-		// // === FAILURE
+		// === FAILURE
 		case CHECK_IS_FAVOURITED_FAILURE:
 			return {
 				...state,
 				...{
 					apiStatus: {
 						isFetching: false,
-						message: `Error getting favourites: \n ${payload.error}`,
+						message: `Error getting favourited status: \n ${payload.error}`,
 						status: 'error'
 					},
 				},
@@ -54,20 +53,20 @@ export default function favouritesReducer(state = initialState, action = {}) {
 				...{
 					apiStatus: {
 						isFetching: true,
-						message: 'Requesting favourites',
+						message: 'Requesting favourited status',
 						status: 'requesting',
 					},
 				},
 			};
 
-		// //  === SUCCESS
+		//  === SUCCESS
 		case CHECK_IS_FAVOURITED_SUCCESS:
 			return {
 				...state,
 				...{
 					apiStatus: {
 						isFetching: false,
-						message: 'Successfully recieved favourites',
+						message: 'Successfully checked favourited status',
 						status: 'success',
 					},
 				}
