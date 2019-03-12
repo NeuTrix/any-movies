@@ -4,6 +4,7 @@ import {
 	CHECK_IS_FAVOURITED_FAILURE,
 	CHECK_IS_FAVOURITED_REQUEST,
 	CHECK_IS_FAVOURITED_SUCCESS,
+	TOGGLE_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
 } from '../../helpers/constants';
 
@@ -17,7 +18,7 @@ export const initialState = {
 	},
 	current:'',
 	dictionary: {}, // a map of all favourites viewed in this session
-	favourited: false, // favourited?
+	status: false, // status?
 };
 
 // ====> Primary reducer
@@ -26,12 +27,13 @@ export default function favouritesReducer(state = initialState, action = {}) {
 
 	switch (type) {
 		// === FAVOURITES
+		case TOGGLE_FAVOURITED_STATUS:
 		case UPDATE_IS_FAVOURITED_STATUS:
 			return {
 				...state,
 				...{
 					current: payload.current,
-					favourited: payload.status,
+					status: payload.status,
 				},
 			};
 
@@ -42,7 +44,7 @@ export default function favouritesReducer(state = initialState, action = {}) {
 				...{
 					apiStatus: {
 						isFetching: false,
-						message: `Error getting favourited status: \n ${payload.error}`,
+						message: `Error getting status status: \n ${payload.error}`,
 						status: 'error'
 					},
 				},
@@ -55,7 +57,7 @@ export default function favouritesReducer(state = initialState, action = {}) {
 				...{
 					apiStatus: {
 						isFetching: true,
-						message: 'Requesting favourited status',
+						message: 'Requesting status status',
 						status: 'requesting',
 					},
 				},
@@ -68,7 +70,7 @@ export default function favouritesReducer(state = initialState, action = {}) {
 				...{
 					apiStatus: {
 						isFetching: false,
-						message: 'Successfully checked favourited status',
+						message: 'Successfully checked status status',
 						status: 'success',
 					},
 				}
