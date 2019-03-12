@@ -149,7 +149,9 @@ export const getFavouritesSuccess = actionCreator(
 );
 
 export const updateFavouritesDictionary = actionCreator(
-	UPDATE_FAVOURITES_DICTIONARY
+	UPDATE_FAVOURITES_DICTIONARY,
+	'indexes',
+	'dictionary',
 );
 export function getUsersFavourites(userID) {
 
