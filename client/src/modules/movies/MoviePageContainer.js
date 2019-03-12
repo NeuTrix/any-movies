@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 	getComments: () => dispatch(getComments()),
 	//verify and update movie registration status
 	isMovieRegistered: imdbID => dispatch(isMovieRegistered(imdbID)),
-	isFavourited: (usrID, movID) => dispatch(isFavourited(usrID, movID)),
+	isFavourited: ({ userID, movieID }) => dispatch(isFavourited({ userID, movieID })),
 });
 
 const MoviePageContainer = connect(

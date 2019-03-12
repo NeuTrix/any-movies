@@ -8,7 +8,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProp = (dispatch) => ({
-	isFavourited: ({usrID, movID}) => { dispatch(isFavourited({usrID, movID})) },
+	isFavourited: ({userID, movieID}) => { dispatch(isFavourited({userID, movieID})) },
 	// toggleFavourited: ({ favID, movID, status }) => {
 		// dispatch(toggleFavourited({ favID, movID, status }))
 	// }

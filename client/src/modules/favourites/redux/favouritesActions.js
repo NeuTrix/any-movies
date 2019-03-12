@@ -105,23 +105,24 @@ export const deleteFavouriteSuccess = actionCreator(
 );
 
 // pass in an args 'data' object
-// export function toggleFavourited({ favID, movieID, status }) {
+export function toggleFavourited({ favID, movieID, status }) {
 
-// 	return function thunk(dispatch) {
+	return function thunk(dispatch) {
 
-// 		if (status) {
-// 			dispatch(deleteFavouriteRequest());
-// 			return axios.delete(`/api/favourites/${favID}`)
-// 				.then(() => dispatch(deleteFavouriteSuccess()))
-// 				.catch((err) => dispatch(deleteFavouriteFailure(err)))
-// 		} else {
-// 			dispatch(addFavouriteRequest())
-// 			return axios.post(`/api/favourites/${favID}`)
-// 				.then(() => dispatch(addFavouriteSuccess()))
-// 				.catch((err) => dispatch(addFavouriteFailure(err)))
-// 		}
-// 	}
-// }
+		if (status) {
+			dispatch(deleteFavouriteRequest());
+			return axios.delete(`/api/favourites/${favID}`)
+				.then(() => dispatch(deleteFavouriteSuccess()))
+				.catch((err) => dispatch(deleteFavouriteFailure(err)))
+		} else {
+			dispatch(addFavouriteRequest())
+			return axios.post(`/api/favourites/${favID}`)
+				.then(() => dispatch(addFavouriteSuccess()))
+				.catch((err) => dispatch(addFavouriteFailure(err)))
+		}
+	}
+}
+
 // // ====> GET actions
 // // captures the error messages on fail
 // export const updateFavouritesFailure = actionCreator(
