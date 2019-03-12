@@ -16,16 +16,22 @@ import {
 	DELETE_FAVOURITE_FAILURE,
 	DELETE_FAVOURITE_REQUEST,
 	DELETE_FAVOURITE_SUCCESS,
+
+	// retrieve the user's list of favourite movies
+	GET_FAVOURITES_FAILURE,
+	GET_FAVOURITES_REQUEST,
+	GET_FAVOURITES_SUCCESS,
 	
 	TOGGLED_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
+	UPDATE_FAVOURITES_DICTIONARY,
 } from '../../helpers/constants';
 
 // normalizr schema
 export const favourite = new schema.Entity('favourites'); // normalize data
 export const favouritesListSchema = [favourite]; // shorthand for schema.Array...
 
-// ====> isFavourited actions
+// ============ CHECK Favourites
 // captures the error messages on fail
 export const checkIsFavouritedFailure = actionCreator(
 	CHECK_IS_FAVOURITED_FAILURE,
@@ -45,7 +51,6 @@ export const updateIsFavouritedStatus = actionCreator(
 	'current', // favourite_id of the current movie
 	'status', // determine if this movie is favourited
 );
-
 // returns a boolean value re presence of favourite for this user
 export function isFavourited({ movieID, userID }) {
 
@@ -72,6 +77,7 @@ export function isFavourited({ movieID, userID }) {
 	} 
 }
 
+// ============ TOGGLE Favourites
 export const toggledFavouritedStatus = actionCreator(
 	TOGGLED_FAVOURITED_STATUS,
 	'current', // favourite id
@@ -103,7 +109,6 @@ export const deleteFavouriteRequest = actionCreator(
 export const deleteFavouriteSuccess = actionCreator(
 	DELETE_FAVOURITE_SUCCESS
 );
-
 // pass in an args 'data' object
 export function toggleFavourited({ favID, movieID, status, userID }) {
 
@@ -127,3 +132,24 @@ export function toggleFavourited({ favID, movieID, status, userID }) {
 		}
 	}
 }
+
+// ============ GET Favourites
+
+export const getFavouritesFailure = actionCreator(
+	GET_FAVOURITES_FAILURE,
+	'error',
+);
+
+export const getFavouritesRequest = actionCreator(
+	GET_FAVOURITES_REQUEST
+);
+
+export const getFavouritesSuccess = actionCreator(
+	GET_FAVOURITES_SUCCESS
+);
+
+export const updateFavouritesDictionary = actionCreator(
+	UPDATE_FAVOURITES_DICTIONARY
+);
+
+
