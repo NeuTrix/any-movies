@@ -4,10 +4,9 @@ class Api::Users::FavouritesController < ApplicationController
 
   # GET /users/user_id/favourites
   def index
-    @user_favourites = @user.favourites
+    @user_favourites = Favourite.filter(params[:filter])
 
     render json: @user_favourites
-    # render "Hello"
   end
 
   def create
@@ -40,6 +39,6 @@ class Api::Users::FavouritesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def user_favourite_params
       # fav param is a bool to validate movie status for a user
-      params.permit(:user_id, :favourited_id, :favourited_type)
+      params.permit(:user_id, :favourited_id, :favourited_type, :filter)
     end
 end

@@ -8,6 +8,11 @@ class Favourite < ApplicationRecord
     message: "You've already favourited this film!" 
   }
 
+  def self.filter(filter)
+    return Favourite.all unless filter # guard clause. return all if no filter 
+    @favourites = Favourite.all.where(favourited_id: filter) # filter results
+  end
+
   # allows validation of existing favourite via #index, without knowing id
   # works from the OMDB api movie id vs internal api search
   def self.verify(data)
