@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     post 'user_token' => 'user_token#create'
     
+    resources :favourites, only: :destroy
     # only show comment comments route
     resources :comments do
       resources :comments, module: :comments
