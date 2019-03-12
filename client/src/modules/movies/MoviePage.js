@@ -32,7 +32,8 @@ class MoviePage extends Component {
 
 			new Promise((resolve) => resolve(getComments()))
 				.then(() => isMovieRegistered(movie.imdbID))
-				.then(() => isFavourited(user.id, movie.imdbID))
+				// pass in a data args argument
+				.then(() => isFavourited({ movieID: movie.imdbID, userID: user.id }))
 				.catch(err => console.log(err));
 		}
 	}
