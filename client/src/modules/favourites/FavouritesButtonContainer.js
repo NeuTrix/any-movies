@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FavouritesButton from './FavouritesButton';
-import { isFavourited, toggleFavourited } from '../favourites/redux/favouritesActions';
+import { toggleFavourited } from '../favourites/redux/favouritesActions';
 
 const mapStateToProps = (state, props) => ({
 	favID: state.favourites.current,
@@ -10,9 +10,6 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	isFavourited: ({ userID, movieID }) => { 
-		dispatch(isFavourited({ userID, movieID }));
-	},
 	toggleFavourited: ({ favID, movieID, status, userID }) => {
 		dispatch(toggleFavourited({ favID, movieID, status, userID }));
 	}

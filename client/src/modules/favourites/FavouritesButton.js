@@ -10,10 +10,8 @@ const propTypes = {
 	favID: PropTypes.string.isRequired, // id of current movie favourited object
 	movie: PropTypes.instanceOf(Object).isRequired, // current movie
 	status: PropTypes.bool.isRequired, // favourited status of current movie
-	user: PropTypes.number.isRequired, // current user
-	// functions
-	isFavourited: PropTypes.instanceOf(Function).isRequired, // from container
 	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
+	user: PropTypes.number.isRequired, // current user
 };
 
 class FavouritesButton extends Component {
@@ -21,82 +19,33 @@ class FavouritesButton extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: {},
 			favoured: false, // id of the favourite instance (not favouriteD)
 		};
-		this.onClick = this.onClick.bind(this);
+		this.handleToggle = this.handleToggle.bind(this);
 	}
 
-	// componentDidMount() {
-	// 	const { movie, user } = this.props;
-	// 	const	data = {
-	// 		favourited_id: movie.imdbID,
-	// 		favourited_title: movie.Title,
-	// 		favourited_type: "Movie",
-	// 		user_id: user,
-	// 	};
-	// 	isFavourited(data)
-	// 		.then((resp) => {
-	// 			if (resp.data) {
-	// 				return this.setState({
-	// 					data,
-	// 					favoured: resp.data.exists, // set favoured status for the button
-	// 				});
-	// 			}
-	// 		})
-	// 		.catch(err => console.log('Err: isFavourited()/FavButton', err));
-	// }
-
-	// componentDidUpdate(prevProps) {
-	// 	const { movie, user } = this.props;
-	// 	const data = {
-	// 		favourited_id: movie.imdbID,
-	// 		favourited_title: movie.Title,
-	// 		favourited_type: "Movie",
-	// 		user_id: user,
-	// 	};
-
-	// 	if (prevProps.movie.imdbID !== movie.imdbID) {
-	// 		isFavourited(data)
-	// 			.then((resp) => {
-	// 				if (resp.data) {
-	// 					return this.setState({
-	// 						data,
-	// 						favoured: resp.data.exists, // set favoured status for the button
-	// 					});
-	// 				}
-	// 			})
-	// 			.catch(err => console.log('Err: isFavourited()/FavButton', err));
-	// 	}
-	// }
-
-	onClick(e) {
+	handleToggle(e) {
 		e.preventDefault();
-		// actions
-		const { isFavourited, toggleFavourited } = this.props;
-		// variables
-		const { favID, movie, status, user } = this.props;
+		const { favID, movie, status, toggleFavourited, user } = this.props;
 		const movieID = movie.imdbID;
 		const userID = user.id;
-		// const update = new Promise(resolve => resolve());
-			// update.then(() => 
-			toggleFavourited({ favID, movieID, status, userID });
-		// )
-			// .then(() => isFavourited({ movieID, userID }))
-			// .then(() => isFavourited({ movieID, userID }));
+		const update = new Promise(res => res()); // drive promise chain
+
+		update.then(() => toggleFavourited({ favID, movieID, status, userID }))
+			.then(() => this.setState({ favoured: status }));
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, status } = this.props;
 
 		return (
 			<IconButton
 				size="large"
-				onClick={this.onClick}
+				onClick={this.handleToggle}
 			>
 				<FavouriteTwoTone
 					className={classes.favourited}
-					style={{ color: this.state.favoured ? 'orangered' : 'black' }}
+					style={{ color: status ? 'orangered' : 'black' }}
 				/>
 			</IconButton>
 		);
