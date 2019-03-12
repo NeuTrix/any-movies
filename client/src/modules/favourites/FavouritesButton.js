@@ -4,14 +4,10 @@ import FavouriteTwoTone from '@material-ui/icons/FavoriteTwoTone';
 import { IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 // custom
-import {
-	addFavourite,
-	isFavourited,
-	removeFavourite,
-} from './redux/favouritesActions';
 
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
+	isFavourited: PropTypes.instanceOf(Function).isRequired, // from container
 	movie: PropTypes.instanceOf(Object).isRequired,
 	user: PropTypes.number.isRequired,
 };
@@ -27,66 +23,68 @@ class FavouritesButton extends Component {
 		this.onClick = this.onClick.bind(this);
 	}
 
-	componentDidMount() {
-		const { movie, user } = this.props;
-		const	data = {
-			favourited_id: movie.imdbID,
-			favourited_title: movie.Title,
-			favourited_type: "Movie",
-			user_id: user,
-		};
-		isFavourited(data)
-			.then((resp) => {
-				if (resp.data) {
-					return this.setState({
-						data,
-						favoured: resp.data.exists, // set favoured status for the button
-					});
-				}
-			})
-			.catch(err => console.log('Err: isFavourited()/FavButton', err));
-	}
+	// componentDidMount() {
+	// 	const { movie, user } = this.props;
+	// 	const	data = {
+	// 		favourited_id: movie.imdbID,
+	// 		favourited_title: movie.Title,
+	// 		favourited_type: "Movie",
+	// 		user_id: user,
+	// 	};
+	// 	isFavourited(data)
+	// 		.then((resp) => {
+	// 			if (resp.data) {
+	// 				return this.setState({
+	// 					data,
+	// 					favoured: resp.data.exists, // set favoured status for the button
+	// 				});
+	// 			}
+	// 		})
+	// 		.catch(err => console.log('Err: isFavourited()/FavButton', err));
+	// }
 
-	componentDidUpdate(prevProps) {
-		const { movie, user } = this.props;
-		const data = {
-			favourited_id: movie.imdbID,
-			favourited_title: movie.Title,
-			favourited_type: "Movie",
-			user_id: user,
-		};
+	// componentDidUpdate(prevProps) {
+	// 	const { movie, user } = this.props;
+	// 	const data = {
+	// 		favourited_id: movie.imdbID,
+	// 		favourited_title: movie.Title,
+	// 		favourited_type: "Movie",
+	// 		user_id: user,
+	// 	};
 
-		if (prevProps.movie.imdbID !== movie.imdbID) {
-			isFavourited(data)
-				.then((resp) => {
-					if (resp.data) {
-						return this.setState({
-							data,
-							favoured: resp.data.exists, // set favoured status for the button
-						});
-					}
-				})
-				.catch(err => console.log('Err: isFavourited()/FavButton', err));
-		}
-	}
+	// 	if (prevProps.movie.imdbID !== movie.imdbID) {
+	// 		isFavourited(data)
+	// 			.then((resp) => {
+	// 				if (resp.data) {
+	// 					return this.setState({
+	// 						data,
+	// 						favoured: resp.data.exists, // set favoured status for the button
+	// 					});
+	// 				}
+	// 			})
+	// 			.catch(err => console.log('Err: isFavourited()/FavButton', err));
+	// 	}
+	// }
 
 	onClick(e) {
+
 		e.preventDefault();
-		const { data, favoured } = this.state;
+		const { isFavourited } = this.props;
 		// check to see if favourited in the api db
-		isFavourited(data)
-			.then((resp) => {
-				if (favoured) {
-					removeFavourite(data); // remove a favourited item
-					this.setState({ favoured: false });
-				} else {
-					addFavourite(data); // add to the faves list
-					this.setState({ favoured: true });
-				}
-			})
-			.catch((err) => {
-				console.log('FavouritesButton', err);
-			});
+		isFavourited(1, 'tt0076759');
+			// .then((resp) => {
+			// 	if (favoured) {
+			// 		removeFavourite(data); // remove a favourited item
+			// 		this.setState({ favoured: false });
+			// 	} else {
+			// 		addFavourite(data); // add to the faves list
+			// 		this.setState({ favoured: true });
+			// 	}
+			// })
+			// .then(resp => {console.log(777, '==>', resp)})
+			// .catch((err) => {
+			// 	console.log('FavouritesButton', err);
+			// });
 	}
 
 	render() {

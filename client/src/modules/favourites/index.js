@@ -4,9 +4,9 @@ export { default as FavouritesButtonContainer } from './FavouritesButtonContaine
 export { default as favouritesReducer } from './redux/favouritesReducer';
 // export Redux
 export {
-  addFavourite,
+  // addFavourite,
   // getFavourites,
-  // isFavourited,
+  isFavourited,
   // removeFavourite,
 }
 from './redux/favouritesActions';

@@ -45,8 +45,11 @@ export function isFavourited(userID,movieID) {
 
 	return function thunk(dispatch, prevState) {
 
-		return axios.get(`/api/user/${userID} `)
-
+		return axios.get(`/api/users/${userID}/favourites?filter=${movieID}`)
+		.then((resp) => {
+			console.log(1000, '==>', resp);
+		})
+		.catch(err => { console.log(err)})
 	} 
 }
 

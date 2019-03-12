@@ -11,11 +11,19 @@ import {
 	checkIsFavouritedRequest,
 	checkIsFavouritedSuccess,
 	updateIsFavouritedStatus,
+	isFavourited,
 } from './favouritesActions';
 
 // ensure an immutable previous state object for tests
 const prevState = initialState;
 deepfreeze(prevState);
+// how to test thunks?
+xdescribe('The isFavourited action', () => {
+	it('... returns an object', () => {
+		console.log(isFavourited(1, 'tt0076759'))
+		expect(isFavourited(1, 'tt0076759')()).to.eql('')
+	});
+});
 
 describe('Favourites reducer default actions', () => {
 	it('...undefined action returns default previous state', () => {
