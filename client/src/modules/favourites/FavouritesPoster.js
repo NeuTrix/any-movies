@@ -20,11 +20,7 @@ const FavouritesPoster = (props) => {
 	}
 
 	return ( 
-		<Card 
-			className={classes.main} 
-			raised
-			onClick={ switchMovie } 
-		>
+		<Card className={classes.main} raised onClick={ switchMovie } >
 		<CardMedia className={classes.poster} component="img" src={poster} />
 		<span>
 			{title && title.length > 9 ? `${title.trim().slice(0,9)}...` : title} 
