@@ -14,7 +14,7 @@ export function makeFavouritesPosterArray(indexes, dictionary, movies) {
     return  <FavouritesPoster 
       key="fav" 
       poster={item.poster} 
-      title={title.length > 9 ? title.trim().slice(0,9)+'...' : title} 
+      title={title}
     /> 
   })
 

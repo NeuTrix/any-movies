@@ -11,7 +11,9 @@ const propTypes = {
 const FavouritesPoster = ({ classes, poster, title }) => (
 	<Card className={classes.main} raised>
 		<CardMedia component="img" src={poster} />
-    <span>{ title }</span>
+	<span>
+	  {title.length > 9 ? title.trim().slice(0,9)+'...' : title} 
+	</span>
 	</Card>
 );
 
