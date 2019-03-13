@@ -114,8 +114,9 @@ export function toggleFavourited({ favID, movie, status, userID }) {
 			dispatch(deleteFavouriteRequest());
 
 			return axios.delete(`/api/favourites/${favID}`)
-				.then(() => dispatch(toggledFavouritedStatus('null2', false)))
+				.then(() => dispatch(toggledFavouritedStatus('null', false)))
 				.then(() => dispatch(deleteFavouriteSuccess()))
+				.then(() => dispatch(getUsersFavourites(userID)))
 				.catch((err) => dispatch(deleteFavouriteFailure(err)))
 		} else {
 			dispatch(addFavouriteRequest())
@@ -128,6 +129,7 @@ export function toggleFavourited({ favID, movie, status, userID }) {
 			return axios.post(`/api/users/${userID}/favourites/`, data)
 				.then((resp) => dispatch(toggledFavouritedStatus(resp.data.id, true)))
 				.then(() => dispatch(addFavouriteSuccess()))
+				.then(() => dispatch(getUsersFavourites(userID)))
 				.catch((err) => dispatch(addFavouriteFailure(err)))
 		}
 	}
