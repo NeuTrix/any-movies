@@ -8,11 +8,14 @@ import { ClickAwayListener } from '@material-ui/core';
 export function makeFavouritesPosterArray(indexes, dictionary, movies) {
   // gaurd against null intial state
   if (!indexes || !dictionary) { return [] }
+
   const bundle = indexes.map(fav => {
     const item = dictionary[fav];
-    const title = item ? movies[item.favourited_id].title : ''
+    console.log(999, '==>', movies[item.favourited_id]);
+    const title = item ? movies[item.favourited_id].title : '';
+
     return  <FavouritesPosterContainer 
-      key="fav" 
+      key={item.favourited_id} 
       poster={item.poster} 
       title={title}
     /> 
@@ -24,7 +27,7 @@ export function makeFavouritesPosterArray(indexes, dictionary, movies) {
 const mapStateToProps = state => {
   const indexes = state.favourites.indexes;
   const dictionary = state.favourites.dictionary;
-  const movies = state.movies.dictionary  
+  const movies = state.movies.dictionary;  
   return { 
     posters: makeFavouritesPosterArray(indexes, dictionary, movies),
   }

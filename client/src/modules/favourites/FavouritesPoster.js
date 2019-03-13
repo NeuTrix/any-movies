@@ -12,7 +12,6 @@ const propTypes = {
 
 const FavouritesPoster = (props) => {
 	const { classes, getMovieData, poster, title } = props
-	console.log(777, '==>', getMovieData);
 ;	
 	const switchMovie = (e) => {
 		e.preventDefault()

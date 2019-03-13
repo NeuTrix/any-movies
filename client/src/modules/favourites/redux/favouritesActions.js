@@ -122,6 +122,7 @@ export function toggleFavourited({ favID, movie, status, userID }) {
 			dispatch(addFavouriteRequest())
 			const data = { 
 				favourited_id: movie.imdbID, 
+				favourited_title: movie.Title, 
 				favourited_type: 'Movie',
 				poster: movie.Poster,
 			}
