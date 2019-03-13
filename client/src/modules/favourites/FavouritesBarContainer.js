@@ -10,8 +10,9 @@ export function makeFavouritesPosterArray(indexes, dictionary, movies) {
   if (!indexes || !dictionary) { return [] }
   const bundle = indexes.map(fav => {
     const item = dictionary[fav];
-    const title = item ? movies[item.favourited_id] : ''
-    return  <FavouritesPoster key="fav" poster={item.poster} /> 
+    const title = item ? movies[item.favourited_id].title : ''
+    console.log(7777, '==>', title);
+    return  <FavouritesPoster key="fav" poster={item.poster} title={title} /> 
   })
 
   return bundle;

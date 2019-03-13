@@ -12,7 +12,7 @@ const FavouritesBar = ({ classes, posters, title }) => {
 	return (
     <div className={classes.root}>
       <div className={classes.posters}>{ posters }</div>
-      {/* {title} */}
+      {title}
     </div>
 	);
 };
