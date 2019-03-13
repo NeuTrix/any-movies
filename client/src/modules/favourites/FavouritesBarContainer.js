@@ -1,6 +1,6 @@
 import React from 'react';
 import FavouritesBar  from './FavouritesBar';
-import FavouritesPoster from './FavouritesPoster';
+import FavouritesPosterContainer from './FavouritesPosterContainer';
 import { connect } from 'react-redux';
 import { ClickAwayListener } from '@material-ui/core';
 
@@ -11,7 +11,7 @@ export function makeFavouritesPosterArray(indexes, dictionary, movies) {
   const bundle = indexes.map(fav => {
     const item = dictionary[fav];
     const title = item ? movies[item.favourited_id].title : ''
-    return  <FavouritesPoster 
+    return  <FavouritesPosterContainer 
       key="fav" 
       poster={item.poster} 
       title={title}
@@ -21,7 +21,7 @@ export function makeFavouritesPosterArray(indexes, dictionary, movies) {
   return bundle;
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const indexes = state.favourites.indexes;
   const dictionary = state.favourites.dictionary;
   const movies = state.movies.dictionary  
@@ -30,10 +30,9 @@ const mapStateToProps = (state) => {
   }
 };
 
-
 // wrap around MainCommentsBar component
 const FavouritesBarContainer = connect(
-	mapStateToProps, 
+  mapStateToProps, 
 )(FavouritesBar);
 
 export default FavouritesBarContainer;

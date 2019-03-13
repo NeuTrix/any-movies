@@ -19,8 +19,6 @@ import {
 
 import { actionCreator, omdbUrl } from '../../helpers';
 
-
-
 // actions with actionCreator. Simplifies boilerplate
 // track progress of api request to OMDB database
 // ===> GET / FETCH

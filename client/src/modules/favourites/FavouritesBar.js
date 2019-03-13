@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const FavouritesBar = ({ classes, posters, title }) => {
-	// const shortTitle = title.slice(0, 8)
+
 	return (
     <div className={classes.root}>
       <div className={classes.posters}>{ posters }</div>
