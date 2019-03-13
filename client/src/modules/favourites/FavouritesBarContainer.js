@@ -15,7 +15,7 @@ export function makeFavouritesPosterArray(indexes, dictionary) {
     return  <FavouritesPosterContainer 
       key={item.favourited_id} 
       poster={item.poster} 
-      title={item.title}
+      title={item.favourited_title}
     /> 
   })
 
@@ -26,7 +26,7 @@ const mapStateToProps = state => {
   const indexes = state.favourites.indexes;
   const dictionary = state.favourites.dictionary;
   const movies = state.movies.dictionary;  
-  
+
   return { posters: makeFavouritesPosterArray(indexes, dictionary) }
 };
 
