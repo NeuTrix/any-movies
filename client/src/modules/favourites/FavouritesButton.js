@@ -8,17 +8,31 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	favID: PropTypes.string.isRequired, // id of current movie favourited object
 	movie: PropTypes.instanceOf(Object).isRequired, // current movie
+	registered: PropTypes.bool.isRequired, // registration status of current movie
 	status: PropTypes.bool.isRequired, // favourited status of current movie
-	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
 	userID: PropTypes.number.isRequired, // current user
+	// functions
+	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
+	registerMovie: PropTypes.instanceOf(Function).isRequired, // add/remove fav
 };
 
 function FavouritesButton(props) {
-	const { classes, favID, movie, status, toggleFavourited, userID } = props;
-
+	const { classes, favID, movie, registered, status, userID } = props; // vars
+	const { registerMovie, toggleFavourited } = props; // functions
+	
 	const handleToggle = (e) => {
 		e.preventDefault();
-		toggleFavourited({ favID, movie, status, userID });
+		const movieData = {imdb_id: movie.imdbID, title: movie.Title }; // for movie
+		const favesData = { favID, movie, status, userID }; // for faves 
+
+		const promise = new Promise(res => res());
+		// register movie if needed
+		if (!registered) {
+			promise.then(() => (registerMovie(movieData)))
+				.then(() => toggleFavourited(favesData));
+		} else {
+			toggleFavourited(favesData);
+		}
 	};
 
 	return (

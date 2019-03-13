@@ -9,7 +9,7 @@ import {
 	isFavourited,
 } from '../favourites/redux/favouritesActions';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	movie: state.movies.current,
 	user: state.users.current,
 });

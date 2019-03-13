@@ -14,7 +14,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
 	getComments: () => dispatch(getComments()),
 	registerMovie: (data) => dispatch(registerMovie(data)),
-	isMovieRegistered: (imdbID) => dispatch(isMovieRegistered(imdbID))
+	isMovieRegistered: (imdbID, title) => dispatch(isMovieRegistered(imdbID, title))
 });
 
 // wrap around CommentsBar component

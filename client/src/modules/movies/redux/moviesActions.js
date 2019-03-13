@@ -86,6 +86,7 @@ export function isMovieRegistered(imdbID) {
 	}
 }
 // add a movie to the app db
+// data includes imdbID and a title
 export function registerMovie(data) {
 	const url = `/api/movies`;
 
