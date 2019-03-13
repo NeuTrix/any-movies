@@ -28,7 +28,7 @@ describe('Favourites reducer default actions', () => {
 
 describe('The default state properties', () => {
 	it('... has a the expected number of default properties', () => {
-		expect(Object.keys(initialState).length).to.eql(3);
+		expect(Object.keys(initialState).length).to.eql(5);
 	});
 
 	it('...has a `apiStatus` property (object)', () => {
@@ -39,11 +39,6 @@ describe('The default state properties', () => {
 	it('...has a `dictionary` property (object)', () => {
 		expect(initialState).to.have.property('dictionary')
 			.to.be.a('object');
-	});
-
-	it('...has a `favourited` property (object)', () => {
-		expect(initialState).to.have.property('favourited')
-			.to.be.a('boolean');
 	});
 });
 

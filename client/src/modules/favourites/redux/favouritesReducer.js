@@ -47,14 +47,14 @@ export default function favouritesReducer(state = initialState, action = {}) {
 				},
 			}
 
-			case UPDATE_FAVOURITES_DICTIONARY:
-			return {
-				...state,
-				...{
-					indexes: payload.indexes,
-					dictionary: payload.dictionary,
-				}
+		case UPDATE_FAVOURITES_DICTIONARY:
+		return {
+			...state,
+			...{
+				indexes: payload.indexes,
+				dictionary: payload.dictionary,
 			}
+		}
 
 		// === FAILURE
 		case ADD_FAVOURITE_FAILURE:

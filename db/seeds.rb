@@ -138,7 +138,7 @@
 #   favourited_type: 'Movie'
 # )
 
-@fav02.save
+# @fav02.save
 
 # favorite a comment
 # @fav03 = @user.favourites.build(

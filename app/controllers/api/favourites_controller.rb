@@ -48,6 +48,12 @@ class Api::FavouritesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def favourite_params
       # fav param is a bool to validate movie status for a user
-      params.permit(:user_id, :favourited_id, :favourited_type, :favourited_title)
+      params.permit(
+        :user_id, 
+        :favourited_id, 
+        :favourited_type, 
+        :favourited_title,
+        :poster,
+        )
     end
 end
