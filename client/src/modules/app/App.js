@@ -10,7 +10,7 @@ function App() {
 	return (
 		<Provider store={store}>
 			<MuiThemeProvider theme={masterTheme}>
-				<div className="App">
+				<div className="App" style={{paddingTop: 45}}>
 					<MenuBarContainer />
 					<MainPageContainer />
 				</div>

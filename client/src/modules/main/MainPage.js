@@ -1,6 +1,7 @@
 // container to gather movie logic
 import React from 'react';
 import PropTypes from 'prop-types';
+import FavouritesBarContainer from '../favourites/FavouritesBarContainer';
 import { withStyles } from '@material-ui/core/styles';
 import { MainCommentsBarContainer } from '../comments';
 // unclear why this linting error appears =>
@@ -24,7 +25,7 @@ function MainPage({ classes, comments, commentableID, movie, registered }) {
 			<div className={classes.grid}>
 
 				<div className={classes.favours}>
-					<p> Favourites </p>
+					<FavouritesBarContainer />
 				</div>
 
 				<div style={{ gridArea: 'comments' }}>
