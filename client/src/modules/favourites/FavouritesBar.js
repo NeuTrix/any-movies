@@ -3,18 +3,30 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const propTypes = {
-  posters: PropTypes.instanceOf(Array).isRequired,
+	posters: PropTypes.instanceOf(Array).isRequired,
 }
 
-const FavouritesBar = ({posters}) => {
-  return (
-    <div>
-      {posters}
-    </div>
-  )
+const FavouritesBar = ({ classes, posters }) => {
+	return (
+    <span>
+      <div className={classes.root}>
+			  <div className={classes.posters}>{ posters }</div>
+		  </div>
+      Favourites
+    </span>
+	);
+};
+
+const styles = {
+  posters: {
+    display: 'inline-flex',
+  },
+	root: {
+    overflow: 'auto',
+  },
 }
 
 
 FavouritesBar.propTypes = propTypes;
 
-export default FavouritesBar;
+export default withStyles(styles)(FavouritesBar);

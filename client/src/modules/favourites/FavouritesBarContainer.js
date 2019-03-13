@@ -10,7 +10,6 @@ export function makeFavouritesPosterArray(indexes, dictionary) {
     return (
       <img 
         key="fav" 
-        style={{height: 100, margin: 10}}
         src={dictionary[fav].poster} 
         alt="movie poster"
       />
