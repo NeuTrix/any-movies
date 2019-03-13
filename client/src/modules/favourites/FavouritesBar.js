@@ -8,12 +8,9 @@ const propTypes = {
 
 const FavouritesBar = ({ classes, posters }) => {
 	return (
-    <span>
       <div className={classes.root}>
 			  <div className={classes.posters}>{ posters }</div>
 		  </div>
-      Favourites
-    </span>
 	);
 };
 

@@ -1,19 +1,15 @@
 import React from 'react';
 import FavouritesBar  from './FavouritesBar';
+import FavouritesPoster from './FavouritesPoster';
 import { connect } from 'react-redux';
 
 // convert array of indexes into array of movie poster objects
 export function makeFavouritesPosterArray(indexes, dictionary) {
+  // gaurd against null intial state
   if (!indexes || !dictionary) { return [] }
 
   const bundle = indexes.map(fav => {
-    return (
-      <img 
-        key="fav" 
-        src={dictionary[fav].poster} 
-        alt="movie poster"
-      />
-      )
+    return  <FavouritesPoster key="fav" poster={dictionary[fav].poster} /> 
   })
 
   return bundle;
