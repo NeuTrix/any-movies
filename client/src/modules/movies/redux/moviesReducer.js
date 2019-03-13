@@ -3,6 +3,11 @@ import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
+
+	GET_ALL_MOVIES_SUCCESS, // update with full movie library (from api)
+	GET_ALL_MOVIES_REQUEST,
+	GET_ALL_MOVIES_FAILURE,
+
 	// Registraion
 	REGISTER_MOVIE_FAILURE,
 	REGISTER_MOVIE_NOT_NEEDED,
@@ -23,6 +28,7 @@ export const initialState = {
 	imdbID: '',
 	title: '',
 	poster: '',
+	indexes:'',
 	dictionary: {},
 	favourited: false, // change name to isMovieFavourited...
 	registered: false,
@@ -49,6 +55,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 	switch (type) {
 	// request to the OMBD api
 		case FETCH_MOVIE_REQUEST:
+		case GET_ALL_MOVIES_REQUEST:
 		case REGISTER_MOVIE_REQUEST:
 			return { 
 				...state, 
@@ -81,6 +88,20 @@ export default function moviesReducer(state = initialState, action = {}) {
 					},
 				}
 			};
+		// update dictionary with full saved library from app api
+		case GET_ALL_MOVIES_SUCCESS:
+			return {
+				...state,
+				...{
+					dictionary: payload.dictionary,
+					indexes: payload.indexes,
+					apiStatus: {
+						isFetching: false,
+						message: 'Successfully update this movie dictionary',
+						status: 'success',
+					},
+				}
+			};
 
 		case REGISTER_MOVIE_NOT_NEEDED:
 		case REGISTER_MOVIE_SUCCESS:
@@ -97,6 +118,7 @@ export default function moviesReducer(state = initialState, action = {}) {
 			
 		// log failures
 		case FETCH_MOVIE_FAILURE:
+		case GET_ALL_MOVIES_FAILURE:
 		case REGISTER_MOVIE_FAILURE:
 			const { error } = payload
 			return {

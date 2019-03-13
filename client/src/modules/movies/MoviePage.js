@@ -8,6 +8,7 @@ const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	movie: PropTypes.instanceOf(Object).isRequired,
 	// functions
+	getAllMovies: PropTypes.instanceOf(Function).isRequired,
 	getComments: PropTypes.instanceOf(Function).isRequired,
 	getUsersFavourites: PropTypes.instanceOf(Function).isRequired,
 	isMovieRegistered: PropTypes.instanceOf(Function).isRequired,
@@ -19,6 +20,7 @@ class MoviePage extends Component {
 
 	componentDidUpdate(prevProps) {
 		const {
+			getAllMovies,
 			getComments,
 			getUsersFavourites,
 			isFavourited,
@@ -31,6 +33,7 @@ class MoviePage extends Component {
 			const update = new Promise((res) => res());
 			update.then(() => getComments())
 				.then(() => isMovieRegistered(movie.imdbID))
+				.then(() => getAllMovies()) // update the full dictionary (helps favs)
 				.then(() => isFavourited({ movieID: movie.imdbID, userID: user.id }))
 				.then(() => getUsersFavourites(user.id))
 				.catch(err => console.log(err));
@@ -57,7 +60,6 @@ class MoviePage extends Component {
 			<div className={classes.main}>
 				<div className={classes.titlebar}>
 					<div className={classes.fav}>
-					{/* faking the curr use */}
 						<FavouritesButtonContainer currUserId={1} movie={movie} />
 					</div>
 
@@ -97,7 +99,7 @@ class MoviePage extends Component {
 
 			</div>
 		);
-}
+	}
 }
 
 const styles = theme => ({

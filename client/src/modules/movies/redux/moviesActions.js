@@ -5,6 +5,10 @@ import {
 	FETCH_MOVIE_FAILURE,
 	FETCH_MOVIE_REQUEST,
 	FETCH_MOVIE_SUCCESS,
+
+	GET_ALL_MOVIES_SUCCESS,
+	GET_ALL_MOVIES_REQUEST,
+	GET_ALL_MOVIES_FAILURE,
 	// register
 	REGISTER_MOVIE_FAILURE,
 	REGISTER_MOVIE_NOT_NEEDED,
@@ -12,10 +16,10 @@ import {
 	REGISTER_MOVIE_SUCCESS,
 	VALIDATE_MOVIE_REGISTRATION,
 } from '../../helpers/constants';
+
 import { actionCreator, omdbUrl } from '../../helpers';
 
-// normalizr schema
-export const movieSchema = new schema.Entity('movies', {}, { idAttribute: 'imdbID' });
+
 
 // actions with actionCreator. Simplifies boilerplate
 // track progress of api request to OMDB database
@@ -31,6 +35,10 @@ export const fetchMovieSuccess = actionCreator(
 );
 
 export function getMovieData(movieTitle) {
+	// normalizr schema
+	const movieSchema = new schema.Entity('movies', {}, {
+		idAttribute: 'imdbID'
+	});
 	// using thunk middleware to return a fn from an action
 	// named it `thunk` to clear linting err re:anonymous fucntions
 	return function thunk(dispatch, state) {
@@ -52,6 +60,41 @@ export function getMovieData(movieTitle) {
 				console.log('--ERROR: #getMovieData-->', err);
 			});
 	};
+}
+
+// could restrict this to gather movies in favourites list only
+export const getAllMoviesSuccess = actionCreator(
+	GET_ALL_MOVIES_SUCCESS, 
+	'dictionary'
+);
+export const getAllMoviesRequest = actionCreator(GET_ALL_MOVIES_REQUEST);
+// captures the error messages on fail
+export const getAllMoviesFailure = actionCreator(GET_ALL_MOVIES_FAILURE, 'error');
+
+
+export function getAllMovies() {
+
+	const movieSchema = new schema.Entity('movies');
+	const movieListSchema = [movieSchema];
+
+	return function thunk(dispatch) {
+		dispatch(getAllMoviesRequest())
+
+		return axios.get(`/api/movies/`)
+			// normalize the OMDB data
+			.then(resp => normalize(resp.data, movieListSchema))
+			// pass normalized data to the application state
+			.then((norm) => {
+				const movieIDs = norm.result; // all saved movie ids
+				const dictionary = norm.entities.movies; // full dictionary
+				dispatch(getAllMoviesSuccess(dictionary))
+			})
+			.catch((err) => {
+				dispatch(getAllMoviesFailure(err));
+				console.log('--ERROR: #getAllMovies-->', err);
+			});
+	}
+
 }
 
 // ===> REGISTRATION actions

@@ -136,7 +136,6 @@ export function toggleFavourited({ favID, movie, status, userID }) {
 }
 
 // ============ GET Favourites
-
 // normalizr schema
 export const favourite = new schema.Entity('favourites'); // normalize data
 export const favouritesListSchema = [favourite]; // shorthand -> schema.Array...
@@ -170,7 +169,6 @@ export function getUsersFavourites(userID) {
 				const normed = normalize(data, favouritesListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.favourites; // an object map
-				console.log(typeof indexes );
 				dispatch(updateFavouritesDictionary(indexes, dictionary));
 				return normed
 			})
