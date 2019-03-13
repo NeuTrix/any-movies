@@ -9,18 +9,22 @@ const propTypes = {
 };
 
 const FavouritesBar = ({ classes, posters, title }) => {
+	// const shortTitle = title.slice(0, 8)
 	return (
     <div className={classes.root}>
       <div className={classes.posters}>{ posters }</div>
-      {title}
+			{ title }
     </div>
 	);
 };
 
-const styles = {
-	posters: { display: 'inline-flex' },
+const styles = theme => ({
+	posters: { 
+		display: 'inline-flex',
+		fontSize: '0.75em',
+	},
 	root: { overflow: 'auto' },
-};
+});
 
 
 FavouritesBar.propTypes = propTypes;
