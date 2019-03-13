@@ -14,6 +14,7 @@ import {
 
 	TOGGLED_FAVOURITED_STATUS,
 	UPDATE_IS_FAVOURITED_STATUS,
+    UPDATE_FAVOURITES_DICTIONARY,
 } from '../../helpers/constants';
 
 // shape of favourites state object
@@ -25,6 +26,7 @@ export const initialState = {
 		status: '',
 	},
 	current:'',
+	indexes: '', // array of favourites id's
 	dictionary: {}, // a map of all favourites viewed in this session
 	status: false, // status?
 };
@@ -43,6 +45,15 @@ export default function favouritesReducer(state = initialState, action = {}) {
 					current: payload.current,
 					status: payload.status,
 				},
+			}
+
+			case UPDATE_FAVOURITES_DICTIONARY:
+			return {
+				...state,
+				...{
+					indexes: payload.indexes,
+					dictionary: payload.dictionary,
+				}
 			}
 
 		// === FAILURE

@@ -168,14 +168,12 @@ export function getUsersFavourites(userID) {
 				const normed = normalize(data, favouritesListSchema);
 				const indexes = normed.result; // an array of indices
 				const dictionary = normed.entities.favourites; // an object map
+				console.log(typeof indexes );
 				dispatch(updateFavouritesDictionary(indexes, dictionary));
 				return normed
 			})
-			.then((normed) => console.log(777, '==>', normed))
 			.catch(err => console.log(err))
-
 	}
-
 }
 
 
