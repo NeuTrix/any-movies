@@ -5,19 +5,17 @@ import { connect } from 'react-redux';
 import { ClickAwayListener } from '@material-ui/core';
 
 // convert array of indexes into array of movie poster objects
-export function makeFavouritesPosterArray(indexes, dictionary, movies) {
+export function makeFavouritesPosterArray(indexes, dictionary) {
   // gaurd against null intial state
   if (!indexes || !dictionary) { return [] }
 
   const bundle = indexes.map(fav => {
     const item = dictionary[fav];
-    console.log(999, '==>', movies[item.favourited_id]);
-    const title = item ? movies[item.favourited_id].title : '';
 
     return  <FavouritesPosterContainer 
       key={item.favourited_id} 
       poster={item.poster} 
-      title={title}
+      title={item.title}
     /> 
   })
 
@@ -28,9 +26,8 @@ const mapStateToProps = state => {
   const indexes = state.favourites.indexes;
   const dictionary = state.favourites.dictionary;
   const movies = state.movies.dictionary;  
-  return { 
-    posters: makeFavouritesPosterArray(indexes, dictionary, movies),
-  }
+  
+  return { posters: makeFavouritesPosterArray(indexes, dictionary) }
 };
 
 // wrap around MainCommentsBar component
