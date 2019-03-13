@@ -12,8 +12,8 @@ const propTypes = {
 	status: PropTypes.bool.isRequired, // favourited status of current movie
 	userID: PropTypes.number.isRequired, // current user
 	// functions
-	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
 	registerMovie: PropTypes.instanceOf(Function).isRequired, // add/remove fav
+	toggleFavourited: PropTypes.instanceOf(Function).isRequired, // add/remove fav
 };
 
 function FavouritesButton(props) {
@@ -22,7 +22,7 @@ function FavouritesButton(props) {
 	
 	const handleToggle = (e) => {
 		e.preventDefault();
-		const movieData = {imdb_id: movie.imdbID, title: movie.Title }; // for movie
+		const movieData = { imdb_id: movie.imdbID, title: movie.Title }; // for movie
 		const favesData = { favID, movie, status, userID }; // for faves 
 
 		const promise = new Promise(res => res());
