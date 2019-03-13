@@ -19,7 +19,7 @@ const propTypes = {
 function FavouritesButton(props) {
 	const { classes, favID, movie, registered, status, userID } = props; // vars
 	const { registerMovie, toggleFavourited } = props; // functions
-	
+
 	const handleToggle = (e) => {
 		e.preventDefault();
 		const movieData = { imdb_id: movie.imdbID, title: movie.Title }; // for movie
