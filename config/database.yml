@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: any_movie_production
+  adapter: postgresql
+  # database: any_movie_production
+  database: db/production.sqlite3
   username: any_movie
   password: <%= ENV['ANY_MOVIE_DATABASE_PASSWORD'] %>
