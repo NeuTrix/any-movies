@@ -7,7 +7,7 @@ import { ClickAwayListener } from '@material-ui/core';
 // convert array of indexes into array of movie poster objects
 export function makeFavouritesPosterArray(indexes, dictionary) {
   // gaurd against null intial state
-  if (!indexes || !dictionary) { return ['pick', 'your', 'film'] }
+  if (!indexes || !dictionary) { return []; }
 
   const bundle = indexes.map(fav => {
     const item = dictionary[fav];
@@ -32,7 +32,7 @@ const mapStateToProps = state => {
 
 // wrap around MainCommentsBar component
 const FavouritesBarContainer = connect(
-  mapStateToProps, 
+  mapStateToProps,
 )(FavouritesBar);
 
 export default FavouritesBarContainer;
