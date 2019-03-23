@@ -5,8 +5,12 @@ import { withStyles } from '@material-ui/core/styles';
 const propTypes = {
 	classes: PropTypes.instanceOf(Object).isRequired,
 	posters: PropTypes.instanceOf(Array).isRequired,
-	title: PropTypes.instanceOf(String).isRequired,
+	title: PropTypes.instanceOf(String),
 };
+
+const defaultProps = {
+	title: 'placeholder',
+}
 
 const FavouritesBar = ({ classes, posters, title }) => {
 

@@ -2,7 +2,6 @@ import React from 'react';
 import FavouritesBar  from './FavouritesBar';
 import FavouritesPosterContainer from './FavouritesPosterContainer';
 import { connect } from 'react-redux';
-import { ClickAwayListener } from '@material-ui/core';
 
 // convert array of indexes into array of movie poster objects
 export function makeFavouritesPosterArray(indexes, dictionary) {
@@ -25,7 +24,6 @@ export function makeFavouritesPosterArray(indexes, dictionary) {
 const mapStateToProps = state => {
   const indexes = state.favourites.indexes;
   const dictionary = state.favourites.dictionary;
-  const movies = state.movies.dictionary;  
 
   return { posters: makeFavouritesPosterArray(indexes, dictionary) }
 };
