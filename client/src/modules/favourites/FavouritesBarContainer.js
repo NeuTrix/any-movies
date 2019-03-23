@@ -7,7 +7,7 @@ import { ClickAwayListener } from '@material-ui/core';
 // convert array of indexes into array of movie poster objects
 export function makeFavouritesPosterArray(indexes, dictionary) {
   // gaurd against null intial state
-  if (!indexes || !dictionary) { return [] }
+  if (!indexes || !dictionary) { return ['pick', 'your', 'film'] }
 
   const bundle = indexes.map(fav => {
     const item = dictionary[fav];
@@ -19,7 +19,7 @@ export function makeFavouritesPosterArray(indexes, dictionary) {
     /> 
   })
 
-  return bundle;
+  return bundle.reverser();
 }
 
 const mapStateToProps = state => {
