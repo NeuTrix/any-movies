@@ -43,8 +43,7 @@ class MoviePage extends Component {
   render() { 
     const { classes, movie } = this.props;
     // generate list of movie ratings
-    // const ratings = movie.Ratings && movie.Ratings.map((rating) => {
-    const ratings = movie.Ratings.map(rating => (
+    const ratings = movie.Ratings && movie.Ratings.map(rating => (
       <div key={movie.imdbID} className={classes.ratingUnit}>
 
         <div style={{ gridArea: 'critic' }}>{`${rating.Source} :`}</div>
