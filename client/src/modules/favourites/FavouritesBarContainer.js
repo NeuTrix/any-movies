@@ -18,7 +18,7 @@ export function makeFavouritesPosterArray(indexes, dictionary) {
     /> 
   })
 
-  return bundle.reverser();
+  return bundle.reverse();
 }
 
 const mapStateToProps = state => {
