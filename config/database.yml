@@ -84,5 +84,5 @@ production:
   database: any_movies_production
   # trying to get db to connect to Heroku
   # database: db/production.sqlite3
-  username: any_movie
+  username: any_movies
   password: <%= ENV['ANY_MOVIE_DATABASE_PASSWORD'] %>
