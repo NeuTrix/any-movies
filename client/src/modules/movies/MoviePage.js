@@ -66,13 +66,22 @@ class MoviePage extends Component {
 				</div>
 
 				<div className={classes.image}>
+
 					<img className={classes.poster}
 						src={movie.Poster}
 						alt="movie poster"
 					/>
-					<div> {`Released...${movie.Year}`} </div> <br />
-					<div> {'Rated'} <h3> { movie.Rated } </h3> </div>
-					<div> <h6> { `imdbID: ${movie.imdbID}` } </h6> </div>
+
+					<div>{`Released...${movie.Year}`}</div> 
+          <br />
+          <div>
+            {'Rated'}
+            <h3>{ movie.Rated }</h3>
+          </div>
+					<div>
+            <h6>{ `imdbID: ${movie.imdbID}` }</h6>
+          </div>
+
 				</div>
 
 				<div className={classes.info}>
@@ -170,8 +179,8 @@ const styles = theme => ({
     fontColor: 'white',
     gridArea: 'titlebar',
     gridTemplateAreas: `
-			"fav title"
-		`,
+      "fav title"
+    `,
     gridTemplateColumns: '1fr 9fr',
     padding: theme.spacing.unit,
   },
