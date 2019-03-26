@@ -17,7 +17,6 @@ const propTypes = {
 };
 
 class MoviePage extends Component {
-
   componentDidUpdate(prevProps) {
     const {
       getAllMovies,
