@@ -40,21 +40,21 @@ class MoviePage extends Component {
     }
   }
 
-  render() { 
+  render() {
     const { classes, movie } = this.props;
     // generate list of movie ratings
     const ratings = movie.Ratings && movie.Ratings.map(rating => (
-      <div key={movie.imdbID} className={classes.ratingUnit}>
-
+      <div key={movie.Source} className={classes.ratingUnit}>
         <div style={{ gridArea: 'critic' }}>{`${rating.Source} :`}</div>
-
-        <div style={{ gridArea: 'grade', textAlign: 'right' }}>{rating.Value}</div>
-
+        <div style={{ gridArea: 'grade', textAlign: 'right' }}>
+          { rating.Value }
+        </div>
       </div>
     ));
 
     return (
       <div className={classes.main}>
+
         <div className={classes.titlebar}>
           <div className={classes.fav}>
 						<FavouritesButtonContainer currUserId={1} movie={movie} />
@@ -66,8 +66,7 @@ class MoviePage extends Component {
 				</div>
 
 				<div className={classes.image}>
-					<img
-						className={classes.poster}
+					<img className={classes.poster}
 						src={movie.Poster}
 						alt="movie poster"
 					/>
