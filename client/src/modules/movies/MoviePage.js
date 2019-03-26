@@ -45,9 +45,11 @@ class MoviePage extends Component {
     const ratings = movie.Ratings && movie.Ratings.map(rating => (
       <div key={movie.Source} className={classes.ratingUnit}>
         <div style={{ gridArea: 'critic' }}>{`${rating.Source} :`}</div>
+        
         <div style={{ gridArea: 'grade', textAlign: 'right' }}>
           { rating.Value }
         </div>
+
       </div>
     ));
 
