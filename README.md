@@ -15,8 +15,6 @@
 - For just the Rails api, in the root, run `rails s -p 3001`. This runs rails on PORT=3001 and aligns with the React Proxy code (avoiding CORS issues)
 - to start the postgres database server via homebrew: `brew services start postgresql` and `brew services stop postgresql` to stop
 
-===================
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
@@ -36,6 +34,7 @@ Things you may want to cover:
 
 - Services (job queues, cache servers, search engines, etc.)
 
-- Deployment instructions
-
-- ...
+* Deployment instructions
+  # Heroku
+  - `heroku run rake db:migrate` to update the database
+* ...
